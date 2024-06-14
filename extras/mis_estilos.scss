@@ -68,7 +68,7 @@ a {
 
 // color del borde izquierdo
 div.callout-note.callout {
-    border-left-color: $cr;
+    border-color: $cr;
 }
 
 // color de las secciones activas en la tabla de contenidos
@@ -86,12 +86,3 @@ div.callout-note.callout {
 .vis-network {
   background-color: $cg;
 }
-
-.quarto-float-tbl {
-  background-color: $cg;
-}
-
-
-
-
-

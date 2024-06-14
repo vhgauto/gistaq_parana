@@ -186,7 +186,8 @@ Las características de las bandas espectrales se muestran a continuación:
 
 ```{r}
 #| label: tbl-s2msi
-#| tbl-cap: Propiedades de las bandas S2-MSI.
+#| tbl-cap: Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B.
+#| tbl-cap-location: margin
 
 tab_s2msi
 ```
@@ -279,11 +280,10 @@ Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de a
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
 
-La <span style='color:`r c2`;'>fecha actual</span> y los siguientes 10 muestreos son:
-
 ```{r}
 #| label: tbl-adq
-#| tbl-cap: Fecha actual y próximos 10 muestreos
+#| tbl-cap: <span style='color:`r c2`;'>Fecha actual</span> y los próximos 10 muestreos.
+#| tbl-cap-location: margin
 
 tab_adq
 ```
@@ -316,7 +316,8 @@ Tabla de coeficientes de correlación lineal `R` (Pearson) entre pares de parám
 
 ```{r corr_laboratorio}
 #| label: tbl-corr-lab
-#| tbl-cap: Correlación LAB
+#| tbl-cap: <br>✦ = |<b>R</b>| > 0,5<br><b style='color:#E41A1C;'>R</b> = p-valor < 0,05
+#| tbl-cap-location: margin
 
 tab_corr_lab
 ```
@@ -344,16 +345,13 @@ g_evo_lab
 
 Coeficientes de correlación lineal de Pearson entre reflectancias de superficie de las bandas espectrales (tabla [-@tbl-s2msi]) de S2-MSI.
 
-::: {.column-body-outset}
-
 ```{r corr_espectral}
 #| label: tbl-corr-gis
-#| tbl-cap: Correlación GIS
+#| tbl-cap: <br>✦ = |<b>R</b>| > 0,5<br><b style='color:#E41A1C;'>R</b> = p-valor < 0,05
+#| tbl-cap-location: margin
 
 tab_corr_gis
 ```
-
-:::
 
 ## Sitios muestrales
 

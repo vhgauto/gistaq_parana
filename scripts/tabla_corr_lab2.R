@@ -6,7 +6,7 @@
 # función que aplica formato a los números de R
 f_formato <- function(x, digits = 3, nsmall = 3) {
   format(
-    x, digits = digits, nsmall = 3, trim = TRUE, decimal.mark = ",",
+    x, digits = digits, nsmall = nsmall, trim = TRUE, decimal.mark = ",",
     big.mark = ".")
 }
 
@@ -140,18 +140,6 @@ tab_corr_lab <- gt(e) |>
   ) |> 
   cols_label_with(
     fn = gt::md
-  ) |> 
-  tab_footnote(
-    footnote = md(
-      glue(
-        "{simbolo_sig} : |<b>R</b>| > 0,5<br>",
-        "<b style='color:{c2};'>R</b> : p-valor < 0,05")
-    ),
-    placement = "right"
-  ) |> 
-  tab_style(
-    locations = cells_footnotes(),
-    style = cell_text(align = "right")
   ) |> 
   tab_options(table.background.color = c6
   )
