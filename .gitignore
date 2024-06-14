@@ -1,6 +1,11 @@
 # sitio web
 index.html
 
+# datos
+!datos/base_de_datos_gis.csv
+!datos/base_de_datos_lab.csv
+!datos/s2msi.csv
+
 # History files
 .Rhistory
 .Rapp.history
