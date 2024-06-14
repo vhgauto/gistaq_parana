@@ -2,9 +2,13 @@
 index.html
 
 # datos
-!datos/base_de_datos_gis.csv
-!datos/base_de_datos_lab.csv
-!datos/s2msi.csv
+datos/2023 Todos_los_parametros_Victor.xlsx
+datos/2024 Todos_los_parametros_Victor1.xlsx
+datos/Antecedentes*
+datos/base_de_datos_gis_sameep.tsv
+datos/datos_gistaq.xlsx
+datos/s2msi.xlsx
+datos/sameep_historicos.tsv
 
 # History files
 .Rhistory
