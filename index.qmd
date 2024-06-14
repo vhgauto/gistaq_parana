@@ -1,0 +1,421 @@
+---
+title: "Proyecto Paraná 2023"
+format: 
+  html:
+    number-sections: true
+    embed-resources: true
+    include-in-header:
+      - text: |
+          <link rel="shortcut icon" href="extras/logo_g.png" />
+    theme:
+      - extras/mis_estilos.scss
+    toc: true
+    toc-float: false
+    toc-location: left
+    toc-title: "Contenido"
+    mainfont: Ubuntu
+    link-external-icon: true
+    link-external-newwindow: true
+    code-link: true
+    code-copy: true
+    code-annotations: false
+    code-line-numbers: false
+editor_options:
+  chunk_output_type: console
+crossrefs-hover: false
+lang: es
+execute: 
+  echo: false
+  warning: false
+  eval: true
+---
+
+```{r scripts}
+source("scripts/soporte.R")
+source("scripts/mapa_interactivo_index3.R")
+source("scripts/tabla_corr_lab2.R")
+source("scripts/tabla_corr_gis2.R")
+source("scripts/tabla_banda_S2MSI.R")
+source("scripts/evolucion_lab.R")
+source("scripts/evolucion_gis.R")
+source("scripts/fechas_adq.R")
+source("scripts/corr_identidad_lab_param.R")
+```
+
+<!-- cómo agregar referencias cruzadas -->
+<!-- https://quarto.org/docs/authoring/cross-references.html#references -->
+
+<!-- link a los sitios de las funciones -->
+<!-- https://quarto.org/docs/authoring/cross-references.html#references -->
+
+<!-- los bloques de callout -->
+<!-- https://quarto.org/docs/authoring/callouts.html -->
+
+<!-- layout de las columnas -->
+<!-- https://quarto.org/docs/authoring/article-layout.html#body-column -->
+
+<!-- formatos de tiempo -->
+<!-- ?strptime -->
+
+# Introducción {.unnumbered}
+
+Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b>.
+
+A continuación se describen el objetivo general ([-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([-@sec-ejecucion]). Luego, se describe la metodología de los muestreos ([-@sec-muestreos]). Los resultados ([-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de estos. Se visualizan las firmas espectrales por sitio y por muestreo ([-@sec-firmas-espectrales]). Finalmente, se describen el desarrollo y selección de algoritmos ([-@sec-algoritmos]).
+
+La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto, registrar datos, visualizar resultados y evaluar algoritmos.
+
+En particular, este documento sirve como una guía para entender cómo se obtienen los datos pertinentes al proyecto de investigación, visualizar resultados, evaluar algoritmos y como material de consulta general de la metodología.
+
+# Objetivo {#sec-objetivos}
+
+El objetivo principal del proyecto de investigación es:
+
+::: {.callout-note appearance="simple" icon=false}
+
+Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos decampo
+
+:::
+
+Los objetivos específicos son:
+
+* Seleccionar un sector de la cuenca media del río Paraná, en la confluencia delos ríos Paraguay-Paraná, y en la toma de agua de la empresa potabilizadora de la ciudad de Resistencia.
+
+* Definir la cantidad y ubicación geográfica de los sitios de muestreo considerando el sensor satelital elegido, la logística y las características de la región de interés.
+
+* Analizar los sólidos suspendidos y la turbidez como indicadores de la calidad del agua en las muestras recolectadas en los sitios previamente seleccionados.
+
+* Construir una base de datos espaciotemporales a partir de productos satelitales ópticos, en reflectancia de superficie.
+
+* Calcular índices espectrales relacionados con la cuantificación delos indicadores de calidad del agua.
+
+* Desarrollar un algoritmo semiempírico que permita estimar indicadores de la calidad del agua a partir delos datos de campo y los datos espectrales de los productos espaciales.
+
+* Validar el algoritmo desarrollado, evaluar su significancia estadística y compararlo con otros encontrados en referencias bibliográficas.
+
+* Generar mapas de los parámetros estimados y su evolución temporal a partir de la aplicación del algoritmo obtenido.
+
+* Analizar espaciotemporalmente el comportamiento de los indicadores de calidad de agua.
+
+* Formar RRHH en el área específica.
+
+El desarrollo de algoritmos empíricos requiere de datos espectrales y fisicoquímicos del agua, la propuesta de modelos candidatos, la selección final de los modelos y la validación de los mismos. Luego, la generación de mapas para evaluar la distribución espacial de las propiedades.
+
+Se pretende automatizar la descarga, extracción y almacenamiento de los datos espectrales y fisicoquímicos del agua en los sitios de muestreo, junto con las coordenadas geográficas.
+
+A medida que el proyecto avance los resultados parciales serán registrados en el presente sitio web, para su seguimiento y revisión por parte de los integrantes.
+
+# Ejecución {#sec-ejecucion}
+
+El proyecto está gestionado mediante [`targets`](https://books.ropensci.org/targets/). Para ejecutar todas las funciones, correr en la consola:
+
+```{r tar_make}
+#| eval: false
+#| echo: true
+
+targets::tar_make()
+```
+
+Esto genera una ejecución en cadena de múltiples funciones que permiten la obtención de datos espectrales y fisicoquímicos para la generación y almacenamiento de resultados.
+
+Utilizar `targets` permite asegurar el orden correcto de ejecución y facilita la resolución de potenciales problemas.
+
+## Funciones
+
+El archivo `_targets.R` contiene los paquetes necesarios y las funciones a ejecutar, en el orden adecuado y las relaciones entre sí.
+
+Para visualizar las dependencias y el estado actual entre funciones correr:
+
+```{r tar_viz}
+#| eval: false
+#| echo: true
+
+targets::tar_visnetwork()
+```
+
+::: {.column-page}
+
+```{r grafo_funciones}
+
+targets::tar_visnetwork()
+```
+
+:::
+
+A continuación, se describen las funciones objetivo.
+
+### `excel` {#sec-excel}
+
+El archivo Excel `datos/datos_gistaq.xlsx` contiene todos los datos del muestreo y los resultados de los análisis fisicoquímicos.
+
+Incluye la fecha, las coordenadas geográficas de los sitios de muestreo, los valores de pH, conductividad (μS/cm), profundidad de disco de Secchi (cm), sólidos suspendidos (mg/L) y turbidez, por dos métodos: colorimétrico (HATCH, NTU) y turbidímetro (Hazemeter, EBC).
+
+Luego de cada muestra de agua ([-@sec-muestreos]) es procesada, se actualiza manualmente este archivo con los datos obtenidos. Modificando este archivo, al ejecutar la función vista al inicio de esta sección ([-@sec-ejecucion]), se suceden todas las funciones.
+
+### `fecha_descarga` {#sec-fecha-descarga}
+
+A partir de las fechas ya previamente analizadas, sacadas de la base de datos, se obtiene del archivo Excel, la última fecha faltante.
+
+A partir de esta fecha se procede a la descarga del producto correspondiente.
+
+### `script_py`
+
+Usando la plantilla `scripts/plantilla.py` de un código de programación en Python, se genera el archivo `scripts/d.py` que contiene los parámetros de búsqueda del producto de interés.
+
+Se establecen las coordenadas de la región de interés (-58° 48' 48<br>S</br>, 27° 29' 18<br>O</br>), la fecha ([-@sec-fecha-descarga]) y el nivel de procesamiento.
+
+### `producto_zip`
+
+Se ejecuta el script Python que descarga el producto. Utiliza las credenciales de mi cuenta en [Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu/). El nivel de procesamiento es L2A, en reflectancia de superficie, con corrección atmosférica automática.
+
+El producto a descargar corresponde al SAFE y se encuentra comprimido en un archivo `.zip`. El tamaño del producto es 1Gb aproximadamente.
+
+### `recorte_tif`
+
+Extracción del contenido del `.zip` y creación de un stack a partir de las bandas de interés.
+
+El stack contiene las bandas espectrales: B01, B02, B03, B04, B05, B06, B07, B08, B8A, B11 y B12. Se recorta al polígono `vector/recorte_puente.gpkg` y luego se hace un remuestreo a 10 m. Las características de estas bandas se detallan en la tabla [-@tbl-s2msi].
+
+Se almacena el recorte `.tif`, siendo el nombre del archivo la fecha de adquisición del producto.
+
+### `datos_gis` {#sec-datos-gis}
+
+A partir de la fecha ([-@sec-fecha-descarga]), se genera un vector con las coordenadas geográficas del Excel ([-@sec-excel]). Luego, se extraen los valores de píxeles por cada banda. Se actualiza el archivo `datos/base_de_datos_gis.csv` ([-@sec-base-de-datos]) con los nuevos datos espectrales.
+
+Las características de las bandas espectrales se muestran a continuación:
+
+```{r}
+#| label: tbl-s2msi
+#| tbl-cap: Propiedades de las bandas S2-MSI.
+
+tab_s2msi
+```
+
+### `datos_lab`
+
+Los datos fisicoquímicos del Excel se extraen a partir de la fecha y se combinan con los datos ya presentes en el archivo `datos/base_de_datos_lab.csv`.
+
+## Datos
+
+Los datos generados son del tipo archivo de texto (`.csv`) y ráster (`.tif`).
+
+### Bases de datos {#sec-base-de-datos}
+
+La ejecución de `targets` tiene como propósito ([-@sec-objetivos]) la obtención de los datos espectrales y fisicoquímicos de los sitios de muestreo sobre el río Paraná.
+
+* Datos espectrales, `datos/base_de_datos_gis.csv`
+
+El archivo de texto posee los valores de reflectancia de superficie (entre $0 - 1$) para cada banda de S2-MSI. Se generan dos valores para cada sitio: <b>1x1</b>, que consiste en el valor exacto del píxel; y <b>3x3</b>, que toma la media de una ventana de píxeles alrededor del píxel central.
+
+Se incluye la fecha, el número de sitio y las coordenadas geográficas en el sistema EPSG:4326, en latitud y longitud.
+
+* Datos fisicoquímicos, `datos/base_de_datos_lab.csv`
+
+Sobre el curso de agua se obtienen pH, conductividad, profundidad de disco de Secchi y las coordenadas geográficas. En laboratorio se miden turbidez por dos métodos: colorimétrico (HACH) y turbidímetro (Hazemeter), y sólidos suspendidos por gravimetría.
+
+### Recortes ráster
+
+Los productos S2-MSI son recortados a la región de interés, alrededor del [Puente Chaco-Corrientes](https://www.openstreetmap.org/#map=15/-27.4687/-58.8608).
+
+Se genera un stack con las bandas de interés ([-@sec-datos-gis]) y se almacena con el nombre de la fecha correspondiente en la carpeta `recorte/` con formato `.tif`.
+
+## Creación de objetivos
+
+Para generar nuevos objetivos, hay que editar el archivo `_targets.R` agregando un nuevo elemento a `list()`:
+
+```{r}
+#| eval: false
+#| echo: true
+
+targets::tar_target(
+  names = nombre_de_objetivo,
+  command = funcion()
+)
+
+```
+
+La `funcion()` se desarrolla en el archivo `scripts/funciones.R`. En caso de hacer el seguimiento de archivos agregar el argumento `format = "file"`.
+
+## Entorno de ejecución
+
+Definir las versiones de los paquetes utilizados en el presente proyecto es relevante ya que permite asegurar la reproducibilidad de los resultados. Para tal fin se emplea el paquete [`renv`](https://rstudio.github.io/renv/).
+
+La instalación de paquetes se realiza de manera tradicional con `install.packages("nombre_de_paquete")`. Cada vez que se instale, actualice o remueva un nuevo paquete ejecutar en la consola:
+
+```{r}
+#| eval: false
+#| echo: true
+
+renv::snapshot()
+
+```
+
+Esto actualiza el archivo `renv.lock` con la información de cada paquete. Para verificar el estado actual de `renv`, correr:
+
+```{r}
+#| eval: false
+#| echo: true
+
+renv::status()
+```
+
+## Quarto
+
+El presente sitio web fue desarrollado con la herramienta [Quarto](https://quarto.org/). Para generar el sitio web se debe renderizar el archivo `index.qmd` que produce `index.html`.
+
+La publicación se lleva a cabo en [Quarto Pub](https://quartopub.com/). Los datos de publicación se registran en el archivo `_publish.yml`.
+
+Para regenerar el `.html` e inmediatamente publicar el sitio web, correr en la terminal:
+
+```{.bash}
+quarto publish
+```
+
+En la terminal se debe elegir la cuenta asociada a Quarto Pub.
+
+# Muestreos {#sec-muestreos}
+
+Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
+
+En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
+
+La <span style='color:`r c2`;'>fecha actual</span> y los siguientes 10 muestreos son:
+
+```{r}
+#| label: tbl-adq
+#| tbl-cap: Fecha actual y próximos 10 muestreos
+
+tab_adq
+```
+
+Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
+
+Sobre el agua se miden pH, conductividad y profundidad de disco de Secchi. Luego, en el laboratorio se miden turbidez y sólidos suspendidos. A continuación, se describen cada uno:
+
+* pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
+
+* Profundidad de disco de Secchi (cm).
+
+* Sólidos suspendidos (ppm) por método gravimétrico, utilizando el método estandarizado 2540 D, que emplea filtros de 47 mm de diámetro y 0,5 μm de poro.
+
+* Turbidez se obtiene a partir de dos métodos:
+  - Colorimétrico (NTU), utilizando el equipo HACH, programa 95.
+  - Turbidímetro (EBC), que emplea el Hazemeter.
+
+La relación entre las unidades de turbidez es: $1~NTU = 0,25~EBC$.
+
+# Resultados {#sec-resultados}
+
+Se muestran las correlaciones lineales entre los parámetros espectrales y fisicoquímicos. De estos últimos se incluye la serie temporal según el sitio de muestreo.
+
+Las firmas espectrales se encuentran en la siguiente sección ([-@sec-firmas-espectrales]).
+
+## Datos fisicoquímicos
+
+Tabla de coeficientes de correlación lineal `R` (Pearson) entre pares de parámetros fisicoquímicos, y los valores se acomodan como una matriz triangular para evitar repeticiones.
+
+```{r corr_laboratorio}
+#| label: tbl-corr-lab
+#| tbl-cap: Correlación LAB
+
+tab_corr_lab
+```
+
+Las correlaciones mostradas en la tabla anterior ([-@tbl-corr-lab]) pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
+
+::: {.column-page}
+
+![](figuras/g_identidad_lab.png)
+
+:::
+
+Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
+
+::: {.column-page}
+
+```{r serie_temp_lab}
+
+g_evo_lab
+```
+
+:::
+
+## Datos espectrales
+
+Coeficientes de correlación lineal de Pearson entre reflectancias de superficie de las bandas espectrales (tabla [-@tbl-s2msi]) de S2-MSI.
+
+::: {.column-body-outset}
+
+```{r corr_espectral}
+#| label: tbl-corr-gis
+#| tbl-cap: Correlación GIS
+
+tab_corr_gis
+```
+
+:::
+
+## Sitios muestrales
+
+Se muestran los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
+
+::: {.column-page}
+
+```{r mapa_interactivo}
+#| warning: false
+#| fig-align: left
+#| fig-asp: 1
+
+mapa_int
+```
+
+:::
+
+<br>
+Actualmente se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se recolectaron <b>`r cantidad_muetras` muestras de agua</b>.
+
+En todos los casos, no se aprecia presencia de nubes sobre los puntos de toma de muestras.
+
+Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la provincia del Chaco con y finalizando en la provincia de Corrientes.
+
+# Firmas espectrales {#sec-firmas-espectrales}
+
+A partir de los valores de píxel de las reflectancias de superficie ([-@sec-base-de-datos]) se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná sirven para ver el cambio entre costas.
+
+Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
+
+::: {.column-page}
+
+```{r serie_temp_gis}
+g_evo_gis
+```
+
+:::
+
+<br>
+Las curvas <span style='color:`r c1`'>color azul</span> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <span style='color:`r c2`'>color rojo</span>.
+
+Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
+
+# Algoritmos {#sec-algoritmos}
+
+El desarrollo de los algoritmos para la estimación de indicadores de calidad del agua requiere la combinación de datos espectrales y fisicoquímicos.
+
+Se proponen múltiples modelos para la estimación de parámetros. Se siguen los lineamientos de `{tidymodels}` para el entrenamiento y validación de los modelos.
+
+# Contacto {.unnumbered}
+
+Sitio web desarrollado y mantenido por: Mgtr. Víctor Gauto [`r icono_mail`](`r link_mail_vhg`).
+
+Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>) [`r icono_mail`](`r link_mail_gistaq`), [`r icono_instagram`](`r link_instagram`), [`r icono_facebook`](`r link_facebook`).
+
+<br>
+<br>
+<br>
+<br>
+
+::: {.column-screen-right}
+
+`r actualizado_label`
+
+:::
