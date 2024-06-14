@@ -132,4 +132,3 @@ tab_corr_gis <- gt(e) |>
   ) |> 
   tab_options(table.background.color = c6
   )
-

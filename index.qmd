@@ -59,7 +59,7 @@ source("scripts/corr_identidad_lab_param.R")
 
 # Introducción {.unnumbered}
 
-Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b>.
+Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b>.
 
 A continuación se describen el objetivo general ([-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([-@sec-ejecucion]). Luego, se describe la metodología de los muestreos ([-@sec-muestreos]). Los resultados ([-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de estos. Se visualizan las firmas espectrales por sitio y por muestreo ([-@sec-firmas-espectrales]). Finalmente, se describen el desarrollo y selección de algoritmos ([-@sec-algoritmos]).
 
@@ -107,7 +107,7 @@ A medida que el proyecto avance los resultados parciales serán registrados en e
 
 # Ejecución {#sec-ejecucion}
 
-El proyecto está gestionado mediante [`targets`](https://books.ropensci.org/targets/). Para ejecutar todas las funciones, correr en la consola:
+El proyecto está gestionado mediante el paquete [`targets`](https://books.ropensci.org/targets/). Para ejecutar todas las funciones, correr en la consola:
 
 ```{r tar_make}
 #| eval: false
