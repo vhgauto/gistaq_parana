@@ -25,12 +25,14 @@ c6 <- "#FAFAFA" # "grey98"
 
 # contacto ----------------------------------------------------------------
 
-# íconos
+# íconos de Nerd Fonts, https://www.nerdfonts.com/cheat-sheet
 icono_instagram <- glue('<span class="nf nf-fa-instagram"></span>')
 
 icono_facebook <- glue('<span class="nf nf-fa-facebook"></span>')
 
 icono_mail <- glue('<span class="nf nf-cod-mail"></span>')
+
+icono_github <- glue('<span class="nf nf-md-github"></span>')
 
 # enlaces a redes sociales y mails
 link_instagram <- "https://www.instagram.com/gistaq.utn/"
@@ -40,6 +42,10 @@ link_facebook <- "https://www.facebook.com/GISTAQ"
 link_mail_vhg <- "mailto:victor.gauto@outlook.com"
 
 link_mail_gistaq <- "mailto:gistaq@ca.frre.utn.edu.ar"
+
+link_github_vhg <- "https://github.com/vhgauto"
+
+link_github_gistaq <- "https://github.com/vhgauto/gistaq_parana"
 
 # fecha de actualización
 actualizado <- format(now(), "%d/%m/%Y %H:%M")
