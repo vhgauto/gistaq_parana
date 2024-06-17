@@ -97,9 +97,9 @@ f_gg <- function(eje_x, eje_y) {
       axis.title = element_markdown(family = "ubuntu", size = 15),
       axis.title.y = element_markdown(angle = 90, margin = margin(r = 3)),
       axis.title.x = element_markdown(margin = margin(t = 6)),
-      axis.text = element_text(family = "jet", size = 10),
-      axis.text.x = element_text(margin = margin(t = 7)),
-      axis.text.y = element_text(margin = margin(r = 7), hjust = 1)
+      axis.text = element_text(family = "jet", size = 8),
+      axis.text.x = element_text(margin = margin(t = 6)),
+      axis.text.y = element_text(margin = margin(r = 5), hjust = 1)
     )
   
   # figuras que contienen profundidad de disco de Secchi
