@@ -1,20 +1,20 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
 archivo_excel|function|b4b1002c511fe9a1|||||||||||||||
 datos_csv|stem|b6ae59cefeb52da1|4566e04940e7533c|22598816ce8d7dbd|1495007528||t19774.6110416667s|dff9495c51b724c1|77|rds|local|vector|||0.88||
-datos_gis|stem|ffa10f045a10771b|e9b36857913a476f|a492b2399e908dcc|-791273998|datos/base_de_datos_gis.csv|t19876.202028933s|181b959a3886259c|51603|file|local|vector|||5.49||
-datos_lab|stem|ddca28ca843d38fb|75ccb77fe81d974a|f3bb6e8267555d1a|-1988609623|datos/base_de_datos_lab.csv|t19878.5033328294s|3104cc6fd17c7b24|8353|file|local|vector|||0.38||
+datos_gis|stem|81450381d336e033|e9b36857913a476f|de431b624a2c2de5|-791273998|datos/base_de_datos_gis.csv|t19890.8881043027s|e9a5d4481d571ae8|50216|file|local|vector|||0.8|SpatVector from sf empty SpatVector. SpatVector from sf empty SpatVector|
+datos_lab|stem|ddca28ca843d38fb|75ccb77fe81d974a|195f475169bf28c2|-1988609623|datos/base_de_datos_lab.csv|t19891.7401789244s|3104cc6fd17c7b24|8353|file|local|vector|||0.15||
 descarga|function|a4bd59970ae52375|||||||||||||||
 elimino|function|b6115b729c12fba4|||||||||||||||
-excel|stem|242449d73537cf58|0219056f476b7b34|2d5d706561d52a1f|1409772121|datos/datos_gistaq.xlsx|t19879.816412037s|0b0ebf62f2b0873d|260364|file|local|vector|||3.22||
+excel|stem|9ca284dd9ce7a648|0219056f476b7b34|2d5d706561d52a1f|1409772121|datos/datos_gistaq.xlsx|t19890.8924189815s|ff1e0fe3e83efec0|260472|file|local|vector|||3.27||
 fecha|function|a632d05890d5be75|||||||||||||||
-fecha_descarga|stem|d2b67d649dd8c79a|a8321c9cd2a3ec39|d1f4fed814b1960d|-151480655||t19878.5033348877s|e7b83425a991cb39|73|rds|local|vector|||0.14||
+fecha_descarga|stem|d2b67d649dd8c79a|a8321c9cd2a3ec39|6d48c0f67d0876b6|-151480655||t19891.7401798371s|e7b83425a991cb39|73|rds|local|vector|||0.08||
 lab|function|139e0b6eaa09407b|||||||||||||||
 mensaje|function|6fa3f8aeb026ec74|||||||||||||||
 paquetes|function|9bbb32c9300a64d5|||||||||||||||
-producto_zip|stem|6f565d7ef0492560|97ee7c178272097a|7cf1f586e0468a28|1726391680||t19876.2019652096s|4d3508554cc2b0df|67|rds|local|vector|||137.44||
+producto_zip|stem|6f565d7ef0492560|97ee7c178272097a|4951e7e9c8765e52|1726391680||t19891.7491420964s|4d3508554cc2b0df|67|rds|local|vector|||4||
 recorte|function|f2e51b741387648a|||||||||||||||
-recorte_tif|stem|7dbda6ff4197ef1a|546b86ae07da3d18|01649aa3bd424f79|-49889018|recorte/wrap_recorte.rds|t19876.2020240669s|ac1a0a3140b3f963|1159618|file|local|vector|||5.08||
-reflectancia|function|977d40dd5cf2f9c1|||||||||||||||
-script_descarga_py|function|2489bf5992e53399|||||||||||||||
-script_py|stem|1d494c7abb60da57|ea3b561b82165349|95526aef1db776f9|-1082207437|scripts/d.py|t19876.2003742283s||3274|file|local|vector|||0.05||argumento replacement inválido
+recorte_tif|stem|e1b57320b9e204f6|546b86ae07da3d18|08e5f4ac9515c4fd|-49889018|recorte/wrap_recorte.rds|t19890.5974638981s||1116130|file|local|vector|||0.1|error 1 al extraer del archivo zip|ℹ In index 1.Caused by error in if alli ... valor ausente donde TRUEFALSE es necesario
+reflectancia|function|f7b89f4c9e0f6c70|||||||||||||||
+script_descarga_py|function|3f1acc9e9ef4ff1e|||||||||||||||
+script_py|stem|d3ecd5ecff328626|ea3b561b82165349|0a20995a1d90e08d|-1082207437|scripts_targets/d.py|t19891.7508524954s||3274|file|local|vector|||0.01||argumento replacement inválido
 x|object|7ac6ce5ac0ce418d|||||||||||||||

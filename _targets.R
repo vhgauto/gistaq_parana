@@ -4,7 +4,7 @@ library(targets)
 tar_option_set(packages = c("glue", "terra", "sf", "tidyverse"))
 
 # funciones
-source("scripts/funciones3.R")
+source("scripts_targets/funciones3.R")
 
 # cue = tar_cue(mode = "always")
 
@@ -32,9 +32,7 @@ list(
   # ejecuto la descarga del producto
   tar_target(
     name = producto_zip, 
-    command = descarga(script_py),
-    # format = "file"
-    ),
+    command = descarga(script_py)),
   
   # recorto el producto al área de interés
   tar_target(

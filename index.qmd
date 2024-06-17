@@ -31,15 +31,15 @@ execute:
 ---
 
 ```{r scripts}
-source("scripts/soporte.R")
-source("scripts/mapa_interactivo_index3.R")
-source("scripts/tabla_corr_lab2.R")
-source("scripts/tabla_corr_gis2.R")
-source("scripts/tabla_banda_S2MSI.R")
-source("scripts/evolucion_lab.R")
-source("scripts/evolucion_gis.R")
-source("scripts/fechas_adq.R")
-source("scripts/corr_identidad_lab_param.R")
+source("scripts_quarto/soporte.R")
+source("scripts_quarto/mapa_interactivo_index3.R")
+source("scripts_quarto/tabla_corr_lab2.R")
+source("scripts_quarto/tabla_corr_gis2.R")
+source("scripts_quarto/tabla_banda_S2MSI.R")
+source("scripts_quarto/evolucion_lab.R")
+source("scripts_quarto/evolucion_gis.R")
+source("scripts_quarto/fechas_adq.R")
+source("scripts_quarto/corr_identidad_lab_param.R")
 ```
 
 <!-- cómo agregar referencias cruzadas -->
@@ -316,7 +316,7 @@ Tabla de coeficientes de correlación lineal `R` (Pearson) entre pares de parám
 
 ```{r corr_laboratorio}
 #| label: tbl-corr-lab
-#| tbl-cap: <br>✦ = |<b>R</b>| > 0,5<br><b style='color:#E41A1C;'>R</b> = p-valor < 0,05
+#| tbl-cap: <br>✦ = p-valor < 0,05<br><b style='color:#E41A1C;'>R</b> = |<b>R</b>| > 0,5
 #| tbl-cap-location: margin
 
 tab_corr_lab
@@ -347,7 +347,7 @@ Coeficientes de correlación lineal de Pearson entre reflectancias de superficie
 
 ```{r corr_espectral}
 #| label: tbl-corr-gis
-#| tbl-cap: <br>✦ = |<b>R</b>| > 0,5<br><b style='color:#E41A1C;'>R</b> = p-valor < 0,05
+#| tbl-cap: <br>✦ = p-valor < 0,05<br><b style='color:#E41A1C;'>R</b> = |<b>R</b>| > 0,5
 #| tbl-cap-location: margin
 
 tab_corr_gis
@@ -419,3 +419,61 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [`r 
 `r actualizado_label`
 
 :::
+
+<!-- botón para ir arriba -->
+```{=html}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#miBoton {
+  display: none;
+  position: fixed;
+  bottom: 13%;
+  right: 3%;
+  z-index: 9999; /* aseguro que el botón esté encima de la tabla */
+  border: none;
+  outline: none;
+  background-color: `r c5`;
+  color: `r c3`;
+  cursor: pointer;
+  font-size:4rem;
+}
+
+/* estilo del botón al pasar el mouse */
+#miBoton:hover {
+  background-color: `r c5`;
+  color: `r c4`;
+}
+</style>
+</head>
+<body>
+
+<button onclick="topFunction()" id="miBoton">`r icono_flecha`</button>
+
+<script>
+
+// botón
+var mybutton = document.getElementById("miBoton");
+
+// cuando bajo 500px aparece el botón
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// cuando hago click en el botón se mueve hacia el tope del sitio
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+</body>
+</html>
+```

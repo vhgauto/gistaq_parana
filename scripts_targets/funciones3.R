@@ -1,27 +1,19 @@
 
-# paquetes necesarios
-# paquetes <- function() {
-# 
-#   library(glue)
-#   library(terra)
-#   library(tidyverse)
-# 
-# }
-
 # genera mensajes en la consola
 mensaje <- function(x) {
   print(glue("\n\n--- {x} ---\n\n"))
 }
 
-# mensaje("Paquetes cargados correctamente")
-
+# archivo Excel, con la fecha y sitios de muestreo
 archivo_excel <- function() {
   r <- "datos/datos_gistaq.xlsx"
   
   return(r)
 }
 
+# fecha para la descarga de producto
 fecha <- function(x) {
+  
   fechas_excel <- readxl::read_xlsx(
     path = x,
     sheet = 1,
@@ -49,8 +41,7 @@ fecha <- function(x) {
   
 }
 
-# función que genera script Python para la descarga de la imagen de la 
-# fecha dada
+# script para la descarga de producto
 script_descarga_py <- function(x) {
   
   # rango de fechas para la búsqueda de la imagen
@@ -58,7 +49,7 @@ script_descarga_py <- function(x) {
   fecha_final <- ymd(x) + 1
 
   # leo las líneas del template
-  r_txt <- readLines("scripts/plantilla.py")
+  r_txt <- readLines("scripts_targets/plantilla.py")
   
   # remplazo las variables con las fechas
   r_txt <- gsub(
@@ -74,7 +65,7 @@ script_descarga_py <- function(x) {
   )
   
   # archivo Python
-  script_py <- "scripts/d.py"
+  script_py <- "scripts_targets/d.py"
   
   # guardo el script
   writeLines(r_txt, con = script_py)
@@ -85,7 +76,7 @@ script_descarga_py <- function(x) {
   
 }
 
-# ejecuto script Python para la descarga de la imagen
+# ejecuto la descarga del producto
 descarga <- function(x) {
   
   # corro el script Python que descarga la imagen
@@ -96,17 +87,10 @@ descarga <- function(x) {
   return(p)
 }
 
+# recorto el producto al área de interés
 recorte <- function(x, y) {
   
-  # condición de ERROR
-  # si NO existe el SAFE, NO extrae la reflectancia
-  # if (file.exists(x) == FALSE) 
-  #   stop(mensaje("SAFE NO descargado"))
-  
   mensaje("Leo producto S2-MSI")
-  
-  # cambio de nombre la variable
-  # fecha_date <- fecha
   
   # extraigo .zip
   unzip(zipfile = x, exdir = "producto/")
@@ -190,8 +174,7 @@ recorte <- function(x, y) {
   
 }
 
-# x <- "datos/2024 Todos_los_parametros_Victor1.xlsx"
-
+# extraigo los valores de píxel
 reflectancia <- function(x, y, z) {
   
   # leemos el Excel que contiene las coordenadas geográficas de los puntos 
@@ -256,15 +239,13 @@ reflectancia <- function(x, y, z) {
       pull(punto) |> 
       str_flatten_comma(string = _, last = " y ")
     
-    mensaje(glue("Los sitios {} presentan nubes y se descartan"))
+    mensaje(glue("Los sitios {puntos_nubes} presentan nubes y se descartan"))
   }
   
   # leo recorte
-  # stack_rds <- read_rds(z)
-  # stack_bandas <- unwrap(stack_rds)
   stack_bandas <- rast(z)
   
-  # extraemos los valores de pixel para cada punto
+  # extraemos los valores de píxel para cada punto
   # acomodo de los datos de reflectancia y se agregan las coord geof
   
   # 1X1
@@ -318,8 +299,7 @@ reflectancia <- function(x, y, z) {
   return(datos)
 }
 
-# x <- "datos/datos_gistaq.xlsx"
-
+# extraigo parámetros de laboratorio
 lab <- function(x) {
   d <- readxl::read_xlsx(
     path = x,
@@ -354,19 +334,3 @@ elimino <- function() {
   mensaje("Archivos eliminados")
   
 }
-
-# elimino todos los archivos descargados, confirmación mediante
-# elimino <- function() {
-#   
-#   # abro una ventana de confirmación
-#   if (askYesNo("¿Eliminar archivos descargados?")) {
-#     
-#     unlink("producto/*", recursive = TRUE)
-#     mensaje("Archivos eliminados")
-#     
-#   } else {
-#     
-#     mensaje("Archivos NO eliminados")
-#     
-#   }
-# }

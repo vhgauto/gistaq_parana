@@ -34,6 +34,9 @@ icono_mail <- glue('<span class="nf nf-cod-mail"></span>')
 
 icono_github <- glue('<span class="nf nf-md-github"></span>')
 
+icono_flecha <- glue(
+  '<span class="nf nf-fa-circle_arrow_up"></span>')
+
 # enlaces a redes sociales y mails
 link_instagram <- "https://www.instagram.com/gistaq.utn/"
 

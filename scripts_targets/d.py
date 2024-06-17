@@ -29,8 +29,8 @@ collection_name = "SENTINEL-2"
 product_type = "S2MSI2A"
 max_cloud_cover = 1
 aoi = "POINT(-58.81348666883592 -27.488354054598737)"
-search_period_start = "2024-05-30T00:00:00.000Z"
-search_period_end = "2024-05-31T00:00:00.000Z"
+search_period_start = "2024-01-01T00:00:00.000Z"
+search_period_end = "2024-01-02T00:00:00.000Z"
 
 # término de búsqueda
 search_query = f"{catalogue_odata_url}/Products?$filter=Collection/Name eq '{collection_name}' and Attributes/OData.CSC.StringAttribute/any(att:att/Name eq 'productType' and att/OData.CSC.StringAttribute/Value eq '{product_type}') and OData.CSC.Intersects(area=geography'SRID=4326;{aoi}') and ContentDate/Start gt {search_period_start} and ContentDate/Start lt {search_period_end}"

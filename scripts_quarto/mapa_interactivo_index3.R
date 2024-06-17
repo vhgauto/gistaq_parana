@@ -1,5 +1,5 @@
 
-options(viewer = NULL)
+# options(viewer = NULL)
 
 # datos -------------------------------------------------------------------
 
@@ -35,8 +35,8 @@ f_circulo <- function(
     map, fecha, color = "black", relleno = "gold", opacity = 1, radius = 15) {
   addCircles(
     map,
-    lng = terra::geom(v[v$fecha == ymd(fecha)])[, 3],
-    lat = terra::geom(v[v$fecha == ymd(fecha)])[, 4],
+    lng = terra::geom(v[v$fecha == ymd(fecha)])[, 4],
+    lat = terra::geom(v[v$fecha == ymd(fecha)])[, 3],
     color = color, 
     stroke = TRUE,
     weight = 3,
