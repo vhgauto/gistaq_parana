@@ -1,18 +1,4 @@
 
-# fuentes -----------------------------------------------------------------
-
-# JetBrains Mono
-systemfonts::register_font(
-  name = "jet",
-  plain = "extras/JetBrainsMonoNLNerdFontMono-Regular.ttf"
-)
-
-# Ubuntu
-systemfonts::register_font(
-  name = "jet",
-  plain = "extras/Ubuntu-Regular.ttf"
-)
-
 # datos -------------------------------------------------------------------
 
 param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
@@ -20,7 +6,7 @@ param_unid_v <- c(
   "pH", "Cond (μS/cm)", "Sól. susp. (ppm)", "Turb (NTU)", "SDD (cm)")
 names(param_unid_v) <- param_v
 
-d <- read_csv("datos/base_de_datos_lab.csv") |> 
+d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |> 
   mutate(
     param = param_unid_v[param]
   ) |> 
@@ -64,14 +50,14 @@ g <- ggplot(d, aes(p, valor, group = fecha)) +
     panel.grid.major = element_line(
       color = c4, linewidth = .06, linetype = 3),
     panel.spacing = unit(1.1, "line"),
-    axis.title.x = element_text(family = "Ubuntu", margin = margin(t = 3)),
-    axis.text = element_text(family = "JetBrains Mono", color = c4),
+    axis.title.x = element_text(family = "ubuntu", margin = margin(t = 3)),
+    axis.text = element_text(family = "jet", color = c4),
     axis.text.y = element_text(hjust = 1, margin = margin(r = 2)),
     axis.text.x = element_text(margin = margin(t = 2)),
     panel.background = element_rect(fill = c3),
     strip.background = element_blank(),
     strip.text = element_markdown(
-      family = "Ubuntu", size = 7, margin = margin(b = 3))
+      family = "ubuntu", size = 7, margin = margin(b = 3))
   )
 
 g_evo_lab <- girafe(

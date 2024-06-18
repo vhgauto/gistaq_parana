@@ -31,15 +31,10 @@ execute:
 ---
 
 ```{r scripts}
+#| eval: true
+
+# corro todos los scripts
 source("scripts_quarto/soporte.R")
-source("scripts_quarto/mapa_interactivo_index3.R")
-source("scripts_quarto/tabla_corr_lab2.R")
-source("scripts_quarto/tabla_corr_gis2.R")
-source("scripts_quarto/tabla_banda_S2MSI.R")
-source("scripts_quarto/evolucion_lab.R")
-source("scripts_quarto/evolucion_gis.R")
-source("scripts_quarto/fechas_adq.R")
-source("scripts_quarto/corr_identidad_lab_param.R")
 ```
 
 <!-- cómo agregar referencias cruzadas -->
@@ -162,7 +157,7 @@ A partir de esta fecha se procede a la descarga del producto correspondiente.
 
 Usando la plantilla `scripts/plantilla.py` de un código de programación en Python, se genera el archivo `scripts/d.py` que contiene los parámetros de búsqueda del producto de interés.
 
-Se establecen las coordenadas de la región de interés (-58° 48' 48<br>S</br>, 27° 29' 18<br>O</br>), la fecha ([-@sec-fecha-descarga]) y el nivel de procesamiento.
+Se establecen las coordenadas de la región de interés (-58° 48' 48<b>S</b>, 27° 29' 18<b>O</b>), la fecha ([-@sec-fecha-descarga]) y el nivel de procesamiento.
 
 ### `producto_zip`
 
@@ -385,6 +380,7 @@ Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta
 ::: {.column-page}
 
 ```{r serie_temp_gis}
+
 g_evo_gis
 ```
 

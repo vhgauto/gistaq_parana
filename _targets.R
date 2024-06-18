@@ -4,7 +4,7 @@ library(targets)
 tar_option_set(packages = c("glue", "terra", "sf", "tidyverse"))
 
 # funciones
-source("scripts_targets/funciones3.R")
+source("scripts_targets/funciones.R")
 
 # cue = tar_cue(mode = "always")
 

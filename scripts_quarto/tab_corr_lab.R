@@ -17,24 +17,47 @@ f_pvalor <- function(vec_a, vec_b) {
 
 # datos -------------------------------------------------------------------
 
-# leo los datos espectrales S2-MSI
-d <- read_csv("datos/base_de_datos_gis.csv") |> 
-  filter(pixel == "3x3") |> 
-  select(-pixel)
+# leo los datos de laboratorio
+d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
+
+# nombres de los parámetros y sus etiquetas
+param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
+param_unid_v <- c(
+  "pH", "Cond<br>(μS/cm)", "Sól. susp.<br>(ppm)", "Turb<br>(NTU)",
+  "SDD<br>(cm)")
+names(param_unid_v) <- param_v
 
 # correlación -------------------------------------------------------------
 
 # símbolo utilizado para las correlaciones que sean significativas
 simbolo_sig <- "✦"
 
+# correlación R
+e_r <- d |> 
+  drop_na() |>  
+  pivot_wider(
+    names_from = param,
+    values_from = valor
+  ) |> 
+  select(-c(contains("hazemeter"), fecha, longitud, latitud)) |> 
+  correlate(
+    method = "pearson", use = "pairwise.complete.obs", quiet = TRUE) |> 
+  shave() |> 
+  pivot_longer(
+    cols = -term,
+    names_to = "param",
+    values_to = "r"
+  ) |> 
+  drop_na()
+
 # pvalor
 e_pvalor <- d |> 
   drop_na() |>  
   pivot_wider(
-    names_from = banda,
-    values_from = reflect
+    names_from = param,
+    values_from = valor
   ) |> 
-  select(starts_with("B")) |> 
+  select(-c(contains("hazemeter"), fecha, longitud, latitud)) |> 
   colpair_map(f_pvalor) |> 
   shave() |> 
   pivot_longer(
@@ -44,24 +67,7 @@ e_pvalor <- d |>
   ) |> 
   drop_na()
 
-# correlación R
-e_r <- d |> 
-  drop_na() |>  
-  pivot_wider(
-    names_from = banda,
-    values_from = reflect
-  ) |> 
-  select(starts_with("B")) |> 
-  correlate(method = "pearson", use = "pairwise.complete.obs", quiet = TRUE) |> 
-  shave() |> 
-  pivot_longer(
-    cols = -term,
-    names_to = "param",
-    values_to = "r"
-  ) |> 
-  drop_na()
-
-# combino datos y aplico formatos si la correlación es significativa
+# combino datos y aplico formatos si la correlación es mayor a |R| > .5
 e <- inner_join(
   e_r,
   e_pvalor,
@@ -71,7 +77,7 @@ e <- inner_join(
     es_significativo = pvalor < .05
   ) |> 
   mutate(
-    label = f_formato(r, digits = 2, nsmall = 2)
+    label = f_formato(r)
   ) |> 
   mutate(
     label = if_else(
@@ -92,34 +98,49 @@ e <- inner_join(
     names_from = param,
     values_from = label,
     id_cols = term
+  ) |> 
+  mutate(
+    term = param_unid_v[term]
   )
 
 # tabla -------------------------------------------------------------------
 
-tab_corr_gis <- gt(e) |> 
+tab_corr_lab <- gt(e) |> 
   sub_missing(missing_text = "---") |> 
   # nombre de columnas
   tab_style(
     locations = cells_column_labels(),
     style = cell_text(align = "center", v_align = "top", weight = "bold")
-  ) |>  
+  ) |> 
+  cols_label_with(
+    columns = everything(),
+    fn = gt::md
+  ) |> 
+  # nombre de filas
+  fmt_markdown(
+    columns = "term"
+  ) |> 
   tab_style(
     locations = cells_body(columns = "term"),
     style = cell_text(weight = "bold")
   ) |> 
   tab_style(
-    locations = cells_body(columns = starts_with("B")),
-    style = cell_text(font = "JetBrains Mono")
+    locations = cells_body(columns = -"term"),
+    style = cell_text(font = "JetBrains Mono", align = "right")
   ) |> 
   cols_label(
     term = ""
   ) |> 
   # números de las celdas
-  fmt_markdown() |> 
+  fmt_markdown() |>
+  cols_label(
+    ph = param_unid_v[1],
+    cond = param_unid_v[2],
+    sol_sus = param_unid_v[3],
+    turb = param_unid_v[4]
+  ) |> 
+  cols_label_with(
+    fn = gt::md
+  ) |> 
   tab_options(table.background.color = c6
   )
-
-cap_tbl_label <- glue(
-  "{simbolo_sig} : |<b>R</b>| > 0,5<br>",
-  "<b style='color:{c2};'>R</b> : p-valor < 0,05"
-)

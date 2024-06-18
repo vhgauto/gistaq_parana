@@ -1,55 +1,38 @@
 
+# browseURL("https://nrennie.rbind.io/blog/script-templates-r/")
+
 # genera mensajes en la consola
 mensaje <- function(x) {
   print(glue("\n\n--- {x} ---\n\n"))
 }
 
-# archivo Excel, con la fecha y sitios de muestreo
+# todos los paquetes necesarios
+paquetes <- function() {
+
+  library(glue)
+  library(terra)
+  library(sf)
+  library(tidyverse)
+
+  mensaje("Paquetes cargados")
+}
+
+
 archivo_excel <- function() {
-  r <- "datos/datos_gistaq.xlsx"
+  r <- "datos/2024 Todos_los_parametros_Victor1.xlsx"
   
   return(r)
 }
 
-# fecha para la descarga de producto
-fecha <- function(x) {
-  
-  fechas_excel <- readxl::read_xlsx(
-    path = x,
-    sheet = 1,
-    .name_repair = "unique_quiet") |> 
-    select(fecha = 1, latitud = 4,longitud = 5) |> 
-    mutate(fecha = ymd(fecha)) |> 
-    drop_na() |> 
-    select(fecha) |> 
-    distinct(fecha)
-  
-  fechas_base_de_datos <- read_csv(
-    file = "datos/base_de_datos_gis.csv",
-    show_col_types = FALSE) |> 
-    distinct(fecha)
-  
-  # idealmente, un único elemento
-  fecha_faltante <- anti_join(
-    fechas_excel,
-    fechas_base_de_datos,
-    by = join_by(fecha)
-  ) |> 
-    pull()
-  
-  return(fecha_faltante)
-  
-}
-
-# script para la descarga de producto
-script_descarga_py <- function(x) {
+# función que genera script Python para la descarga de la imagen de la fecha dada
+script_descarga_py <- function(fecha_de_adquisicion = fecha) {
   
   # rango de fechas para la búsqueda de la imagen
-  fecha_inicio <- ymd(x)
-  fecha_final <- ymd(x) + 1
+  fecha_inicio <- ymd(fecha_de_adquisicion)
+  fecha_final <- ymd(fecha_de_adquisicion) + 1
 
   # leo las líneas del template
-  r_txt <- readLines("scripts_targets/plantilla.py")
+  r_txt <- readLines("scripts/plantilla.py")
   
   # remplazo las variables con las fechas
   r_txt <- gsub(
@@ -64,36 +47,35 @@ script_descarga_py <- function(x) {
     x = r_txt
   )
   
-  # archivo Python
-  script_py <- "scripts_targets/d.py"
-  
-  # guardo el script
-  writeLines(r_txt, con = script_py)
+  # write to new file
+  writeLines(r_txt, con = "scripts/d.py")
   
   mensaje("Script Python creado")
   
-  return(script_py)
-  
 }
 
-# ejecuto la descarga del producto
-descarga <- function(x) {
-  
+# ejecuto script Python para la descarga de la imagen
+descarga <- function() {
   # corro el script Python que descarga la imagen
-  system(glue("python {x}"))
-  
-  p <- "producto/producto.zip"
-  
-  return(p)
+  system("python scripts/d.py")
 }
 
-# recorto el producto al área de interés
-recorte <- function(x, y) {
+reflectancia <- function() {
+  # condición de ERROR
+  # si NO existe el SAFE, NO extrae la reflectancia
+  if (file.exists(glue("producto/producto.zip")) == FALSE) 
+    stop(mensaje("SAFE NO descargado"))
   
   mensaje("Leo producto S2-MSI")
   
+  # cambio de nombre la variable
+  fecha_date <- fecha
+  
+  # archivo .zip descargado
+  producto <- list.files("producto/", pattern = "zip", full.names = TRUE)
+  
   # extraigo .zip
-  unzip(zipfile = x, exdir = "producto/")
+  unzip(zipfile = producto, exdir = "producto/")
   
   mensaje("Producto extraído")
   
@@ -155,49 +137,28 @@ recorte <- function(x, y) {
   stack_bandas <- rast(lista_recortes)
   
   # guardo stack de bandas recortado
-  nombre_raster <- as.character(y[1]) |> str_remove_all("-")
-  
-  writeRaster(
-    stack_bandas,
-    glue("recorte/{nombre_raster}.tif"),
-    overwrite = TRUE)
-  
-  # para el siguiente target tengo que guardarlo como RDS
-  # SI NO, NO FUNCIONA
-  r <- "recorte/wrap_recorte.rds"
-  
-  terra::saveRDS(object = stack_bandas, file = r)
+  writeRaster(stack_bandas, glue("raster/{fecha_date}.tif"), overwrite = TRUE)
   
   mensaje("Recorte almacenado")
   
-  return(r)
-  
-}
-
-# extraigo los valores de píxel
-reflectancia <- function(x, y, z) {
-  
-  # leemos el Excel que contiene las coordenadas geográficas de los puntos 
-  # de muestreo
+  #leemos el excel que contiene las coordenadas geograficas de los puntos de muestreo
   coord_sitios <- readxl::read_xlsx(
-    path = x,
+    path = "datos/2023 Todos_los_parametros_Victor.xlsx",
     sheet = 1,
     .name_repair = "unique_quiet") |> 
-    select(fechas = 1, latitud = 4,longitud = 5) |> 
+    select(fechas = 1,latitud = 4,longitud = 5) |> 
     fill(fechas) |> 
-    mutate(fechas = ymd(fechas)) |> 
-    dplyr::filter(fechas == ymd(y)) |> 
-    drop_na() |> 
+    dplyr::filter(fechas == fecha_date) |> 
     select(-fechas) |> 
     mutate(punto = row_number(), .before = 1)
   
-  # convertimos la tabla de coordenadas a sf
-  coord_vect <- vect(
+  #convertimos la tabla de coordenadas a sf
+  coord_vect <-  vect(
     coord_sitios, 
     geom = c("longitud", "latitud"), 
     crs="EPSG:4326", 
     keepgeom = FALSE) |> 
-    terra::project("EPSG:32721")
+    project("EPSG:32721")
   
   mensaje("Vector de sitios de muestreo")
   
@@ -205,25 +166,18 @@ reflectancia <- function(x, y, z) {
   
   mensaje("Verifico presencia de nubes")
   
-  # nombre del producto
-  lis <- list.files(path = "producto/", pattern = "SAFE", full.names = TRUE)
-  
-  # carpeta con las carpetas de distintas resoluciones
-  carpeta1 <- glue("{lis}/GRANULE")
-  carpeta2 <- list.files(carpeta1)
-  carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA")
   carpeta4 <- glue("{carpeta1}/{carpeta2}/QI_DATA")
   
-  # leo el ráster
+  #leo el raster
   raster_prob <- terra::rast(glue("{carpeta4}/MSK_CLDPRB_20m.jp2"))
   
-  # extraemos los valores de pixel para cada punto
+  #extraemos los valores de pixel para cada punto
   nubes <- terra::extract(raster_prob, coord_vect) |> 
     as_tibble() |> 
     rename(punto = ID, probabilidad = MSK_CLDPRB_20m) |> 
     dplyr::filter(probabilidad == 0)
   
-  # se conservan los sitios de muestreo con probabilidad de nubes CERO
+  #se conservan los sitios de muestreo con probabilidad de nubes CERO
   coord_sf_sin_nubes <- inner_join(
     st_as_sf(coord_vect),
     nubes,
@@ -239,13 +193,10 @@ reflectancia <- function(x, y, z) {
       pull(punto) |> 
       str_flatten_comma(string = _, last = " y ")
     
-    mensaje(glue("Los sitios {puntos_nubes} presentan nubes y se descartan"))
+    mensaje(glue("Los sitios {} presentan nubes y se descartan"))
   }
   
-  # leo recorte
-  stack_bandas <- rast(z)
-  
-  # extraemos los valores de píxel para cada punto
+  # extraemos los valores de pixel para cada punto
   # acomodo de los datos de reflectancia y se agregan las coord geof
   
   # 1X1
@@ -254,7 +205,7 @@ reflectancia <- function(x, y, z) {
     rename(punto = ID) |> 
     pivot_longer(cols = -punto, names_to = "banda", values_to = "reflect") |> 
     mutate(reflect = reflect/10000) |> 
-    mutate(fecha = ymd(y), .before = 1) |> 
+    mutate(fecha = ymd(fecha), .before = 1) |> 
     inner_join(coord_sitios, by = join_by(punto)) |> 
     mutate(pixel = "1x1", .before = banda)
   
@@ -267,70 +218,43 @@ reflectancia <- function(x, y, z) {
     rename(punto = ID) |> 
     pivot_longer(cols = -punto, names_to = "banda", values_to = "reflect") |> 
     mutate(reflect = reflect/10000) |> 
-    mutate(fecha = ymd(y), .before = 1) |> 
+    mutate(fecha = ymd(fecha), .before = 1) |> 
     inner_join(coord_sitios, by = join_by(punto)) |> 
     mutate(pixel = "3x3", .before = banda)
   
   # combino las reflectancias 1x1 y 3x3
   reflect <- bind_rows(reflect_1x1, reflect_3x3)
   
-  datos <- "datos/base_de_datos_gis.csv"
-  
   # guardo la tabla como .csv
-  if (file.exists(datos)) {
-    base_de_datos <- read_csv(datos, show_col_types = FALSE)
+  if (file.exists("datos/base_de_datos.csv")) {
+    base_de_datos <- read_csv("datos/base_de_datos.csv", show_col_types = FALSE)
     
     bind_rows(base_de_datos, reflect) |> 
       arrange(fecha, punto) |> 
-      write_csv(datos)
+      write_csv("datos/base_de_datos.csv")
     
     mensaje("Base de datos actualizada")
     
   } else {
-    write_csv(reflect, datos)
+    write_csv(reflect, "datos/base_de_datos.csv")
     
     mensaje("Datos almacenados")
   }
-  
-  # elimino los archivos descargados
-  unlink("producto/*", recursive = TRUE)
-  mensaje("Archivos eliminados")
-  
-  return(datos)
-}
-
-# extraigo parámetros de laboratorio
-lab <- function(x) {
-  d <- readxl::read_xlsx(
-    path = x,
-    sheet = 1,
-    skip = 2,
-    .name_repair = "unique_quiet") |> 
-    select(
-      fecha = 1, longitud = 4, latitud = 5, ph = 6, cond = 8, secchi = 10,
-      sol_sus = 12, turb = 15, hazemeter = 18) |> 
-    fill(fecha) |> 
-    mutate(fecha = ymd(fecha)) |> 
-    pivot_longer(
-      cols = -c(fecha, latitud, longitud),
-      names_to = "param",
-      values_to = "valor"
-    ) |> 
-    drop_na(valor, latitud, longitud)
-  
-  u <- "datos/base_de_datos_lab.csv"
-  
-  write_csv(d, file = u)
-  
-  return(u)
-
   
 }
 
 # elimino todos los archivos descargados
 elimino <- function() {
   
-  unlink("producto/*", recursive = TRUE)
-  mensaje("Archivos eliminados")
-  
+  # abro una ventana de confirmación
+  if (askYesNo("¿Eliminar archivos descargados?")) {
+    
+    unlink("producto/*", recursive = TRUE)
+    mensaje("Archivos eliminados")
+    
+  } else {
+    
+    mensaje("Archivos NO eliminados")
+    
+  }
 }

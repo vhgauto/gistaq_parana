@@ -19,9 +19,40 @@ library(tidyverse)
 c1 <- "#377EB8"
 c2 <- "#E41A1C"
 c3 <- "#F2F2F2" # "grey95"
-c4 <- "grey30"
+c4 <- "#4D4D4D" # "grey30"
 c5 <- "white"
 c6 <- "#FAFAFA" # "grey98"
+c7 <- "black"
+c8 <- "gold"
+
+# fuentes -----------------------------------------------------------------
+
+# para elementos interactivos de las figuras con {ggiraph}
+# JetBrains Mono
+systemfonts::register_font(
+  name = "jet",
+  plain = "extras/JetBrainsMonoNLNerdFontMono-Regular.ttf"
+)
+
+# Ubuntu
+systemfonts::register_font(
+  name = "ubuntu",
+  plain = "extras/Ubuntu-Regular.ttf"
+)
+
+# para el texto estático de las figuras con {ggplot2}
+font_add(
+  family = "ubuntu",
+  regular = "extras/Ubuntu-Regular.ttf"
+)
+
+font_add(
+  family = "jet",
+  regular = "extras/JetBrainsMonoNLNerdFontMono-Regular.ttf"
+)
+
+showtext_auto()
+showtext_opts(dpi = 300)
 
 # contacto ----------------------------------------------------------------
 
@@ -56,3 +87,9 @@ actualizado <- format(now(), "%d/%m/%Y %H:%M")
 actualizado_label <- glue(
   "<p style='font-family:JetBrains Mono; color:{c4};text-align:right'>",
   "{actualizado}</p>")
+
+# scripts -----------------------------------------------------------------
+
+r <- list.files(path = "scripts_quarto/", full.names = TRUE)
+r <- r[!str_detect(r, "soporte")]
+purrr::map(r, source)

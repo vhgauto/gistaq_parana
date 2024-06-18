@@ -1,14 +1,9 @@
 
-# fuente ------------------------------------------------------------------
-
-c1 <- "#377EB8"
-c2 <- "#E41A1C"
-
 # datos -------------------------------------------------------------------
 
 # datos de nombre e banda, longitud de onda, centro de banda y
 # resolución espacial
-d <- read_csv("datos/s2msi.csv") |> 
+d <- read_csv("datos/s2msi.csv", show_col_types = FALSE) |> 
   mutate(`Band Number` = toupper(`Band Number`)) |> 
   mutate(`Band Number` = if_else(
     nchar(`Band Number`) == 1,

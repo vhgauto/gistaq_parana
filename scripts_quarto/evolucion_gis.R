@@ -1,24 +1,10 @@
 
-# fuentes -----------------------------------------------------------------
-
-# JetBrains Mono
-systemfonts::register_font(
-  name = "jet",
-  plain = "extras/JetBrainsMonoNLNerdFontMono-Regular.ttf"
-)
-
-# Ubuntu
-systemfonts::register_font(
-  name = "jet",
-  plain = "extras/Ubuntu-Regular.ttf"
-)
+# datos -------------------------------------------------------------------
 
 banda_orden <- c(
   "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12")
 
-# datos -------------------------------------------------------------------
-
-d <- read_csv("datos/base_de_datos_gis.csv") |> 
+d <- read_csv("datos/base_de_datos_gis.csv", show_col_types = FALSE) |> 
   drop_na() |> 
   filter(pixel == "3x3") |> 
   group_by(fecha, banda) |> 
@@ -73,14 +59,14 @@ g <- ggplot(e, aes(banda, reflect, group = p, color = col, fill = col)) +
     panel.grid.major = element_line(
       color = c4, linewidth = .06, linetype = 3),
     panel.spacing = unit(1.1, "line"),
-    axis.title.x = element_text(family = "Ubuntu", margin = margin(t = 3)),
-    axis.text = element_text(family = "JetBrains Mono", color = c4),
+    axis.title.x = element_text(family = "ubuntu", margin = margin(t = 3)),
+    axis.text = element_text(family = "jet", color = c4),
     axis.text.y = element_text(hjust = 1, margin = margin(r = 2)),
     axis.text.x = element_text(margin = margin(t = 2)),
     panel.background = element_rect(fill = c3),
     strip.background = element_blank(),
     strip.text = element_markdown(
-      family = "Ubuntu", size = 9, margin = margin(b = 3)),
+      family = "ubuntu", size = 9, margin = margin(b = 3)),
     legend.position = "none"
   )
 
