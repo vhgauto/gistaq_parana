@@ -92,3 +92,8 @@ div.callout-note.callout {
     color: $cn;
     font-size: 1em;
 }
+
+// fondo de los comandos
+pre.sourceCode {
+    background-color: $cg;
+}
