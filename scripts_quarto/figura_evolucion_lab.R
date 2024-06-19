@@ -35,7 +35,7 @@ g <- ggplot(d, aes(p, valor, group = fecha)) +
     aes(
       data_id = interaction(fecha, param), tooltip = label, 
       hover_nearest = TRUE), size = 1, shape = 21, color = c3, 
-    stroke = .3, fill = c1) +
+    stroke = .4, fill = c1) +
   facet_wrap(vars(param), ncol = 3, scales = "free") +
   scale_x_discrete(expand = c(0, 0)) +
   scale_y_continuous(

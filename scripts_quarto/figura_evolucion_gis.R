@@ -39,8 +39,8 @@ g <- ggplot(e, aes(banda, reflect, group = p, color = col, fill = col)) +
     aes(data_id = interaction(fecha, p)), hover_nearest = TRUE,
     linewidth = .6, alpha = .8) +
   geom_point_interactive(
-    aes(data_id = interaction(fecha, p), tooltip = label), size = .7, shape = 21, 
-    stroke = .2, color = c3, hover_nearest = TRUE) +
+    aes(data_id = interaction(fecha, p), tooltip = label),size = .7, 
+    shape = 21, stroke = .4, color = c3, hover_nearest = TRUE) +
   facet_wrap(vars(fecha), ncol = 3, scales = "free_x") +
   scale_x_discrete(expand = c(0, 0)) +
   scale_y_continuous(
