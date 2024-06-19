@@ -57,16 +57,19 @@ showtext_opts(dpi = 300)
 # contacto ----------------------------------------------------------------
 
 # íconos de Nerd Fonts, https://www.nerdfonts.com/cheat-sheet
-icono_instagram <- glue('<span class="nf nf-fa-instagram"></span>')
+icono_instagram <- "<span class='nf nf-fa-instagram'></span>"
 
-icono_facebook <- glue('<span class="nf nf-fa-facebook"></span>')
+icono_facebook <- "<span class='nf nf-fa-facebook'></span>"
 
-icono_mail <- glue('<span class="nf nf-cod-mail"></span>')
+icono_mail <- "<span class='nf nf-cod-mail'></span>"
 
-icono_github <- glue('<span class="nf nf-md-github"></span>')
+icono_github <- "<span class='nf nf-md-github'></span>"
 
-icono_flecha <- glue(
-  '<span class="nf nf-fa-circle_arrow_up"></span>')
+icono_flecha <- "<span class='nf nf-fa-circle_arrow_up'></span>"
+
+icono_circulo <- "<span class='nf nf-fa-circle'></span>"
+
+icono_triangulo <- "<span class='nf nf-md-triangle'></span>"
 
 # enlaces a redes sociales y mails
 link_instagram <- "https://www.instagram.com/gistaq.utn/"

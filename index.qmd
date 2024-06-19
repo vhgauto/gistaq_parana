@@ -131,13 +131,16 @@ targets::tar_visnetwork()
 ::: {.column-page}
 
 ```{r grafo_funciones}
+#| fig-cap: grafo de funciones
+#| fig-cap-location: bottom
+#| label: fig-visnetwork
 
 targets::tar_visnetwork()
 ```
 
 :::
 
-A continuación, se describen las funciones objetivo.
+A continuación, se describen las funciones objetivo, que en la figura anterior ([figura -@fig-visnetwork]) se muestran como círculos (`r icono_circulo`).
 
 ### `excel` {#sec-excel}
 
@@ -232,6 +235,9 @@ targets::tar_target(
 
 La `funcion()` se desarrolla en el archivo `scripts/funciones.R`. En caso de hacer el seguimiento de archivos agregar el argumento `format = "file"`.
 
+Las funciones se muestran como triángulos (`r icono_triangulo`) en el
+([grafo -@fig-visnetwork]).
+
 ## Entorno de ejecución
 
 Definir las versiones de los paquetes utilizados en el presente proyecto es relevante ya que permite asegurar la reproducibilidad de los resultados. Para tal fin se emplea el paquete [`renv`](https://rstudio.github.io/renv/).
@@ -307,7 +313,7 @@ Las firmas espectrales se encuentran en la siguiente sección ([-@sec-firmas-esp
 
 ## Datos fisicoquímicos
 
-Tabla de coeficientes de correlación lineal `R` (Pearson) entre pares de parámetros fisicoquímicos, y los valores se acomodan como una matriz triangular para evitar repeticiones.
+Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos, y los valores se acomodan como una matriz triangular para evitar repeticiones.
 
 ```{r corr_laboratorio}
 #| label: tbl-corr-lab
@@ -338,7 +344,7 @@ figura_evolucion_lab
 
 ## Datos espectrales
 
-Coeficientes de correlación lineal de Pearson entre reflectancias de superficie de las bandas espectrales (tabla [-@tbl-s2msi]) de S2-MSI.
+Coeficientes de correlación lineal de Pearson (<b>R</b>) entre reflectancias de superficie de las bandas espectrales (tabla [-@tbl-s2msi]) de S2-MSI.
 
 ```{r corr_espectral}
 #| label: tbl-corr-gis
