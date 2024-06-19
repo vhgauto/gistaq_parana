@@ -68,7 +68,7 @@ El objetivo principal del proyecto de investigación es:
 
 ::: {.callout-note appearance="simple" icon=false}
 
-Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos decampo
+Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos decampo.
 
 :::
 
@@ -359,7 +359,7 @@ Se muestran los sitios de muestreo para todas las fechas disponibles junto con l
 #| fig-align: left
 #| fig-asp: 1
 
-mapa_int
+mapa_interactivo
 ```
 
 :::
