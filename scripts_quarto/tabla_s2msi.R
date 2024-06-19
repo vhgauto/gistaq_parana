@@ -20,7 +20,7 @@ d <- read_csv("datos/s2msi.csv", show_col_types = FALSE) |>
 
 # tabla -------------------------------------------------------------------
 
-tab_s2msi <- gt(d) |> 
+tabla_s2msi <- gt(d) |> 
   # agrego spanners para S2A y S2B
   tab_spanner(
     label = "Sentinel-2A",
@@ -60,5 +60,6 @@ tab_s2msi <- gt(d) |>
   ) |> 
   # aplico formato de coma a los números
   fmt_number(
-    dec_mark = ",", sep_mark = "", decimals = 1, drop_trailing_zeros = TRUE
+    dec_mark = ",", sep_mark = "", decimals = 1, 
+    drop_trailing_zeros = TRUE
   )

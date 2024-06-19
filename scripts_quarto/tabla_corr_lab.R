@@ -105,7 +105,7 @@ e <- inner_join(
 
 # tabla -------------------------------------------------------------------
 
-tab_corr_lab <- gt(e) |> 
+tabla_corr_lab <- gt(e) |> 
   sub_missing(missing_text = "---") |> 
   # nombre de columnas
   tab_style(

@@ -26,7 +26,7 @@ d <- tibble(
 
 # tabla -------------------------------------------------------------------
 
-tab_adq <- gt(d) |> 
+tabla_adquisicion <- gt(d) |> 
   # formato de la fecha actual
   tab_style(
     locations = cells_body(columns = everything(), rows = 1),
@@ -46,4 +46,3 @@ tab_adq <- gt(d) |>
     locations = cells_column_labels(),
     style = cell_text(font = "Ubuntu", weight = "bold", align = "center")
   )
-

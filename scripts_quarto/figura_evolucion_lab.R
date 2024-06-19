@@ -60,7 +60,7 @@ g <- ggplot(d, aes(p, valor, group = fecha)) +
       family = "ubuntu", size = 7, margin = margin(b = 3))
   )
 
-g_evo_lab <- girafe(
+figura_evolucion_lab <- girafe(
   ggobj = g,
   bg = c6,
   options = list(

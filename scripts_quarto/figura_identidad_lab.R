@@ -132,7 +132,7 @@ g_identidad_lab <- g1 + g2 + g3 + g4 + g5 +
 
 ggsave(
   plot = g_identidad_lab,
-  filename = "figuras/g_identidad_lab.png",
+  filename = "figuras/figura_identidad_lab.png",
   width = 30,
   height = 20.3,
   units = "cm"

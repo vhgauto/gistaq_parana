@@ -184,7 +184,7 @@ Las características de las bandas espectrales se muestran a continuación:
 #| tbl-cap: Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B.
 #| tbl-cap-location: margin
 
-tab_s2msi
+tabla_s2msi
 ```
 
 ### `datos_lab`
@@ -280,7 +280,7 @@ En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del rí
 #| tbl-cap: <span style='color:`r c2`;'>Fecha actual</span> y los próximos 10 muestreos.
 #| tbl-cap-location: margin
 
-tab_adq
+tabla_adquisicion
 ```
 
 Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
@@ -314,14 +314,14 @@ Tabla de coeficientes de correlación lineal `R` (Pearson) entre pares de parám
 #| tbl-cap: <br>✦ = p-valor < 0,05<br><b style='color:#E41A1C;'>R</b> = |<b>R</b>| > 0,5
 #| tbl-cap-location: margin
 
-tab_corr_lab
+tabla_corr_lab
 ```
 
 Las correlaciones mostradas en la tabla anterior ([-@tbl-corr-lab]) pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
 
 ::: {.column-page}
 
-![](figuras/g_identidad_lab.png)
+![](figuras/figura_identidad_lab.png)
 
 :::
 
@@ -331,7 +331,7 @@ Las siguientes figuras muestran la evolución de los datos fisicoquímicos por s
 
 ```{r serie_temp_lab}
 
-g_evo_lab
+figura_evolucion_lab
 ```
 
 :::
@@ -345,7 +345,7 @@ Coeficientes de correlación lineal de Pearson entre reflectancias de superficie
 #| tbl-cap: <br>✦ = p-valor < 0,05<br><b style='color:#E41A1C;'>R</b> = |<b>R</b>| > 0,5
 #| tbl-cap-location: margin
 
-tab_corr_gis
+tabla_corr_gis
 ```
 
 ## Sitios muestrales
@@ -381,7 +381,7 @@ Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta
 
 ```{r serie_temp_gis}
 
-g_evo_gis
+figura_evolucion_gis
 ```
 
 :::

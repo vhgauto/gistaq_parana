@@ -70,7 +70,7 @@ g <- ggplot(e, aes(banda, reflect, group = p, color = col, fill = col)) +
     legend.position = "none"
   )
 
-g_evo_gis <- girafe(
+figura_evolucion_gis <- girafe(
   ggobj = g,
   bg = c6,
   options = list(

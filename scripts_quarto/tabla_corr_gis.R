@@ -96,7 +96,7 @@ e <- inner_join(
 
 # tabla -------------------------------------------------------------------
 
-tab_corr_gis <- gt(e) |> 
+tabla_corr_gis <- gt(e) |> 
   sub_missing(missing_text = "---") |> 
   # nombre de columnas
   tab_style(
