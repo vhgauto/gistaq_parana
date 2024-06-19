@@ -15,10 +15,12 @@ d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
   mutate(p = row_number()) |> 
   ungroup() |> 
   mutate(
-    unidad = str_remove_all(param, ".+<br>")
+    unidad = str_extract(param, "\\(([^)]+)\\)"),
+    unidad = str_remove(unidad, "\\("),
+    unidad = str_remove(unidad, "\\)")
   ) |> 
-  mutate(unidad = str_remove_all(unidad, "\\(")) |> 
-  mutate(unidad = str_remove_all(unidad, "\\)")) |> 
+  mutate(
+    unidad = if_else(is.na(unidad), "", unidad)) |> 
   mutate(valor = round(valor, 2)) |> 
   mutate(label = glue("{fecha}<br>{valor} {unidad}")) |> 
   mutate(p = glue("P{p}"))
@@ -75,7 +77,7 @@ figura_evolucion_lab <- girafe(
       opacity = 1,
       css = glue(
         "color:{c1};padding:5px;font-family:JetBrains Mono;",
-        "border-style:none;background:{c3}"),
+        "border-style:solid;border-color:{c4};background:{c3}"),
       use_cursor_pos = TRUE,
       offx = 5,
       offy = 5),
@@ -84,7 +86,6 @@ figura_evolucion_lab <- girafe(
     opts_toolbar(saveaspng = FALSE)
   )
 )
-
 
 # datos -------------------------------------------------------------------
 

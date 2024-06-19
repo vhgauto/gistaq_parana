@@ -13,7 +13,7 @@ d <- read_csv("datos/base_de_datos_gis.csv", show_col_types = FALSE) |>
   ungroup() |> 
   mutate(reflect = round(reflect, 3)) |> 
   mutate(banda = fct(banda, banda_orden)) |> 
-  mutate(label = glue("P{p}<br>{reflect}"))
+  mutate(label = glue("P{p}: {reflect}"))
 
 pal <- colorRampPalette(colors = c(c1, c4, c2))(max(d$p))
 names(pal) <- 1:max(d$p)
@@ -81,7 +81,7 @@ figura_evolucion_gis <- girafe(
       opacity = 1,
       css = glue(
         "color:{c1};padding:5px;font-family:JetBrains Mono;",
-        "border-style:none;background:{c3}"),
+        "border-style:solid;border-color:{c4};background:{c3}"),
       use_cursor_pos = TRUE,
       offx = 5,
       offy = 5),
