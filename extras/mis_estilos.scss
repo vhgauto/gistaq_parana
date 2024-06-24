@@ -88,9 +88,16 @@ div.callout-note.callout {
   background-color: $cg;
 }
 
+// descripción de las tablas
 .column-margin figcaption, .margin-caption, div.aside, aside, .column-margin {
     color: $cn;
     font-size: 1em;
+}
+
+// descripción de las figuras
+.panel-caption, .figure-caption, .subfigure-caption, .table-caption, figcaption, caption {
+    color: $cn;
+    font-size: 1rem;
 }
 
 // fondo de los comandos
