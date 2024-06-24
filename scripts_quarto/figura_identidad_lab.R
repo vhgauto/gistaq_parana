@@ -73,7 +73,7 @@ f_gg <- function(eje_x, eje_y) {
       plot.margin = margin(t = 3, r = 7, b = 14, l = 10),
       panel.background = element_rect(fill = c3, color = NA),
       panel.grid.major = element_line(
-        color = c4, linewidth = .3, linetype = 3),
+        color = c4, linewidth = .1, linetype = "FF"),
       axis.title = element_markdown(family = "ubuntu", size = 15),
       axis.title.y = element_markdown(angle = 90, margin = margin(r = 3, l = 5)),
       axis.title.x = element_markdown(margin = margin(t = 6, b = 10)),
