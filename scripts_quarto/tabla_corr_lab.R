@@ -29,9 +29,6 @@ names(param_unid_v) <- param_v
 
 # correlación -------------------------------------------------------------
 
-# símbolo utilizado para las correlaciones que sean significativas
-simbolo_sig <- "✦"
-
 # correlación R
 e_r <- d |> 
   drop_na() |>  

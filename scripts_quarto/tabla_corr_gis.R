@@ -24,9 +24,6 @@ d <- read_csv("datos/base_de_datos_gis.csv", show_col_types = FALSE) |>
 
 # correlación -------------------------------------------------------------
 
-# símbolo utilizado para las correlaciones que sean significativas
-simbolo_sig <- "✦"
-
 # pvalor
 e_pvalor <- d |> 
   drop_na() |>  

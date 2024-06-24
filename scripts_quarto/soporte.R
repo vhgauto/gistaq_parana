@@ -84,6 +84,9 @@ link_github_vhg <- "https://github.com/vhgauto"
 
 link_github_gistaq <- "https://github.com/vhgauto/gistaq_parana"
 
+# símbolo utilizado para las correlaciones que sean significativas
+simbolo_sig <- "&#9733;" # estrella
+
 # fecha de actualización
 actualizado <- format(now(), "%d/%m/%Y %H:%M")
 
@@ -91,9 +94,10 @@ actualizado_label <- glue(
   "<p style='font-family:JetBrains Mono; color:{c4};text-align:right'>",
   "{actualizado}</p>")
 
+# descripción de las tablas, con p-valor < .05 & |R| > .5
 caption_tabla <- glue(
   "<span style='font-family:JetBrains Mono'>",
-  "<br>$\\star$ = p-valor < 0,05<br>",
+  "<br>{simbolo_sig} = p-valor < 0,05<br>",
   "<b style='color:{c2};'>R</b> = |<b>R</b>| > 0,5</span>"
 )
 
