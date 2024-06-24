@@ -78,15 +78,15 @@ e <- inner_join(
   ) |> 
   mutate(
     label = if_else(
-      es_significativo,
-      glue("{label}{simbolo_sig}"),
-      label
-    )
-  ) |> 
-  mutate(
-    label = if_else(
       abs(r) > .5,
       glue("<b style='color:{c2}'>{label}</b>"),
+      label
+    )
+  ) |>
+  mutate(
+    label = if_else(
+      es_significativo,
+      glue("{label}{simbolo_sig}"),
       label
     )
   ) |> 

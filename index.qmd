@@ -191,7 +191,7 @@ Las características de las bandas espectrales se muestran a continuación:
 
 ```{r}
 #| label: tbl-s2msi
-#| tbl-cap: Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B.
+#| tbl-cap: <br>Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B.
 
 tabla_s2msi
 ```
@@ -247,7 +247,17 @@ Se genera un stack con las bandas de interés ([$\S$@sec-datos-gis]) y se almace
 
 Definir las versiones de los paquetes utilizados en el presente proyecto es relevante ya que permite asegurar la reproducibilidad de los resultados. Para tal fin se emplea el paquete [`renv`](https://rstudio.github.io/renv/).
 
-La instalación de paquetes se realiza de manera tradicional con `install.packages("nombre_de_paquete")`. Cada vez que se instale, actualice o remueva un nuevo paquete ejecutar en la consola:
+La instalación de paquetes se realiza de manera tradicional:
+
+```{r}
+#| eval: false
+#| echo: true
+
+install.packages("nombre_del_paquete")
+
+```
+
+Cada vez que se instale, actualice o remueva un nuevo paquete ejecutar en la consola:
 
 ```{r}
 #| eval: false

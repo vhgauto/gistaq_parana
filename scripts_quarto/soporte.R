@@ -96,9 +96,8 @@ actualizado_label <- glue(
 
 # descripción de las tablas, con p-valor < .05 & |R| > .5
 caption_tabla <- glue(
-  "<span style='font-family:JetBrains Mono'>",
   "<br>{simbolo_sig} = p-valor < 0,05<br>",
-  "<b style='color:{c2};'>R</b> = |<b>R</b>| > 0,5</span>"
+  "<b style='color:{c2};'>R</b> = |<b>R</b>| > 0,5"
 )
 
 # scripts -----------------------------------------------------------------

@@ -20,7 +20,7 @@ names(param_unid_v) <- param_v
 linea_tipo <- 2
 linea_ancho <- 1
 texto_tamaño <- 4
-punto_transparencia <- .4
+punto_transparencia <- .6
 punto_tamaño <- 3
 
 # configuración de las figuras asociadas a una REACTA
