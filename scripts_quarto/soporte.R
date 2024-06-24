@@ -91,6 +91,12 @@ actualizado_label <- glue(
   "<p style='font-family:JetBrains Mono; color:{c4};text-align:right'>",
   "{actualizado}</p>")
 
+caption_tabla <- glue(
+  "<span style='font-family:JetBrains Mono'>",
+  "<br>$\\star$ = p-valor < 0,05<br>",
+  "<b style='color:{c2};'>R</b> = |<b>R</b>| > 0,5</span>"
+)
+
 # scripts -----------------------------------------------------------------
 
 r <- list.files(path = "scripts_quarto/", full.names = TRUE)
