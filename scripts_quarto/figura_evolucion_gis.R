@@ -66,7 +66,7 @@ g <- ggplot(e, aes(banda, reflect, group = p, color = col, fill = col)) +
     panel.background = element_rect(fill = c3),
     strip.background = element_blank(),
     strip.text = element_markdown(
-      family = "ubuntu", size = 9, margin = margin(b = 3)),
+      family = "jet", size = 9, margin = margin(b = 3)),
     legend.position = "none"
   )
 

@@ -81,6 +81,8 @@ En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del rí
 tabla_adquisicion
 ```
 
+::: {.callout-note title="Metodología de muestreo" collapse=true}
+
 El calendario completo de muestreos para el resto del año se encuentra en el siguiente [link](https://github.com/vhgauto/gistaq_parana/blob/main/calendario_2024.pdf).
 
 Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
@@ -98,6 +100,8 @@ Sobre el agua se miden pH, conductividad y profundidad de disco de Secchi. Luego
   - Turbidímetro (EBC), que emplea el Hazemeter.
 
 La relación entre las unidades de turbidez es: $1~NTU = 0,25~EBC$.
+
+:::
 
 # Resultados {#sec-resultados}
 
@@ -185,7 +189,7 @@ figura_evolucion_gis
 :::
 
 <br>
-Las curvas <span style='color:`r c1`'>color azul</span> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <span style='color:`r c2`'>color rojo</span>.
+Las curvas <b style='color:`r c1`'>color azul</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <b style='color:`r c2`'>color rojo</b>.
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
