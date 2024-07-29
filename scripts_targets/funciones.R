@@ -76,6 +76,16 @@ script_descarga_py <- function(x) {
   
 }
 
+estado_descarga <- function(x) {
+  
+  if (length(x) == 0) {
+    mensaje("Sin fecha")
+  } else {
+    script_descarga_py(x)
+  }
+  
+}
+
 # ejecuto la descarga del producto
 descarga <- function(x) {
   
@@ -334,4 +344,10 @@ elimino <- function() {
   unlink("producto/*", recursive = TRUE)
   mensaje("Archivos eliminados")
   
+}
+
+# publico sitio web en Github
+publico_quarto <- function(x) {
+  # corro el script Python que descarga la imagen
+  system(glue("quarto publish {x}"))
 }

@@ -89,7 +89,7 @@ En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del rí
 
 ```{r}
 #| label: tbl-adq
-#| tbl-cap: <span style='color:`r c2`;'>Fecha actual</span> y los próximos 10 muestreos.
+#| tbl-cap: <span style='color:`r c2`;'>Fecha actual</span> y de los próximos 10 muestreos.
 
 tabla_adquisicion
 ```
