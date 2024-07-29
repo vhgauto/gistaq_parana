@@ -151,7 +151,8 @@ recorte <- function(x, y) {
   lista_recortes$B11 <- project(lista_recortes$B11, lista_recortes$B02) 
   lista_recortes$B12 <- project(lista_recortes$B12, lista_recortes$B02)
   
-  #creamos un stack con todas las bandas recortadas y la misma resolucion espacial (10m)
+  #creamos un stack con todas las bandas recortadas y la misma resolución
+  # espacial (10m)
   stack_bandas <- rast(lista_recortes)
   
   # guardo stack de bandas recortado
