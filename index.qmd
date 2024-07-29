@@ -219,10 +219,19 @@ A continuación se muestran las ecuaciones para la estimación de las propiedade
 Polinomio para estimar turbidez a partir del cociente de bandas S2-MSI B02 y B03 @Ouma2020.
 
 $$
-y = 367.82x^{2} − 976.42x^{2} + 649.13
+y = 367.82x^{2} − 976.42x + 649.13
 $$
 $$
-x = B2/B03
+x = B02/B03
+$$
+
+Ecuaciones para Landsat 8 OLI @Shen2021.
+
+$$
+y = 535.137 − 1517.783x + (1078.271x^{2})
+$$
+$$
+x = B04/B03
 $$
 
 # Objetivo {#sec-objetivos}
@@ -230,9 +239,9 @@ $$
 El objetivo principal del proyecto de investigación es:
 
 ::: {.callout-note appearance="simple" icon=false}
-
+<p style='font-size:1.1rem'>
 Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos decampo.
-
+</p>
 :::
 
 Los objetivos específicos son:

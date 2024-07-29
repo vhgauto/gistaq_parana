@@ -62,9 +62,17 @@ a {
 }
 
 // estilo del callout
+/*
 .callout.callout-style-simple .callout-body {
     font-size: 1.1rem;
     font-weight: 400;
+}
+*/
+
+// color de texto del título de los callout
+.callout > div.callout-header {
+	cursor: pointer;
+	color: $cn;
 }
 
 // color del borde izquierdo
