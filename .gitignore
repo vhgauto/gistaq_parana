@@ -9,11 +9,16 @@ datos/base_de_datos_gis_sameep.tsv
 datos/datos_gistaq.xlsx
 datos/s2msi.xlsx
 datos/sameep_historicos.tsv
-plan/*
 
 # documento quarto test
 test.qmd
 test.html
+
+# recortes .tif
+recorte/*
+
+# plan de adquisición S2-MSI
+plan/*
 
 # History files
 .Rhistory
