@@ -240,13 +240,13 @@ El objetivo principal del proyecto de investigación es:
 
 ::: {.callout-note appearance="simple" icon=false}
 <p style='font-size:1.1rem'>
-Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos decampo.
+Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos de campo.
 </p>
 :::
 
-Los objetivos específicos son:
+::: {.callout-note title="Objetivos específicos" collapse=true}
 
-* Seleccionar un sector de la cuenca media del río Paraná, en la confluencia delos ríos Paraguay-Paraná, y en la toma de agua de la empresa potabilizadora de la ciudad de Resistencia.
+* Seleccionar un sector de la cuenca media del río Paraná, en la confluencia de los ríos Paraguay-Paraná, y en la toma de agua de la empresa potabilizadora de la ciudad de Resistencia.
 
 * Definir la cantidad y ubicación geográfica de los sitios de muestreo considerando el sensor satelital elegido, la logística y las características de la región de interés.
 
@@ -254,9 +254,9 @@ Los objetivos específicos son:
 
 * Construir una base de datos espaciotemporales a partir de productos satelitales ópticos, en reflectancia de superficie.
 
-* Calcular índices espectrales relacionados con la cuantificación delos indicadores de calidad del agua.
+* Calcular índices espectrales relacionados con la cuantificación de los indicadores de calidad del agua.
 
-* Desarrollar un algoritmo semiempírico que permita estimar indicadores de la calidad del agua a partir delos datos de campo y los datos espectrales de los productos espaciales.
+* Desarrollar un algoritmo semiempírico que permita estimar indicadores de la calidad del agua a partir de los datos de campo y los datos espectrales de los productos espaciales.
 
 * Validar el algoritmo desarrollado, evaluar su significancia estadística y compararlo con otros encontrados en referencias bibliográficas.
 
@@ -266,7 +266,9 @@ Los objetivos específicos son:
 
 * Formar RRHH en el área específica.
 
-El desarrollo de algoritmos empíricos requiere de datos espectrales y fisicoquímicos del agua, la propuesta de modelos candidatos, la selección final de los modelos y la validación de los mismos. Luego, la generación de mapas para evaluar la distribución espacial de las propiedades.
+:::
+
+El desarrollo de algoritmos empíricos requiere de datos espectrales y fisicoquímicos del agua, la propuesta de mode los candidatos, la selección final de los mode los y la validación de los mismos. Luego, la generación de mapas para evaluar la distribución espacial de las propiedades.
 
 Se pretende automatizar la descarga, extracción y almacenamiento de los datos espectrales y fisicoquímicos del agua en los sitios de muestreo, junto con las coordenadas geográficas.
 
@@ -451,18 +453,16 @@ La publicación se lleva a cabo en [Quarto Pub](https://quartopub.com/). Los dat
 Para regenerar el `.html` e inmediatamente publicar el sitio web, correr en la terminal:
 
 ```{.bash}
-quarto publish
+quarto publish index.qmd
 ```
 
 En la terminal se debe elegir la cuenta asociada a Quarto Pub.
-
-
 
 # Algoritmos {#sec-algoritmos}
 
 El desarrollo de los algoritmos para la estimación de indicadores de calidad del agua requiere la combinación de datos espectrales y fisicoquímicos.
 
-Se proponen múltiples modelos para la estimación de parámetros. Se siguen los lineamientos de [`tidymodels`](https://www.tmwr.org/) para el entrenamiento y validación de los modelos.
+Se proponen múltiples mode los para la estimación de parámetros. Se siguen los lineamientos de [`tidymodels`](https://www.tmwr.org/) para el entrenamiento y validación de los mode los.
 
 # Contacto {.unnumbered}
 
