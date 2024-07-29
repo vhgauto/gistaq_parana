@@ -9,6 +9,7 @@ datos/base_de_datos_gis_sameep.tsv
 datos/datos_gistaq.xlsx
 datos/s2msi.xlsx
 datos/sameep_historicos.tsv
+plan/*
 
 # documento quarto test
 test.qmd
