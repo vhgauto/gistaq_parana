@@ -68,6 +68,127 @@ La finalidad de este desarrollo es reunir en un único sitio web las caracterís
 
 En particular, este documento sirve como una guía para entender cómo se obtienen los datos pertinentes al proyecto de investigación, visualizar resultados, evaluar algoritmos y como material de consulta general de la metodología.
 
+# Muestreos {#sec-muestreos}
+
+Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
+
+En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
+
+```{r}
+#| label: tbl-adq
+#| tbl-cap: <span style='color:`r c2`;'>Fecha actual</span> y los próximos 10 muestreos.
+
+tabla_adquisicion
+```
+
+El calendario completo de muestreos para el resto del año se encuentra en el siguiente [link](https://github.com/vhgauto/gistaq_parana/blob/main/calendario_2024.pdf).
+
+Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
+
+Sobre el agua se miden pH, conductividad y profundidad de disco de Secchi. Luego, en el laboratorio se miden turbidez y sólidos suspendidos. A continuación, se describen cada uno:
+
+* pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
+
+* Profundidad de disco de Secchi (cm).
+
+* Sólidos suspendidos (ppm) por método gravimétrico, utilizando el método estandarizado 2540 D, que emplea filtros de 47 mm de diámetro y 0,5 μm de poro.
+
+* Turbidez se obtiene a partir de dos métodos:
+  - Colorimétrico (NTU), utilizando el equipo HACH, programa 95.
+  - Turbidímetro (EBC), que emplea el Hazemeter.
+
+La relación entre las unidades de turbidez es: $1~NTU = 0,25~EBC$.
+
+# Resultados {#sec-resultados}
+
+Se muestran las correlaciones lineales entre los parámetros espectrales y fisicoquímicos. De estos últimos se incluye la serie temporal según el sitio de muestreo.
+
+Las firmas espectrales se encuentran en la siguiente sección ([$\S$@sec-firmas-espectrales]).
+
+## Datos fisicoquímicos
+
+Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
+
+```{r corr_laboratorio}
+#| label: tbl-corr-lab
+#| tbl-cap: !expr caption_tabla
+
+tabla_corr_lab
+```
+
+Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
+
+::: {.column-page}
+
+![](figuras/figura_identidad_lab.png)
+
+:::
+
+Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
+
+::: {.column-page}
+
+```{r serie_temp_lab}
+
+figura_evolucion_lab
+```
+
+:::
+
+<!-- ## Datos espectrales -->
+
+<!-- Coeficientes de correlación lineal de Pearson (<b>R</b>) entre reflectancias de superficie de las bandas espectrales (@tbl-s2msi) de S2-MSI. -->
+
+<!-- ```{r corr_espectral} -->
+<!-- #| label: tbl-corr-gis -->
+<!-- #| tbl-cap: !expr caption_tabla -->
+
+<!-- tabla_corr_gis -->
+<!-- ``` -->
+
+## Sitios muestrales
+
+Se muestran los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
+
+::: {.column-page}
+
+```{r mapa_interactivo}
+#| warning: false
+#| fig-align: left
+#| fig-asp: 1
+
+mapa_interactivo
+```
+
+:::
+
+<br>
+Actualmente se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se recolectaron <b>`r cantidad_muetras` muestras de agua</b>.
+
+En todos los casos, no se aprecia presencia de nubes sobre los puntos de toma de muestras.
+
+Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la provincia del Chaco con y finalizando en la provincia de Corrientes.
+
+# Firmas espectrales {#sec-firmas-espectrales}
+
+A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-base-de-datos]) se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná sirven para ver el cambio entre costas.
+
+Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
+
+::: {.column-page}
+
+```{r serie_temp_gis}
+
+figura_evolucion_gis
+```
+
+:::
+
+<br>
+Las curvas <span style='color:`r c1`'>color azul</span> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <span style='color:`r c2`'>color rojo</span>.
+
+Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
+
 # Objetivo {#sec-objetivos}
 
 El objetivo principal del proyecto de investigación es:
@@ -290,126 +411,7 @@ quarto publish
 
 En la terminal se debe elegir la cuenta asociada a Quarto Pub.
 
-# Muestreos {#sec-muestreos}
 
-Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
-
-En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
-
-```{r}
-#| label: tbl-adq
-#| tbl-cap: <span style='color:`r c2`;'>Fecha actual</span> y los próximos 10 muestreos.
-
-tabla_adquisicion
-```
-
-El calendario completo de muestreos para el resto del año se encuentra en el siguiente [link](https://github.com/vhgauto/gistaq_parana/blob/main/calendario_2024.pdf).
-
-Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
-
-Sobre el agua se miden pH, conductividad y profundidad de disco de Secchi. Luego, en el laboratorio se miden turbidez y sólidos suspendidos. A continuación, se describen cada uno:
-
-* pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
-
-* Profundidad de disco de Secchi (cm).
-
-* Sólidos suspendidos (ppm) por método gravimétrico, utilizando el método estandarizado 2540 D, que emplea filtros de 47 mm de diámetro y 0,5 μm de poro.
-
-* Turbidez se obtiene a partir de dos métodos:
-  - Colorimétrico (NTU), utilizando el equipo HACH, programa 95.
-  - Turbidímetro (EBC), que emplea el Hazemeter.
-
-La relación entre las unidades de turbidez es: $1~NTU = 0,25~EBC$.
-
-# Resultados {#sec-resultados}
-
-Se muestran las correlaciones lineales entre los parámetros espectrales y fisicoquímicos. De estos últimos se incluye la serie temporal según el sitio de muestreo.
-
-Las firmas espectrales se encuentran en la siguiente sección ([$\S$@sec-firmas-espectrales]).
-
-## Datos fisicoquímicos
-
-Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
-
-```{r corr_laboratorio}
-#| label: tbl-corr-lab
-#| tbl-cap: !expr caption_tabla
-
-tabla_corr_lab
-```
-
-Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
-
-::: {.column-page}
-
-![](figuras/figura_identidad_lab.png)
-
-:::
-
-Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
-
-::: {.column-page}
-
-```{r serie_temp_lab}
-
-figura_evolucion_lab
-```
-
-:::
-
-## Datos espectrales
-
-Coeficientes de correlación lineal de Pearson (<b>R</b>) entre reflectancias de superficie de las bandas espectrales (@tbl-s2msi) de S2-MSI.
-
-```{r corr_espectral}
-#| label: tbl-corr-gis
-#| tbl-cap: !expr caption_tabla
-
-tabla_corr_gis
-```
-
-## Sitios muestrales
-
-Se muestran los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
-
-::: {.column-page}
-
-```{r mapa_interactivo}
-#| warning: false
-#| fig-align: left
-#| fig-asp: 1
-
-mapa_interactivo
-```
-
-:::
-
-<br>
-Actualmente se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se recolectaron <b>`r cantidad_muetras` muestras de agua</b>.
-
-En todos los casos, no se aprecia presencia de nubes sobre los puntos de toma de muestras.
-
-Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la provincia del Chaco con y finalizando en la provincia de Corrientes.
-
-# Firmas espectrales {#sec-firmas-espectrales}
-
-A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-base-de-datos]) se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná sirven para ver el cambio entre costas.
-
-Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
-
-::: {.column-page}
-
-```{r serie_temp_gis}
-
-figura_evolucion_gis
-```
-
-:::
-
-<br>
-Las curvas <span style='color:`r c1`'>color azul</span> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <span style='color:`r c2`'>color rojo</span>.
-
-Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
 # Algoritmos {#sec-algoritmos}
 
