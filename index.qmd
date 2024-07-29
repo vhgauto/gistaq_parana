@@ -60,6 +60,9 @@ source("scripts_quarto/soporte.R")
 <!-- agregar favicon -->
 <!-- https://quarto.org/docs/output-formats/html-basics.html#includes -->
 
+<!-- formato de citas -->
+<!-- https://quarto.org/docs/authoring/citations.html#sec-citations -->
+
 # Introducción {.unnumbered}
 
 ::: {.callout-note title="Contenido" collapse=true}
@@ -198,6 +201,23 @@ figura_evolucion_gis
 Las curvas <b style='color:`r c1`'>color azul</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <b style='color:`r c2`'>color rojo</b>.
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
+
+# Discusión
+
+En esta sección recolecta información bibliográfica referente a parámetros de laboratorio estimados mediante teledetección satelital.
+
+Se eligieron tres propiedades: turbidez, sólidos suspendidos y profundidad de disco de Secchi.
+
+A continuación se muestran las ecuaciones para la estimación de las propiedades, los sensores y longitudes de onda empleados, las características de los cuerpos de agua y la justificación de los autores.
+
+## Turbidez
+
+Polinomio para estimar turbidez a partir del cociente de bandas S2-MSI B02 y B03 @Ouma2020.
+
+$$
+y = 367.82x^{2} − 976.42x^{2} + 649.13 \\
+x = B2/B03
+$$
 
 # Objetivo {#sec-objetivos}
 
