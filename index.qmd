@@ -2,6 +2,7 @@
 title: "Proyecto Paraná 2023"
 format: 
   html:
+    anchor-sections: true
     number-sections: true
     embed-resources: true
     include-in-header: extras/favicon.html
@@ -22,6 +23,7 @@ format:
     fig-cap-location: bottom
     bibliography: biblio/bibliografia.bib
     csl: biblio/ieee.csl
+    html-math-method: katex
 editor_options:
   chunk_output_type: console
 crossrefs-hover: false
@@ -69,7 +71,8 @@ source("scripts_quarto/soporte.R")
 
 Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b>.
 
-A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Luego, se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de estos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Finalmente, se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]).
+A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de estos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]). La discución de la bibliografía y los algoritmos encontrados se discute en ([$\S$-@sec-discusion]). 
+Al final se encuentran las referencias bibliográficas.
 
 La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto, registrar datos, visualizar resultados y evaluar algoritmos.
 
@@ -79,7 +82,7 @@ En particular, este documento sirve como una guía para entender cómo se obtien
 
 # Muestreos {#sec-muestreos}
 
-Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`. Hola @Luo2020.
+Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
 
@@ -202,9 +205,9 @@ Las curvas <b style='color:`r c1`'>color azul</b> corresponden a los sitios cerc
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
-# Discusión
+# Discusión {#sec-discusion}
 
-En esta sección recolecta información bibliográfica referente a parámetros de laboratorio estimados mediante teledetección satelital.
+Esta sección recolecta información bibliográfica referente a parámetros de laboratorio estimados mediante teledetección satelital.
 
 Se eligieron tres propiedades: turbidez, sólidos suspendidos y profundidad de disco de Secchi.
 
@@ -215,7 +218,9 @@ A continuación se muestran las ecuaciones para la estimación de las propiedade
 Polinomio para estimar turbidez a partir del cociente de bandas S2-MSI B02 y B03 @Ouma2020.
 
 $$
-y = 367.82x^{2} − 976.42x^{2} + 649.13 \\
+y = 367.82x^{2} − 976.42x^{2} + 649.13
+$$
+$$
 x = B2/B03
 $$
 
