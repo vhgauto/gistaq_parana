@@ -20,6 +20,8 @@ format:
     code-line-numbers: false
     tbl-cap-location: margin
     fig-cap-location: bottom
+    bibliography: biblio/bibliografia.bib
+    csl: biblio/ieee.csl
 editor_options:
   chunk_output_type: console
 crossrefs-hover: false
@@ -60,6 +62,8 @@ source("scripts_quarto/soporte.R")
 
 # Introducción {.unnumbered}
 
+::: {.callout-note title="Contenido" collapse=true}
+
 Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b>.
 
 A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Luego, se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de estos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Finalmente, se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]).
@@ -68,9 +72,11 @@ La finalidad de este desarrollo es reunir en un único sitio web las caracterís
 
 En particular, este documento sirve como una guía para entender cómo se obtienen los datos pertinentes al proyecto de investigación, visualizar resultados, evaluar algoritmos y como material de consulta general de la metodología.
 
+:::
+
 # Muestreos {#sec-muestreos}
 
-Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
+Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`. Hola @Luo2020.
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
 

@@ -10,6 +10,10 @@ datos/datos_gistaq.xlsx
 datos/s2msi.xlsx
 datos/sameep_historicos.tsv
 
+# documento quarto test
+test.qmd
+test.html
+
 # History files
 .Rhistory
 .Rapp.history
