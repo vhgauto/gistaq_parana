@@ -24,6 +24,7 @@ format:
     bibliography: biblio/bibliografia.bib
     csl: biblio/ieee.csl
     html-math-method: katex
+    callout-icon: false
 editor_options:
   chunk_output_type: console
 crossrefs-hover: false
