@@ -6,16 +6,16 @@
 # nombre de los parámetros para los popups del mapa
 label_param <- c(
   ph = "<b>pH</b>",
-  cond = "<b>Cond.</b>",
-  sol_sus = "<b>Sol. susp.</b>",
-  turb = "<b>Turb.</b>",
+  cond = "<b>Cond</b>",
+  sol_sus = "<b>Sol. susp</b>",
+  turb = "<b>Turb</b>",
   secchi = "<b>SDD</b>",
-  hazemeter = "<b>Hazem.</b>")
+  hazemeter = "<b>Hazem</b>")
 
 # unidades de los parámetros para los popups del mapa
 label_unidad <- c(
   ph = "",
-  cond = "mS/cm",
+  cond = "μS/cm",
   sol_sus = "ppm",
   turb = "NTU",
   secchi = "cm",
@@ -54,7 +54,7 @@ names(e) <- NULL
 # funciones ---------------------------------------------------------------
 
 # genera íconos con las formas predeterminadas de R
-pchIcons <- function(pch = 0:14, width = 20, height = 20, ...) {
+pchIcons <- function(pch = 0:14, width = 30, height = 30, ...) {
   n <- length(pch)
   files <- character(n)
   # create a sequence of png images
@@ -72,7 +72,7 @@ pchIcons <- function(pch = 0:14, width = 20, height = 20, ...) {
 
 # etiquetas con las propiedades de los puntos
 f_label <- function(fecha_date) {
-  d |> 
+  label <- d |> 
     mutate(nombre = label_param[param]) |> 
     mutate(unidad = label_unidad[param]) |> 
     filter(fecha == ymd(fecha_date)) |> 
@@ -82,6 +82,9 @@ f_label <- function(fecha_date) {
       .by = c(longitud, latitud)
     ) |> 
     pull(l)
+  
+  glue("<span style='font-size:13px; font-family: Ubuntu'>{label}</span>")
+  
 }
 
 # escala de colores de los marcadores
@@ -110,6 +113,14 @@ f_circulo <- function(
     lat = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha_date), "latitud"])),
     icon = icons(iconUrl = f_icono(fecha_date)),
     popup = f_label(fecha_date),
+    
+    popupOptions = popupOptions(
+      closeButton = FALSE,
+      closeOnClick = TRUE,
+      offset = c(10, 10),
+      fontSize = 100
+    ),
+    
     group = ymd(fecha_date)
     )
 }

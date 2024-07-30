@@ -8,6 +8,7 @@ $ca: #377EB8;
 $cr: #E41A1C;
 $cg: #FAFAFA;
 $cn: #000000;
+$cb: #FFFFFF;
 
 // Ubuntu
 @import url('https://fonts.googleapis.com/css2?family=Gloock&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
@@ -112,3 +113,11 @@ div.callout-note.callout {
 pre.sourceCode {
     background-color: $cg;
 }
+
+// mapa
+.leaflet-popup-content-wrapper {
+  background-color: $cr;
+  color: green;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+}
+
