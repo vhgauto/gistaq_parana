@@ -89,7 +89,7 @@ En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del rí
 
 ```{r}
 #| label: tbl-adq
-#| tbl-cap: <span style='color:`r c2`;'>Fecha actual</span> y de los próximos 10 muestreos.
+#| tbl-cap: !expr caption_adq
 
 tabla_adquisicion
 ```
@@ -122,47 +122,6 @@ Se muestran las correlaciones lineales entre los parámetros espectrales y fisic
 
 Las firmas espectrales se encuentran en la siguiente sección ([$\S$@sec-firmas-espectrales]).
 
-## Datos fisicoquímicos
-
-Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
-
-```{r corr_laboratorio}
-#| label: tbl-corr-lab
-#| tbl-cap: !expr caption_tabla
-
-tabla_corr_lab
-```
-
-Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
-
-::: {.column-page}
-
-![](figuras/figura_identidad_lab.png)
-
-:::
-
-Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
-
-::: {.column-page}
-
-```{r serie_temp_lab}
-
-figura_evolucion_lab
-```
-
-:::
-
-<!-- ## Datos espectrales -->
-
-<!-- Coeficientes de correlación lineal de Pearson (<b>R</b>) entre reflectancias de superficie de las bandas espectrales (@tbl-s2msi) de S2-MSI. -->
-
-<!-- ```{r corr_espectral} -->
-<!-- #| label: tbl-corr-gis -->
-<!-- #| tbl-cap: !expr caption_tabla -->
-
-<!-- tabla_corr_gis -->
-<!-- ``` -->
-
 ## Sitios muestrales
 
 Se muestran los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
@@ -185,6 +144,36 @@ Actualmente se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se re
 En todos los casos, no se aprecia presencia de nubes sobre los puntos de toma de muestras.
 
 Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la provincia del Chaco con y finalizando en la provincia de Corrientes.
+
+## Datos fisicoquímicos
+
+Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
+
+::: {.column-page}
+
+```{r serie_temp_lab}
+
+figura_evolucion_lab
+```
+
+:::
+
+Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
+
+```{r corr_laboratorio}
+#| label: tbl-corr-lab
+#| tbl-cap: !expr caption_tabla
+
+tabla_corr_lab
+```
+
+Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
+
+::: {.column-page}
+
+![](figuras/figura_identidad_lab.png)
+
+:::
 
 # Firmas espectrales {#sec-firmas-espectrales}
 

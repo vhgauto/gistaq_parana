@@ -40,9 +40,12 @@ tabla_adquisicion <- gt(d) |>
   # aplico formato a la columna de fechas
   tab_style(
     locations = cells_body(columns = Fecha),
-    style = cell_text(font = "JetBrains Mono")
+    style = cell_text(font = "JetBrains Mono", align = "center")
   ) |> 
   tab_style(
     locations = cells_column_labels(),
     style = cell_text(font = "Ubuntu", weight = "bold", align = "center")
+  ) |> 
+  cols_width(
+    Fecha ~ px(200) 
   )

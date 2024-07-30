@@ -100,6 +100,12 @@ caption_tabla <- glue(
   "<b style='color:{c2};'>R</b> = |<b>R</b>| > 0,5"
 )
 
+# caption adquisición
+caption_adq <- glue(
+  "<span style='color:{c2};'>Fecha actual</span> y de los próximos 10 ",
+  "muestreos."
+)
+
 # scripts -----------------------------------------------------------------
 
 r <- list.files(path = "scripts_quarto/", full.names = TRUE)
