@@ -3,16 +3,33 @@
 
 # datos -------------------------------------------------------------------
 
+# nombre de los parámetros para los popups del mapa
+label_param <- c(
+  ph = "<b>pH</b>",
+  cond = "<b>Cond.</b>",
+  sol_sus = "<b>Sol. susp.</b>",
+  turb = "<b>Turb.</b>",
+  secchi = "<b>SDD</b>",
+  hazemeter = "<b>Hazem.</b>")
+
+# unidades de los parámetros para los popups del mapa
+label_unidad <- c(
+  ph = "",
+  cond = "mS/cm",
+  sol_sus = "ppm",
+  turb = "NTU",
+  secchi = "cm",
+  hazemeter = "BC")
+
+# datos de laboratorio
+d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
+
 # vector de sitios de muestreo
-v <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |> 
-  distinct(fecha, latitud, longitud) |> 
-  vect(geom = c("longitud", "latitud"), crs = "EPSG:4326")
+v_tbl <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |> 
+  distinct(fecha, longitud, latitud) |> 
+  arrange(fecha, longitud, latitud)
 
-v_tbl <- as.data.frame(v, geom = "XY") |>
-  tibble() |>
-  arrange(fecha, desc(x), desc(y))
-
-fechas_v <- unique(v$fecha) |> str_remove_all("-")
+fechas_v <- unique(v_tbl$fecha) |> str_remove_all("-")
 
 # ráster
 r_files <- list.files(
@@ -56,8 +73,10 @@ pchIcons <- function(pch = 0:14, width = 20, height = 20, ...) {
 # etiquetas con las propiedades de los puntos
 f_label <- function(fecha_date) {
   d |> 
+    mutate(nombre = label_param[param]) |> 
+    mutate(unidad = label_unidad[param]) |> 
     filter(fecha == ymd(fecha_date)) |> 
-    mutate(label = glue("{param}: {round(valor, 1)}")) |> 
+    mutate(label = glue("{nombre}: {round(valor, 1)} {unidad}")) |> 
     reframe(
       l = str_flatten(label, collapse = "<br>"),
       .by = c(longitud, latitud)
@@ -84,14 +103,14 @@ f_icono <- function(fecha, pch = 21, color = c5) {
 
 # función que agrega puntos con su estilo
 f_circulo <- function(
-    map, fecha, color = c5, opacity = 1, radius = 8) {
+    map, fecha_date, color = c5, opacity = 1, radius = 8) {
   addMarkers(
     map,
-    lng = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha), "y"])),
-    lat = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha), "x"])),
-    icon = icons(iconUrl = f_icono(fecha)),
-    popup = f_label(fecha),
-    group = ymd(fecha)
+    lng = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha_date), "longitud"])),
+    lat = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha_date), "latitud"])),
+    icon = icons(iconUrl = f_icono(fecha_date)),
+    popup = f_label(fecha_date),
+    group = ymd(fecha_date)
     )
 }
 

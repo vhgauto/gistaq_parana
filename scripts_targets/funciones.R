@@ -318,7 +318,7 @@ lab <- function(x) {
     skip = 2,
     .name_repair = "unique_quiet") |> 
     select(
-      fecha = 1, longitud = 4, latitud = 5, ph = 6, cond = 8, secchi = 10,
+      fecha = 1, latitud = 4, longitud = 5, ph = 6, cond = 8, secchi = 10,
       sol_sus = 12, turb = 15, hazemeter = 18) |> 
     fill(fecha) |> 
     mutate(fecha = ymd(fecha)) |> 
