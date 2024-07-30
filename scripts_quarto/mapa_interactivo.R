@@ -72,7 +72,7 @@ pchIcons <- function(pch = 0:14, width = 30, height = 30, ...) {
 
 # etiquetas con las propiedades de los puntos
 f_label <- function(fecha_date) {
-  label <- d |> 
+  labels <- d |> 
     mutate(nombre = label_param[param]) |> 
     mutate(unidad = label_unidad[param]) |> 
     filter(fecha == ymd(fecha_date)) |> 
@@ -83,7 +83,14 @@ f_label <- function(fecha_date) {
     ) |> 
     pull(l)
   
-  glue("<span style='font-size:13px; font-family: Ubuntu'>{label}</span>")
+  filas <- glue(
+    "<span style='font-size:13px; font-family: Ubuntu'>{labels}</span>")
+  
+  p_label <- glue(
+    "<span style='font-family: JetBrains Mono; font-size: 16px'>",
+    "P{1:length(labels)}</span>")
+  
+  glue("{p_label}<br>{filas}")
   
 }
 
@@ -99,8 +106,8 @@ f_relleno <- function(fecha_date) {
 }
 
 # genera los archivos de las formas predeterminadas como marcadores
-f_icono <- function(fecha, pch = 21, color = c5) {
-  map(f_relleno(fecha), ~pchIcons(pch, bg = .x, lwd = 2, col = color)) |> 
+f_icono <- function(fecha, pch = 21, color = c5, lwd = 1) {
+  map(f_relleno(fecha), ~pchIcons(pch, bg = .x, lwd = lwd, col = color)) |> 
     list_c()
 }
 
