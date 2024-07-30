@@ -466,7 +466,7 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [`r 
 <br>
 <br>
 
-::: {.column-screen-right}
+::: {.column-page-right}
 
 `r actualizado_label`
 

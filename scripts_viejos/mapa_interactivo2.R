@@ -8,9 +8,9 @@ v <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
   distinct(fecha, latitud, longitud) |> 
   vect(geom = c("longitud", "latitud"), crs = "EPSG:4326")
 
-v_tbl <- as.data.frame(v, geom = "XY") |> 
-  tibble() |> 
-  arrange(fecha, desc(x), desc(y))
+# v_tbl <- as.data.frame(v, geom = "XY") |> 
+#   tibble() |> 
+#   arrange(fecha, desc(x), desc(y))
 
 fechas_v <- unique(v$fecha) |> str_remove_all("-")
 
@@ -42,7 +42,7 @@ f_label <- function(fecha_date) {
     filter(fecha == ymd(fecha_date)) |> 
     mutate(label = glue("{param}: {round(valor, 1)}")) |> 
     reframe(
-      l = str_flatten(label, collapse = "\r"),
+      l = str_flatten(label, collapse = "<br>"),
       .by = c(longitud, latitud)
     ) |> 
     pull(l)
@@ -62,20 +62,13 @@ f_relleno <- function(fecha_date) {
 # función que agrega puntos con su estilo
 f_circulo <- function(
     map, fecha, color = c5, opacity = 1, radius = 8) {
-  addCircleMarkers(
+  addMarkers(
     map,
     lng = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha), "y"])),
     lat = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha), "x"])),
-    color = color, 
-    stroke = TRUE,
-    weight = 1,
-    fill = TRUE,
-    label = f_label(fecha),
-    fillColor = f_relleno(fecha),
-    fillOpacity = opacity,
-    opacity = opacity, 
-    group = ymd(fecha), 
-    radius = radius)
+    popup = f_label(fecha),
+    group = ymd(fecha)
+    )
 }
 
 # función que agrega ráster en composición RGB

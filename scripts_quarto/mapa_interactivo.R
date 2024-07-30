@@ -8,8 +8,8 @@ v <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
   distinct(fecha, latitud, longitud) |> 
   vect(geom = c("longitud", "latitud"), crs = "EPSG:4326")
 
-v_tbl <- as.data.frame(v, geom = "XY") |> 
-  tibble() |> 
+v_tbl <- as.data.frame(v, geom = "XY") |>
+  tibble() |>
   arrange(fecha, desc(x), desc(y))
 
 fechas_v <- unique(v$fecha) |> str_remove_all("-")
@@ -36,13 +36,30 @@ names(e) <- NULL
 
 # funciones ---------------------------------------------------------------
 
+# genera íconos con las formas predeterminadas de R
+pchIcons <- function(pch = 0:14, width = 20, height = 20, ...) {
+  n <- length(pch)
+  files <- character(n)
+  # create a sequence of png images
+  for (i in seq_len(n)) {
+    f <- tempfile(fileext = ".png")
+    png(f, width = width, height = height, bg = "transparent")
+    par(mar = c(0, 0, 0, 0))
+    plot.new()
+    points(.5, .5, pch = pch[i], cex = min(width, height) / 8, ...)
+    dev.off()
+    files[i] <- f
+  }
+  files
+}
+
 # etiquetas con las propiedades de los puntos
 f_label <- function(fecha_date) {
   d |> 
     filter(fecha == ymd(fecha_date)) |> 
     mutate(label = glue("{param}: {round(valor, 1)}")) |> 
     reframe(
-      l = str_flatten(label, collapse = "\r"),
+      l = str_flatten(label, collapse = "<br>"),
       .by = c(longitud, latitud)
     ) |> 
     pull(l)
@@ -59,29 +76,23 @@ f_relleno <- function(fecha_date) {
   
 }
 
-f_relleno(fechas_v[1]) |> scales::show_col()
+# genera los archivos de las formas predeterminadas como marcadores
+f_icono <- function(fecha, pch = 21, color = c5) {
+  map(f_relleno(fecha), ~pchIcons(pch, bg = .x, lwd = 2, col = color)) |> 
+    list_c()
+}
 
 # función que agrega puntos con su estilo
 f_circulo <- function(
-    map, fecha, color = c7, relleno = c8, opacity = 1, radius = 5) {
-  addCircleMarkers(
+    map, fecha, color = c5, opacity = 1, radius = 8) {
+  addMarkers(
     map,
-    # lng = terra::geom(v[v$fecha == ymd(fecha)])[, 4],
-    # lat = terra::geom(v[v$fecha == ymd(fecha)])[, 3],
-    
     lng = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha), "y"])),
     lat = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha), "x"])),
-    
-    color = "white", 
-    stroke = TRUE,
-    weight = 3,
-    fill = TRUE,
-    label = f_label(fecha),
-    fillColor = f_relleno(fecha),
-    fillOpacity = 1,
-    opacity = opacity, 
-    group = ymd(fecha), 
-    radius = radius)
+    icon = icons(iconUrl = f_icono(fecha)),
+    popup = f_label(fecha),
+    group = ymd(fecha)
+    )
 }
 
 # función que agrega ráster en composición RGB
