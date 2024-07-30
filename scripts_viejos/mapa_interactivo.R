@@ -8,10 +8,6 @@ v <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
   distinct(fecha, latitud, longitud) |> 
   vect(geom = c("longitud", "latitud"), crs = "EPSG:4326")
 
-v_tbl <- as.data.frame(v, geom = "XY") |> 
-  tibble() |> 
-  arrange(fecha, desc(x), desc(y))
-
 fechas_v <- unique(v$fecha) |> str_remove_all("-")
 
 # ráster
@@ -36,48 +32,18 @@ names(e) <- NULL
 
 # funciones ---------------------------------------------------------------
 
-# etiquetas con las propiedades de los puntos
-f_label <- function(fecha_date) {
-  d |> 
-    filter(fecha == ymd(fecha_date)) |> 
-    mutate(label = glue("{param}: {round(valor, 1)}")) |> 
-    reframe(
-      l = str_flatten(label, collapse = "\r"),
-      .by = c(longitud, latitud)
-    ) |> 
-    pull(l)
-}
-
-# escala de colores de los marcadores
-f_relleno <- function(fecha_date) {
-  n <- d |>
-    filter(fecha == ymd(fecha_date)) |>
-    distinct(longitud, latitud) |>
-    nrow()
-  
-  colorRampPalette(c(c1, c2))(n)
-  
-}
-
-f_relleno(fechas_v[1]) |> scales::show_col()
-
 # función que agrega puntos con su estilo
 f_circulo <- function(
-    map, fecha, color = c7, relleno = c8, opacity = 1, radius = 5) {
-  addCircleMarkers(
+    map, fecha, color = c7, relleno = c8, opacity = 1, radius = 15) {
+  addCircles(
     map,
-    # lng = terra::geom(v[v$fecha == ymd(fecha)])[, 4],
-    # lat = terra::geom(v[v$fecha == ymd(fecha)])[, 3],
-    
-    lng = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha), "y"])),
-    lat = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha), "x"])),
-    
-    color = "white", 
+    lng = terra::geom(v[v$fecha == ymd(fecha)])[, 4],
+    lat = terra::geom(v[v$fecha == ymd(fecha)])[, 3],
+    color = color, 
     stroke = TRUE,
     weight = 3,
     fill = TRUE,
-    label = f_label(fecha),
-    fillColor = f_relleno(fecha),
+    fillColor = relleno,
     fillOpacity = 1,
     opacity = opacity, 
     group = ymd(fecha), 
@@ -139,4 +105,3 @@ mapa_interactivo <- base |>
   addFullscreenControl(position = "bottomright") |> 
   # muestro la última fecha al iniciar
   showGroup(max(ymd(fechas_v)))
-

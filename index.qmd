@@ -143,7 +143,7 @@ Actualmente se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se re
 
 En todos los casos, no se aprecia presencia de nubes sobre los puntos de toma de muestras.
 
-Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la provincia del Chaco con y finalizando en la provincia de Corrientes.
+Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la orilla de provincia del Chaco y finalizando en la costa de Corrientes.
 
 ## Datos fisicoquímicos
 
