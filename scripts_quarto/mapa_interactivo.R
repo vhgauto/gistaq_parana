@@ -105,6 +105,28 @@ f_relleno <- function(fecha_date) {
   
 }
 
+f_etq <- function(fecha_date) {
+  tibble(
+    l = f_label(fecha_date),
+    col = f_relleno(fecha_date)
+  ) |> 
+    mutate(
+      l2 = str_replace(
+        l,
+        "font-family", 
+        glue("color: {col}; font-family")
+      )
+    ) |> 
+    pull(l2)
+
+}
+
+
+
+
+
+glue({})
+
 # genera los archivos de las formas predeterminadas como marcadores
 f_icono <- function(fecha, pch = 21, color = c5, lwd = 1) {
   map(f_relleno(fecha), ~pchIcons(pch, bg = .x, lwd = lwd, col = color)) |> 
@@ -119,7 +141,7 @@ f_circulo <- function(
     lng = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha_date), "longitud"])),
     lat = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha_date), "latitud"])),
     icon = icons(iconUrl = f_icono(fecha_date)),
-    popup = f_label(fecha_date),
+    popup = f_etq(fecha_date),
     
     popupOptions = popupOptions(
       closeButton = FALSE,
