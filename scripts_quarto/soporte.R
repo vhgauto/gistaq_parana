@@ -20,10 +20,10 @@ c1 <- "#377EB8"
 c2 <- "#E41A1C"
 c3 <- "#F2F2F2" # "grey95"
 c4 <- "#4D4D4D" # "grey30"
-c5 <- "#FFFFFF" # white
+c5 <- "#FFFFFF" # "white"
 c6 <- "#FAFAFA" # "grey98"
-c7 <- "#000000" # black
-c8 <- "#FFD700" # gold
+c7 <- "#000000" # "black"
+c8 <- "#FFD700" # "gold"
 
 # fuentes -----------------------------------------------------------------
 
@@ -102,7 +102,7 @@ caption_tabla <- glue(
 
 # caption adquisición
 caption_adq <- glue(
-  "<span style='color:{c2};'>Fecha actual</span> y de los próximos 10 ",
+  "<b style='color:{c2};'>Fecha actual</b> y de los próximos 10 ",
   "muestreos."
 )
 

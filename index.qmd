@@ -15,6 +15,7 @@ format:
     mainfont: Ubuntu
     link-external-icon: true
     link-external-newwindow: true
+    link-citations: true
     code-link: true
     code-copy: true
     code-annotations: false
@@ -143,7 +144,7 @@ Actualmente se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se re
 
 En todos los casos, no se aprecia presencia de nubes sobre los puntos de toma de muestras.
 
-Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la orilla de provincia del Chaco y finalizando en la costa de Corrientes.
+Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la orilla chaqueña y finalizando en la costa de Corrientes, pasado de color <b span='color:{r c1}'>azul</b> a <b span='color:{r c2}'>rojo</b>.
 
 ## Datos fisicoquímicos
 
@@ -195,20 +196,45 @@ Las curvas <b style='color:`r c1`'>color azul</b> corresponden a los sitios cerc
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
+Las características espectrales de S2-MSI se muestran en la siguiente tabla:
+
+```{r}
+#| label: tbl-s2msi
+#| tbl-cap: <br>Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B.
+
+tabla_s2msi
+```
+
 # Discusión {#sec-discusion}
 
 Esta sección recolecta información bibliográfica referente a parámetros de laboratorio estimados mediante teledetección satelital.
 
-Se eligieron tres propiedades: turbidez, sólidos suspendidos y profundidad de disco de Secchi.
+Se eligieron tres propiedades del agua: turbidez, sólidos suspendidos y profundidad de disco de Secchi.
 
-A continuación se muestran las ecuaciones para la estimación de las propiedades, los sensores y longitudes de onda empleados, las características de los cuerpos de agua y la justificación de los autores.
+A continuación se muestran (según en caso) las ecuaciones para la estimación de las propiedades, los sensores y longitudes de onda empleados, las características de los cuerpos de agua y la justificación de los autores, junto con la referencia bibliográfica.
 
-## Turbidez
+Se pretende poder justificar los algoritmos desarrollados propios a partir de los obtenido por otros autores.
+
+Las características de las bandas espectrales de S2-MSI se encuentran en la tabla [-@tbl-s2msi].
+
+## Métodos tradicionales
+
+Ecuaciones directas, usualmente polinomios, de la forma general:
+
+$$
+Propiedad = f(Bandas~espectrales)
+$$
+
+Estas expresiones permiten evaluar la contribución de las bandas espectrales, y sus combinaciones, al valor de la propiedad fisicoquímica estimada.
+
+Son usuales las expresiones que incorporan índices espectrales, sensibles a alguna característica del agua, como ser NDCI (clorofila), NDTI (turbidez), entre otros.
+
+### Turbidez
 
 Polinomio para estimar turbidez a partir del cociente de bandas S2-MSI B02 y B03 @Ouma2020.
 
 $$
-y = 367.82x^{2} − 976.42x + 649.13
+y = 367.82\cdot x^{2} − 976.42\cdot x + 649.13
 $$
 $$
 x = B02/B03
@@ -217,11 +243,22 @@ $$
 Ecuaciones para Landsat 8 OLI @Shen2021.
 
 $$
-y = 535.137 − 1517.783x + (1078.271x^{2})
+y = 535.137 − 1517.783\cdot x + 1078.271\cdot x^{2}
 $$
 $$
 x = B04/B03
 $$
+
+### Sólidos suspendidos
+
+
+### Profundidad de disco de Secchi
+
+
+## Aprendizaje automático
+
+Las técnicas de aprendizaje automático permiten encontrar relaciones entre entre las propiedades del agua y la reflectancia de superficie, a distintas longitudes de onda.
+
 
 # Objetivo {#sec-objetivos}
 
@@ -345,13 +382,6 @@ Se almacena el recorte `.tif`, siendo el nombre del archivo la fecha de adquisic
 A partir de la fecha ([$\S$@sec-fecha-descarga]), se genera un vector con las coordenadas geográficas del Excel ([$\S$@sec-excel]). Luego, se extraen los valores de píxeles por cada banda. Se actualiza el archivo `datos/base_de_datos_gis.csv` ([$\S$@sec-base-de-datos]) con los nuevos datos espectrales.
 
 Las características de las bandas espectrales se muestran a continuación:
-
-```{r}
-#| label: tbl-s2msi
-#| tbl-cap: <br>Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B.
-
-tabla_s2msi
-```
 
 ### `datos_lab`
 
