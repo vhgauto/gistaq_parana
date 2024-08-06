@@ -22,7 +22,7 @@ col_tbl <- d |>
   distinct(fecha, p) |> 
   nest(.by = fecha) |> 
   mutate(
-    col = map(.x = data, ~ colorRampPalette(colors = c(c1, c4, c2))(nrow(.x)))
+    col = map(.x = data, ~ colorRampPalette(colors = c(c1, c9, c2))(nrow(.x)))
   ) |> 
   unnest(cols = c(data, col))
   
@@ -90,3 +90,4 @@ figura_evolucion_gis <- girafe(
     opts_toolbar(saveaspng = FALSE)
   )
 )
+
