@@ -54,16 +54,16 @@ names(e) <- NULL
 # funciones ---------------------------------------------------------------
 
 # genera íconos con las formas predeterminadas de R
-pchIcons <- function(pch = 0:14, width = 30, height = 30, ...) {
+pchIcons <- function(pch = 0:14, ancho, alto, ...) {
   n <- length(pch)
   files <- character(n)
   # create a sequence of png images
   for (i in seq_len(n)) {
     f <- tempfile(fileext = ".png")
-    png(f, width = width, height = height, bg = "transparent")
+    png(f, width = ancho, height = alto, bg = "transparent")
     par(mar = c(0, 0, 0, 0))
     plot.new()
-    points(.5, .5, pch = pch[i], cex = min(width, height) / 8, ...)
+    points(.5, .5, pch = pch[i], cex = min(ancho, alto) / 8, ...)
     dev.off()
     files[i] <- f
   }
@@ -121,21 +121,19 @@ f_etq <- function(fecha_date) {
 
 }
 
-
-
-
-
-glue({})
-
 # genera los archivos de las formas predeterminadas como marcadores
-f_icono <- function(fecha, pch = 21, color = c5, lwd = 1) {
-  map(f_relleno(fecha), ~pchIcons(pch, bg = .x, lwd = lwd, col = color)) |> 
+f_icono <- function(
+  fecha, pch = 21, color = c5, lwd = 2, alto = 20, ancho = 20) {
+  map(
+    .x = f_relleno(fecha),
+    .f = ~ pchIcons(
+      pch, bg = .x, lwd = lwd, col = color, alto = alto, ancho = ancho)) |> 
     list_c()
 }
 
 # función que agrega puntos con su estilo
 f_circulo <- function(
-    map, fecha_date, color = c5, opacity = 1, radius = 8) {
+    map, fecha_date, color = c5, opacity = 1) {
   addMarkers(
     map,
     lng = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha_date), "longitud"])),

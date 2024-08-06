@@ -13,7 +13,7 @@ format:
     toc-location: left
     toc-title: "Contenido"
     mainfont: Ubuntu
-    link-external-icon: true
+    link-external-icon: false
     link-external-newwindow: true
     link-citations: true
     code-link: true
