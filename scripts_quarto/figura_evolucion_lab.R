@@ -23,27 +23,45 @@ d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
     unidad = if_else(is.na(unidad), "", unidad)) |> 
   mutate(valor = round(valor, 2)) |> 
   mutate(label = glue("{fecha}<br>{valor} {unidad}")) |> 
-  mutate(p = glue("P{p}"))
+  mutate(p = glue("P{p}")) |> 
+  mutate(
+    estado = if_else(
+      fecha == max(fecha),
+      "Actual",
+      "Previos"
+    )
+  )
+
+estado_color <- c(
+  Actual = c2,
+  Previos = c1
+)
 
 # figura ------------------------------------------------------------------
 
-g <- ggplot(d, aes(p, valor, group = fecha)) +
+g <- ggplot(d, aes(p, valor, group = fecha, color = estado, fill = estado)) +
   geom_line_interactive(
     aes(data_id = interaction(fecha, param)), hover_nearest = TRUE,
-    linewidth = .6, color = c1, alpha = .8) +
+    linewidth = .6, alpha = .8) +
   geom_point_interactive(
     aes(
       data_id = interaction(fecha, param), tooltip = label, 
       hover_nearest = TRUE), size = 1, shape = 21, color = c3, 
-    stroke = .4, fill = c1) +
+    stroke = .4) +
   facet_wrap(vars(param), ncol = 3, scales = "free") +
   scale_x_discrete(expand = c(0, 0)) +
   scale_y_continuous(
     breaks = scales::breaks_pretty(),
     labels = scales::label_number(decimal.mark = ",", big.mark = ".")
   ) +
+  scale_color_manual(values = estado_color) +
+  scale_fill_manual(values = estado_color) +
   coord_cartesian(clip = "off") +
-  labs(y = NULL, x = NULL) +
+  labs(y = NULL, x = NULL, fill = NULL, color = NULL) +
+  guides(
+    # colour = guide_legend(override.aes = list(fill = "green")),
+    # fill = guide_legend(override.aes = list(fill = "green"))
+  ) +
   theme_void(base_size = 6) +
   theme(
     aspect.ratio = 1,
@@ -59,7 +77,12 @@ g <- ggplot(d, aes(p, valor, group = fecha)) +
     panel.background = element_rect(fill = c3),
     strip.background = element_blank(),
     strip.text = element_markdown(
-      family = "ubuntu", size = 7, margin = margin(b = 3))
+      family = "ubuntu", size = 7, margin = margin(b = 3)),
+    legend.position = "bottom",
+    legend.text = element_text(family = "ubuntu", size = 6),
+    legend.background = element_rect(fill = c6, color = NA),
+    legend.key = element_rect(fill = NA, color = NA),
+    legend.key.spacing.x = unit(.3, "cm")
   )
 
 figura_evolucion_lab <- girafe(
@@ -69,8 +92,6 @@ figura_evolucion_lab <- girafe(
     opts_hover(
       css = girafe_css(
         css = "",
-        point = glue("fill:{c2};stroke:{c2}"),
-        line = glue("stroke:{c2}")
       )
     ),
     opts_tooltip(
