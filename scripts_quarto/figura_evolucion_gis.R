@@ -34,23 +34,32 @@ e <- inner_join(
 
 # figura ------------------------------------------------------------------
 
-g <- ggplot(e, aes(banda, reflect, group = p, color = col, fill = col)) +
+g <- ggplot(e, aes(banda, reflect, group = p, color = col)) +
   geom_line_interactive(
     aes(data_id = interaction(fecha, p)), hover_nearest = TRUE,
-    linewidth = .6, alpha = .8) +
+    linewidth = .6, alpha = .8, show.legend = FALSE) +
+  geom_point(
+    aes(data_id = interaction(fecha, p), tooltip = label), size = 1, 
+    shape = 20, color = c3) +
   geom_point_interactive(
-    aes(data_id = interaction(fecha, p), tooltip = label),size = .7, 
-    shape = 21, stroke = .4, color = c3, hover_nearest = TRUE) +
+    aes(data_id = interaction(fecha, p), tooltip = label), size = .7, 
+    shape = 20, hover_nearest = TRUE) +
   facet_wrap(vars(fecha), ncol = 3, scales = "free_x") +
   scale_x_discrete(expand = c(0, 0)) +
   scale_y_continuous(
     breaks = scales::breaks_pretty(),
     labels = scales::label_number(decimal.mark = ",", big.mark = ".")
   ) +
-  scale_color_identity() +
-  scale_fill_identity() +
+  scale_color_identity(
+    guide = "legend",
+    labels = c("Orilla\ncorrientina", rep("", 13), "Orilla\nchaqueña")
+  ) +
   coord_cartesian(clip = "off") +
-  labs(y = NULL, x = NULL) +
+  labs(y = NULL, x = NULL, color = NULL) +
+  guides(
+    color = guide_legend(
+      nrow = 1, override.aes = list(size = 6, shape = 15), reverse = TRUE)
+  ) +
   theme_void(base_size = 6) +
   theme(
     aspect.ratio = 1,
@@ -67,7 +76,17 @@ g <- ggplot(e, aes(banda, reflect, group = p, color = col, fill = col)) +
     strip.background = element_blank(),
     strip.text = element_markdown(
       family = "jet", size = 9, margin = margin(b = 3)),
-    legend.position = "none"
+    legend.background = element_rect(fill = c6, color = NA),
+    legend.key = element_rect(fill = NA, color = NA),
+    legend.key.size = unit(1, "mm"),
+    legend.position = "bottom",
+    legend.box = "horizontal",
+    legend.text = element_text(
+      vjust = .5, hjust = .5, family = "ubuntu", margin = margin(l = 0),
+      size = 5),
+    legend.text.position = "bottom",
+    legend.key.width = unit(1, "mm"),
+    legend.key.spacing.x = unit(-4.8, "mm")
   )
 
 figura_evolucion_gis <- girafe(
@@ -90,4 +109,3 @@ figura_evolucion_gis <- girafe(
     opts_toolbar(saveaspng = FALSE)
   )
 )
-

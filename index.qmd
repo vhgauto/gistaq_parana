@@ -192,7 +192,7 @@ figura_evolucion_gis
 :::
 
 <br>
-Las curvas <b style='color:`r c1`'>color azul</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <b style='color:`r c2`'>color rojo</b>.
+Las curvas <b style='color:`r c1`'>color violeta</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <b style='color:`r c2`'>color verde</b>.
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
