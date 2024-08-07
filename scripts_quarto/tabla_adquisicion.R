@@ -47,5 +47,5 @@ tabla_adquisicion <- gt(d) |>
     style = cell_text(font = "Ubuntu", weight = "bold", align = "center")
   ) |> 
   cols_width(
-    Fecha ~ px(220) 
+    Fecha ~ px(250) 
   )

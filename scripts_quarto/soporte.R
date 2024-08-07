@@ -94,7 +94,7 @@ simbolo_sig <- "&#9733;" # estrella
 actualizado <- format(now(), "%d/%m/%Y %H:%M")
 
 actualizado_label <- glue(
-  "<p style='font-family:JetBrains Mono; color:{c4};text-align:right'>",
+  "<p style='font-family:JetBrains Mono; color:{c9};text-align:right'>",
   "{actualizado}</p>")
 
 # descripción de las tablas, con p-valor < .05 & |R| > .5

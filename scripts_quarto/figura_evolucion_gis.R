@@ -38,9 +38,7 @@ g <- ggplot(e, aes(banda, reflect, group = p, color = col)) +
   geom_line_interactive(
     aes(data_id = interaction(fecha, p)), hover_nearest = TRUE,
     linewidth = .6, alpha = .8, show.legend = FALSE) +
-  geom_point(
-    aes(data_id = interaction(fecha, p), tooltip = label), size = 1, 
-    shape = 20, color = c3) +
+  geom_point(size = 1, shape = 20, color = c3) +
   geom_point_interactive(
     aes(data_id = interaction(fecha, p), tooltip = label), size = .7, 
     shape = 20, hover_nearest = TRUE) +
@@ -52,7 +50,7 @@ g <- ggplot(e, aes(banda, reflect, group = p, color = col)) +
   ) +
   scale_color_identity(
     guide = "legend",
-    labels = c("Orilla\ncorrientina", rep("", 13), "Orilla\nchaqueña")
+    labels = c("Orilla\ncorrentina", rep("", 13), "Orilla\nchaqueña")
   ) +
   coord_cartesian(clip = "off") +
   labs(y = NULL, x = NULL, color = NULL) +
@@ -75,7 +73,7 @@ g <- ggplot(e, aes(banda, reflect, group = p, color = col)) +
     panel.background = element_rect(fill = c3),
     strip.background = element_blank(),
     strip.text = element_markdown(
-      family = "jet", size = 9, margin = margin(b = 3)),
+      family = "jet", size = 7, margin = margin(b = 3)),
     legend.background = element_rect(fill = c6, color = NA),
     legend.key = element_rect(fill = NA, color = NA),
     legend.key.size = unit(1, "mm"),

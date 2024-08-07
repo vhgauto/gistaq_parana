@@ -47,7 +47,7 @@ g <- ggplot(d, aes(p, valor, group = fecha, color = estado, fill = estado)) +
     aes(
       data_id = interaction(fecha, param), tooltip = label, 
       hover_nearest = TRUE), size = 1, shape = 21, color = c3, 
-    stroke = .4) +
+    stroke = .2) +
   facet_wrap(vars(param), ncol = 3, scales = "free") +
   scale_x_discrete(expand = c(0, 0)) +
   scale_y_continuous(
@@ -58,10 +58,6 @@ g <- ggplot(d, aes(p, valor, group = fecha, color = estado, fill = estado)) +
   scale_fill_manual(values = estado_color) +
   coord_cartesian(clip = "off") +
   labs(y = NULL, x = NULL, fill = NULL, color = NULL) +
-  guides(
-    # colour = guide_legend(override.aes = list(fill = "green")),
-    # fill = guide_legend(override.aes = list(fill = "green"))
-  ) +
   theme_void(base_size = 6) +
   theme(
     aspect.ratio = 1,
@@ -97,7 +93,7 @@ figura_evolucion_lab <- girafe(
     opts_tooltip(
       opacity = 1,
       css = glue(
-        "color:{c1};padding:5px;font-family:JetBrains Mono;",
+        "color:{c7};padding:5px;font-family:JetBrains Mono;",
         "border-style:solid;border-color:{c4};background:{c3}"),
       use_cursor_pos = TRUE,
       offx = 5,

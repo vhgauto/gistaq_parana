@@ -123,7 +123,7 @@ f_etq <- function(fecha_date) {
 
 # genera los archivos de las formas predeterminadas como marcadores
 f_icono <- function(
-  fecha, pch = 21, color = c5, lwd = 2, alto = 20, ancho = 20) {
+  fecha, pch = 21, color = c5, lwd = 1, alto = 20, ancho = 20) {
   map(
     .x = f_relleno(fecha),
     .f = ~ pchIcons(
