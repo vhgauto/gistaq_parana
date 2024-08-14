@@ -87,8 +87,13 @@ link_github_vhg <- "https://github.com/vhgauto"
 
 link_github_gistaq <- "https://github.com/vhgauto/gistaq_parana"
 
+# documento --------------------------------------------------------------
+
 # símbolo utilizado para las correlaciones que sean significativas
 simbolo_sig <- "&#9733;" # estrella
+
+# separación entre logos de insticiones
+espacios <- str_flatten(rep("&nbsp;", 10))
 
 # fecha de actualización
 actualizado <- format(now(), "%d/%m/%Y %H:%M")
