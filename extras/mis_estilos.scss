@@ -121,3 +121,7 @@ pre.sourceCode {
   box-shadow: 0 3px 14px rgba(0,0,0,0.4);
 }
 
+// color de fondo del tpitulo de los callout
+div.callout-note.callout-style-default > .callout-header {
+	background-color: #FFFBFD;
+}
