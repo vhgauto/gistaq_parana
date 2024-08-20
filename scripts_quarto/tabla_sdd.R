@@ -35,16 +35,23 @@ nota3 <- "^[Señala Polymer y C2X como los mejores algoritmos de corrección atm
 nota4 <- "^[Corrección atmosférica con el módulo Sen2Cor. Al ser lineal, produce una sobrestimación para valores bajos y una subestimación para valores altos.]"
 nota5 <- "^[Corrección con Sen2Cor.]"
 
+agua_tbl <- c(
+  glue("{agua1} {nota1}"),
+  glue("{agua2} {nota2}"),
+  glue("{agua3} {nota3}"),
+  glue("{agua4} {nota4}"),
+  glue("{agua5} {nota5}")
+)
+
 # tabla ------------------------------------------------------------------
 
 tabla_sdd <- tibble(
   Ecuación = c(eq1, eq2, eq1, eq4, eq5),
   `Bandas (nm)` = c(banda1, banda1, banda3, "", ""),
   Métricas = c(met1, met2, met1, met1, met5),
-  Aguas = c(agua1, agua2, agua3, agua4, agua5),
+  Aguas = agua_tbl,
   Plataforma = c(plat1, plat2, plat2, plat2, plat2),
-  Autor = c(aut1, aut2, aut3, aut4, aut5),
-  " " = c(nota1, nota2, nota3, nota4, nota5)
+  Referencia = c(aut1, aut2, aut3, aut4, aut5)  
 ) |> 
   gt() |> 
   fmt_markdown() |> 
@@ -54,14 +61,13 @@ tabla_sdd <- tibble(
   ) |> 
   tab_style(
     style = cell_text(align = "center"),
-    locations = cells_body(columns = Autor)
+    locations = cells_body(columns = Referencia)
   ) |> 
   tab_style(
     style = cell_text(align = "center", weight = "bold"),
     locations = cells_column_labels()
   ) |> 
   cols_width(
-    Autor ~ px(20),
-    " " ~ px(20)
+    Referencia ~ px(20)
   ) |> 
   as_raw_html()
