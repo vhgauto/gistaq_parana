@@ -1,10 +1,11 @@
 
 # datos ------------------------------------------------------------------
 
+# elementos de la tabla, línea por línea
 eq1 <- "$$A\\left[ \\frac{R_{rs}(\\lambda_{1})}{R_{rs}(\\lambda_{2})} \\right]^{B}$$"
 eq2 <- "$$e^{a\\left[ \\frac{R_{rs}(\\lambda_{1})}{R_{rs}(\\lambda_{2})} \\right]+b}$$"
 eq4 <- "$$1,79-134,15B_{RE1}+157,72B_{NIR}+0,52\\frac{B_{RE3}}{NIR_{n}}$$"
-eq5 <- "$$\\log(SD)=-3,0257-1,4379\\log(R_{B08A})-0,127\\left(\\log(R_{B08A})\\right)^{2}$$"
+eq5 <- "$$\\log(SD)=-3,0257-1,4379\\log(R_{B08A})-0,127\\left[\\log(R_{B08A})\\right]^{2}$$"
 
 banda1 <- "409 (B02)<br>709 (B05)"
 banda3 <- "409 (B02)<br>560 (B03)"
@@ -56,7 +57,7 @@ tabla_sdd <- tibble(
     locations = cells_body(columns = Autor)
   ) |> 
   tab_style(
-    style = cell_text(align = "center"),
+    style = cell_text(align = "center", weight = "bold"),
     locations = cells_column_labels()
   ) |> 
   cols_width(
