@@ -259,25 +259,17 @@ tabla_sdd
 
 La turbidez (NTU) se relaciona con la presencia de sedimentos presentes en el agua.
 
-### Métodos tradiconales
+### Métodos tradicionales
 
-Polinomio para estimar turbidez a partir del cociente de bandas S2-MSI B02 y B03 @Ouma2020.
+::: {.column-page}
+```{r}
+tabla_turb
+```
+:::
 
-$$
-y = 367.82\cdot x^{2} − 976.42\cdot x + 649.13
-$$
-$$
-x = B02/B03
-$$
+Múltiples modelos (lineal, logaritmos, inversa, cuadrática, exponencial, potencial) y plataformas (Sentinel-2, Landsat-5 y Landsat-8) emplean el cociente de bandas B04/B03 @Shen2021.
 
-Ecuaciones para Landsat 8 OLI @Shen2021.
-
-$$
-y = 535.137 − 1517.783\cdot x + 1078.271\cdot x^{2}
-$$
-$$
-x = B04/B03
-$$
+Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones lineales, cuadráticas y logarítmicas empleando B02, B03, B04, B01 (con menos apariciones) y cocientes entre estas @Ouma2020.
 
 ### Sólidos suspendidos
 
