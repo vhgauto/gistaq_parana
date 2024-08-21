@@ -4,15 +4,21 @@
 # elementos de la tabla, línea por línea
 eq1 <- "$$A\\left[ \\frac{R_{rs}(\\lambda_{1})}{R_{rs}(\\lambda_{2})} \\right]^{B}$$"
 eq2 <- "$$e^{a\\left[ \\frac{R_{rs}(\\lambda_{1})}{R_{rs}(\\lambda_{2})} \\right]+b}$$"
-eq4 <- "$$1,79-134,15B_{RE1}+157,72B_{NIR}+0,52\\frac{B_{RE3}}{NIR_{n}}$$"
-eq5 <- "$$\\log(SD)=-3,0257-1,4379\\log(R_{B08A})-0,127\\left[\\log(R_{B08A})\\right]^{2}$$"
+eq3 <- "$$A\\left[ \\frac{R_{rs}(\\lambda_{1})}{R_{rs}(\\lambda_{2})} \\right]^{B}$$"
+eq4 <- "$$1,79-134,15\\cdot B_{RE1}+157,72\\cdot B_{NIR}+0,52\\frac{B_{RE3}}{NIR_{n}}$$"
+eq5 <- "$$\\log(SD)=-3,0257-1,4379\\cdot \\log(R_{B08A})-0,127\\left[\\log(R_{B08A})\\right]^{2}$$"
 
 banda1 <- "409 (B02)<br>709 (B05)"
+banda2 <- "409 (B02)<br>709 (B05)"
 banda3 <- "409 (B02)<br>560 (B03)"
+banda4 <- ""
+banda5 <- ""
 
-met1 <- "$$R^{2} \\\\ RMSE$$"
-met2 <- "$$R^{2} \\\\ RMSE \\\\ Bias$$"
-met5 <- "$$R^{2}$$"
+met1 <- "R<sup>2</sup>, RMSE"
+met2 <- "R<sup>2</sup>, RMSE, Bias"
+met3 <- "R<sup>2</sup>, RMSE"
+met4 <- "R<sup>2</sup>, RMSE"
+met5 <- "R<sup>2</sup>"
 
 agua1 <- "Ópticamente complejas"
 agua2 <- "Interiores variadas"
@@ -22,6 +28,9 @@ agua5 <- "Oceános"
 
 plat1 <- "MERIS"
 plat2 <- "Sentinel-2"
+plat3 <- "Sentinel-2"
+plat4 <- "Sentinel-2"
+plat5 <- "Sentinel-2"
 
 aut1 <- "@Alikas2017"
 aut2 <- "@Pereira-Sandoval2019"
@@ -46,11 +55,11 @@ agua_tbl <- c(
 # tabla ------------------------------------------------------------------
 
 tabla_sdd <- tibble(
-  Ecuación = c(eq1, eq2, eq1, eq4, eq5),
-  `Bandas (nm)` = c(banda1, banda1, banda3, "", ""),
-  Métricas = c(met1, met2, met1, met1, met5),
+  Ecuación = c(eq1, eq2, eq3, eq4, eq5),
+  `Bandas (nm)` = c(banda1, banda2, banda3, banda4, banda5),
+  Métricas = c(met1, met2, met3, met4, met5),
   Aguas = agua_tbl,
-  Plataforma = c(plat1, plat2, plat2, plat2, plat2),
+  Plataforma = c(plat1, plat2, plat3, plat4, plat5),
   Referencia = c(aut1, aut2, aut3, aut4, aut5)  
 ) |> 
   gt() |> 
