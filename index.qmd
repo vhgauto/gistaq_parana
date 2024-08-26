@@ -250,7 +250,7 @@ SDD (cm) es una propiedad que se relaciona con la transparencia del agua.
 Las ecuaciones principales propuestas son de tipo <b>logarítmica</b> o <b>potencial</b>, lo cual tiene sentido considerando que la relación entre la reflectancia y la turbidez no es lineal. No obstante, algunas ecuaciones lineales presentan un buen desempeño. En ambos tipos de ecuación se repite la presencia de un <b>cociente</b> entre bandas.
 
 ::: {.column-page}
-```{r}
+```{r tbl-sdd}
 tabla_sdd
 ```
 :::
@@ -262,7 +262,7 @@ La turbidez (NTU) se relaciona con la presencia de sedimentos presentes en el ag
 ### Métodos tradicionales
 
 ::: {.column-page}
-```{r}
+```{r tbl-turb}
 tabla_turb
 ```
 :::
@@ -278,7 +278,7 @@ Los sólidos suspendidos totales (TSM)...
 ### Métodos tradicionales
 
 ::: {.column-page}
-```{r}
+```{r tbl-tsm}
 tabla_tsm
 ```
 :::
@@ -421,7 +421,7 @@ Los datos fisicoquímicos del Excel se extraen a partir de la fecha y se combina
 
 Para generar nuevos objetivos, hay que editar el archivo `_targets.R` agregando un nuevo elemento a `list()`:
 
-```{r}
+```{r tar_target}
 #| eval: false
 #| echo: true
 
@@ -466,7 +466,7 @@ Definir las versiones de los paquetes utilizados en el presente proyecto es rele
 
 La instalación de paquetes se realiza de manera tradicional:
 
-```{r}
+```{r install-pack}
 #| eval: false
 #| echo: true
 
@@ -476,7 +476,7 @@ install.packages("nombre_del_paquete")
 
 Cada vez que se instale, actualice o remueva un nuevo paquete ejecutar en la consola:
 
-```{r}
+```{r renv-snap}
 #| eval: false
 #| echo: true
 
@@ -486,7 +486,7 @@ renv::snapshot()
 
 Esto actualiza el archivo `renv.lock` con la información de cada paquete. Para verificar el estado actual de `renv`, correr:
 
-```{r}
+```{r renv-status}
 #| eval: false
 #| echo: true
 
@@ -501,7 +501,7 @@ La publicación se lleva a cabo en [Quarto Pub](https://quartopub.com/). Los dat
 
 Para regenerar el `.html` e inmediatamente publicar el sitio web, correr en la terminal:
 
-```{.bash}
+```{.bash quarto-publish}
 quarto publish index.qmd
 ```
 
