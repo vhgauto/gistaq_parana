@@ -525,9 +525,9 @@ Se proponen múltiples modelos para la estimación de parámetros. Se siguen los
 
 Los archivos que generan este sitio web están disponibles en [GitHub](`r link_github_gistaq`).
 
-Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b> ([`r icono_mail`](`r link_mail_vhg`)). [`r icono_github`](`r link_github_vhg`)
+Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b>. [`r icono_mail`](`r link_mail_vhg`), [`r icono_github`](`r link_github_vhg`).
 
-Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [`r icono_mail`](`r link_mail_gistaq`)). [`r icono_instagram`](`r link_instagram`), [`r icono_facebook`](`r link_facebook`).
+Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [`r icono_mail`](`r link_mail_gistaq`), [`r icono_instagram`](`r link_instagram`), [`r icono_facebook`](`r link_facebook`).
 
 <br>
 
