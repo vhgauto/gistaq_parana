@@ -67,7 +67,9 @@ source("scripts_quarto/soporte.R")
 <!-- formato de citas -->
 <!-- https://quarto.org/docs/authoring/citations.html#sec-citations -->
 
-::: {.callout-note title="Introducción" collapse=true}
+# Introducción
+
+::: {.callout-note title="Mostrar" collapse=true}
 
 Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
@@ -77,7 +79,9 @@ Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto 
 
 :::
 
-::: {.callout-note title="Contenido" collapse=true}
+# Contenido
+
+::: {.callout-note title="Mostrar" collapse=true}
 
 A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de estos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]). La discución de la bibliografía y los algoritmos encontrados se discute en ([$\S$-@sec-discusion]). 
 Al final se encuentran las referencias bibliográficas.
@@ -300,7 +304,9 @@ Modelar la calidad del agua en una porción de la cuenca media del río Paraná 
 </p>
 :::
 
-::: {.callout-note title="Objetivos específicos" collapse=true}
+## Objetivos específicos
+
+::: {.callout-note title="Mostrar" collapse=true}
 
 * Seleccionar un sector de la cuenca media del río Paraná, en la confluencia de los ríos Paraguay-Paraná, y en la toma de agua de la empresa potabilizadora de la ciudad de Resistencia.
 
@@ -324,13 +330,15 @@ Modelar la calidad del agua en una porción de la cuenca media del río Paraná 
 
 :::
 
-El desarrollo de algoritmos empíricos requiere de datos espectrales y fisicoquímicos del agua, la propuesta de mode los candidatos, la selección final de los mode los y la validación de los mismos. Luego, la generación de mapas para evaluar la distribución espacial de las propiedades.
+El desarrollo de algoritmos empíricos requiere de datos espectrales y fisicoquímicos del agua, la propuesta de modelos candidatos, la selección final de los modelos y la validación de los mismos. Luego, la generación de mapas para evaluar la distribución espacial de las propiedades.
 
 Se pretende automatizar la descarga, extracción y almacenamiento de los datos espectrales y fisicoquímicos del agua en los sitios de muestreo, junto con las coordenadas geográficas.
 
 A medida que el proyecto avance los resultados parciales serán registrados en el presente sitio web, para su seguimiento y revisión por parte de los integrantes.
 
 # Ejecución {#sec-ejecucion}
+
+:::: {.callout-note title="Mostrar" collapse=true}
 
 El proyecto está gestionado mediante el paquete [`targets`](https://books.ropensci.org/targets/). Para ejecutar todas las funciones, correr en la consola:
 
@@ -358,16 +366,12 @@ Para visualizar las dependencias y el estado actual entre funciones correr:
 targets::tar_visnetwork()
 ```
 
-::: {.column-page}
-
 ```{r grafo_funciones}
 #| fig-cap: Grafo de dependencias.
 #| label: fig-visnetwork
 
 targets::tar_visnetwork()
 ```
-
-:::
 
 La figura es interactiva y pueden seleccionarse los nodos para identificar las dependencias.
 
@@ -501,17 +505,19 @@ La publicación se lleva a cabo en [Quarto Pub](https://quartopub.com/). Los dat
 
 Para regenerar el `.html` e inmediatamente publicar el sitio web, correr en la terminal:
 
-```{.bash quarto-publish}
+```{.bash}
 quarto publish index.qmd
 ```
 
 En la terminal se debe elegir la cuenta asociada a Quarto Pub.
 
+::::
+
 # Algoritmos {#sec-algoritmos}
 
 El desarrollo de los algoritmos para la estimación de indicadores de calidad del agua requiere la combinación de datos espectrales y fisicoquímicos.
 
-Se proponen múltiples mode los para la estimación de parámetros. Se siguen los lineamientos de [`tidymodels`](https://www.tmwr.org/) para el entrenamiento y validación de los mode los.
+Se proponen múltiples modelos para la estimación de parámetros. Se siguen los lineamientos de [`tidymodels`](https://www.tmwr.org/) para el entrenamiento y validación de los modelos.
 
 # Contacto {.unnumbered}
 
