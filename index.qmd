@@ -94,7 +94,7 @@ Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de a
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
 
-```{r}
+```{r tbl-adq}
 #| label: tbl-adq
 #| tbl-cap: !expr caption_adq
 
@@ -204,7 +204,7 @@ Generalmente, las firmas espectrales del lado chaqueño presentan los mayores va
 
 Las características espectrales de S2-MSI se muestran en la siguiente tabla:
 
-```{r}
+```{r tbl-s2msi}
 #| label: tbl-s2msi
 #| tbl-cap: <br>Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B.
 
@@ -271,9 +271,21 @@ Múltiples modelos (lineal, logaritmos, inversa, cuadrática, exponencial, poten
 
 Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones lineales, cuadráticas y logarítmicas empleando B02, B03, B04, B01 (con menos apariciones) y cocientes entre estas @Ouma2020.
 
-### Sólidos suspendidos
+## Sólidos suspendidos
 
-## Aprendizaje automático
+Los sólidos suspendidos totales (TSM)...
+
+### Métodos tradicionales
+
+::: {.column-page}
+```{r}
+tabla_tsm
+```
+:::
+
+De acuerdo a un estudio que analizó 48 cuerpos de agua, la estimación de TSM se hizo en su mayoría por modelos lineales, siendo la banda B8A la más frecuente @Cruz2023.
+
+* Aprendizaje automático
 
 Las técnicas de aprendizaje automático permiten encontrar relaciones entre entre las propiedades del agua y la reflectancia de superficie, a distintas longitudes de onda.
 

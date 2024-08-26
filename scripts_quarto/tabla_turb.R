@@ -2,11 +2,11 @@
 # datos ------------------------------------------------------------------
 
 # elementos de la tabla, línea por línea
-eq1 <- "$$1,559e^{35,533B03} \\\\ 1,879e^{37,745(B03\\cdot B5)/(B04+B12)}$$"
-eq2 <- "$$2677,2B04^{1,856}$$"
-eq3 <- "$$969-1,5468\\cdot R_{1200nm}+2,07\\frac{B8A}{B02}$$"
-eq4 <- "$$y=-1,1+5,8\\frac{B02}{B04} \\\\ y=3,896-4,186\\frac{B02}{B03}$$"
-eq5 <- "$$y=37661B8A^{2}+1845\\cdot B8A \\\\ y=531,5-\\frac{B04}{0,88}$$"
+eq1 <- "$$1.559e^{35.533\\cdot B03} \\\\ 1.879e^{37.745(B03\\cdot B5)/(B04+B12)}$$"
+eq2 <- "$$2677.2\\cdot B04^{1.856}$$"
+eq3 <- "$$969-1.5468\\cdot R_{1200nm}+2.07\\frac{B8A}{B02}$$"
+eq4 <- "$$y=-1.1+5.8\\frac{B02}{B04} \\\\ y=3.896-4.186\\frac{B02}{B03}$$"
+eq5 <- "$$y=37661\\cdot B8A^{2}+1845\\cdot B8A \\\\ y=531.5-\\frac{B04}{0.88}$$"
 
 banda1 <- "B03, B04, B05, B12"
 banda2 <- "B04"
@@ -47,7 +47,7 @@ nota5 <- "^[MAPE = Mean Absolute Percentage Error<br>0 - 1300 NTU<br>0 - 80 NTU.
 agua_tbl <- c(
   glue("{agua1} {nota1}"),
   glue("{agua2} {nota2}"),
-  glue("{agua3} {nota3}"),
+  agua3,
   glue("{agua4} {nota4}"),
   glue("{agua5} {nota5}")
 )
@@ -58,7 +58,7 @@ agua_tbl <- c(
 tabla_turb <- tibble(
   Ecuación = c(eq1, eq2, eq3, eq4, eq5),
   `Bandas (nm)` = c(banda1, banda2, banda3, banda4, banda5),
-  Métricas = c(met1, met2, met3, met4, met5),
+  Métricas = c(met1, met2, glue("{met3} {nota3}"), met4, met5),
   Aguas = agua_tbl,
   Plataforma = c(plat1, plat2, plat3, plat4, plat5),
   Referencia = c(aut1, aut2, aut3, aut4, aut5)
