@@ -105,7 +105,9 @@ En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del rí
 tabla_adquisicion
 ```
 
-::: {.callout-note title="Metodología de muestreo" collapse=true}
+## Metodología de muestreo
+
+::: {.callout-note title="Mostrar" collapse=true}
 
 El calendario completo de muestreos para el resto del año se encuentra en el siguiente [link](https://github.com/vhgauto/gistaq_parana/blob/main/calendario_2024.pdf).
 
