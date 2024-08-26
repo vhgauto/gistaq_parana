@@ -19,7 +19,7 @@ label_unidad <- c(
   sol_sus = "ppm",
   turb = "NTU",
   secchi = "cm",
-  hazemeter = "BC")
+  hazemeter = "EBC")
 
 # datos de laboratorio
 d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
