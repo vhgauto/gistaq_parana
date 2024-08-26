@@ -1,6 +1,21 @@
 
 # datos -------------------------------------------------------------------
 
+# agrego la descripción de las bandas
+nombre_banda <- c(
+  B01 = "aerosol",
+  B02 = "blue",
+  B03 = "green",
+  B04 = "red",
+  B05 = "red edge",
+  B08 = "NIR",
+  B11 = "SWIR 1",
+  B12 = "SWIR 2"
+)
+
+banda_label <- glue("{names(nombre_banda)} ({nombre_banda})")
+names(banda_label) <- names(nombre_banda)
+
 # datos de nombre e banda, longitud de onda, centro de banda y
 # resolución espacial
 d <- read_csv("datos/s2msi.csv", show_col_types = FALSE) |> 
@@ -16,7 +31,26 @@ d <- read_csv("datos/s2msi.csv", show_col_types = FALSE) |>
       "B8A",
       glue("B{`Band Number`}")
     )
+  ) |> 
+  mutate(
+    `Band Number` = if_else(
+      `Band Number` %in% names(nombre_banda),
+      banda_label[`Band Number`],
+      `Band Number`
+    )
   )
+
+
+
+# d |> 
+#   mutate(
+#     `Band Number` = if_else(
+#       `Band Number` %in% names(nombre_banda),
+#       banda_label[`Band Number`],
+#       `Band Number`
+#     )
+#   )
+
 
 # tabla -------------------------------------------------------------------
 
@@ -51,7 +85,9 @@ tabla_s2msi <- gt(d) |>
       cells_column_labels(columns = everything()),
       cells_body(columns = "Band Number")
     ),
-    style = cell_text(font = "Ubuntu", weight = "bold")
+    style = cell_text(
+      font = "Ubuntu", weight = "bold", align = "center", v_align = "bottom"
+    )
   ) |> 
   # aplico estilo a los números
   tab_style(
@@ -62,4 +98,9 @@ tabla_s2msi <- gt(d) |>
   fmt_number(
     dec_mark = ",", sep_mark = "", decimals = 1, 
     drop_trailing_zeros = TRUE
+  ) |> 
+  # alineamiento a izq de nombre de bandas
+  tab_style(
+    locations = cells_body(columns = "Band Number"),
+    style = cell_text(align = "left")
   )
