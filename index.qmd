@@ -162,11 +162,14 @@ Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando
 
 Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
 
+::::{.column-page-inset-right}
+
 ::: {.panel-tabset}
 
 ## pH<br>$~$
 
 ```{r}
+#| column: page-right
 lista_figura_evolucion_lab[[1]]
 ```
 
@@ -195,6 +198,8 @@ lista_figura_evolucion_lab[[5]]
 ```
 
 :::
+
+::::
 
 Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
 
