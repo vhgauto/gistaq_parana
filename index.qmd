@@ -588,15 +588,18 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [`r
   z-index: 9999; /* aseguro que el botón esté encima de la tabla */
   border: none;
   outline: none;
-  background-color: `r c5`;
-  color: `r c3`;
+  background-color: transparent;
+  color: `r c9`;
   cursor: pointer;
   font-size:4rem;
+  box-sizing: border-box;
 }
 
 /* estilo del botón al pasar el mouse */
 #miBoton:hover {
-  background-color: `r c5`;
+  border: none;
+  outline: none;
+  background-color: transparent;
   color: `r c4`;
 }
 </style>
