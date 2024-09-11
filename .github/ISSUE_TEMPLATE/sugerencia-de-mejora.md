@@ -1,6 +1,6 @@
 ---
 name: Sugerencia de mejora
-about: Ideas para mejorar el sitio web.
+about: Nuevas ideas para mejorar el sitio web.
 title: ''
 labels: ''
 assignees: ''
@@ -11,6 +11,6 @@ assignees: ''
 
 Sección:
 
-¿Qué dice ahora?
+¿Qué aparece ahora?
 
-¿Qué debería decir?
+¿Qué debería aparecer?
