@@ -5,7 +5,9 @@ format:
     anchor-sections: true
     number-sections: true
     embed-resources: true
-    include-in-header: extras/favicon.html
+    include-in-header: 
+      - extras/favicon.html
+      - extras/esquina.html
     theme:
       - extras/mis_estilos.scss
     toc: true
