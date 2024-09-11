@@ -142,7 +142,7 @@ Las firmas espectrales se encuentran en la siguiente sección ([$\S$@sec-firmas-
 Se muestran los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
 
 ```{r mapa_interactivo}
-#| column: page-inset-right
+#| column: screen-inset-right
 #| warning: false
 #| fig-align: left
 #| fig-asp: 1
@@ -161,14 +161,11 @@ Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando
 
 Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
 
-::::{.column-page-inset-right}
-
 ::: {.panel-tabset}
 
 ## pH<br>$~$
 
 ```{r}
-#| column: page-right
 lista_figura_evolucion_lab[[1]]
 ```
 
@@ -198,8 +195,6 @@ lista_figura_evolucion_lab[[5]]
 
 :::
 
-::::
-
 Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
 
 ```{r corr_laboratorio}
@@ -211,7 +206,7 @@ tabla_corr_lab
 
 Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
 
-::: {.column-page-inset-right}
+::: {.column-screen-inset-right}
 
 ![](figuras/figura_identidad_lab.png)
 
@@ -224,7 +219,7 @@ A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-
 Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
 
 ```{r serie_temp_gis}
-#| column: page-inset-right
+#| column: screen-inset-right
 
 figura_evolucion_gis
 ```
@@ -282,7 +277,7 @@ SDD (cm) es una propiedad que se relaciona con la transparencia del agua.
 Las ecuaciones principales propuestas son de tipo <b>logarítmica</b> o <b>potencial</b>, lo cual tiene sentido considerando que la relación entre la reflectancia y la turbidez no es lineal. No obstante, algunas ecuaciones lineales presentan un buen desempeño. En ambos tipos de ecuación se repite la presencia de un <b>cociente</b> entre bandas.
 
 ```{r tbl-sdd}
-#| column: page-inset-right
+#| column: screen-inset-right
 tabla_sdd
 ```
 
@@ -293,7 +288,7 @@ La turbidez (NTU) se relaciona con la presencia de sedimentos presentes en el ag
 ### Métodos tradicionales
 
 ```{r tbl-turb}
-#| column: page-inset-right
+#| column: screen-inset-right
 
 tabla_turb
 ```
@@ -309,7 +304,7 @@ Los sólidos suspendidos totales (TSM)...
 ### Métodos tradicionales
 
 ```{r tbl-tsm}
-#| column: page-inset-right
+#| column: screen-inset-right
 
 tabla_tsm
 ```
