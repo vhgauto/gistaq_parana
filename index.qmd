@@ -162,11 +162,36 @@ Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando
 
 Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
 
-::: {.column-page}
+::: {.panel-tabset}
 
-```{r serie_temp_lab}
+## pH<br>$~$
 
-figura_evolucion_lab
+```{r}
+lista_figura_evolucion_lab[[1]]
+```
+
+## Conductividad<br>(μS/cm)
+
+```{r}
+lista_figura_evolucion_lab[[2]]
+```
+
+## Sólidos suspendidos<br>(ppm)
+
+```{r}
+lista_figura_evolucion_lab[[3]]
+```
+
+## Turbidez<br>(NTU)
+
+```{r}
+lista_figura_evolucion_lab[[4]]
+```
+
+## Prof. de disco de Secchi<br>(cm)
+
+```{r}
+lista_figura_evolucion_lab[[5]]
 ```
 
 :::

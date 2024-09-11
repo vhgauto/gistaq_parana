@@ -39,70 +39,84 @@ estado_color <- c(
 
 # figura ------------------------------------------------------------------
 
-g <- ggplot(d, aes(p, valor, group = fecha, color = estado, fill = estado)) +
-  geom_line_interactive(
-    aes(data_id = interaction(fecha, param)), hover_nearest = TRUE,
-    linewidth = .6, alpha = .8) +
-  geom_point_interactive(
-    aes(
-      data_id = interaction(fecha, param), tooltip = label, 
-      hover_nearest = TRUE), size = 1, shape = 21, color = c3, 
-    stroke = .2) +
-  facet_wrap(vars(param), ncol = 3, scales = "free") +
-  scale_x_discrete(expand = c(0, 0)) +
-  scale_y_continuous(
-    breaks = scales::breaks_pretty(),
-    labels = scales::label_number(decimal.mark = ",", big.mark = ".")
-  ) +
-  scale_color_manual(values = estado_color) +
-  scale_fill_manual(values = estado_color) +
-  coord_cartesian(clip = "off") +
-  labs(y = NULL, x = NULL, fill = NULL, color = NULL) +
-  theme_void(base_size = 6) +
-  theme(
-    aspect.ratio = 1,
-    plot.margin = margin(6, 6, 6, 6),
-    panel.grid.minor = element_blank(),
-    panel.grid.major = element_line(
-      color = c4, linewidth = .06, linetype = 3),
-    panel.spacing = unit(1.1, "line"),
-    axis.title.x = element_text(family = "ubuntu", margin = margin(t = 3)),
-    axis.text = element_text(family = "jet", color = c4),
-    axis.text.y = element_text(hjust = 1, margin = margin(r = 2)),
-    axis.text.x = element_text(margin = margin(t = 2)),
-    panel.background = element_rect(fill = c3),
-    strip.background = element_blank(),
-    strip.text = element_markdown(
-      family = "ubuntu", size = 7, margin = margin(b = 3)),
-    legend.position = "bottom",
-    legend.text = element_text(family = "ubuntu", size = 6),
-    legend.background = element_rect(fill = c6, color = NA),
-    legend.key = element_rect(fill = NA, color = NA),
-    legend.key.spacing.x = unit(.3, "cm")
+# función que genera las figuras interactivas por parámetros
+f_figura_evolucion_lab <- function(parametro) {
+  g <- d |> 
+    filter(param == parametro) |> 
+    ggplot(aes(p, valor, group = fecha, color = estado, fill = estado)) +
+    geom_line_interactive(
+      aes(data_id = interaction(fecha, param)), hover_nearest = TRUE,
+      linewidth = 2, alpha = .8) +
+    geom_point_interactive(
+      aes(
+        data_id = interaction(fecha, param), tooltip = label, 
+        hover_nearest = TRUE), size = 2.5, shape = 21, color = c3, 
+      stroke = .2, show.legend = FALSE) +
+    facet_wrap(vars(param), ncol = 3, scales = "free") +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_continuous(
+      breaks = scales::breaks_pretty(),
+      labels = scales::label_number(decimal.mark = ",", big.mark = ".")
+    ) +
+    scale_color_manual(values = estado_color) +
+    scale_fill_manual(values = estado_color) +
+    coord_cartesian(clip = "off") +
+    labs(y = NULL, x = NULL, fill = NULL, color = NULL) +
+    theme_void(base_size = 10) +
+    theme(
+      aspect.ratio = 1,
+      plot.margin = margin(6, 6, 6, 6),
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_line(
+        color = c4, linewidth = .06, linetype = 3),
+      panel.spacing = unit(1.1, "line"),
+      axis.title.x = element_text(family = "ubuntu", margin = margin(t = 3)),
+      axis.text = element_text(family = "jet", color = c7),
+      axis.text.y = element_text(hjust = 1, margin = margin(r = 2)),
+      axis.text.x = element_text(margin = margin(t = 2)),
+      axis.ticks = element_line(),
+      axis.ticks.length = unit(1, "mm"),
+      panel.background = element_rect(fill = c3),
+      strip.background = element_blank(),
+      strip.text = element_blank(),
+      legend.position = "top",
+      legend.text = element_text(family = "ubuntu", size = 12),
+      legend.background = element_rect(fill = c6, color = NA),
+      legend.key = element_rect(fill = NA, color = NA),
+      legend.key.spacing.x = unit(.3, "cm")
+    )
+  
+  gg_int <- girafe(
+    ggobj = g,
+    bg = c6,
+    options = list(
+      opts_hover(
+        css = girafe_css(
+          css = "",
+        )
+      ),
+      opts_tooltip(
+        opacity = 1,
+        css = glue(
+          "color:{c7};padding:5px;font-family:JetBrains Mono;",
+          "border-style:solid;border-color:{c4};background:{c3}"),
+        use_cursor_pos = TRUE,
+        offx = 5,
+        offy = 5),
+      opts_sizing(width = 1, rescale = TRUE),
+      opts_hover_inv(css = "opacity:.4"),
+      opts_toolbar(saveaspng = FALSE)
+    )
   )
+  
+  return(gg_int)
+}
 
-figura_evolucion_lab <- girafe(
-  ggobj = g,
-  bg = c6,
-  options = list(
-    opts_hover(
-      css = girafe_css(
-        css = "",
-      )
-    ),
-    opts_tooltip(
-      opacity = 1,
-      css = glue(
-        "color:{c7};padding:5px;font-family:JetBrains Mono;",
-        "border-style:solid;border-color:{c4};background:{c3}"),
-      use_cursor_pos = TRUE,
-      offx = 5,
-      offy = 5),
-    opts_sizing(width = 1, rescale = TRUE),
-    opts_hover_inv(css = "opacity:.4"),
-    opts_toolbar(saveaspng = FALSE)
-  )
-)
+# parámetros
+param_v <- unique(d$param)
+
+# lista con las figuras
+lista_figura_evolucion_lab <- map(param_v, f_figura_evolucion_lab)
 
 # datos -------------------------------------------------------------------
 

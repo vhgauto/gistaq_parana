@@ -125,3 +125,31 @@ pre.sourceCode {
 div.callout-note.callout-style-default > .callout-header {
 	background-color: #FFFBFD;
 }
+
+// tabsets
+// color del texto
+.nav-link {
+	color: $cn;
+}
+
+.nav-link:hover, .nav-link:focus {
+	color: $cn;
+}
+
+// contorno del bloque
+.tab-content {
+	margin-top: 0px;
+    // border: $ca 1px solid;
+    border: transparent;
+	margin-left: 0;
+	padding: 1em;
+	margin-bottom: 1em;
+    // background: $cg;
+}
+
+// título de los tabset
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+	color: $ca;
+	// background-color: $cg;
+	border-color: $ca;
+}
