@@ -7,10 +7,10 @@ assignees: ''
 
 ---
 
-## Sugerencia
+¿Qué sección requiere una mejora?
 
-Sección:
 
 ¿Qué aparece ahora?
+
 
 ¿Qué debería aparecer?

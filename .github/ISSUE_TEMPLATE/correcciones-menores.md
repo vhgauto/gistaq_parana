@@ -7,8 +7,10 @@ assignees: ''
 
 ---
 
-Sección:
+¿En qué sección está el error?
+
 
 ¿Qué dice ahora?
+
 
 ¿Cómo debería quedar?
