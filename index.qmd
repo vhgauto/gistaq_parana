@@ -139,17 +139,14 @@ Las firmas espectrales se encuentran en la siguiente sección ([$\S$@sec-firmas-
 
 Se muestran los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
 
-::: {.column-page}
-
 ```{r mapa_interactivo}
+#| column: page-inset-right
 #| warning: false
 #| fig-align: left
 #| fig-asp: 1
 
 mapa_interactivo
 ```
-
-:::
 
 <br>
 Actualmente se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se recolectaron <b>`r cantidad_muetras` muestras de agua</b>.
@@ -212,7 +209,7 @@ tabla_corr_lab
 
 Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
 
-::: {.column-page}
+::: {.column-page-inset-right}
 
 ![](figuras/figura_identidad_lab.png)
 
@@ -224,14 +221,11 @@ A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-
 
 Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
 
-::: {.column-page}
-
 ```{r serie_temp_gis}
+#| column: page-inset-right
 
 figura_evolucion_gis
 ```
-
-:::
 
 <br>
 Las curvas <b style='color:`r c1`'>color violeta</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <b style='color:`r c2`'>color verde</b>.
@@ -285,11 +279,10 @@ SDD (cm) es una propiedad que se relaciona con la transparencia del agua.
 
 Las ecuaciones principales propuestas son de tipo <b>logarítmica</b> o <b>potencial</b>, lo cual tiene sentido considerando que la relación entre la reflectancia y la turbidez no es lineal. No obstante, algunas ecuaciones lineales presentan un buen desempeño. En ambos tipos de ecuación se repite la presencia de un <b>cociente</b> entre bandas.
 
-::: {.column-page}
 ```{r tbl-sdd}
+#| column: page-inset-right
 tabla_sdd
 ```
-:::
 
 ## Turbidez
 
@@ -297,11 +290,11 @@ La turbidez (NTU) se relaciona con la presencia de sedimentos presentes en el ag
 
 ### Métodos tradicionales
 
-::: {.column-page}
 ```{r tbl-turb}
+#| column: page-inset-right
+
 tabla_turb
 ```
-:::
 
 Múltiples modelos (lineal, logaritmos, inversa, cuadrática, exponencial, potencial) y plataformas (Sentinel-2, Landsat-5 y Landsat-8) emplean el cociente de bandas B04/B03 @Shen2021.
 
@@ -313,11 +306,11 @@ Los sólidos suspendidos totales (TSM)...
 
 ### Métodos tradicionales
 
-::: {.column-page}
 ```{r tbl-tsm}
+#| column: page-inset-right
+
 tabla_tsm
 ```
-:::
 
 De acuerdo a un estudio que analizó 48 cuerpos de agua, la estimación de TSM se hizo en su mayoría por modelos lineales, siendo la banda B8A la más frecuente @Cruz2023.
 
