@@ -90,7 +90,7 @@ link_github_gistaq <- "https://github.com/vhgauto/gistaq_parana"
 # documento --------------------------------------------------------------
 
 # símbolo utilizado para las correlaciones que sean significativas
-simbolo_sig <- "&#9733;" # estrella
+simbolo_sig <- glue("<span style='color: {c1}'>&#9733;</span>") # estrella
 
 # separación entre logos de insticiones
 espacios <- str_flatten(rep("&nbsp;", 10))
