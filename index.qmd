@@ -4,6 +4,7 @@ format:
   html:
     anchor-sections: true
     number-sections: true
+    smooth-scroll: true
     embed-resources: true
     include-in-header: 
       - extras/favicon.html
@@ -36,6 +37,7 @@ execute:
   echo: false
   warning: false
   eval: true
+date: last-modified
 ---
 
 ```{r scripts}
