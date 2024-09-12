@@ -569,12 +569,6 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [`r
 <br>
 <br>
 
-::: {.column-page-right}
-
-`r actualizado_label`
-
-:::
-
 <!-- botón para ir arriba -->
 
 ```{=html}
