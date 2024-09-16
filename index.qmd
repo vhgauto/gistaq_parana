@@ -208,9 +208,27 @@ tabla_corr_lab
 
 Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
 
-::: {.column-screen-inset-right}
+::: {.panel-tabset}
 
-![](figuras/figura_identidad_lab.png)
+## Turb vs Cond
+
+![](figuras/cond_vs_turb.png)
+
+## Sól. susp. vs Cond
+
+![](figuras/cond_vs_sol_sus.png)
+
+## SDD vs Sól. susp.
+
+![](figuras/sol_sus_vs_secchi.png)
+
+## SDD vs Turb
+
+![](figuras/turb_vs_secchi.png)
+
+## Sól. susp. vs Turb
+
+![](figuras/turb_vs_sol_sus.png)
 
 :::
 

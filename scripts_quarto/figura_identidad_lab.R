@@ -31,7 +31,7 @@ g_recta <- function(g, etq) {
       linetype = linea_tipo, linewidth = linea_ancho) +
     annotate(
       geom = "richtext", x = I(1), y = I(1), hjust = 1, vjust = 1, 
-      size = texto_tamaño, label = etq, label.color = NA, fill = c3, 
+      size = texto_tamaño, label = etq, label.color = NA, fill = c6, 
       family = "jet") +
     scale_x_log10(breaks = scales::breaks_pretty()) +
     scale_y_log10(expand = c(0, 0))
@@ -45,7 +45,7 @@ g_log <- function(g, etq) {
       linetype = linea_tipo, linewidth = linea_ancho) +
     annotate(
       geom = "richtext", x = I(0), y = I(1), hjust = 0, vjust = 1, 
-      size = texto_tamaño, label = etq, label.color = NA, fill = c3, 
+      size = texto_tamaño, label = etq, label.color = NA, fill = c6, 
       family = "jet") +
     scale_y_continuous(breaks = scales::breaks_pretty()) +
     scale_x_continuous(breaks = scales::breaks_pretty())
@@ -58,7 +58,7 @@ f_gg <- function(eje_x, eje_y) {
       names_from = param,
       values_from = valor
     ) |> 
-    select({{ eje_x }}, {{ eje_y }}) |> 
+    select(any_of(c(eje_x, eje_y))) |> 
     rename(x = 1, y = 2) |> 
     drop_na()
   
@@ -70,11 +70,11 @@ f_gg <- function(eje_x, eje_y) {
     theme_void() +
     theme(
       aspect.ratio = 1,
-      plot.margin = margin(t = 3, r = 7, b = 14, l = 10),
-      panel.background = element_rect(fill = c3, color = NA),
+      plot.margin = margin(t = 5, r = 7, b = 14, l = 10),
+      panel.background = element_rect(fill = c6, color = NA),
       panel.grid.major = element_line(
         color = c4, linewidth = .1, linetype = "FF"),
-      axis.title = element_markdown(family = "ubuntu", size = 15),
+      axis.title = element_markdown(family = "ubuntu", size = 12),
       axis.title.y = element_markdown(angle = 90, margin = margin(r = 3, l = 5)),
       axis.title.x = element_markdown(margin = margin(t = 6, b = 10)),
       axis.text = element_text(family = "jet", size = 8),
@@ -137,3 +137,22 @@ ggsave(
   height = 20.3,
   units = "cm"
 )
+
+###
+
+f_guardar <- function(prop1, prop2) {
+  g <- f_gg(prop1, prop2)
+  ggsave(
+    plot = g,
+    filename = glue("figuras/{prop1}_vs_{prop2}.png"),
+    width = 13,
+    height = 13,
+    units = "cm"
+  )
+}
+
+f_guardar("cond", "turb")
+f_guardar("cond", "sol_sus")
+f_guardar("turb", "sol_sus")
+f_guardar("sol_sus", "secchi")
+f_guardar("turb", "secchi")
