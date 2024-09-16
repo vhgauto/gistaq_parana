@@ -6,7 +6,7 @@ eq1 <- "$$A\\left[ \\frac{R_{rs}(\\lambda_{1})}{R_{rs}(\\lambda_{2})} \\right]^{
 eq2 <- "$$e^{a\\left[ \\frac{R_{rs}(\\lambda_{1})}{R_{rs}(\\lambda_{2})} \\right]+b}$$"
 eq3 <- "$$A\\left[ \\frac{R_{rs}(\\lambda_{1})}{R_{rs}(\\lambda_{2})} \\right]^{B}$$"
 eq4 <- "$$1.79-134.15\\cdot B_{RE1}+157.72\\cdot B_{NIR}+0.52\\frac{B_{RE3}}{NIR_{n}}$$"
-eq5 <- "$$\\log(SD)=-3.0257-1.4379\\cdot \\log(R_{B08A})-0.127\\left[\\log(R_{B08A})\\right]^{2}$$"
+eq5 <- "$$\\log(SDD)=-3.0257-1.4379\\cdot \\log(R_{B8A})-0.127\\left[\\log(R_{B8A})\\right]^{2}$$"
 
 banda1 <- "409 (B02)<br>709 (B05)"
 banda2 <- "409 (B02)<br>709 (B05)"
