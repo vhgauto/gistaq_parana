@@ -40,8 +40,6 @@ execute:
 date: last-modified
 ---
 
-# Hola
-
 ```{r scripts}
 #| eval: true
 
@@ -222,11 +220,33 @@ A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-
 
 Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
 
-```{r serie_temp_gis}
-#| column: screen-inset-right
+::: {.panel-tabset}
 
-figura_evolucion_gis
+## `r fechas_gis_v[1]`
+
+```{r}
+lista_figura_evolucion_gis[[1]]
 ```
+
+## `r fechas_gis_v[2]`
+
+```{r}
+lista_figura_evolucion_gis[[2]]
+```
+
+## `r fechas_gis_v[3]`
+
+```{r}
+lista_figura_evolucion_gis[[3]]
+```
+
+## `r fechas_gis_v[4]`
+
+```{r}
+lista_figura_evolucion_gis[[4]]
+```
+
+:::
 
 <br>
 Las curvas <b style='color:`r c1`'>color violeta</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <b style='color:`r c2`'>color verde</b>.
