@@ -151,3 +151,10 @@ div.callout-note.callout-style-default > .callout-header {
 	color: $ca;
 	border-color: $ca;
 }
+
+// fuerzo que la tabla de contenido (toc) se ubique por sobre todos 
+// los elementos del sitio, evitando que las tablas generadas con
+// {gt} bloqueen la toc
+.sidebar.toc-left, .sidebar.margin-sidebar {
+	z-index: 100000;
+}
