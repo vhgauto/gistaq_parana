@@ -82,4 +82,5 @@ tabla_sdd <- tibble(
   ) |> 
   cols_width(
     Referencia ~ px(20)
-  )
+  ) |> 
+  as_raw_html()
