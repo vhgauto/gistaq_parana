@@ -1,6 +1,6 @@
 # Proyecto Paraná
 
-Este repositorio contiene los archivos y directorios que generan el sitio web asociado al proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> (GISTAQ) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b>. 
+Este repositorio contiene los archivos y directorios que generan el sitio web asociado al proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> (GISTAQ) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b>.
 
 <span align="center">
 
