@@ -61,7 +61,7 @@ f_figura_evolucion_lab <- function(parametro) {
     scale_color_manual(values = estado_color) +
     scale_fill_manual(values = estado_color) +
     coord_cartesian(clip = "off") +
-    labs(y = NULL, x = NULL, fill = NULL, color = NULL) +
+    labs(y = parametro, x = NULL, fill = NULL, color = NULL) +
     theme_void(base_size = 10) +
     theme(
       aspect.ratio = 1,
@@ -70,9 +70,11 @@ f_figura_evolucion_lab <- function(parametro) {
       panel.grid.major = element_line(
         color = c4, linewidth = .06, linetype = 3),
       panel.spacing = unit(1.1, "line"),
-      axis.title.x = element_text(family = "ubuntu", margin = margin(t = 3)),
+      axis.title.y = element_markdown(
+        family = "ubuntu", angle = 90, margin = margin(r = 10), size = 12
+      ),
       axis.text = element_text(family = "jet", color = c7),
-      axis.text.y = element_text(hjust = 1, margin = margin(r = 2)),
+      axis.text.y = element_markdown(hjust = 1, margin = margin(r = 2)),
       axis.text.x = element_text(margin = margin(t = 2)),
       axis.ticks = element_line(),
       axis.ticks.length = unit(1, "mm"),
@@ -80,7 +82,9 @@ f_figura_evolucion_lab <- function(parametro) {
       strip.background = element_blank(),
       strip.text = element_blank(),
       legend.position = "top",
-      legend.text = element_text(family = "ubuntu", size = 12),
+      legend.text = element_text(
+        family = "ubuntu", size = 12, margin = margin(r = 10, l = 3)
+      ),
       legend.background = element_rect(fill = c6, color = NA),
       legend.key = element_rect(fill = NA, color = NA),
       legend.key.spacing.x = unit(.3, "cm")
