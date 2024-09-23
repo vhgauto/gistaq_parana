@@ -87,18 +87,16 @@ Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto 
 
 ::: {.callout-note title="Mostrar" collapse=true}
 
-A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]). La discución de la bibliografía y los algoritmos encontrados se discute en ([$\S$-@sec-discusion]). 
+A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]). La bibliografía y los algoritmos encontrados se discuten en ([$\S$-@sec-discusion]). 
 Al final se encuentran las referencias bibliográficas.
 
-La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto, registrar datos, visualizar resultados y evaluar algoritmos.
-
-En particular, este documento sirve como una guía para entender cómo se obtienen los datos pertinentes al proyecto de investigación, visualizar resultados, evaluar algoritmos y como material de consulta general de la metodología.
+La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto de investigación para entender cómo registrar datos, visualizar resultados, evaluar algoritmos y que además sea utilizado como material de consulta general de la metodología.
 
 :::
 
 # Muestreos {#sec-muestreos}
 
-Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
+Los muestreos, según lo permita la logística, se llevan a cabo en la fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
 
