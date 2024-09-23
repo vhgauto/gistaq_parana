@@ -115,31 +115,7 @@ f_gg <- function(eje_x, eje_y) {
   return(g)
 }
 
-# genero todas las figuras
-g1 <- f_gg("cond", "turb")
-g2 <- f_gg("cond", "sol_sus")
-g3 <- f_gg("turb", "sol_sus")
-g4 <- f_gg("sol_sus", "secchi")
-g5 <- f_gg("turb", "secchi")
-
-# combino todas las figuras
-g_identidad_lab <- g1 + g2 + g3 + g4 + g5 +
-  plot_annotation(
-    theme = theme(
-      plot.background = element_rect(fill = c6, color = NA)
-    )
-  )
-
-ggsave(
-  plot = g_identidad_lab,
-  filename = "figuras/figura_identidad_lab.png",
-  width = 30,
-  height = 20.3,
-  units = "cm"
-)
-
-###
-
+# función que genera y guarda las figuras como .png
 f_guardar <- function(prop1, prop2) {
   g <- f_gg(prop1, prop2)
   ggsave(
@@ -151,6 +127,7 @@ f_guardar <- function(prop1, prop2) {
   )
 }
 
+# genero y guardo cada combinación de parámetros
 f_guardar("cond", "turb")
 f_guardar("cond", "sol_sus")
 f_guardar("turb", "sol_sus")
