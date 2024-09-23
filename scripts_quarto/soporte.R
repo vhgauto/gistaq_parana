@@ -118,4 +118,5 @@ caption_adq <- glue(
 
 r_script <- list.files(path = "scripts_quarto/", full.names = TRUE)
 r_script <- r_script[!str_detect(r_script, "soporte")]
+r_script <- r_script[!str_detect(r_script, "/_")]
 purrr::map(r_script, source)

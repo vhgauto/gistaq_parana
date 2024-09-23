@@ -73,10 +73,13 @@ tabla_sdd <- tibble(
     locations = cells_body(columns = Referencia)
   ) |> 
   tab_style(
-    style = cell_text(align = "center", weight = "bold"),
+    style = cell_text(align = "left", weight = "bold"),
     locations = cells_column_labels()
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = Ecuación)
   ) |> 
   cols_width(
     Referencia ~ px(20)
-  ) |> 
-  as_raw_html()
+  )

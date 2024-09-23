@@ -1,0 +1,18 @@
+## Sólidos suspendidos
+
+Los sólidos suspendidos totales (TSM)...
+
+### Métodos tradicionales
+
+```{r tbl-tsm}
+#| column: screen-inset-right
+
+tabla_tsm
+```
+
+De acuerdo a un estudio que analizó 48 cuerpos de agua, la estimación de TSM se hizo en su mayoría por modelos lineales, siendo la banda B8A la más frecuente @Cruz2023.
+
+### Métodos de aprendizaje automático
+
+(...)
+
