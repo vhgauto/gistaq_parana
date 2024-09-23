@@ -87,7 +87,7 @@ Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto 
 
 ::: {.callout-note title="Mostrar" collapse=true}
 
-A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de estos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]). La discución de la bibliografía y los algoritmos encontrados se discute en ([$\S$-@sec-discusion]). 
+A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]). La discución de la bibliografía y los algoritmos encontrados se discute en ([$\S$-@sec-discusion]). 
 Al final se encuentran las referencias bibliográficas.
 
 La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto, registrar datos, visualizar resultados y evaluar algoritmos.
@@ -117,7 +117,7 @@ El calendario completo de muestreos para el resto del año se encuentra en el si
 
 Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
 
-Sobre el agua se miden pH, conductividad y profundidad de disco de Secchi. Luego, en el laboratorio se miden turbidez y sólidos suspendidos. A continuación, se describen cada uno:
+In situ, se miden pH, conductividad y profundidad de disco de Secchi. Luego, en el laboratorio se analizan turbidez y sólidos suspendidos. A continuación se describe cada parámetro fisicoquímico:
 
 * pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
 
@@ -135,7 +135,7 @@ La relación entre las unidades de turbidez es: $1~NTU = 0,25~EBC$.
 
 # Resultados {#sec-resultados}
 
-Se muestran las correlaciones lineales entre los parámetros espectrales y fisicoquímicos. De estos últimos se incluye la serie temporal según el sitio de muestreo.
+Se muestran las correlaciones lineales entre los parámetros espectrales y fisicoquímicos. De estos últimos, se incluye la serie temporal según el sitio de muestreo.
 
 Las firmas espectrales se encuentran en la siguiente sección ([$\S$@sec-firmas-espectrales]).
 
@@ -234,6 +234,22 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 # Firmas espectrales {#sec-firmas-espectrales}
 
+La reflectancia de superficie ($\rho_{r}$) @chuvieco1996 se define como el cociente entre la radiación reflejada por la superficie de interés ($\Phi_{r}$) y la radiación solar incidente ($\Phi_{i}$), a una longitud de onda específica ($\lambda$), de acuerdo a la ecuación [-@eq-reflect].
+
+$$
+\rho_{r}(\lambda)=\frac{\Phi_{r}(\lambda)}{\Phi_{i}(\lambda)}
+$$ {#eq-reflect}
+
+Por definición, $\rho_{r}$ adopta el rango entre $0-1$.
+
+Una definición más rigurosa @Chen2017 define a la reflectancia de sensado remoto ($R_{rs}(\lambda)$) como el cociente entre la radiancia saliente del agua verticalmente ascendente ($L_{w}(\lambda)$) y la irradiancia verticalemente descendente sobre la superficie del agua ($E_d(0^{+})$), a una longitud de onda $\lambda$, según la ecuación [-@eq-r-rs].
+
+$$
+R_{rs}(\lambda)=\frac{L_{w}(\lambda)}{E_{d}(0^{+})}
+$$ {#eq-r-rs}
+
+Con los pares ordenados de $R_{rs}$ y $\lambda$ para las bandas de S2-MSI, se construyen figuras que muestran el comportamiento espectral del agua, llamadas **firmas espectrales**, las cuales son específicas para cada cobertura y dan cuenta de algunas de sus propiedades.
+
 A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-base-de-datos]) se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná sirven para ver el cambio entre costas.
 
 Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
@@ -302,7 +318,7 @@ $$
 
 Estas expresiones permiten evaluar la contribución de las bandas espectrales, y sus combinaciones, al valor de la propiedad fisicoquímica estimada.
 
-Son usuales las expresiones que incorporan índices espectrales, sensibles a alguna característica del agua, como ser NDCI (clorofila), NDTI (turbidez), entre otros.
+Son usuales las expresiones que incorporan índices espectrales, sensibles a alguna característica del agua, como ser NDCI (índice normalizado de diferencia de clorofila) [@Mishra2012; @Buma2020], NDTI (índice normalizado de diferencia de turbidez) @Lacaux2007, entre otros.
 
 * Aprendizaje automático
 
@@ -354,7 +370,7 @@ El desarrollo de algoritmos empíricos requiere de datos espectrales y fisicoqu�
 
 Se pretende automatizar la descarga, extracción y almacenamiento de los datos espectrales y fisicoquímicos del agua en los sitios de muestreo, junto con las coordenadas geográficas.
 
-A medida que el proyecto avance los resultados parciales serán registrados en el presente sitio web, para su seguimiento y revisión por parte de los integrantes.
+A medida que el proyecto avance, los resultados parciales serán registrados en el presente sitio web, para su seguimiento y revisión por parte de los integrantes.
 
 # Ejecución {#sec-ejecucion}
 
@@ -407,7 +423,7 @@ Al finalizar el procesamiento de cada nueva muestra de agua ([$\S$-@sec-muestreo
 
 ### `fecha_descarga` {#sec-fecha-descarga}
 
-A partir de las fechas ya previamente analizadas, tomadas de la base de datos, se obtiene del archivo Excel, la última fecha faltante.
+A partir de las fechas previamente analizadas, tomadas de la base de datos, se obtiene del archivo Excel la última fecha faltante.
 
 A partir de esta fecha se procede a la descarga del producto correspondiente.
 
