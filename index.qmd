@@ -210,11 +210,11 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 ::: {.panel-tabset}
 
-## Turb vs Cond
+## Turb. vs Cond.
 
 ![](figuras/cond_vs_turb.png)
 
-## Sól. susp. vs Cond
+## Sól. susp. vs Cond.
 
 ![](figuras/cond_vs_sol_sus.png)
 
@@ -222,11 +222,11 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 ![](figuras/sol_sus_vs_secchi.png)
 
-## SDD vs Turb
+## SDD vs Turb.
 
 ![](figuras/turb_vs_secchi.png)
 
-## Sól. susp. vs Turb
+## Sól. susp. vs Turb.
 
 ![](figuras/turb_vs_sol_sus.png)
 
