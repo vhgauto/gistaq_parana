@@ -5,7 +5,7 @@ Los sólidos suspendidos totales (TSM)...
 ### Métodos tradicionales
 
 ```{r tbl-tsm}
-#| column: screen-inset-right
+#| column: screen-right
 
 tabla_tsm
 ```

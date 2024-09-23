@@ -5,7 +5,7 @@ La turbidez (NTU) se relaciona con la presencia de sedimentos presentes en el ag
 ### Métodos tradicionales
 
 ```{r tbl-turb}
-#| column: screen-inset-right
+#| column: screen-right
 
 tabla_turb
 ```
