@@ -6,11 +6,11 @@ El mencionado proyecto forma parte de las tareas de investigación del MS. Víct
 
 Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto de Investigaciones para el Desarrollo Territorial y del Hábitat Humano</b> ([IIDTHH](https://iidthh.conicet.gov.ar/)) de la <b>Universidad Nacional del Nordeste</b> ([UNNE](https://www.unne.edu.ar)).
 
-<span align="center">
+<b align="center">
 
 ## [LINK](https://vhgauto.quarto.pub/gistaq-parana/)
 
-</span>
+</b>
 
 # Contacto
 
@@ -18,7 +18,7 @@ Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b> ([Email](mail
 
 Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [Email](mailto:victor.gauto@outlook.com)). [Instagram](https://www.instagram.com/gistaq.utn/), [Facebook](https://www.facebook.com/GISTAQ).
 
-<p align="center">
+<b align="center">
 
 <img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-gistaq.png" height="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-utn-frre.png" height="50">
 <br>
@@ -29,4 +29,4 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [Ema
 <img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-iidthh.png" height="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-conicet.jpg" height="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-unne.png" height="50">
 
 
-</p>
+</b>
