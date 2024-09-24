@@ -87,18 +87,16 @@ Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto 
 
 ::: {.callout-note title="Mostrar" collapse=true}
 
-A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]). La discución de la bibliografía y los algoritmos encontrados se discute en ([$\S$-@sec-discusion]). 
-Al final se encuentran las referencias bibliográficas.
+A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y la selección de los algoritmos ([$\S$-@sec-algoritmos]). La bibliografía y los algoritmos encontrados se discuten en ([$\S$-@sec-discusion]). 
+Al final, se encuentran las referencias bibliográficas.
 
-La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto, registrar datos, visualizar resultados y evaluar algoritmos.
-
-En particular, este documento sirve como una guía para entender cómo se obtienen los datos pertinentes al proyecto de investigación, visualizar resultados, evaluar algoritmos y como material de consulta general de la metodología.
+La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto de investigación para entender cómo registrar datos, visualizar resultados, evaluar algoritmos y que, además, sea utilizado como material de consulta general de la metodología.
 
 :::
 
 # Muestreos {#sec-muestreos}
 
-Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
+Los muestreos, según lo permita la logística, se llevan a cabo en la fecha de adquisición de Sentinel-2 (S2-MSI) cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
 
@@ -117,15 +115,15 @@ El calendario completo de muestreos para el resto del año se encuentra en el si
 
 Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
 
-In situ, se miden pH, conductividad y profundidad de disco de Secchi. Luego, en el laboratorio se analizan turbidez y sólidos suspendidos. A continuación se describe cada parámetro fisicoquímico:
+In situ, se miden pH, conductividad y profundidad de disco de Secchi (SDD). Luego, en el laboratorio se analizan turbidez y sólidos suspendidos totales (TSM). A continuación se describe cada parámetro fisicoquímico:
 
 * pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
 
-* SSD ó profundidad de disco de Secchi (cm).
+* Profundidad de disco de Secchi (cm).
 
-* Sólidos suspendidos (ppm) por método gravimétrico, utilizando el método estandarizado 2540 D, que emplea filtros de 47 mm de diámetro y 0,5 μm de poro.
+* Sólidos suspendidos totales (ppm) por gravimetría, utilizando el método 2540 D. sólidos totales en suspensión secados a 103-105°C del Standard Methods (APHA, AWWA, WPCF, 2017, p.2-70), que emplea filtros de fibra de vidrio de 47 mm de diámetro y 0,5 μm de poro.
 
-* Turbidez se obtiene a partir de dos métodos:
+* Turbidez, a través de dos métodos:
   - Colorimétrico (NTU), utilizando el equipo HACH, programa 95.
   - Turbidímetro (EBC), que emplea el Hazemeter.
 
