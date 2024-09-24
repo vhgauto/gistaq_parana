@@ -15,14 +15,7 @@ Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b> ([Email](mail
 Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [Email](mailto:victor.gauto@outlook.com)). [Instagram](https://www.instagram.com/gistaq.utn/), [Facebook](https://www.facebook.com/GISTAQ).
 
 <center>
-![](extras/logo-gistaq.png | height=50) ![](extras/logo-utn-frre.png | height=50)
 
-<br>
-
-![](extras/logo-gulich.png | height=50) ![](extras/logo-conae.png | height=50) ![](extras/logo-unc.jpg | height=50)
-
-<br>
-
-![](extras/logo-iidthh.png | height=50) ![](extras/logo-conicet.jpg | height=50) ![](extras/logo-unne.png | height=50)
+<img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-conae.png" height="50">
 
 </center>
