@@ -87,18 +87,16 @@ Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto 
 
 ::: {.callout-note title="Mostrar" collapse=true}
 
-A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]). La discución de la bibliografía y los algoritmos encontrados se discute en ([$\S$-@sec-discusion]). 
+A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y selección de algoritmos ([$\S$-@sec-algoritmos]). La bibliografía y los algoritmos encontrados se discuten en ([$\S$-@sec-discusion]). 
 Al final se encuentran las referencias bibliográficas.
 
-La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto, registrar datos, visualizar resultados y evaluar algoritmos.
-
-En particular, este documento sirve como una guía para entender cómo se obtienen los datos pertinentes al proyecto de investigación, visualizar resultados, evaluar algoritmos y como material de consulta general de la metodología.
+La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto de investigación para entender cómo registrar datos, visualizar resultados, evaluar algoritmos y que además sea utilizado como material de consulta general de la metodología.
 
 :::
 
 # Muestreos {#sec-muestreos}
 
-Los muestreos, según lo permita la logística, se llevan a cabo cada fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
+Los muestreos, según lo permita la logística, se llevan a cabo en la fecha de adquisición de S2-MSI, cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
 
@@ -117,15 +115,15 @@ El calendario completo de muestreos para el resto del año se encuentra en el si
 
 Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
 
-In situ, se miden pH, conductividad y profundidad de disco de Secchi. Luego, en el laboratorio se analizan turbidez y sólidos suspendidos. A continuación se describe cada parámetro fisicoquímico:
+In situ, se miden pH, conductividad (cond.) y profundidad de disco de Secchi (SDD). Luego, en el laboratorio se analizan turbidez (turb.) y sólidos suspendidos totales (sól. susp.). A continuación se describe cada parámetro fisicoquímico:
 
 * pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
 
 * SSD ó profundidad de disco de Secchi (cm).
 
-* TSM ó sólidos suspendidos totales (ppm) por gravimetría, utilizando el método 2540 D - sólidos totales en suspensión secados a 103-105°C del Standard Methods (APHA, AWWA, WPCF, 2017, p.2-70) -, que emplea filtros de fibra de vidrio de 47 mm de diámetro y 0,5 μm de poro.
+* TSM ó sólidos suspendidos totales (ppm) por gravimetría, utilizando el método 2540 D - sólidos totales en suspensión secados a 103-105°C @baird2017standard, que emplea filtros de fibra de vidrio de 47 mm de diámetro y 0,5 μm de poro.
 
-* Turbidez se obtiene a partir de dos métodos:
+* Turbidez, a través de dos métodos:
   - Colorimétrico (NTU), utilizando el equipo HACH, programa 95.
   - Turbidímetro (EBC), que emplea el Hazemeter.
 
@@ -153,7 +151,7 @@ mapa_interactivo
 ```
 
 <br>
-Actualmente se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se recolectaron <b>`r cantidad_muetras` muestras de agua</b>.
+Actualmente, se realizaron <b>`r cantidad_fechas` muestreos</b> en los que se recolectaron <b>`r cantidad_muetras` muestras de agua</b>.
 
 En todos los casos, no se aprecia presencia de nubes sobre los puntos de toma de muestras.
 
@@ -283,11 +281,11 @@ lista_figura_evolucion_gis[[4]]
 :::
 
 <br>
-Las curvas <b style='color:`r c1`'>color violeta</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <b style='color:`r c2`'>color verde</b>.
+Las curvas <b style='color:`r c1`'>color violeta</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos próximos a la costa correntina son de <b style='color:`r c2`'>color verde</b>.
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
-Las características espectrales de S2-MSI se muestran en la siguiente tabla:
+Las características de las bandas espectrales de S2-MSI se muestran en la tabla [-@tbl-s2msi]:
 
 ```{r tbl-s2msi}
 #| label: tbl-s2msi
@@ -302,11 +300,11 @@ Esta sección recolecta información bibliográfica referente a parámetros de l
 
 Se eligieron tres propiedades del agua: turbidez, sólidos suspendidos y profundidad de disco de Secchi.
 
-A continuación se muestran (según en caso) las ecuaciones para la estimación de las propiedades, los sensores y longitudes de onda empleados, las características de los cuerpos de agua y la justificación de los autores, junto con la referencia bibliográfica.
+A continuación se indican (según el caso) las ecuaciones para la estimación de las propiedades, los sensores y longitudes de onda empleados, las características de los cuerpos de agua y la justificación de los autores, junto con la referencia bibliográfica.
 
-Se pretende poder justificar los algoritmos desarrollados propios a partir de los obtenido por otros autores.
+Se pretende poder justificar los algoritmos desarrollados propios a partir de los obtenidos por otros autores.
 
-Las características de las bandas espectrales de S2-MSI se encuentran en la tabla [-@tbl-s2msi].
+Las longitudes de onda de las bandas en las siguientes expresiones se encuentran en la tabla [-@tbl-s2msi].
 
 * Métodos tradicionales
 
@@ -385,7 +383,7 @@ El proyecto está gestionado mediante el paquete [`targets`](https://books.ropen
 targets::tar_make()
 ```
 
-Esto genera una ejecución en cadena de múltiples funciones que permiten la obtención de datos espectrales y fisicoquímicos para la generación y almacenamiento de resultados.
+Esto origina una ejecución en cadena de múltiples funciones que permiten la obtención de datos espectrales y fisicoquímicos para la generación y almacenamiento de resultados.
 
 Utilizar `targets` permite asegurar el orden correcto de ejecución y facilita la resolución de potenciales problemas.
 
@@ -417,9 +415,9 @@ A continuación, se describen las funciones objetivo, indicadas con triángulos 
 
 El archivo Excel `datos/datos_gistaq.xlsx` contiene todos los datos del muestreo y los resultados de los análisis fisicoquímicos.
 
-Incluye la fecha, las coordenadas geográficas de los sitios de muestreo, los valores de pH, conductividad (μS/cm), profundidad de disco de Secchi (cm), sólidos suspendidos (mg/L) y turbidez, por dos métodos: colorimétrico (HATCH, NTU) y turbidímetro (Hazemeter, EBC).
+Incluye la fecha, las coordenadas geográficas de los sitios de muestreo, los valores de pH, conductividad (μS/cm), profundidad de disco de Secchi (cm), sólidos suspendidos totales (mg/L) y turbidez, por dos métodos: colorimétrico (HACH, NTU) y turbidímetro (Hazemeter, EBC).
 
-Al finalizar el procesamiento de cada nueva muestra de agua ([$\S$-@sec-muestreos]), se actualiza manualmente con los datos obtenidos. La ejecución del comando mostrado al inicio de esta sección ([$\S$-@sec-ejecucion]) genera la suceción de todas las funciones siguientes.
+Al finalizar el procesamiento de cada nueva muestra de agua ([$\S$-@sec-muestreos]), se actualiza manualmente con los datos obtenidos. La ejecución del comando mostrado al inicio de esta sección ([$\S$-@sec-ejecucion]) genera la sucesión de todas las funciones siguientes.
 
 ### `fecha_descarga` {#sec-fecha-descarga}
 
@@ -435,9 +433,9 @@ Se establecen las coordenadas de la región de interés ($-58° 48' 48''S$, $+27
 
 ### `producto_zip`
 
-Se ejecuta el script Python que descarga el producto. Utiliza las credenciales de mi cuenta en [Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu/). El nivel de procesamiento es L2A, en reflectancia de superficie, con corrección atmosférica automática.
+Se ejecuta el script Python que descarga el producto. Utiliza las credenciales del desarrollador del presente sitio web en [Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu/). El nivel de procesamiento es L2A, en reflectancia de superficie, con corrección atmosférica automática.
 
-El producto a descargar corresponde al SAFE y se encuentra comprimido en un archivo `.zip`. El tamaño del producto es 1Gb aproximadamente.
+El producto a descargar corresponde al SAFE ([Standard Archive Format for Europe](https://earth.esa.int/eogateway/activities/safe-the-standard-archive-format-for-europe)) y se encuentra comprimido en un archivo `.zip`. El tamaño del producto es 1Gb aproximadamente.
 
 ### `recorte_tif`
 
@@ -492,7 +490,7 @@ Se incluye la fecha, el número de sitio y las coordenadas geográficas en el si
 
 * Datos fisicoquímicos, `datos/base_de_datos_lab.csv`
 
-Sobre el curso de agua se obtienen pH, conductividad, profundidad de disco de Secchi y las coordenadas geográficas. En laboratorio se miden turbidez por dos métodos: colorimétrico (HACH) y turbidímetro (Hazemeter), y sólidos suspendidos por gravimetría.
+Sobre el curso de agua se obtienen pH, conductividad, profundidad de disco de Secchi y las coordenadas geográficas. En laboratorio se miden turbidez por dos métodos: colorimétrico (HACH) y turbidímetro (Hazemeter), y sólidos suspendidos totales por gravimetría.
 
 ### Recortes ráster
 
