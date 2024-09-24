@@ -115,6 +115,9 @@ caption_adq <- glue(
 )
 
 # scripts -----------------------------------------------------------------
+# corro todos los scripts,
+# excepto este mismo archivo (soporte.R) y los parámetros fisicoquímicos
+# (_secchi.R, _sol_sus.R, _turbidez.R)
 
 r_script <- list.files(path = "scripts_quarto/", full.names = TRUE)
 r_script <- r_script[!str_detect(r_script, "soporte")]
