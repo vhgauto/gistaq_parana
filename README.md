@@ -8,17 +8,17 @@ Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto 
 
 <b align="center">
 
-## [LINK](https://vhgauto.quarto.pub/gistaq-parana/)
+# [LINK](https://vhgauto.quarto.pub/gistaq-parana/)
 
 </b>
 
 # Contacto
 
-Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b> ([Email](mailto:victor.gauto@outlook.com)). [GitHub](https://github.com/vhgauto)
+Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b>. [Email](mailto:victor.gauto@outlook.com), [GitHub](https://github.com/vhgauto)
 
-Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [Email](mailto:victor.gauto@outlook.com)). [Instagram](https://www.instagram.com/gistaq.utn/), [Facebook](https://www.facebook.com/GISTAQ).
+Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [Email](mailto:victor.gauto@outlook.com), [Instagram](https://www.instagram.com/gistaq.utn/), [Facebook](https://www.facebook.com/GISTAQ).
 
-<b align="center">
+<p align="center">
 
 <img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-gistaq.png" height="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-utn-frre.png" height="50">
 <br>
@@ -29,4 +29,4 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [Ema
 <img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-iidthh.png" height="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-conicet.jpg" height="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-unne.png" height="50">
 
 
-</b>
+</p>
