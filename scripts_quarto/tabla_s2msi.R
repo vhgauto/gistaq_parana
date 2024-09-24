@@ -38,19 +38,13 @@ d <- read_csv("datos/s2msi.csv", show_col_types = FALSE) |>
       banda_label[`Band Number`],
       `Band Number`
     )
+  ) |> 
+  mutate(
+    across(
+      .cols = contains("Central"),
+      .fns = ~format(.x, nsmall = 1, digits = 1, decimal.mark = ",")
+    )
   )
-
-
-
-# d |> 
-#   mutate(
-#     `Band Number` = if_else(
-#       `Band Number` %in% names(nombre_banda),
-#       banda_label[`Band Number`],
-#       `Band Number`
-#     )
-#   )
-
 
 # tabla -------------------------------------------------------------------
 
@@ -81,13 +75,21 @@ tabla_s2msi <- gt(d) |>
   # aplico formato a la columna de bandas, spanners y títulos de columna
   tab_style(
     locations = list(
-      cells_column_spanners(spanners = everything()),
+      # cells_column_spanners(spanners = everything()),
       cells_column_labels(columns = everything()),
       cells_body(columns = "Band Number")
     ),
     style = cell_text(
-      font = "Ubuntu", weight = "bold", align = "center", v_align = "bottom"
+      font = "Ubuntu", weight = "bold", align = "right", v_align = "bottom"
     )
+  ) |>
+  tab_style(
+    locations = cells_column_labels(columns = "Band Number"),
+    style = cell_text(align = "left")
+  ) |> 
+  tab_style(
+    locations = cells_column_spanners(spanners = everything()),
+    style = cell_text(align = "center", weight = "bold")
   ) |> 
   # aplico estilo a los números
   tab_style(
