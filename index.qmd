@@ -121,7 +121,7 @@ In situ, se miden pH, conductividad y profundidad de disco de Secchi. Luego, en 
 
 * pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
 
-* Profundidad de disco de Secchi (cm).
+* SSD ó profundidad de disco de Secchi (cm).
 
 * Sólidos suspendidos (ppm) por método gravimétrico, utilizando el método estandarizado 2540 D, que emplea filtros de 47 mm de diámetro y 0,5 μm de poro.
 
