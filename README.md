@@ -16,7 +16,7 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [Ema
 
 <center>
 
-<img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-gistaq.png" height="50"> <img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-utn-frre.png" height="50">
+<img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-gistaq.png" height="50">                <img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-utn-frre.png" height="50">
 <br>
 <img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-gulich.png" height="50"> <img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-conae.png" height="50"> <img src="https://raw.githubusercontent.com/vhgauto/gistaq_parana/refs/heads/main/extras/logo-unc.jpg" height="50">
 <br>
