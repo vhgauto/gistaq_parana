@@ -76,7 +76,8 @@ f_label <- function(fecha_date) {
     mutate(nombre = label_param[param]) |> 
     mutate(unidad = label_unidad[param]) |> 
     filter(fecha == ymd(fecha_date)) |> 
-    mutate(label = glue("{nombre}: {round(valor, 1)} {unidad}")) |> 
+    mutate(v = format(valor, nsmall = 1, digits = 1, decimal.mark = ",")) |> 
+    mutate(label = glue("{nombre}: {v} {unidad}")) |>
     reframe(
       l = str_flatten(label, collapse = "<br>"),
       .by = c(longitud, latitud)
