@@ -21,8 +21,8 @@ d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
   ) |> 
   mutate(
     unidad = if_else(is.na(unidad), "", unidad)) |> 
-  mutate(valor = round(valor, 2)) |> 
-  mutate(label = glue("{fecha}<br>{valor} {unidad}")) |> 
+  mutate(v = format(valor, nsmall = 1, digits = 1, decimal.mark = ",")) |> 
+  mutate(label = glue("{fecha}<br>{v} {unidad}")) |> 
   mutate(p = glue("P{p}")) |> 
   mutate(
     estado = if_else(
@@ -103,12 +103,13 @@ f_figura_evolucion_lab <- function(parametro) {
         opacity = 1,
         css = glue(
           "color:{c7};padding:5px;font-family:JetBrains Mono;",
-          "border-style:solid;border-color:{c4};background:{c3}"),
+          "border-style:solid;border-color:{c4};border-width:2px;",
+          "background:{c3}"),
         use_cursor_pos = TRUE,
         offx = 5,
         offy = 5),
       opts_sizing(width = 1, rescale = TRUE),
-      opts_hover_inv(css = "opacity:.4"),
+      opts_hover_inv(css = "opacity:.2"),
       opts_toolbar(saveaspng = FALSE)
     )
   )
