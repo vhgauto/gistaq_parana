@@ -115,7 +115,7 @@ El calendario completo de muestreos para el resto del año se encuentra en el si
 
 Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
 
-In situ, se miden pH, conductividad y profundidad de disco de Secchi (SDD). Luego, en el laboratorio se analizan turbidez y sólidos suspendidos totales (TSM). A continuación se describe cada parámetro fisicoquímico:
+In situ, se miden: pH, conductividad y profundidad de disco de Secchi (SDD). Luego, en el laboratorio se analizan turbidez y sólidos suspendidos totales (TSM). A continuación se describe cada parámetro fisicoquímico:
 
 * pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
 
@@ -175,7 +175,7 @@ lista_figura_evolucion_lab[[1]]
 lista_figura_evolucion_lab[[2]]
 ```
 
-## Sólidos suspendidos
+## Sólidos suspendidos totales
 
 ```{r}
 lista_figura_evolucion_lab[[3]]
@@ -212,11 +212,11 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 ![](figuras/cond_vs_turb.png)
 
-## Sól. susp. vs Cond.
+## Sól. susp. vs Cond. Propongo TSM vs Cond.
 
 ![](figuras/cond_vs_sol_sus.png)
 
-## SDD vs Sól. susp.
+## SDD vs Sól. susp. Propongo SDD vs TSM
 
 ![](figuras/sol_sus_vs_secchi.png)
 
@@ -224,7 +224,7 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 ![](figuras/turb_vs_secchi.png)
 
-## Sól. susp. vs Turb.
+## Sól. susp. vs Turb. Propongo TSM vs Turb.
 
 ![](figuras/turb_vs_sol_sus.png)
 
@@ -240,15 +240,15 @@ $$ {#eq-reflect}
 
 Por definición, $\rho_{r}$ adopta el rango entre $0-1$.
 
-Una definición más rigurosa @Chen2017 define a la reflectancia de sensado remoto ($R_{rs}(\lambda)$) como el cociente entre la radiancia saliente del agua verticalmente ascendente ($L_{w}(\lambda)$) y la irradiancia verticalemente descendente sobre la superficie del agua ($E_d(0^{+})$), a una longitud de onda $\lambda$, según la ecuación [-@eq-r-rs].
-
+Una definición más rigurosa @Chen2017 define a la reflectancia de sensado remoto ($R_{rs}(\lambda)$) como el cociente entre la radiancia saliente del agua verticalmente ascendente ($L_{w}(\lambda)$) y la irradiancia verticalmente descendente sobre la superficie del agua ($E_d(0^{+})$), a una longitud de onda $\lambda$, según la ecuación [-@eq-r-rs].
+Propongo otra redacción para no repetir la palabra define: una definición más rigurosa indica que la reflectancia de sensado remoto se expresa como el cociente entra la... 
 $$
 R_{rs}(\lambda)=\frac{L_{w}(\lambda)}{E_{d}(0^{+})}
 $$ {#eq-r-rs}
 
 Con los pares ordenados de $R_{rs}$ y $\lambda$ para las bandas de S2-MSI, se construyen figuras que muestran el comportamiento espectral del agua, llamadas **firmas espectrales**, las cuales son específicas para cada cobertura y dan cuenta de algunas de sus propiedades.
 
-A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-base-de-datos]) se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná sirven para ver el cambio entre costas.
+A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-base-de-datos]) se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná, sirven para ver el cambio entre costas.
 
 Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
 
@@ -281,7 +281,7 @@ lista_figura_evolucion_gis[[4]]
 :::
 
 <br>
-Las curvas <b style='color:`r c1`'>color violeta</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos cercanos a la costa correntina son de <b style='color:`r c2`'>color verde</b>.
+Las curvas de <b style='color:`r c1`'>color violeta</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos próximos a la costa correntina son de <b style='color:`r c2`'>color verde</b>.
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
