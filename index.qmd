@@ -119,9 +119,9 @@ In situ, se miden pH, conductividad (cond.) y profundidad de disco de Secchi (SD
 
 * pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
 
-* Profundidad de disco de Secchi (cm).
+* SSD ó profundidad de disco de Secchi (cm).
 
-* Sólidos suspendidos totales (ppm) por gravimetría, utilizando el método estandarizado 2540 D, sólidos totales en suspensión secados a 103-105°C @baird2017standard, que emplea filtros de 47 mm de diámetro y 0,5 μm de poro.
+* TSM ó sólidos suspendidos totales (ppm) por gravimetría, utilizando el método 2540 D - sólidos totales en suspensión secados a 103-105°C @baird2017standard, que emplea filtros de fibra de vidrio de 47 mm de diámetro y 0,5 μm de poro.
 
 * Turbidez, a través de dos métodos:
   - Colorimétrico (NTU), utilizando el equipo HACH, programa 95.
