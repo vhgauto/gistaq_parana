@@ -76,9 +76,17 @@ a {
 	color: $cn;
 }
 
-// color del borde izquierdo
+.callout.callout-style-default .callout-header[aria-expanded="false"], .callout.callout-style-default .callout-header[aria-expanded="true"] {
+	padding-top: 0px;
+	margin-bottom: 0px;
+	align-items: center;
+	// background: #FFFBFD;
+}
+
+// color del borde izquierdo, y forma cuadrada
 div.callout-note.callout {
-    border-color: $ca;
+    border-color: $cr;
+    border-radius: 0;
 }
 
 // color de las secciones activas en la tabla de contenidos
@@ -121,9 +129,9 @@ pre.sourceCode {
   box-shadow: 0 3px 14px rgba(0,0,0,0.4);
 }
 
-// color de fondo del tpitulo de los callout
+// color de fondo del título de los callout
 div.callout-note.callout-style-default > .callout-header {
-	background-color: #FFFBFD;
+	background-color: #F9FFF9;
 }
 
 // tabsets
@@ -157,4 +165,9 @@ div.callout-note.callout-style-default > .callout-header {
 // {gt} bloqueen la toc
 .sidebar.toc-left, .sidebar.margin-sidebar {
 	z-index: 100000;
+}
+
+// fuente de la fecha
+.date {
+    font-family: JetBrains Mono;
 }
