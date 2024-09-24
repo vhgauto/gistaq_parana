@@ -19,10 +19,10 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>, [Ema
 
 <br>
 
-![](extras/logo-gulich.png){height=50}`r espacios`![](extras/logo-conae.png){height=50}`r espacios`![](extras/logo-unc.jpg){height=50}
+![](extras/logo-gulich.png | height=50) ![](extras/logo-conae.png){height=50} ![](extras/logo-unc.jpg | height=50)
 
 <br>
 
-![](extras/logo-iidthh.png){height=50}`r espacios`![](extras/logo-conicet.jpg){height=50}`r espacios`![](extras/logo-unne.png){height=50} 
+![](extras/logo-iidthh.png | height=50) ![](extras/logo-conicet.jpg | height=50) ![](extras/logo-unne.png | height=50)
 
 </center>
