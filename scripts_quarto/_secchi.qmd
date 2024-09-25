@@ -14,4 +14,4 @@ tabla_sdd
 
 ### Métodos de aprendizaje automático
 
-(...)
+(........)
