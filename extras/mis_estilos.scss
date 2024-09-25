@@ -142,6 +142,7 @@ div.callout-note.callout-style-default > .callout-header {
 
 .nav-link:hover, .nav-link:focus {
 	color: $cn;
+    border-radius: 0;
 }
 
 // contorno del bloque
@@ -158,6 +159,7 @@ div.callout-note.callout-style-default > .callout-header {
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
 	color: $ca;
 	border-color: $ca;
+    border-radius: 0;
 }
 
 // fuerzo que la tabla de contenido (toc) se ubique por sobre todos 
