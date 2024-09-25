@@ -212,11 +212,11 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 ![](figuras/cond_vs_turb.png)
 
-## Sól. susp. vs Cond. Propongo TSM vs Cond.
+## TSM vs Cond.
 
 ![](figuras/cond_vs_sol_sus.png)
 
-## SDD vs Sól. susp. Propongo SDD vs TSM
+## SDD vs TSM
 
 ![](figuras/sol_sus_vs_secchi.png)
 
@@ -224,7 +224,7 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 ![](figuras/turb_vs_secchi.png)
 
-## Sól. susp. vs Turb. Propongo TSM vs Turb.
+## TSM vs Turb.
 
 ![](figuras/turb_vs_sol_sus.png)
 
@@ -240,8 +240,8 @@ $$ {#eq-reflect}
 
 Por definición, $\rho_{r}$ adopta el rango entre $0-1$.
 
-Una definición más rigurosa @Chen2017 define a la reflectancia de sensado remoto ($R_{rs}(\lambda)$) como el cociente entre la radiancia saliente del agua verticalmente ascendente ($L_{w}(\lambda)$) y la irradiancia verticalmente descendente sobre la superficie del agua ($E_d(0^{+})$), a una longitud de onda $\lambda$, según la ecuación [-@eq-r-rs].
-Propongo otra redacción para no repetir la palabra define: una definición más rigurosa indica que la reflectancia de sensado remoto se expresa como el cociente entra la... 
+Una definición más rigurosa @Chen2017 indica que la reflectancia de sensado remoto ($R_{rs}(\lambda)$) se expresa como el cociente entre la radiancia saliente del agua verticalmente ascendente ($L_{w}(\lambda)$) y la irradiancia verticalmente descendente sobre la superficie del agua ($E_d(0^{+})$), a una longitud de onda $\lambda$, según la ecuación [-@eq-r-rs].
+ 
 $$
 R_{rs}(\lambda)=\frac{L_{w}(\lambda)}{E_{d}(0^{+})}
 $$ {#eq-r-rs}
