@@ -16,7 +16,7 @@ Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto 
 
 Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b>. [Email](mailto:victor.gauto@outlook.com), [GitHub](https://github.com/vhgauto)
 
-Integrantes:
+Integrantes: Enid
 
 Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [Email](mailto:victor.gauto@outlook.com), [Instagram](https://www.instagram.com/gistaq.utn/), [Facebook](https://www.facebook.com/GISTAQ).
 
