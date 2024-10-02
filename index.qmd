@@ -131,6 +131,13 @@ La relación entre las unidades de turbidez es: $1~NTU = 0,25~EBC$.
 
 :::
 
+Para simplificar, se van a usar las siguientes siglas para denominar a las propiedades fisicoquímicas en el resto del presente documento.
+
+* Conductividad (μS/cm) = *cond*
+* Sólidos suspendidos totales (ppm) = *susp*
+* Turbidez (NTU) = *turb*
+* Profundidad de disco de Secchi (cm) = *secchi*
+
 # Resultados {#sec-resultados}
 
 Se muestran las correlaciones lineales entre los parámetros espectrales y fisicoquímicos. De estos últimos, se incluye la serie temporal según el sitio de muestreo.
