@@ -422,7 +422,7 @@ A continuación, se describen las funciones objetivo, indicadas con triángulos 
 
 El archivo Excel `datos/datos_gistaq.xlsx` contiene todos los datos del muestreo y los resultados de los análisis fisicoquímicos.
 
-Incluye la fecha, las coordenadas geográficas de los sitios de muestreo, los valores de pH, conductividad (μS/cm), profundidad de disco de Secchi (cm), sólidos suspendidos (mg/L) y turbidez, por dos métodos: colorimétrico (HATCH, NTU) y turbidímetro (Hazemeter, EBC).
+Incluye la fecha, las coordenadas geográficas de los sitios de muestreo, los valores de pH, conductividad (μS/cm), profundidad de disco de Secchi (cm), sólidos suspendidos (ppm) y turbidez, por dos métodos: colorimétrico (HACH, NTU) y turbidímetro (Hazemeter, EBC).
 
 Al finalizar el procesamiento de cada nueva muestra de agua ([$\S$-@sec-muestreos]), se actualiza manualmente con los datos obtenidos. La ejecución del comando mostrado al inicio de esta sección ([$\S$-@sec-ejecucion]) genera la suceción de todas las funciones siguientes.
 
