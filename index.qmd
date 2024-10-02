@@ -170,31 +170,31 @@ Las siguientes figuras muestran la evolución de los datos fisicoquímicos por s
 
 ::: {.panel-tabset}
 
-## pH
+## *pH*
 
 ```{r}
 lista_figura_evolucion_lab[[1]]
 ```
 
-## Conductividad
+## *cond*
 
 ```{r}
 lista_figura_evolucion_lab[[2]]
 ```
 
-## Sólidos suspendidos totales
+## *susp*
 
 ```{r}
 lista_figura_evolucion_lab[[3]]
 ```
 
-## Turbidez
+## *turb*
 
 ```{r}
 lista_figura_evolucion_lab[[4]]
 ```
 
-## Prof. de disco de Secchi
+## *secchi*
 
 ```{r}
 lista_figura_evolucion_lab[[5]]
@@ -215,23 +215,23 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 ::: {.panel-tabset}
 
-## Turb. vs Cond.
+## <i>turb</i> vs <i>cond</i>
 
 ![](figuras/cond_vs_turb.png)
 
-## TSM vs Cond.
+## <i>susp</i> vs <i>cond</i>
 
 ![](figuras/cond_vs_sol_sus.png)
 
-## SDD vs TSM
+## <i>secchi</i> vs <i>susp</i>
 
 ![](figuras/sol_sus_vs_secchi.png)
 
-## SDD vs Turb.
+## <i>secchi</i> vs <i>turb</i>
 
 ![](figuras/turb_vs_secchi.png)
 
-## TSM vs Turb.
+## <i>susp</i> vs <i>turb</i>
 
 ![](figuras/turb_vs_sol_sus.png)
 
