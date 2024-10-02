@@ -555,11 +555,11 @@ Se proponen múltiples modelos para la estimación de parámetros. Se siguen los
 
 # Contacto {.unnumbered}
 
-Los archivos que generan este sitio web están disponibles en [GitHub](`r link_github_gistaq`).
+Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://vhgauto.quarto.pub/gistaq-parana/).
 
-Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b>. [`r icono_mail`](`r link_mail_vhg`), [`r icono_github`](`r link_github_vhg`).
+Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b>. [{{< fa envelope >}}](mailto:victor.gauto@outlook.com), [{{< fa brands github >}}](https://github.com/vhgauto).
 
-Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [`r icono_mail`](`r link_mail_gistaq`), [`r icono_instagram`](`r link_instagram`), [`r icono_facebook`](`r link_facebook`).
+Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [{{< fa envelope >}}](mailto:gistaq@ca.frre.utn.edu.ar), [{{< fa brands instagram >}}](https://www.instagram.com/gistaq.utn/), [{{< fa brands facebook >}}](https://www.facebook.com/GISTAQ/).
 
 <br>
 

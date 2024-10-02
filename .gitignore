@@ -1,3 +1,6 @@
+# quito carpeta con extensiones de quarto
+_extensions
+
 # saco el .html del README
 README.html
 README_files/

@@ -77,7 +77,7 @@ icono_triangulo <- "<span class='nf nf-md-triangle'></span>"
 # enlaces a redes sociales y mails
 link_instagram <- "https://www.instagram.com/gistaq.utn/"
 
-link_facebook <- "https://www.facebook.com/GISTAQ"
+link_facebook <- "https://www.facebook.com/GISTAQ/"
 
 link_mail_vhg <- "mailto:victor.gauto@outlook.com"
 
