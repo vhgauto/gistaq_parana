@@ -1,4 +1,4 @@
-# Proyecto Paraná 2023
+# Proyecto Paraná
 
 Este repositorio funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ](https://www.instagram.com/gistaq.utn/)) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
