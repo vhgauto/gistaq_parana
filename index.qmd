@@ -71,28 +71,24 @@ source("scripts_quarto/soporte.R")
 <!-- formato de citas -->
 <!-- https://quarto.org/docs/authoring/citations.html#sec-citations -->
 
-# Introducción
-
-::: {.callout-note title="Mostrar" collapse=true}
-
 Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
 El mencionado proyecto forma parte de las tareas de investigación del MS. Víctor Gauto, en el marco del <b>Doctorado en Geomática y Sistemas Espaciales</b>, dictado por el [Instituto Gulich](https://ig.conae.unc.edu.ar), en conjunto con la <b>Universidad Nacional de Córdoba</b> ([UNC](https://www.unc.edu.ar/)) y la <b>Comisión Nacional de Actividades Espaciales</b> ([CONAE](https://www.argentina.gob.ar/ciencia/conae)). 
 
 Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto de Investigaciones para el Desarrollo Territorial y del Hábitat Humano</b> ([IIDTHH](https://iidthh.conicet.gov.ar/)) de la <b>Universidad Nacional del Nordeste</b> ([UNNE](https://www.unne.edu.ar)).
 
-:::
-
-# Contenido
-
-::: {.callout-note title="Mostrar" collapse=true}
-
 A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se describe la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y la selección de los algoritmos ([$\S$-@sec-algoritmos]). La bibliografía y los algoritmos encontrados se discuten en ([$\S$-@sec-discusion]). 
 Al final, se encuentran las referencias bibliográficas.
 
 La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto de investigación para entender cómo registrar datos, visualizar resultados, evaluar algoritmos y que, además, sea utilizado como material de consulta general de la metodología.
 
-:::
+# Introducción
+
+Los Objetivos de Desarrollo Sostenible...
+
+# Área de estudio
+
+El río Paraná...
 
 # Muestreos {#sec-muestreos}
 
