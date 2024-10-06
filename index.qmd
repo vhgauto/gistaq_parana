@@ -170,7 +170,7 @@ Las siguientes figuras muestran la evolución de los datos fisicoquímicos por s
 
 ::: {.panel-tabset}
 
-## *pH*
+## pH
 
 ```{r}
 lista_figura_evolucion_lab[[1]]
