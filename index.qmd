@@ -562,9 +562,24 @@ Se proponen múltiples modelos para la estimación de parámetros. Se siguen los
 
 # Contacto {.unnumbered}
 
+Integrantes del Proyecto de Investigación.
+
+Profesionales:
+
+* Enid Utgés
+* Daniela Tenev
+* Víctor Gauto
+
+Becarios:
+
+* Mauricio Acosta
+* Vera Geneyer
+* Víctor Gómez
+* Bruno Lossada Dusset
+
 Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://vhgauto.quarto.pub/gistaq-parana/).
 
-Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b>. [{{< fa envelope >}}](mailto:victor.gauto@outlook.com), [{{< fa brands github >}}](https://github.com/vhgauto).
+Sitio web desarrollado y mantenido por: <b>Víctor Gauto</b>. [{{< fa envelope >}}](mailto:victor.gauto@outlook.com), [{{< fa brands github >}}](https://github.com/vhgauto).
 
 Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [{{< fa envelope >}}](mailto:gistaq@ca.frre.utn.edu.ar), [{{< fa brands instagram >}}](https://www.instagram.com/gistaq.utn/), [{{< fa brands facebook >}}](https://www.facebook.com/GISTAQ/).
 

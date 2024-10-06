@@ -24,7 +24,7 @@ Profesionales:
 * Víctor Gauto
 
 Becarios:
-* Mauticio Acosta
+* Mauricio Acosta
 * Vera Geneyer
 * Víctor Gómez
 * Bruno Lossada Dusset
