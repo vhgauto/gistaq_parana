@@ -264,25 +264,25 @@ Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta
 ## `r fechas_gis_v[1]`
 
 ```{r}
-lista_figura_evolucion_gis[[1]]
+lista_firma_espectral[[1]]
 ```
 
 ## `r fechas_gis_v[2]`
 
 ```{r}
-lista_figura_evolucion_gis[[2]]
+lista_firma_espectral[[2]]
 ```
 
 ## `r fechas_gis_v[3]`
 
 ```{r}
-lista_figura_evolucion_gis[[3]]
+lista_firma_espectral[[3]]
 ```
 
 ## `r fechas_gis_v[4]`
 
 ```{r}
-lista_figura_evolucion_gis[[4]]
+lista_firma_espectral[[4]]
 ```
 
 :::
