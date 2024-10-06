@@ -1,3 +1,7 @@
+# saco freez y targets
+_freeze/
+_targets/
+
 # quito carpeta con extensiones de quarto
 _extensions
 
