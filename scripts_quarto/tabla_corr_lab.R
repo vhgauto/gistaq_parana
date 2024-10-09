@@ -23,8 +23,8 @@ d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
 # nombres de los parámetros y sus etiquetas
 param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
 param_unid_v <- c(
-  "pH", "Cond<br>(μS/cm)", "Sól. susp.<br>(ppm)", "Turb<br>(NTU)",
-  "SDD<br>(cm)")
+  "pH", "<i>cond</i><br>(μS/cm)", "<i>susp</i><br>(ppm)",
+  "<i>turb</i><br>(NTU)", "<i>secchi</i><br>(cm)")
 names(param_unid_v) <- param_v
 
 # correlación -------------------------------------------------------------

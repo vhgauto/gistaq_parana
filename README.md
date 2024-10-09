@@ -1,4 +1,4 @@
-# Proyecto Paraná
+# Proyecto Paraná 2023
 
 Este repositorio funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ](https://www.instagram.com/gistaq.utn/)) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
@@ -14,7 +14,20 @@ Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto 
 
 # Contacto
 
-Sitio web desarrollado y mantenido por: <b>Mgtr. Víctor Gauto</b>. [Email](mailto:victor.gauto@outlook.com), [GitHub](https://github.com/vhgauto)
+Sitio web mantenido por: Víctor Gauto. [Email](mailto:victor.gauto@outlook.com), [GitHub](https://github.com/vhgauto).
+
+Integrantes del Proyecto de Investigación.
+
+Profesionales:
+* Enid Utgés
+* Daniela Tenev
+* Víctor Gauto
+
+Becarios:
+* Mauricio Acosta
+* Vera Geneyer
+* Víctor Gómez
+* Bruno Lossada Dusset
 
 Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [Email](mailto:victor.gauto@outlook.com), [Instagram](https://www.instagram.com/gistaq.utn/), [Facebook](https://www.facebook.com/GISTAQ).
 

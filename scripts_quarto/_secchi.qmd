@@ -6,6 +6,7 @@ SDD (cm) es una propiedad que se relaciona con la transparencia del agua.
 
 Las ecuaciones principales propuestas son de tipo <b>logarítmica</b> o <b>potencial</b>, lo cual tiene sentido considerando que la relación entre la reflectancia y la turbidez no es lineal. No obstante, algunas ecuaciones lineales presentan un buen desempeño. En ambos tipos de ecuación se repite la presencia de un <b>cociente</b> entre bandas.
 
+
 ```{r tbl-sdd}
 #| column: screen-right
 
@@ -14,4 +15,4 @@ tabla_sdd
 
 ### Métodos de aprendizaje automático
 
-(...)
+(........)

@@ -1,9 +1,17 @@
+# saco freez y targets
+_freeze/
+_targets/
+
+# quito carpeta con extensiones de quarto
+_extensions
+
 # saco el .html del README
 README.html
 README_files/
 
 # sitio web
 index.html
+index_files/
 
 # datos
 datos/2023 Todos_los_parametros_Victor.xlsx

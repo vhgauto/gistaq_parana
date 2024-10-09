@@ -5,12 +5,13 @@
 
 # nombre de los parámetros para los popups del mapa
 label_param <- c(
-  ph = "<b>pH</b>",
-  cond = "<b>Cond</b>",
-  sol_sus = "<b>Sol. susp</b>",
-  turb = "<b>Turb</b>",
-  secchi = "<b>SDD</b>",
-  hazemeter = "<b>Hazem</b>")
+  ph = "<i>pH</i>",
+  cond = "<i>cond</i>",
+  sol_sus = "<i>susp</i>",
+  turb = "<i>turb</i>",
+  secchi = "<i>secchi</i>",
+  hazemeter = "<i>hazem</i>"
+)
 
 # unidades de los parámetros para los popups del mapa
 label_unidad <- c(

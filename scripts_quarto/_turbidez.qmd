@@ -12,7 +12,7 @@ tabla_turb
 
 Múltiples modelos (lineal, logaritmos, inversa, cuadrática, exponencial, potencial) y plataformas (Sentinel-2, Landsat-5 y Landsat-8) emplean el cociente de bandas B04/B03 @Shen2021.
 
-Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones lineales, cuadráticas y logarítmicas empleando B02, B03, B04, B01 (con menos apariciones) y cocientes entre estas @Ouma2020.
+Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones lineales, cuadráticas y logarítmicas empleando B02, B03, B04, B01 (con menos apariciones) y cocientes entre éstas @Ouma2020.
 
 ### Métodos de aprendizaje automático
 

@@ -13,7 +13,8 @@ d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
 
 param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
 param_unid_v <- c(
-  "pH", "Cond (μS/cm)", "Sól. susp. (ppm)", "Turb (NTU)", "SDD (cm)")
+  "pH", "<i>cond</i> (μS/cm)", "<i>susp</i> (ppm)", "<i>turb</i> (NTU)",
+  "<i>secchi</i> (cm)")
 names(param_unid_v) <- param_v
 
 # figuras -----------------------------------------------------------------
@@ -74,7 +75,7 @@ f_gg <- function(eje_x, eje_y) {
       panel.background = element_rect(fill = c6, color = NA),
       panel.grid.major = element_line(
         color = c4, linewidth = .1, linetype = "FF"),
-      axis.title = element_markdown(family = "ubuntu", size = 12),
+      axis.title = element_markdown(family = "Ubuntu", size = 12),
       axis.title.y = element_markdown(angle = 90, margin = margin(r = 3, l = 5)),
       axis.title.x = element_markdown(margin = margin(t = 6, b = 10)),
       axis.text = element_text(family = "jet", size = 8),

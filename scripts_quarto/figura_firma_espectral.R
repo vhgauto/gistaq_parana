@@ -66,7 +66,7 @@ f_firma_espectral <- function(x) {
     labels = fig_evo_gis_label
   ) +
     coord_cartesian(clip = "off") +
-    labs(y = NULL, x = NULL, color = NULL, fill = NULL) +
+    labs(y = "R<sub>rs</sub>", x = NULL, color = NULL, fill = NULL) +
     guides(
       fill = guide_colorbar(
         nrow = 1, 
@@ -83,6 +83,9 @@ f_firma_espectral <- function(x) {
         color = c4, linewidth = .06, linetype = 3),
       panel.spacing = unit(1.1, "line"),
       axis.title.x = element_text(family = "ubuntu", margin = margin(t = 3)),
+      axis.title.y = element_markdown(
+        family = "ubuntu", margin = margin(r = 10), size = 12
+      ),
       axis.text = element_text(family = "jet", color = c7),
       axis.text.y = element_text(hjust = 1, margin = margin(r = 2)),
       axis.text.x = element_text(margin = margin(t = 2)),
@@ -133,4 +136,4 @@ f_firma_espectral <- function(x) {
 
 fechas_gis_v <- rev(sort(unique(e$fecha)))
 
-lista_figura_evolucion_gis <- map(fechas_gis_v, f_firma_espectral)
+lista_firma_espectral <- map(fechas_gis_v, f_firma_espectral)
