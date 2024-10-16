@@ -25,4 +25,10 @@ tabla_sdd
 
 ### Métodos de aprendizaje automático
 
-(........)
+A modo de identificar y aprender los patrones subyacentes en las series de datos para asegurar la transferibilidad a través de espacio y tiempo de los distintos modelos obtenidos se destaca el uso de algoritmos como <b>Random Forest</b> y la aplicación de <b>Redes neuronales</b>.
+
+Los <b>modelos de regresión mediante random forest</b>, construidos utilizando las bandas previamente halladas por modelos algebraicos, demostraron explicar de manera consistente una mayor variabilidad que otros algoritmos, indicado por un mayor $pseudo-R^2$. Se señala además que los algoritmos con el mejor rendimiento tienden a ser aquellos que incluyed bandas del infrarrojo cercano.
+
+Una alternativa con un rendimiento superior a los modelos regresión resulta de aplicación de <b>redes neuronales convolucionales de una dimensión</b>. Estas aplican operaciones de convolución y extracción de características en la dimensión espectral de una imagen multiespectral, permitiendo encontrar patrones complejos y relaciones entre las características y el valor medido. 
+
+La información se procesa interpretando a los datos como unidimensionales, representando a los valores de reflectancia tomados en todas las longitudes de onda disponibles para una única profundidad medida. La hipótesis es que la relación entre la reflectividad de distintas bandas, capturadas utilizando convolución, codifica la claridad del cuerpo de agua medido como profundidad de disco de Secchi.
