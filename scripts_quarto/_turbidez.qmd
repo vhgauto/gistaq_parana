@@ -1,6 +1,16 @@
 ## Turbidez
 
-La turbidez (NTU) se relaciona con la presencia de sedimentos presentes en el agua.
+La turbidez se refiere a la opacidad o falta de claridad en un líquido provocada por la presencia de partículas suspendidas. Este fenómeno es un indicador clave en el monitoreo de la calidad del agua y su influencia en diferentes ecosistemas es significativa.
+
+La turbidez es un indicador de la calidad del agua, reflejando la presencia de partículas en suspensión. Su medición es crucial para garantizar la potabilidad del agua y la salud de los ecosistemas acuáticos. Este fenómeno puede ser resultado de diversas causas, como la erosión del suelo, la actividad biológica y la contaminación. La comprensión de la turbidez y su impacto es esencial para la gestión de recursos hídricos y la protección del medio ambiente.
+
+La turbidez viene determinada por la dispersión de la luz causada por la materia suspendida en el agua, se obtiene normalmente mediante un turbidímetro, que proporciona medidas en Nephelometric Turbidity Unit (NTU) y mide la dispersión de un rayo de luz en el agua a 90º de la luz incidente.
+
+Muchas propiedades, como la cloroﬁla-a (Chl-a), sólidos suspendidos totales (SST) y la materia orgánica disuelta coloreada (CDOM), se utilizan a menudo como indicadores del estado del agua. Estos constituyentes del agua a su vez son responsables de la turbidez.
+
+Existe una fuerte correlación entre turbidez y solidos suspendidos totales, por lo que se puede estimar SST a partir de la turbidez. Por lo general, es una relación directa, a mayor concentración de SST mayor turbidez.
+
+Existe una relación inversa entre la Turbidez y la profundidad del disco de Secchi (a valores bajos de secchi mayor turbidez), por lo que tambien se puede estimar turbidez a partir de medicones de disco de secchi.
 
 ### Métodos tradicionales
 
