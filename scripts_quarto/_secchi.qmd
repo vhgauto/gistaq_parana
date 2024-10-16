@@ -1,6 +1,16 @@
 ## Profundidad de disco de Secchi
 
-SDD (cm) es una propiedad que se relaciona con la transparencia del agua.
+La transparencia del agua es uno de los componentes clave para describir la calidad y productividad de aguas naturales. Antes de la disponibilidad de radiometros, el campo de luz bajo el agua era estimado sólo mediante la observación visual del disco de Secchi. 
+
+El disco de Secchi <b>es un instrumento de medición de la penetración luminosa.</b> Se utiliza midiendo la profundidad desde la superficie de masa de agua que el disco alcanza hasta perderse de vista.
+
+El disco de Secchi sigue siendo utilizado debido a la simplicidad y rango de aplicación universal del método, además de tratarse de un parámetro facilmente entendible por el público.
+
+La profundidad de disco de Secchi es influenciada por tres componentes ópticos principales: clorofila-a, materia orgánica disuelta coloreada, y sólidos suspendidos totales.
+
+Como se señaló en el apartado de turbidez, se observa una relación inversa entre esta y la profundidad de disco de Secchi.
+
+
 
 ### Métodos tradicionales
 
