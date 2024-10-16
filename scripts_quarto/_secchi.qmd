@@ -1,6 +1,16 @@
 ## Profundidad de disco de Secchi
 
-SDD (cm) es una propiedad que se relaciona con la transparencia del agua.
+La transparencia del agua es uno de los componentes clave para describir la calidad y productividad de aguas naturales. Antes de la disponibilidad de radiometros, el campo de luz bajo el agua era estimado sólo mediante la observación visual del disco de Secchi. 
+
+El disco de Secchi <b>es un instrumento de medición de la penetración luminosa.</b> Se utiliza midiendo la profundidad desde la superficie de masa de agua que el disco alcanza hasta perderse de vista.
+
+El disco de Secchi sigue siendo utilizado debido a la simplicidad y rango de aplicación universal del método, además de tratarse de un parámetro facilmente entendible por el público.
+
+La profundidad de disco de Secchi es influenciada por tres componentes ópticos principales: clorofila-a, materia orgánica disuelta coloreada, y sólidos suspendidos totales.
+
+Como se señaló en el apartado de turbidez, se observa una relación inversa entre esta y la profundidad de disco de Secchi.
+
+
 
 ### Métodos tradicionales
 
@@ -15,4 +25,10 @@ tabla_sdd
 
 ### Métodos de aprendizaje automático
 
-(........)
+A modo de identificar y aprender los patrones subyacentes en las series de datos para asegurar la transferibilidad a través de espacio y tiempo de los distintos modelos obtenidos se destaca el uso de algoritmos como <b>Random Forest</b> y la aplicación de <b>Redes neuronales</b>.
+
+Los <b>modelos de regresión mediante random forest</b>, construidos utilizando las bandas previamente halladas por modelos algebraicos, demostraron explicar de manera consistente una mayor variabilidad que otros algoritmos, indicado por un mayor $pseudo-R^2$. Se señala además que los algoritmos con el mejor rendimiento tienden a ser aquellos que incluyed bandas del infrarrojo cercano.
+
+Una alternativa con un rendimiento superior a los modelos regresión resulta de aplicación de <b>redes neuronales convolucionales de una dimensión</b>. Estas aplican operaciones de convolución y extracción de características en la dimensión espectral de una imagen multiespectral, permitiendo encontrar patrones complejos y relaciones entre las características y el valor medido. 
+
+La información se procesa interpretando a los datos como unidimensionales, representando a los valores de reflectancia tomados en todas las longitudes de onda disponibles para una única profundidad medida. La hipótesis es que la relación entre la reflectividad de distintas bandas, capturadas utilizando convolución, codifica la claridad del cuerpo de agua medido como profundidad de disco de Secchi.
