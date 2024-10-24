@@ -1,4 +1,4 @@
-## Profundidad de disco de Secchi
+## Profundidad de disco de Secchi<span style="font-weight:normal; font-size: 1rem">, por Mauricio Acosta [{{< fa brands github >}}](https://github.com/mauri491)</span> {toc-text="Profundidad de disco de Secchi"}
 
 La transparencia del agua es uno de los componentes clave para describir la calidad y productividad de aguas naturales. Antes de la disponibilidad de radiometros, el campo de luz bajo el agua era estimado sólo mediante la observación visual del disco de Secchi. 
 

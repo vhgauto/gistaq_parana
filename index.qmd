@@ -9,6 +9,7 @@ format:
     include-in-header: 
       - extras/favicon.html
       - extras/esquina.html
+      - extras/abrev_toc.html
     theme:
       - extras/mis_estilos.scss
     toc: true
@@ -47,29 +48,32 @@ date: last-modified
 source("scripts_quarto/soporte.R")
 ```
 
-<!-- cómo agregar referencias cruzadas -->
-<!-- https://quarto.org/docs/authoring/cross-references.html#references -->
+<!-- cómo agregar referencias cruzadas
+https://quarto.org/docs/authoring/cross-references.html#references -->
 
-<!-- link a los sitios de las funciones -->
-<!-- https://quarto.org/docs/authoring/cross-references.html#references -->
+<!-- link a los sitios de las funciones
+https://quarto.org/docs/authoring/cross-references.html#references -->
 
-<!-- los bloques de callout -->
-<!-- https://quarto.org/docs/authoring/callouts.html -->
+<!-- los bloques de callout
+https://quarto.org/docs/authoring/callouts.html -->
 
-<!-- layout de las columnas -->
-<!-- https://quarto.org/docs/authoring/article-layout.html#body-column -->
+<!-- layout de las columnas
+https://quarto.org/docs/authoring/article-layout.html#body-column -->
 
-<!-- referencias cruzadas de figuras/tablas/secciones -->
-<!-- https://quarto.org/docs/authoring/cross-references.html#references -->
+<!-- referencias cruzadas de figuras/tablas/secciones
+https://quarto.org/docs/authoring/cross-references.html#references -->
 
-<!-- formatos de tiempo -->
-<!-- ?strptime -->
+<!-- formatos de tiempo
+?strptime -->
 
-<!-- agregar favicon -->
-<!-- https://quarto.org/docs/output-formats/html-basics.html#includes -->
+<!-- agregar favicon
+https://quarto.org/docs/output-formats/html-basics.html#includes -->
 
-<!-- formato de citas -->
-<!-- https://quarto.org/docs/authoring/citations.html#sec-citations -->
+<!-- formato de citas
+https://quarto.org/docs/authoring/citations.html#sec-citations -->
+
+<!-- cambiar el texto en toc
+https://stackoverflow.com/a/76764108/13742303 -->
 
 Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
@@ -84,7 +88,7 @@ La finalidad de este desarrollo es reunir en un único sitio web las caracterís
 
 # Introducción
 
-La preservación del agua es fundamental para el desarrollo humano, y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible @agenda2030, es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital se pueden aplicar para desarrollar algoritmos que recuperen los parámetros fisicoquímicos del agua @Gholizadeh2016.Dichas técnicas, requieren datos espectrales, obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra de la Agencia Espacial Europea (ESA), que consta de dos plataformas (S2A, S2B). El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica @Gorroño2017 los productos generados por S2--MSI son confiables @Phiri2020 y se han utilizado para estimar el color del agua @wangWaterColorSentinel22023, la concentración de clorofila-a @bramichImprovedRededgeChlorophylldetection2021 y la materia orgánica disuelta coloreada (CDOM) @liuRemoteSensingCDOM2021.
+La preservación del agua es fundamental para el desarrollo humano, y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible @agenda2030, es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital se pueden aplicar para desarrollar algoritmos que recuperen los parámetros fisicoquímicos del agua @Gholizadeh2016. Dichas técnicas, requieren datos espectrales, obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra de la Agencia Espacial Europea (ESA), que consta de dos plataformas (S2A, S2B). El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica @Gorroño2017 los productos generados por S2--MSI son confiables @Phiri2020 y se han utilizado para estimar el color del agua @wangWaterColorSentinel22023, la concentración de clorofila-a @bramichImprovedRededgeChlorophylldetection2021 y la materia orgánica disuelta coloreada (CDOM) @liuRemoteSensingCDOM2021.
 
 Los ecosistemas de agua dulce son vulnerables a los cambios en la gestión de usos de la tierra, los impactos antrópicos @Lovino2018 y la variabilidad climática @Hestir2015. Estos ecosistemas están presentes en lagos, arroyos, ríos y humedales. La aplicación de técnicas de teledetección a las aguas superficiales continentales presenta un desafío debido a la extensión relativamente menor y la alta complejidad espacial. Tradicionalmente, las aguas continentales se estudian mediante el desarrollo de algoritmos que correlacionan las propiedades espectrales con los parámetros fisicoquímicos. Este proceso debe validarse mediante mediciones in situ @Liang2004.
 
@@ -322,7 +326,7 @@ Las características de las bandas espectrales de S2-MSI se encuentran en la tab
 Ecuaciones directas, usualmente polinomios, de la forma general:
 
 $$
-Propiedad = f(Bandas~espectrales)
+propiedad = f(bandas~espectrales)
 $$
 
 Estas expresiones permiten evaluar la contribución de las bandas espectrales, y sus combinaciones, al valor de la propiedad fisicoquímica estimada.
@@ -331,7 +335,7 @@ Son usuales las expresiones que incorporan índices espectrales, sensibles a alg
 
 * Aprendizaje automático
 
-Las técnicas de aprendizaje automático permiten encontrar relaciones entre entre las propiedades del agua y la reflectancia de superficie, a distintas longitudes de onda.
+Las técnicas de aprendizaje automático permiten encontrar relaciones entre las propiedades del agua y la reflectancia de superficie, a distintas longitudes de onda.
 
 {{< include scripts_quarto/_turbidez.qmd >}}
 

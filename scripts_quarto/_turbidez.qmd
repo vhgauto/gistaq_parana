@@ -1,4 +1,4 @@
-## Turbidez
+## Turbidez<span style="font-weight:normal; font-size: 1rem">, por Víctor Gómez [{{< fa brands github >}}](https://github.com/gomezvictoriq)</span> {toc-text="Turbidez"}
 
 La turbidez se refiere a la opacidad o falta de claridad en un líquido provocada por la presencia de partículas suspendidas. Este fenómeno es un indicador clave en el monitoreo de la calidad del agua y su influencia en diferentes ecosistemas es significativa.
 
