@@ -1,12 +1,12 @@
 ---
 title: "Proyecto Paraná 2023"
-format: 
+format:
   html:
     anchor-sections: true
     number-sections: true
     smooth-scroll: true
     embed-resources: true
-    include-in-header: 
+    include-in-header:
       - extras/favicon.html
       - extras/esquina.html
       - extras/abrev_toc.html
@@ -34,7 +34,7 @@ editor_options:
   chunk_output_type: console
 crossrefs-hover: false
 lang: es
-execute: 
+execute:
   echo: false
   warning: false
   eval: true
@@ -77,11 +77,11 @@ https://stackoverflow.com/a/76764108/13742303 -->
 
 Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
-El mencionado proyecto forma parte de las tareas de investigación del MS. Víctor Gauto, en el marco del <b>Doctorado en Geomática y Sistemas Espaciales</b>, dictado por el [Instituto Gulich](https://ig.conae.unc.edu.ar), en conjunto con la <b>Universidad Nacional de Córdoba</b> ([UNC](https://www.unc.edu.ar/)) y la <b>Comisión Nacional de Actividades Espaciales</b> ([CONAE](https://www.argentina.gob.ar/ciencia/conae)). 
+El mencionado proyecto forma parte de las tareas de investigación del MS. Víctor Gauto, en el marco del <b>Doctorado en Geomática y Sistemas Espaciales</b>, dictado por el [Instituto Gulich](https://ig.conae.unc.edu.ar), en conjunto con la <b>Universidad Nacional de Córdoba</b> ([UNC](https://www.unc.edu.ar/)) y la <b>Comisión Nacional de Actividades Espaciales</b> ([CONAE](https://www.argentina.gob.ar/ciencia/conae)).
 
 Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto de Investigaciones para el Desarrollo Territorial y del Hábitat Humano</b> ([IIDTHH](https://iidthh.conicet.gov.ar/)) de la <b>Universidad Nacional del Nordeste</b> ([UNNE](https://www.unne.edu.ar)).
 
-A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y los específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se explica la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y la selección de los algoritmos ([$\S$-@sec-algoritmos]). La bibliografía y los algoritmos encontrados se discuten en ([$\S$-@sec-discusion]). 
+A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y los específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se explica la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y la selección de los algoritmos ([$\S$-@sec-algoritmos]). La bibliografía y los algoritmos encontrados se discuten en ([$\S$-@sec-discusion]).
 Al final, se encuentran las referencias bibliográficas.
 
 La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto de investigación para entender cómo registrar datos, visualizar resultados, evaluar algoritmos y que, además, sea utilizado como material de consulta general de la metodología.
@@ -101,6 +101,12 @@ El Área Metropolitana del Gran Resistencia (AMGR), en el noreste de Argentina, 
 # Área de estudio
 
 El río Paraná...
+
+::: {.column-screen-right}
+![Imagen satelital de la región de interés.](figuras/roi.png){#fig-roi}
+:::
+
+La región de interés, donde se hacen las campañas de campo se muestra en la figura [-@fig-roi].
 
 # Muestreos {#sec-muestreos}
 
@@ -256,7 +262,7 @@ $$ {#eq-reflect}
 Por definición, $\rho_{r}$ adopta el rango entre $0-1$.
 
 Una definición más rigurosa @Chen2017 indica que la reflectancia de sensado remoto ($R_{rs}(\lambda)$) se expresa como el cociente entre la radiancia saliente del agua verticalmente ascendente ($L_{w}(\lambda)$) y la irradiancia verticalmente descendente sobre la superficie del agua ($E_d(0^{+})$), a una longitud de onda $\lambda$, según la ecuación [-@eq-r-rs].
- 
+
 $$
 R_{rs}(\lambda)=\frac{L_{w}(\lambda)}{E_{d}(0^{+})}
 $$ {#eq-r-rs}
@@ -602,7 +608,7 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [{{
 
 <br>
 
-![](extras/logo-iidthh.png){height=50}`r espacios`![](extras/logo-conicet.jpg){height=50}`r espacios`![](extras/logo-unne.png){height=50} 
+![](extras/logo-iidthh.png){height=50}`r espacios`![](extras/logo-conicet.jpg){height=50}`r espacios`![](extras/logo-unne.png){height=50}
 
 </center>
 
