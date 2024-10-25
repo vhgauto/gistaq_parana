@@ -5,6 +5,7 @@
 
 library(terra)
 library(tidyterra)
+library(sf)
 library(ggspatial)
 library(ggplot2)
 
@@ -38,14 +39,12 @@ f_asp <- function(x){
 	return(asp)
 }
 
-# ancho <- 30
+# datos ------------------------------------------------------------------
 
 # coordenadas del punto centrar del mapa
 centro <-data.frame(lon = -58.862000, lat = -27.468983)
 centro_sf <- vect(centro, geom = c("lon", "lat"), crs = "EPSG:4326") |>
   project("EPSG:5346")
-
-# figura -----------------------------------------------------------------
 
 # roi y relación de aspecto
 roi <- f_roi(1920*4, 1080*4)
@@ -62,6 +61,25 @@ esri <- maptiles::get_tiles(
 # créditos
 cred <- stringr::str_wrap(maptiles::get_credit("Esri.WorldImagery"), 70)
 
+# línea interprovincial
+# provincias
+arg_sf <- st_read("vector/pcias_continental.gpkg")
+
+# extensión
+bb_sf <- st_bbox(esri) |>
+	st_as_sfc()
+
+# recorte
+lin_interprov <- st_intersection(arg_sf, bb_sf)
+
+l <- st_difference(
+	st_cast(lin_interprov, "MULTILINESTRING"),
+	st_cast(bb_sf, "MULTILINESTRING")
+) |>
+	st_geometry()
+
+# figura -----------------------------------------------------------------
+
 # mapa
 g <- ggplot() +
 	geom_spatraster_rgb(
@@ -69,31 +87,46 @@ g <- ggplot() +
 		interpolate = FALSE,
 		maxcell = size(esri)
 	) +
-	annotation_north_arrow(
-		location = "tr",
-		height = unit(.6, "cm"),
-		width = unit(.4, "cm"),
-		pad_x = unit(.2, "cm"),
-		pad_y = unit(.2, "cm"),
-		style = north_arrow_orienteering(
-			line_col = "white", text_col = NA, line_width = .4
-		)
+	geom_sf(
+		data = l, linewidth = .2, linetype = 2, color = alpha("white", .5)
 	) +
 	annotate(
 		geom = "label", x = I(.99), y = I(.01), hjust = 1, vjust = 0, size = 1.3,
 		label = cred, family = "ubuntu", color = "black", fill = alpha("white", .7),
 		label.size = unit(0, "mm"), label.r = unit(0, "mm"), fontface = "plain"
 	) +
+	annotate(
+		geom = "label", x = I(.34), y = I(.01), hjust = .5, vjust = 0, size = 1.7,
+		label = "Chaco", family = "ubuntu", color = "black",
+		fill = alpha("white", .7), label.size = unit(0, "mm"),
+		label.r = unit(0, "mm"), fontface = "plain"
+	) +
+	annotate(
+		geom = "label", x = I(.4), y = I(.01), hjust = .5, vjust = 0, size = 1.7,
+		label = "Corrientes", family = "ubuntu", color = "black",
+		fill = alpha("white", .7), label.size = unit(0, "mm"),
+		label.r = unit(0, "mm"), fontface = "plain"
+	) +
+	annotation_north_arrow(
+		location = "tr",
+		height = unit(.5, "cm"),
+		width = unit(.3, "cm"),
+		pad_x = unit(.2, "cm"),
+		pad_y = unit(.2, "cm"),
+		style = north_arrow_orienteering(
+			line_col = "white", text_col = NA, line_width = .4
+		)
+	) +
 	annotation_scale(
 		location = "bl",
 		bar_cols = c("black", "white"),
 		line_width = .5,
 		line_col = "white",
-		height = unit(0.2, "cm"),
+		height = unit(0.1, "cm"),
 		pad_x = unit(0.2, "cm"),
 		pad_y = unit(0.2, "cm"),
 		text_pad = unit(0.15, "cm"),
-		text_cex = .7,
+		text_cex = .5,
 		text_col = "white",
 		text_family = "ubuntu",
 		width_hint = .17
