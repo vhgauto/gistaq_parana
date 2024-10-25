@@ -29,6 +29,9 @@ test.html
 # recortes .tif
 recorte/*
 
+# provincias de Argentina
+vector/pcias_continental.gpkg
+
 # plan de adquisición S2-MSI
 plan/*
 
