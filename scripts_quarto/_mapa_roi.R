@@ -6,6 +6,7 @@
 library(terra)
 library(tidyterra)
 library(sf)
+library(patchwork)
 library(ggspatial)
 library(ggplot2)
 
@@ -80,31 +81,67 @@ l <- st_difference(
 
 # figura -----------------------------------------------------------------
 
-# mapa
-g <- ggplot() +
+# mapa Argentina
+g_arg <- ggplot() +
+	geom_sf(
+		data = arg_sf, color = c7, fill = c3, linewidth = .05
+	) +
+	geom_sf(
+		data = centro_sf, fill = c2, shape = 21, color = c1,
+		size = 1, stroke = .5
+	) +
+	geom_sf(
+		data = centro_sf, color = c1, size = .04
+	) +
+	coord_sf(expand = TRUE) +
+	theme_void() +
+	theme(
+		plot.background = element_rect(
+			color = NA, fill = alpha(c9, .6)
+		)
+	)
+
+# relación de aspecto de Argentina
+asp_arg <- (7588953 - 3891909)/(5437928 - 3736422)
+
+# guardo
+ggsave(
+	plot = g_arg,
+	filename = "figuras/arg.png",
+	dpi = 300,
+	width = 200,
+	height = round(200*asp_arg),
+	units = "px"
+)
+
+# leo la figura
+png_arg <- png::readPNG("figuras/arg.png", native = TRUE)
+
+# mapa ROI
+g_roi <- ggplot() +
 	geom_spatraster_rgb(
 		data = esri,
 		interpolate = FALSE,
 		maxcell = size(esri)
 	) +
 	geom_sf(
-		data = l, linewidth = .2, linetype = 2, color = alpha("white", .5)
+		data = l, linewidth = .2, linetype = 2, color = alpha(c5, .5)
 	) +
 	annotate(
 		geom = "label", x = I(.99), y = I(.01), hjust = 1, vjust = 0, size = 1.3,
-		label = cred, family = "ubuntu", color = "black", fill = alpha("white", .7),
+		label = cred, family = "ubuntu", color = c7, fill = alpha(c5, .8),
 		label.size = unit(0, "mm"), label.r = unit(0, "mm"), fontface = "plain"
 	) +
 	annotate(
 		geom = "label", x = I(.34), y = I(.01), hjust = .5, vjust = 0, size = 1.7,
-		label = "Chaco", family = "ubuntu", color = "black",
-		fill = alpha("white", .7), label.size = unit(0, "mm"),
+		label = "Chaco", family = "ubuntu", color = c7,
+		fill = alpha(c5, .8), label.size = unit(0, "mm"),
 		label.r = unit(0, "mm"), fontface = "plain"
 	) +
 	annotate(
 		geom = "label", x = I(.4), y = I(.01), hjust = .5, vjust = 0, size = 1.7,
-		label = "Corrientes", family = "ubuntu", color = "black",
-		fill = alpha("white", .7), label.size = unit(0, "mm"),
+		label = "Corrientes", family = "ubuntu", color = c7,
+		fill = alpha(c5, .8), label.size = unit(0, "mm"),
 		label.r = unit(0, "mm"), fontface = "plain"
 	) +
 	annotation_north_arrow(
@@ -114,29 +151,39 @@ g <- ggplot() +
 		pad_x = unit(.2, "cm"),
 		pad_y = unit(.2, "cm"),
 		style = north_arrow_orienteering(
-			line_col = "white", text_col = NA, line_width = .4
+			line_col = c5, text_col = NA, line_width = .4
 		)
 	) +
 	annotation_scale(
 		location = "bl",
-		bar_cols = c("black", "white"),
+		bar_cols = c(c7, c5),
 		line_width = .5,
-		line_col = "white",
+		line_col = c5,
 		height = unit(0.1, "cm"),
 		pad_x = unit(0.2, "cm"),
 		pad_y = unit(0.2, "cm"),
 		text_pad = unit(0.15, "cm"),
 		text_cex = .5,
-		text_col = "white",
+		text_col = c5,
 		text_family = "ubuntu",
 		width_hint = .17
 	) +
 	coord_sf(expand = FALSE) +
 	theme_void()
 
+# composición del mapa
+g_mapa <- g_roi + inset_element(
+	p = png_arg,
+	left = .01,
+	bottom = .6,
+	right = .11,
+	top = .999
+) &
+theme_void()
+
 # guardo
 ggsave(
-	plot = g,
+	plot = g_mapa,
 	filename = "figuras/roi.png",
 	dpi = 300,
 	width = 1920,
