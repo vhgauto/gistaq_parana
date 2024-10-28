@@ -13,6 +13,10 @@ README_files/
 index.html
 index_files/
 
+# quito archivos del informe
+figuras/informe*
+scripts_quarto/_informe_anual.R
+
 # datos
 datos/2023 Todos_los_parametros_Victor.xlsx
 datos/2024 Todos_los_parametros_Victor1.xlsx
