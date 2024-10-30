@@ -10,6 +10,7 @@ format:
       - extras/favicon.html
       - extras/esquina.html
       - extras/abrev_toc.html
+      - extras/boton_arriba.html
     theme:
       - extras/mis_estilos.scss
     toc: true
@@ -88,17 +89,11 @@ La finalidad de este desarrollo es reunir en un único sitio web las caracterís
 
 # Introducción
 
-La preservación del agua es fundamental para el desarrollo humano y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible @agenda2030, es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital, aplicadas a la calidad de los cuerpos de agua, han ido incrementándose en los últimos años verificando la viabilidad de los sensores satelitales @Bonansea2019. Dichas técnicas, que se pueden utilizar para desarrollar algoritmos que permiten estimar distintos parámetros fisicoquímicos del agua @Gholizadeh2016; @Ferral2018a, requieren datos espectrales obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra, de la Agencia Espacial Europea (ESA), que consta de dos plataformas (S2A, S2B). El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica @Gorroño2017, los productos generados por S2--MSI son confiables @Phiri2020 y se han utilizado para estimar el color del agua @wangWaterColorSentinel22023, la concentración de clorofila-a @bramichImprovedRededgeChlorophylldetection2021 y la materia orgánica disuelta coloreada (CDOM) @liuRemoteSensingCDOM2021.
-
-
+La preservación del agua es fundamental para el desarrollo humano y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible @agenda2030, es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital, aplicadas a la calidad de los cuerpos de agua, han ido incrementándose en los últimos años verificando la viabilidad de los sensores satelitales @Bonansea2019. Dichas técnicas, que se pueden utilizar para desarrollar algoritmos que permiten estimar distintos parámetros fisicoquímicos del agua [@Gholizadeh2016; @Ferral2018a], requieren datos espectrales obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra, de la Agencia Espacial Europea (ESA), que consta de dos plataformas (S2A, S2B). El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica @Gorroño2017, los productos generados por S2--MSI son confiables @Phiri2020 y se han utilizado para estimar el color del agua @wangWaterColorSentinel22023, la concentración de clorofila-a @bramichImprovedRededgeChlorophylldetection2021 y la materia orgánica disuelta coloreada (CDOM) @liuRemoteSensingCDOM2021.
 
 Los ecosistemas de agua dulce son vulnerables a los cambios en la gestión de usos de la tierra, los impactos antrópicos @Lovino2018 y la variabilidad climática @Hestir2015. Estos ecosistemas están presentes en lagos, arroyos, ríos y humedales. La aplicación de técnicas de teledetección a las aguas superficiales continentales presenta un desafío debido a la extensión relativamente menor y la alta complejidad espacial. Tradicionalmente, las aguas continentales se estudian mediante el desarrollo de algoritmos que correlacionan las propiedades espectrales con los parámetros fisicoquímicos. Este proceso debe validarse a través de mediciones in situ @Liang2004.
 
-
-
 Los algoritmos de teledetección, para recuperar las propiedades de las aguas superficiales, incluyen clorofila-a, sólidos suspendidos totales, turbidez y otras @Sagan2020a. Los modelos de regresión empírica se basan en ecuaciones lineales o exponenciales de reflectancia o radiancia detectadas remotamente @Chen2017. El desarrollo de un algoritmo empírico requiere un análisis estadístico entre la medición de los componentes o propiedades del agua y los datos radiométricos @ogashawaraRemoteSensingInland2017d. Para analizar dichas propiedades, esos algoritmos requieren campañas de campo y, debido a la presencia de componentes múltiples y complejos en las aguas, el desarrollo de modelos globales no es factible; por ende, un enfoque adecuado consistiría en desarrollar modelos regionales validados @yangReviewRemoteSensing2022.
-
-
 
 El Área Metropolitana del Gran Resistencia (AMGR), en el noreste de Argentina, es la principal área urbana de la provincia del Chaco e incluye cuatro ciudades y 423.000 habitantes, según el último censo de 2022 @indec2022. Está emplazada en el valle de inundación del río Paraná y se desarrolla principalmente en el interfluvio del río Negro y el riacho Arazá. Las lluvias o sequías continuas modifican el patrón de los ríos y arroyos, generando lagunasgit de meandros @PoideNeiff2003. Aunque el terreno del AMGR es plano, el ecosistema corresponde a un humedal y, como consecuencia, en el área urbana están insertos múltiples cursos y cuerpos de agua. En concordancia con esto, la estimación de la calidad del agua es sumamente relevante para evaluar el impacto humano en el ambiente, planificar medidas de corrección y evaluar sus efectos.
 
@@ -108,8 +103,7 @@ El río Paraná es el segundo río más largo de América del Sur, con 4000 km @
 
 El Paraná tiene un gran impacto en la sociedad del AMGR, específicamente sobre la industria pesquera, el turismo, las actividades recreativas de la población local y las rutas de transporte @Neiff2005. Es la fuente principal de agua de la planta potabilizadora de la provincia. Dicha planta posee dos tomas de agua cruda ubicada en distintos sectores del mencionado río. Una de ellas, la más antigua, está construida sobre un brazo del río Paraná, el río Barranqueras; éste, a su vez, está conectado con dos ríos principales del AMGR que son los ríos Negro y Tragadero. A fines del 2023, entró en operaciones la nueva toma situada sobre el canal principal de navegación del río Paraná, en una zona cercana al puente Gral. Belgrano, que une las provincias de Chaco y Corrientes.
 
-Dada la gran variabilidad en la cantidad de sedimentos presentes en el agua del Paraná, la planta potabilizadora necesita adaptar frecuentemente la operación de filtración; ésta es una etapa crítica del proceso, debido a la necesidad de dosificar agentes floculantes para asegurar la remoción de los sólidos.  La aplicación de las técnicas de teledetección, en la recuperación de los datos espectrales del agua, tiene como objetivo crear un modelo que los estime de forma remota; asimismo, esas técnicas le brindarían a la empresa herramientas valiosas para la toma de decisiones.  
-
+Dada la gran variabilidad en la cantidad de sedimentos presentes en el agua del Paraná, la planta potabilizadora necesita adaptar frecuentemente la operación de filtración; ésta es una etapa crítica del proceso, debido a la necesidad de dosificar agentes floculantes para asegurar la remoción de los sólidos.  La aplicación de las técnicas de teledetección, en la recuperación de los datos espectrales del agua, tiene como objetivo crear un modelo que los estime de forma remota; asimismo, esas técnicas le brindarían a la empresa herramientas valiosas para la toma de decisiones.
 
 ::: {.column-screen-right}
 ![Imagen satelital de la región de interés.](figuras/roi.png){#fig-roi}
@@ -623,65 +617,3 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [{{
 
 <br>
 <br>
-
-<!-- botón para ir arriba -->
-
-```{=html}
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-#miBoton {
-  display: none;
-  position: fixed;
-  bottom: 13%;
-  right: 3%;
-  z-index: 9999; /* aseguro que el botón esté encima de la tabla */
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: `r c9`;
-  cursor: pointer;
-  font-size:4rem;
-  box-sizing: border-box;
-}
-
-/* estilo del botón al pasar el mouse */
-#miBoton:hover {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: `r c4`;
-}
-</style>
-</head>
-<body>
-
-<button onclick="topFunction()" id="miBoton">`r icono_flecha`</button>
-
-<script>
-
-// botón
-var mybutton = document.getElementById("miBoton");
-
-// cuando bajo 500px aparece el botón
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-
-// cuando hago click en el botón se mueve hacia el tope del sitio
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-</script>
-
-</body>
-</html>
-```

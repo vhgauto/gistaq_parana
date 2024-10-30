@@ -1,1 +1,0 @@
-#Esta es otra demostración para el power
