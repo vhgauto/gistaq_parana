@@ -87,11 +87,10 @@ g_arg <- ggplot() +
 		data = arg_sf, color = c7, fill = c3, linewidth = .05
 	) +
 	geom_sf(
-		data = centro_sf, fill = c2, shape = 21, color = c1,
-		size = 1, stroke = .5
+		data = centro_sf, fill = c5, shape = 21, color = c7, size = 1, stroke = .5
 	) +
 	geom_sf(
-		data = centro_sf, color = c1, size = .04
+		data = centro_sf, fill = c5, shape = 21, color = c7, size = .3, stroke = .3
 	) +
 	coord_sf(expand = TRUE) +
 	theme_void() +
