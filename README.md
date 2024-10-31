@@ -25,7 +25,7 @@ Sitio web mantenido por Víctor Gauto [<img src="https://cdn-icons-png.flaticon.
 * Víctor Gómez  [<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="15" height="15">](https://github.com/gomezvictoriq).
 * Bruno Lossada Dusset [<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="15" height="15">](https://github.com/BrunoLossada).
 
-Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>) [<img src="https://cdn-icons-png.flaticon.com/512/888/888853.png" alt="Correo" width="25" height="25">](mailto:victor.gauto@outlook.com) [<img src="https://images.vexels.com/media/users/3/137198/isolated/preview/07f0d7b69ef071571e4ada2f4d6a053a-icono-de-instagram-colorido.png" alt="Instagram" width="25" height="25">](https://www.instagram.com/gistaq.utn/)[<img src="https://static.vecteezy.com/system/resources/previews/018/930/698/non_2x/facebook-logo-facebook-icon-transparent-free-png.png" alt="Facebook" width="25" height="25">](https://www.facebook.com/GISTAQ).
+Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>) [<img src="https://cdn-icons-png.flaticon.com/512/888/888853.png" alt="Correo" width="25" height="25">](mailto:gistaq@ca.frre.utn.edu.ar) [<img src="https://images.vexels.com/media/users/3/137198/isolated/preview/07f0d7b69ef071571e4ada2f4d6a053a-icono-de-instagram-colorido.png" alt="Instagram" width="25" height="25">](https://www.instagram.com/gistaq.utn/)[<img src="https://static.vecteezy.com/system/resources/previews/018/930/698/non_2x/facebook-logo-facebook-icon-transparent-free-png.png" alt="Facebook" width="25" height="25">](https://www.facebook.com/GISTAQ).
 
 <p align="center">
 
