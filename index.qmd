@@ -166,7 +166,7 @@ Las firmas espectrales se encuentran en la siguiente sección ([$\S$@sec-firmas-
 Se indican los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
 
 ```{r mapa_interactivo}
-#| column: screen-inset-right
+#| column: screen-right
 #| warning: false
 #| fig-align: left
 #| fig-asp: 1
