@@ -82,12 +82,11 @@ El mencionado proyecto forma parte de las tareas de investigación del MS. Víct
 
 Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto de Investigaciones para el Desarrollo Territorial y del Hábitat Humano</b> ([IIDTHH](https://iidthh.conicet.gov.ar/)) de la <b>Universidad Nacional del Nordeste</b> ([UNNE](https://www.unne.edu.ar)).
 
-A continuación se describen el objetivo general ([$\S$-@sec-objetivos]) y los específicos del presente proyecto. Se detallan las tareas que se ejecutan para la obtención, extracción y almacenamiento de datos espectrales y fisicoquímicos ([$\S$-@sec-ejecucion]). Se explica la metodología de los muestreos ([$\S$-@sec-muestreos]). Los resultados ([$\S$-@sec-resultados]) incluyen las relaciones entre parámetros y la evolución de éstos. Se visualizan las firmas espectrales por sitio y por muestreo ([$\S$-@sec-firmas-espectrales]). Se describen el desarrollo y la selección de los algoritmos ([$\S$-@sec-algoritmos]). La bibliografía y los algoritmos encontrados se discuten en ([$\S$-@sec-discusion]).
-Al final, se encuentran las referencias bibliográficas.
+El presente sitio web contiene una introducción ([-@sec-introduccion]) al proyecto, seguido de la descripción del área de estudio ([-@sec-roi]). Hay un calendario de muestreos ([-@sec-muestreos]) y los resultados ([-@sec-resultados]) se muestran por sitio y característica fisicoquímica, seguido de las firmas espectrales ([-@sec-firmas-espectrales]). En la discusión ([-@sec-discusion]) se analizan trabajos referentes a turbidez, sólidos suspendidos y profundidad de disco de Secchi. Se indican el objetivo ([-@sec-objetivos]) general y específicos junto con las tareas informáticas de procesamiento ([-@sec-ejecucion]) de datos. Se proponen y analizan múltiples algoritmos ([-@sec-algoritmos]). Finalmente, la informacón de contacto ([-@sec-contacto]).
 
 La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto de investigación para entender cómo registrar datos, visualizar resultados, evaluar algoritmos y que, además, sea utilizado como material de consulta general de la metodología.
 
-# Introducción
+# Introducción {#sec-introduccion}
 
 La preservación del agua es fundamental para el desarrollo humano y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible @agenda2030, es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital, aplicadas a la calidad de los cuerpos de agua, han ido incrementándose en los últimos años verificando la viabilidad de los sensores satelitales @Bonansea2019. Dichas técnicas, que se pueden utilizar para desarrollar algoritmos que permiten estimar distintos parámetros fisicoquímicos del agua [@Gholizadeh2016; @Ferral2018a], requieren datos espectrales obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra, de la Agencia Espacial Europea (ESA), que consta de dos plataformas (S2A, S2B). El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica @Gorroño2017, los productos generados por S2--MSI son confiables @Phiri2020 y se han utilizado para estimar el color del agua @wangWaterColorSentinel22023, la concentración de clorofila-a @bramichImprovedRededgeChlorophylldetection2021 y la materia orgánica disuelta coloreada (CDOM) @liuRemoteSensingCDOM2021.
 
@@ -97,7 +96,7 @@ Los algoritmos de teledetección, para recuperar las propiedades de las aguas su
 
 El Área Metropolitana del Gran Resistencia (AMGR), en el noreste de Argentina, es la principal área urbana de la provincia del Chaco e incluye cuatro ciudades y 423.000 habitantes, según el último censo de 2022 @indec2022. Está emplazada en el valle de inundación del río Paraná y se desarrolla principalmente en el interfluvio del río Negro y el riacho Arazá. Las lluvias o sequías continuas modifican el patrón de los ríos y arroyos, generando lagunasgit de meandros @PoideNeiff2003. Aunque el terreno del AMGR es plano, el ecosistema corresponde a un humedal y, como consecuencia, en el área urbana están insertos múltiples cursos y cuerpos de agua. En concordancia con esto, la estimación de la calidad del agua es sumamente relevante para evaluar el impacto humano en el ambiente, planificar medidas de corrección y evaluar sus efectos.
 
-# Área de estudio
+# Área de estudio {#sec-roi}
 
 El río Paraná es el segundo río más largo de América del Sur, con 4000 km @Bonetto1986. En Argentina, es el límite natural de múltiples provincias, hasta llegar al Río de la Plata, para terminar en el Océano Atlántico. El río Paraguay, con 2550 km @Bonetto1986, es un afluente del río Paraná, en su cuenca media, en el Noreste argentino. La alta presencia de sólidos en el río Paraguay que se descargan en el río Paraná, cambia las características de la composición de este último, creando dos regiones distintas de alta (oeste) y baja (este) concentración de sedimentos @Lane2008.
 
@@ -352,7 +351,7 @@ Las técnicas de aprendizaje automático permiten encontrar relaciones entre las
 
 {{< include scripts_quarto/_sol_sus.qmd >}}
 
-# Objetivo {#sec-objetivos}
+# Objetivos {#sec-objetivos}
 
 El objetivo principal del proyecto de investigación es:
 
@@ -577,7 +576,7 @@ El desarrollo de los algoritmos para la estimación de indicadores de calidad de
 
 Se proponen múltiples modelos para la estimación de parámetros. Se siguen los lineamientos de [`tidymodels`](https://www.tmwr.org/) para el entrenamiento y validación de los modelos.
 
-# Contacto {.unnumbered}
+# Contacto {#sec-contacto}
 
 Integrantes del Proyecto de Investigación.
 
