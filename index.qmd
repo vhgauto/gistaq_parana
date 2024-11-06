@@ -34,6 +34,8 @@ format:
 editor_options:
   chunk_output_type: console
 crossrefs-hover: false
+crossref:
+  chapters: true
 lang: es
 execute:
   echo: false
