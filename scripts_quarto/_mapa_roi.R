@@ -118,29 +118,34 @@ png_arg <- png::readPNG("figuras/arg.png", native = TRUE)
 
 # mapa ROI
 g_roi <- ggplot() +
+	# mapa RGB
 	geom_spatraster_rgb(
 		data = esri,
 		interpolate = FALSE,
 		maxcell = size(esri)
 	) +
+	# límite interprovincial
 	geom_sf(
 		data = l, linewidth = .2, linetype = 2, color = alpha(c5, .5)
 	) +
+	# crédito del mapa base
 	annotate(
 		geom = "label", x = I(.99), y = I(.01), hjust = 1, vjust = 0, size = 1.3,
-		label = cred, family = "ubuntu", color = c7, fill = alpha(c5, .8),
+		label = cred, family = "ubuntu", color = c5, fill = c4,
 		label.size = unit(0, "mm"), label.r = unit(0, "mm"), fontface = "plain"
 	) +
+	# Chaco
 	annotate(
-		geom = "label", x = I(.34), y = I(.01), hjust = .5, vjust = 0, size = 1.7,
-		label = "Chaco", family = "ubuntu", color = c7,
-		fill = alpha(c5, .8), label.size = unit(0, "mm"),
+		geom = "label", x = I(.34), y = I(.01), hjust = .5, vjust = 0, size = 2,
+		label = "Chaco", family = "ubuntu", color = c5,
+		fill = c4, label.size = unit(0, "mm"),
 		label.r = unit(0, "mm"), fontface = "plain"
 	) +
+	# Corrientes
 	annotate(
-		geom = "label", x = I(.4), y = I(.01), hjust = .5, vjust = 0, size = 1.7,
-		label = "Corrientes", family = "ubuntu", color = c7,
-		fill = alpha(c5, .8), label.size = unit(0, "mm"),
+		geom = "label", x = I(.4), y = I(.01), hjust = .5, vjust = 0, size = 2,
+		label = "Corrientes", family = "ubuntu", color = c5,
+		fill = c4, label.size = unit(0, "mm"),
 		label.r = unit(0, "mm"), fontface = "plain"
 	) +
 	annotation_north_arrow(
