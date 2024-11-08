@@ -235,7 +235,8 @@ tabla_corr_lab
 
 Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
 
-::: {.panel-tabset}
+
+:::: {.panel-tabset}
 
 ## <i>turb</i> vs <i>cond</i>
 
@@ -245,19 +246,31 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 ![](figuras/cond_vs_sol_sus.png)
 
+::: {.column-margin}
+
+:::
+
 ## <i>secchi</i> vs <i>susp</i>
 
 ![](figuras/sol_sus_vs_secchi.png)
+
+::: {.column-margin}
+<br><br>Figura en escala doble logarítmica.
+:::
 
 ## <i>secchi</i> vs <i>turb</i>
 
 ![](figuras/turb_vs_secchi.png)
 
+::: {.column-margin}
+<br><br>Figura en escala doble logarítmica.
+:::
+
 ## <i>susp</i> vs <i>turb</i>
 
 ![](figuras/turb_vs_sol_sus.png)
 
-:::
+::::
 
 # Firmas espectrales {#sec-firmas-espectrales}
 
