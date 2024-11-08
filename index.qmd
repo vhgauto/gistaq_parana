@@ -107,7 +107,7 @@ El Paraná tiene un gran impacto en la sociedad del AMGR, específicamente sobre
 Dada la gran variabilidad en la cantidad de sedimentos presentes en el agua del Paraná, la planta potabilizadora necesita adaptar frecuentemente la operación de filtración; ésta es una etapa crítica del proceso, debido a la necesidad de dosificar agentes floculantes para asegurar la remoción de los sólidos.  La aplicación de las técnicas de teledetección, en la recuperación de los datos espectrales del agua, tiene como objetivo crear un modelo que los estime de forma remota; asimismo, esas técnicas le brindarían a la empresa herramientas valiosas para la toma de decisiones.
 
 ::: {.column-screen-right}
-![Imagen satelital de la región de interés.](figuras/roi.png){#fig-roi}
+![Imagen satelital de la región de interés. Mapa superior: ubicación relativa a Argentina.](figuras/roi.png){#fig-roi}
 :::
 
 La región de interés, donde se hacen las campañas de campo se muestra en la figura [-@fig-roi].
