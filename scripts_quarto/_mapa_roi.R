@@ -6,6 +6,7 @@
 library(terra)
 library(tidyterra)
 library(sf)
+library(ggtext)
 library(patchwork)
 library(ggspatial)
 library(ggplot2)
@@ -60,7 +61,8 @@ esri <- maptiles::get_tiles(
 )
 
 # créditos
-cred <- stringr::str_wrap(maptiles::get_credit("Esri.WorldImagery"), 70)
+cred <- stringr::str_wrap(maptiles::get_credit("Esri.WorldImagery"), 70) |>
+  str_replace_all("\\n", "<br>")
 
 # línea interprovincial
 # provincias
@@ -130,23 +132,22 @@ g_roi <- ggplot() +
 	) +
 	# crédito del mapa base
 	annotate(
-		geom = "label", x = I(.99), y = I(.01), hjust = 1, vjust = 0, size = 1.3,
+		geom = "richtext", x = I(1), y = I(0), hjust = 1, vjust = 0, size = 1.6,
 		label = cred, family = "ubuntu", color = c5, fill = c4,
-		label.size = unit(0, "mm"), label.r = unit(0, "mm"), fontface = "plain"
+		label.color = NA, label.r = unit(0, "mm"),
+    label.padding = unit(.1, "lines")
 	) +
 	# Chaco
 	annotate(
-		geom = "label", x = I(.34), y = I(.01), hjust = .5, vjust = 0, size = 2,
+		geom = "richtext", x = I(.32), y = I(.01), hjust = .5, vjust = 0, size = 2,
 		label = "Chaco", family = "ubuntu", color = c5,
-		fill = c4, label.size = unit(0, "mm"),
-		label.r = unit(0, "mm"), fontface = "plain"
+		fill = c4, label.color = NA, label.r = unit(0, "mm")
 	) +
 	# Corrientes
 	annotate(
-		geom = "label", x = I(.4), y = I(.01), hjust = .5, vjust = 0, size = 2,
+		geom = "richtext", x = I(.42), y = I(.01), hjust = .5, vjust = 0, size = 2,
 		label = "Corrientes", family = "ubuntu", color = c5,
-		fill = c4, label.size = unit(0, "mm"),
-		label.r = unit(0, "mm"), fontface = "plain"
+		fill = c4, label.color = NA, label.r = unit(0, "mm")
 	) +
 	annotation_north_arrow(
 		location = "tr",
@@ -194,6 +195,3 @@ ggsave(
 	height = 1080,
 	units = "px"
 )
-
-# abro
-browseURL(paste0(getwd(), "/figuras/roi.png"))
