@@ -112,6 +112,12 @@ caption_adq <- glue(
   "muestreos."
 )
 
+# caption boxplot
+caption_boxplot <- glue(
+  "<br><br><br>{simbolo_sig} = p-valor < 0,05<br><br>",
+  "Existe diferencia significativa entre los grupos."
+)
+
 # scripts -----------------------------------------------------------------
 # corro todos los scripts,
 # excepto este mismo archivo (soporte.R), todos los que comienzan con '_'
