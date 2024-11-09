@@ -272,6 +272,42 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 ::::
 
+Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se  divide el conjunto de datos en <b>lado Chaco</b> o <b>lado Corrientes</b>, según si la longitud geográfica de las observaciones son menores o mayores a la longitud media, respectivamente.
+
+:::: {.panel-tabset}
+
+## pH
+
+![](figuras/lado_ph.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>cond</i>
+
+![](figuras/lado_cond.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>susp</i>
+
+![](figuras/lado_sol_sus.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>turb</i>
+
+![](figuras/lado_turb.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>secchi</i>
+
+![](figuras/lado_secchi.png)
+
+[`r caption_boxplot`]{.aside}
+
+::::
+
 # Firmas espectrales {#sec-firmas-espectrales}
 
 La reflectancia de superficie ($\rho_{r}$) @chuvieco1996 se define como el cociente entre la radiación reflejada por la superficie de interés ($\Phi_{r}$) y la radiación solar incidente ($\Phi_{i}$), a una longitud de onda específica ($\lambda$), de acuerdo a la ecuación [-@eq-reflect].
