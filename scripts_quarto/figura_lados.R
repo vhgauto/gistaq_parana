@@ -1,21 +1,59 @@
-#
-# paquetes ---------------------------------------------------------------
 
+# parámetros y unidades
 param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
 param_unid_v <- c(
   "pH", "<i>cond</i> (μS/cm)", "<i>susp</i> (ppm)", "<i>turb</i> (NTU)",
   "<i>secchi</i> (cm)")
 names(param_unid_v) <- param_v
 
+# leo base de datos
 d <- read_csv("datos/base_de_datos_lab.csv") |>
-  filter(param != "hazemeter") #|>
-  # mutate(
-  #   param_label = param_unid_v[param]
-  # )
+  filter(param != "hazemeter")
 
+# distingo dos grupos: lado Chaco y lado Corrientes 
+# según la mediana de la longitud geográfica
 m <- median(d$longitud)
 
+# función que calcula si los grupos son diferentes significativamente
+# usando el test de Wilcox
+f_lado_signif <- function(x) {
+  d_chaco <- d |> 
+    mutate(
+      lado = if_else(
+        longitud >= m,
+        "Corrientes",
+        "Chaco"
+      )
+    ) |> 
+    filter(param == x & lado == "Chaco") |> 
+    pull(valor)
+  
+  d_corrientes <- d |> 
+    mutate(
+      lado = if_else(
+        longitud >= m,
+        "Corrientes",
+        "Chaco"
+      )
+    ) |> 
+    filter(param == x & lado == "Corrientes") |> 
+    pull(valor)
+  
+  
+  signif <- wilcox.test(d_corrientes, d_chaco, paired = FALSE, exact = TRUE) |> 
+    broom::tidy() |> 
+    select(p.value) |> 
+    mutate(
+      es_significativo = p.value < .05
+    ) |> 
+    mutate(
+      param = x
+    )
+  
+  return(signif)
+}
 
+# función que genera los boxplot y almacena
 f_figura_lado <- function(x) {
 
   e <- d |>
@@ -27,9 +65,21 @@ f_figura_lado <- function(x) {
     )
   ) |>
   filter(param == x)
+  
+  if (f_lado_signif(x)$es_significativo) {
+    signif_label <- simbolo_sig
+  } else {
+    signif_label <- ""
+  }
 
   g <- ggplot(e, aes(lado, valor)) +
-    geom_boxplot(color = c1, outlier.color = c2, fill = c3, outlier.alpha = .8) +
+    geom_boxplot(
+      color = c1, outlier.color = c2, fill = c3, outlier.alpha = .8
+    ) +
+    annotate(
+      geom = "richtext", x = Inf, y = Inf, hjust = 1, vjust = 1, fill = c6,
+      label = signif_label, label.color = NA, size = 5
+    ) +
     facet_wrap(vars(param), nrow = 1, scales = "free") +
     labs(x = NULL, y = param_unid_v[x]) +
     scale_y_continuous(
@@ -63,17 +113,5 @@ f_figura_lado <- function(x) {
     )
 }
 
+# genero boxplot por cada parámetro
 map(param_v, f_figura_lado)
-
-# browseURL(paste0(getwd(), "/figuras/x.png"))
-
-# f_guardar <- function(prop1, prop2) {
-#   g <- f_gg(prop1, prop2)
-#   ggsave(
-#     plot = g,
-#     filename = glue("figuras/{prop1}_vs_{prop2}.png"),
-#     width = 13,
-#     height = 13,
-#     units = "cm"
-#   )
-# }
