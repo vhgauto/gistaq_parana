@@ -1,7 +1,7 @@
 ## Sólidos suspendidos totales<span style="font-weight:normal; font-size: 1rem">, por Vera Geneyer [{{< fa brands github >}}](https://github.com/VeraGeneyer)</span> {toc-text="Sólidos suspendidos totales"}
 
 Los sólidos suspendidos totales (TSM): es la cantidad de materia en suspensión en el agua, que incluye placton, minerales, arena, y microorganismos. Se determinan como el residuo no filtrable de una muestra de agua. Niveles altos (TSM) pueden reducir la transparencia del agua, limitar la luz y y transportar sustancias tóxicas, afectando la vida acuatica y la calidad del agua.
-Este parámetro, medido mediante sensores remotos, nos da información sobre el estado físico del cuerpo de agua y estan relacionados con factores como la humedad, temperatura y entre otros, que es vital para detectar riesgos al ecosistema y cumplir con las normas ambientales. 
+Este parámetro, medido mediante sensores remotos, nos da información sobre el estado físico del cuerpo de agua y estan relacionados con factores como la humedad, temperatura y entre otros, que es vital para detectar riesgos al ecosistema y cumplir con las normas ambientales.
 
 ### Métodos tradicionales
 
@@ -16,18 +16,23 @@ De acuerdo a un estudio que analizó 48 cuerpos de agua, la estimación de TSM s
 ### Métodos de aprendizaje automático
 
 El ** aprendizaje automático (ML) **  es una rama de la inteligencia artificial cuyo objetivo es desarrollar algoritmos capaces de resolver problemas mediante el análisis de datos y la creación de funciones que describen el comportamiento de fenómenos monitoreados. (@Carpio2021) Los modelos de aprendizaje automático más utilizados y mencionados por los investigadores para predecir la concentración de SST son:
-** •	Bosque Aleatorio (RF) y Refuerzo Adaptativo (AdB) **  , modelos que se destacan por su robustez ante datos complejos y ruidosos. Estos algoritmos construyen múltiples árboles de decisión que analizan las relaciones entre características como el uso del suelo o el volumen de escorrentía y los niveles de SST. @Moeini2021 
+** •	Bosque Aleatorio (RF) y Refuerzo Adaptativo (AdB) **  , modelos que se destacan por su robustez ante datos complejos y ruidosos. Estos algoritmos construyen múltiples árboles de decisión que analizan las relaciones entre características como el uso del suelo o el volumen de escorrentía y los niveles de SST. @Moeini2021
 
 ** •	Redes Neuronales Artificiales (ANN) ** , copian las redes neuronales biológicas y aprenden patrones complejos en grandes volúmenes de datos, como los niveles de SST en distintas condiciones ambientales. @Moeini2021,
 
-** •	k-Nearest Neighbors (kNN) **  , en sus variantes de ponderación uniforme y variable, que estima el SST en función de la cercanía en características de nuevos puntos de muestreo con datos históricos. @Moeini2021, 
+** •	k-Nearest Neighbors (kNN) **  , en sus variantes de ponderación uniforme y variable, que estima el SST en función de la cercanía en características de nuevos puntos de muestreo con datos históricos. @Moeini2021,
 
 
 El aprendizaje automático es esencial para mejorar la precisión y rapidez en el análisis de la calidad del agua, proporcionando un monitoreo más eficiente y menos costoso en comparación con los métodos tradicionales, especialmente en áreas de difícil acceso o con datos limitados.
 
+::: {.column-screen-right}
 
-| **    Modelo de machine learning  **                                                                                                                                |       **Software**       |        **Agua**       |                          **Datos**                          |                            **Métricas**                           | **Referencias** |
+| **Modelo de machine learning**                                                                                                                                |       **Software**       |        **Agua**       |                          **Datos**                          |                            **Métricas**                           | **Referencias** |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------:|:---------------------:|:-----------------------------------------------------------:|:-----------------------------------------------------------------:|-----------------|
 |     Bagging y Random Forest                                                                                                                                         |        Programa   R      |          Bahía        |                           Muestreo                          |     Prueba   de normalidad multivalente Mardia-tests y Royston    | @Carpio2021     |
-|     Regresión lineal, LASSO, regresión de vectores de soporte (SVR), K vecinos más cercanos   (KNN), bosque aleatorio (RF) y redes neuronales artificiales (ANN).   |             -            |     Lago y embalse    |                       Sentinel-2 y UAV                      |                                 R2                                | @Silveira2020   |
-|     Regresión lineal, regresión de vectores de soporte (SVR), K vecinos más cercanos (KNN),   bosque aleatorio (RF) y redes neuronales artificiales (ANN).          |     Programa   Python    |          Lagos        |     Estación de monitoreo (Sensores para cada parámetro)    |                          R2   , NSE y RMSE                        | @Moeini2021     |
+|     Regresión lineal, LASSO, regresión de vectores de soporte (SVR), K vecinos más cercanos   (KNN), bosque aleatorio (RF) y redes neuronales artificiales (ANN).   |             -            |     Lago y embalse    |                       Sentinel-2 y UAV                      |                                 R<sup>2</sup>                                | @Silveira2020   |
+|     Regresión lineal, regresión de vectores de soporte (SVR), K vecinos más cercanos (KNN),   bosque aleatorio (RF) y redes neuronales artificiales (ANN).          |     Programa   Python    |          Lagos        |     Estación de monitoreo (Sensores para cada parámetro)    |                          R<sup>2</sup>   , NSE y RMSE                        | @Moeini2021     |
+
+: {.striped}
+
+:::
