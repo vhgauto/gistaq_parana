@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#miBoton {
+  display: none;
+  position: fixed;
+  bottom: 13%;
+  right: 3%;
+  z-index: 9999; /* aseguro que el botón esté encima de la tabla */
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #B3B3B3;
+  cursor: pointer;
+  font-size:4rem;
+  box-sizing: border-box;
+}
+
+/* estilo del botón al pasar el mouse */
+#miBoton:hover {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #4D4D4D;
+}
+</style>
+</head>
+<body>
+
+<button onclick="topFunction()" id="miBoton"><span class='nf nf-fa-circle_arrow_up'></span></button>
+
+<script>
+
+// botón
+var mybutton = document.getElementById("miBoton");
+
+// cuando bajo 500px aparece el botón
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// cuando hago click en el botón se mueve hacia el tope del sitio
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+</body>
+</html>

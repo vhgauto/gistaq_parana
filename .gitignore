@@ -1,9 +1,21 @@
+# saco freez y targets
+_freeze/
+_targets/
+
+# quito carpeta con extensiones de quarto
+_extensions
+
 # saco el .html del README
 README.html
 README_files/
 
 # sitio web
 index.html
+index_files/
+
+# quito archivos del informe
+figuras/informe*
+scripts_quarto/_informe_anual.R
 
 # datos
 datos/2023 Todos_los_parametros_Victor.xlsx
@@ -20,6 +32,9 @@ test.html
 
 # recortes .tif
 recorte/*
+
+# provincias de Argentina
+vector/pcias_continental.gpkg
 
 # plan de adquisición S2-MSI
 plan/*

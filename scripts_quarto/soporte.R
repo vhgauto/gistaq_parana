@@ -16,8 +16,6 @@ library(tidyverse)
 
 # colores -----------------------------------------------------------------
 
-# c1 <- "#377EB8"
-# c2 <- "#E41A1C"
 c1 <- "#B86092"
 c2 <- "#007E2E"
 c3 <- "#F2F2F2" # "grey95"
@@ -77,7 +75,7 @@ icono_triangulo <- "<span class='nf nf-md-triangle'></span>"
 # enlaces a redes sociales y mails
 link_instagram <- "https://www.instagram.com/gistaq.utn/"
 
-link_facebook <- "https://www.facebook.com/GISTAQ"
+link_facebook <- "https://www.facebook.com/GISTAQ/"
 
 link_mail_vhg <- "mailto:victor.gauto@outlook.com"
 
@@ -114,10 +112,15 @@ caption_adq <- glue(
   "muestreos."
 )
 
+# caption boxplot
+caption_boxplot <- glue(
+  "<br><br><br>{simbolo_sig} = p-valor < 0,05<br><br>",
+  "Existe diferencia significativa entre los grupos."
+)
+
 # scripts -----------------------------------------------------------------
 # corro todos los scripts,
-# excepto este mismo archivo (soporte.R) y los parámetros fisicoquímicos
-# (_secchi.R, _sol_sus.R, _turbidez.R)
+# excepto este mismo archivo (soporte.R), todos los que comienzan con '_'
 
 r_script <- list.files(path = "scripts_quarto/", full.names = TRUE)
 r_script <- r_script[!str_detect(r_script, "soporte")]

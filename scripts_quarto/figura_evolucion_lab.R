@@ -2,8 +2,11 @@
 # datos -------------------------------------------------------------------
 
 param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
+# param_unid_v <- c(
+#   "pH", 'Cond (μS/cm)', "Sól. susp. (ppm)", "Turb (NTU)", "SDD (cm)")
 param_unid_v <- c(
-  "pH", "Cond (μS/cm)", "Sól. susp. (ppm)", "Turb (NTU)", "SDD (cm)")
+  "pH", "<i>cond</i> (μS/cm)", "<i>susp</i> (ppm)", "<i>turb</i> (NTU)",
+  "<i>secchi</i> (cm)")
 names(param_unid_v) <- param_v
 
 d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |> 
@@ -71,7 +74,7 @@ f_figura_evolucion_lab <- function(parametro) {
         color = c4, linewidth = .06, linetype = 3),
       panel.spacing = unit(1.1, "line"),
       axis.title.y = element_markdown(
-        family = "ubuntu", angle = 90, margin = margin(r = 10), size = 12
+        family = "Ubuntu", angle = 90, margin = margin(r = 10), size = 12
       ),
       axis.text = element_text(family = "jet", color = c7),
       axis.text.y = element_markdown(hjust = 1, margin = margin(r = 2)),
@@ -127,5 +130,5 @@ lista_figura_evolucion_lab <- map(param_v, f_figura_evolucion_lab)
 
 cantidad_fechas <- length(unique(d$fecha))
 cantidad_muetras <- d |> 
-  filter(str_detect(param, "Turb")) |> 
+  filter(str_detect(param, "turb")) |> 
   nrow()

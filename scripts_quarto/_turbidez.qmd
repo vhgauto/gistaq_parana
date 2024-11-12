@@ -1,6 +1,16 @@
-## Turbidez
+## Turbidez<span style="font-weight:normal; font-size: 1rem">, por Víctor Gómez [{{< fa brands github >}}](https://github.com/gomezvictoriq)</span> {toc-text="Turbidez"}
 
-La turbidez (NTU) se relaciona con la presencia de sedimentos presentes en el agua.
+La turbidez se refiere a la opacidad o falta de claridad en un líquido provocada por la presencia de partículas suspendidas. Este fenómeno es un indicador clave en el monitoreo de la calidad del agua y su influencia en diferentes ecosistemas es significativa.
+
+La turbidez es un indicador de la calidad del agua, reflejando la presencia de partículas en suspensión. Su medición es crucial para garantizar la potabilidad del agua y la salud de los ecosistemas acuáticos. Este fenómeno puede ser resultado de diversas causas, como la erosión del suelo, la actividad biológica y la contaminación. La comprensión de la turbidez y su impacto es esencial para la gestión de recursos hídricos y la protección del medio ambiente.
+
+La turbidez viene determinada por la dispersión de la luz causada por la materia suspendida en el agua, se obtiene normalmente mediante un turbidímetro, que proporciona medidas en Nephelometric Turbidity Unit (NTU) y mide la dispersión de un rayo de luz en el agua a 90º de la luz incidente.
+
+Muchas propiedades, como la cloroﬁla-a (Chl-a), sólidos suspendidos totales (SST) y la materia orgánica disuelta coloreada (CDOM), se utilizan a menudo como indicadores del estado del agua. Estos constituyentes del agua a su vez son responsables de la turbidez.
+
+Existe una fuerte correlación entre turbidez y solidos suspendidos totales, por lo que se puede estimar SST a partir de la turbidez. Por lo general, es una relación directa, a mayor concentración de SST mayor turbidez.
+
+Existe una relación inversa entre la Turbidez y la profundidad del disco de Secchi (a valores bajos de secchi mayor turbidez), por lo que tambien se puede estimar turbidez a partir de medicones de disco de secchi.
 
 ### Métodos tradicionales
 
@@ -12,8 +22,33 @@ tabla_turb
 
 Múltiples modelos (lineal, logaritmos, inversa, cuadrática, exponencial, potencial) y plataformas (Sentinel-2, Landsat-5 y Landsat-8) emplean el cociente de bandas B04/B03 @Shen2021.
 
-Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones lineales, cuadráticas y logarítmicas empleando B02, B03, B04, B01 (con menos apariciones) y cocientes entre estas @Ouma2020.
+Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones lineales, cuadráticas y logarítmicas empleando B02, B03, B04, B01 (con menos apariciones) y cocientes entre éstas @Ouma2020.
 
 ### Métodos de aprendizaje automático
 
-(...)
+El aprendizaje automático es un subconjunto de la inteligencia artificial que permite que un sistema aprenda y mejore de forma autónoma, sin necesidad de una programación explícita, a través del análisis de grandes cantidades de datos. El aprendizaje automático permite que los sistemas informáticos se ajusten y mejoren continuamente a medida que acumulan más "experiencias". Por lo tanto, el rendimiento de estos sistemas puede mejorar si se proporcionan conjuntos de datos más grandes y variados para su procesamiento.
+
+Cuando se entrenan modelos de machine learning, cada conjunto de datos y cada modelo necesitan un conjunto diferente de "hiperparámetros".
+Los hiperparámetros son variables de configuración externa que se utilizan para administrar el entrenamiento de modelos de machine learning. Controlan de forma directa la estructura, funciones y rendimiento de los modelos. 
+Los hiperparámetros son los parámetros de un modelo de aprendizaje automático, que no se aprenden durante el entrenamiento, sino que se establecen antes de que comience.
+
+El "ajuste de hiperparámetros" permite modificar el rendimiento del modelo para lograr resultados óptimos. Este proceso es una parte fundamental del machine learning.
+El ajuste de hiperparámetros puede ser manual o automático. A pesar de que el ajuste manual es lento y tedioso, permite entender mejor cómo afectan al modelo las ponderaciones de los hiperparámetros. El proceso de ajuste de hiperparámetros es iterativo, y debe probar diferentes combinaciones de parámetros y valores.
+
+
+En el aprendizaje automático es importante utilizar técnicas de "validación cruzada" , de modo que el modelo no se centre únicamente en una única porción de sus datos.
+La validación cruzada o cross-validation es una técnica utilizada para evaluar los resultados de un análisis estadístico y garantizar que son independientes de la partición entre datos de entrenamiento y prueba. 
+La idea básica de la validación cruzada es dividir los datos en conjuntos de entrenamiento y validación, y luego entrenar el modelo en el conjunto de entrenamiento y evaluar su rendimiento en el conjunto de validación. Este proceso se repite varias veces, con diferentes subconjuntos de los datos utilizados para el entrenamiento y la validación, y se calcula el rendimiento promedio.
+
+En los procesos de machine learning supervisado se utilizan diversos algoritmos y técnicas de cálculo, generalmente calculados mediante el uso de programas como R o Python.
+
+Dependiendo del tipo de datos que se usen para el entrenamiento, será de modelo de aprendizaje automático que se use.
+A grandes rasgos, existen tres tipos de modelos que se usan en el aprendizaje automático: aprendizaje supervisado , no supervisado y por refuerzo.
+
+Consultanto el trabajo de otros investigadores, se observa que utilizan principalmente el aprendizaje automático supervisado.
+Este tipo aprendizaje supervisado utiliza un conjunto de entrenamiento para enseñar a los modelos a producir el resultado deseado. Este conjunto de datos de entrenamiento incluye entradas y salidas correctas, que permiten al modelo aprender con el tiempo. El algoritmo mide su precisión a través de la función de pérdida, ajustando hasta que el error se haya minimizado lo suficiente.
+
+Yang Zhe y otros, utilizaron como datos de entrada la reflectancia de superficie y datos de salida la turbidez, utilizaron los modelos SVR (support vector regression), random forest (RF) y eXtreme Gradiente Boostring (XGBoost).
+Los hiperparámetros de cada modelo se determinaron mediante una búsqueda en cuadrícula de validación cruzada en Scikit-Learn de Python.
+
+Ma Yue y otros, utilizaron varios modelos de aprendizaje automático, usaron Python 3.7 tanto para la prediccion de la turbidez del agua y la optimicion de la los hiperparámetros.
