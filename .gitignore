@@ -30,6 +30,9 @@ datos/sameep_historicos.tsv
 test.qmd
 test.html
 
+# carpeta para probar nuevas funciones
+test*
+
 # recortes .tif
 recorte/*
 
