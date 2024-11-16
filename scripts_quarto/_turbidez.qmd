@@ -29,7 +29,7 @@ Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones l
 El aprendizaje automático es un subconjunto de la inteligencia artificial que permite que un sistema aprenda y mejore de forma autónoma, sin necesidad de una programación explícita, a través del análisis de grandes cantidades de datos. El aprendizaje automático permite que los sistemas informáticos se ajusten y mejoren continuamente a medida que acumulan más "experiencias". Por lo tanto, el rendimiento de estos sistemas puede mejorar si se proporcionan conjuntos de datos más grandes y variados para su procesamiento.
 
 Cuando se entrenan modelos de machine learning, cada conjunto de datos y cada modelo necesitan un conjunto diferente de "hiperparámetros".
-Los hiperparámetros son variables de configuración externa que se utilizan para administrar el entrenamiento de modelos de machine learning. Controlan de forma directa la estructura, funciones y rendimiento de los modelos. 
+Los hiperparámetros son variables de configuración externa que se utilizan para administrar el entrenamiento de modelos de machine learning. Controlan de forma directa la estructura, funciones y rendimiento de los modelos.
 Los hiperparámetros son los parámetros de un modelo de aprendizaje automático, que no se aprenden durante el entrenamiento, sino que se establecen antes de que comience.
 
 El "ajuste de hiperparámetros" permite modificar el rendimiento del modelo para lograr resultados óptimos. Este proceso es una parte fundamental del machine learning.
@@ -37,7 +37,7 @@ El ajuste de hiperparámetros puede ser manual o automático. A pesar de que el 
 
 
 En el aprendizaje automático es importante utilizar técnicas de "validación cruzada" , de modo que el modelo no se centre únicamente en una única porción de sus datos.
-La validación cruzada o cross-validation es una técnica utilizada para evaluar los resultados de un análisis estadístico y garantizar que son independientes de la partición entre datos de entrenamiento y prueba. 
+La validación cruzada o cross-validation es una técnica utilizada para evaluar los resultados de un análisis estadístico y garantizar que son independientes de la partición entre datos de entrenamiento y prueba.
 La idea básica de la validación cruzada es dividir los datos en conjuntos de entrenamiento y validación, y luego entrenar el modelo en el conjunto de entrenamiento y evaluar su rendimiento en el conjunto de validación. Este proceso se repite varias veces, con diferentes subconjuntos de los datos utilizados para el entrenamiento y la validación, y se calcula el rendimiento promedio.
 
 En los procesos de machine learning supervisado se utilizan diversos algoritmos y técnicas de cálculo, generalmente calculados mediante el uso de programas como R o Python.
@@ -56,8 +56,15 @@ Ma Yue y otros, utilizaron varios modelos de aprendizaje automático, usaron Pyt
 Zhao y otros probaron 14 modelos de machine learning en un estanque de peces con un dispositvo de construcion propia, de los cuales ETR, Bagging, RFR, and ABR son los que presentaron un mejor desempeño en la estimación de la turbidez. Los algoritmos se implementaron utilizando Python 3.6 y bibliotecas de aprendizaje
 scikit. @Zhao2022
 
+::: {.column-screen-right}
+
 |                                                                                                                                                                                                                                                Modelo de machine learning                                                                                                                                                                                                                                                |   Cuerpo de agua  |            Métricas           |          Plataforma         | Referencia |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------:|:-----------------------------:|:---------------------------:|:----------:|
 |                                                                                                                                                                                                                                             SVR, ELM ,BP ,CART ,GBT ,RF ,KNN                                                                                                                                                                                                                                             |       Lagos       |         RMSE, R^2, MAE        |         Sentinel-MSI        |   @Ma2021  |
 |                                                                                                                                                                                                                 eXtreme Gradient Boosting (XGBoost),  support vector regression (SVR), random forest (RF)                                                                                                                                                                                                                |        Lago       |        RMSE, R^2, MAPE        | Sentinel-2A/B y Landsat-8/9 |  @Yang2023 |
 | linear regression (LR), ridge regression (RR),  least absolute shrinkage and selection operator regression(LASSO), elastic net regression (ENR),  k-nearest neighbor regression (KNN), Gaussian process regression (GPR), decision tree regression (DTR), support vector regression (SVR), multilayer perceptron regression (MLP), adaptive boosting regression (ABR), gradient boosting regression (GBR), bootstrap aggregating regression (Bagging), random forest regression (RFR), and extreme tree regression (ETR) | Estanque de peces | MAE, MRSE, MAPE, R^2, RE, Acc |            Propia           |  @Zhao2022 |
+
+
+: {.striped}
+
+:::
