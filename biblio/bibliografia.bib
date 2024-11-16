@@ -362,6 +362,21 @@
 }
 
 % turb - Víctor
+@article{Delegido2019,
+   abstract = {Transparency or turbidity is one of the main indicators in studies of water quality using remote sensing. Transparency can be measured in situ through the Secchi disc depth (SD), and turbidity using a turbidimeter. In recent decades, different relationships between bands from different remote sensing sensors have been used for the estimation of these variables. In this paper, several indices and spectral bands have been calibrated in order to estimate transparency from Sentinel-2 (S2) images from field data, obtained throughout 2017 and 2018 in Júcar basin reservoirs with a great variety of trophic states. Three atmospheric correction methods developed for waters have been applied to the S2 level L1C images taken at the same day as the field data: Polymer, C2RCC and C2X. From the spectra obtained from S2 and the SD field data, it has been found that the smallest error is obtained with the images atmospherically corrected with Polymer and a potential adjustment of the reflectivities’ ratio of the blue and green bands (R490/R560), which allow the estimation of SD with a relative error of 13%. Also the C2X method presents good adjustment with the same bands ratio, although with a greater error, while the correction C2RCC shows the worst correlation. The relationship between SD (in m) and turbidity (in NTU) has also been obtained, which provides an operational method for estimating turbidity with S2. The relationship for the different reservoirs between SD and chlorophyll-a concentration, suspended solids and dissolved organic matter, is also shown.},
+   author = {J.cc Delegido and P. Urrego and E. Vicente and X. Sòria-Perpinyà and J. M. Soria and M. Pereira-Sandoval and A. Ruiz-Verdú and R. Peña and J. Moreno},
+   doi = {10.4995/raet.2019.12603},
+   issn = {19888740},
+   issue = {54},
+   journal = {Revista de Teledeteccion},
+   keywords = {Eutrophication,Júcar basin reservoirs,Secchi disk,Sentinel-2,Turbidity},
+   note = {Sentinel-2},
+   pages = {15-24},
+   publisher = {Universitat Politecnica de Valencia},
+   title = {Turbidity and secchi disc depth with sentinel-2 in different trophic status reservoirs at the comunidad valenciana},
+   volume = {2019},
+   year = {2019},
+}
 
 @article{Luo2020,
    abstract = {This study investigated the use of frequent metre-scale resolution Pleiades satellite imagery to monitor water quality parameters in the highly turbid Gironde Estuary (GE, SW France). Pleiades satellite data were processed and analyzed in two representative test sites of the GE: 1) the maximum turbidity zone and 2) the mouth of the estuary. The main objectives of this study were to: (i) validate the Dark Spectrum Fitting (DSF) atmospheric correction developed by Vanhellemont and Ruddick (2018) applied to Pleiades satellite data recorded over the GE; (ii) highlight the benefits of frequent metre-scale Pleiades observations in highly turbid estuaries by comparing them to previously validated satellite observations made at medium (250/300 m for MODIS, MERIS, OLCI data) and high (20/30 m for SPOT, OLI and MSI data) spatial resolutions. The results show that the DSF allows for an accurate retrieval of water turbidity by inversion of the water reflectance in the near-infrared (NIR) and red wavebands. The difference between Pleiades-derived turbidity and field measurements was proven to be in the order of 10%. To evaluate the spatial variability of water turbidity at metre scale, Pleiades data at 2 m resolution were resampled to 20 m and 250 m to simulate typical coarser resolution sensors. On average, the derived spatial variability in the GE is lower than or equal to 10% and 26%, respectively, in 20-m and 250-m aggregated pixels. Pleiades products not only show, in great detail, the turbidity features in the estuary and river plume, they also allow to map the turbidity inside ports and capture the complex spatial variations of turbidity along the shores of the estuary. Furthermore, the daily acquisition capabilities may provide additional advantages over other satellite constellations when monitoring highly dynamic estuarine systems.},
@@ -465,6 +480,37 @@
    volume = {14},
    year = {2021},
 }
+@article{Yang2023,
+   abstract = {Lakes play a crucial role in the earth’s ecosystems and human activities. While turbidity is not a direct biochemical indicator of lake water quality, it is relatively easy to measure and indicates trophic status and lake health. Although ocean color satellites have been widely used to monitor water color parameters, their coarse spatial resolution makes it hard to capture the fine spatial variability of turbidity in lakes. The combination of Sentinel-2 and Landsat provides an opportunity to monitor lake turbidity with high spatial and temporal resolution. This study aims to generate consistent turbidity products in Taihu Lake from 2018 to 2022 using the Multispectral Instrument (MSI) on board Sentinel-2A/B and the Operational Land Imager (OLI) on board Landsat-8/9. We first tested the performance of three atmospheric correction methods to retrieve consistent reflectance from MSI and OLI images. We found that the Rayleigh correction and a subtraction of the SWIR band from Rayleigh-corrected reflectance can generate the most consistent reflectance (the coefficient of determination (R2) > 0.84, the mean absolution percentage error (MAPE) < 7%, the median error (ME) < 0.0035, and slope > 0.92). Machine learning models outperformed an existing semi-analytical retrieval algorithm in retrieving turbidity (MSI: R2 = 0.92, MAPE = 18.78%, and OLI: R2 = 0.93, MAPE = 16.20%). The consistency of turbidity from the same-day MSI and OLI images was also satisfactory (N = 3110 and MAPE = 26.48%). The distribution of turbidity exhibited obvious spatial and seasonal variability in Taihu Lake from 2018 to 2022. The results show the potential of MSI and OLI when combined to monitor inland lake water quality.},
+   author = {Zhe Yang and Cailan Gong and Zhihua Lu and Enuo Wu and Hongyan Huai and Yong Hu and Lan Li and Lei Dong},
+   doi = {10.3390/rs15174333},
+   issn = {20724292},
+   issue = {17},
+   journal = {Remote Sensing},
+   keywords = {Landsat-8/9,Sentinel-2A/B,remote sensing,turbidity,water quality},
+   month = {9},
+   note = {Machine Learning, combinacion imagenes Sentinel2A/B y Landsat 8/9 , aplicado en un lago chino.},
+   publisher = {Multidisciplinary Digital Publishing Institute (MDPI)},
+   title = {Combined Retrievals of Turbidity from Sentinel-2A/B and Landsat-8/9 in the Taihu Lake through Machine Learning},
+   volume = {15},
+   year = {2023},
+}
+@article{Zhao2022,
+   abstract = {With the development of industrialization and urbanization, the consumption and pollution of water resources are becoming more and more serious. Water quality monitoring is an extremely important technical means to protect water resources. However, the current popular water quality monitoring methods have their shortcomings, such as a low signal-to-noise ratio of satellites, poor time continuity of unmanned aerial vehicles, and frequent maintenance of in situ underwater probes. A non-contact near-surface system that can continuously monitor water quality fluctuation is urgently needed. This study proposes an automatic near-surface water quality monitoring system, which can complete the physical equipment construction, data collection, and processing of the application scenario, prove the feasibility of the self-developed equipment and methods and obtain high-performance retrieval results of four water quality parameters, namely chemical oxygen demand (COD), turbidity, ammoniacal nitrogen (NH3-N), and dissolved oxygen (DO). For each water quality parameter, fourteen machine learning algorithms were compared and evaluated with five assessment indexes. Because the ensemble learning models combine the prediction results of multiple basic learners, they have higher robustness in the prediction of water quality parameters. The optimal determination coefficients ((Formula presented.)) of COD, turbidity, NH3-N, and DO in the test dataset are 0.92, 0.98, 0.95, and 0.91, respectively. The results show the superiority of near-surface remote sensing, which has potential application value in inland, coastal, and various water bodies in the future.},
+   author = {Yubo Zhao and Tao Yu and Bingliang Hu and Zhoufeng Zhang and Yuyang Liu and Xiao Liu and Hong Liu and Jiacheng Liu and Xueji Wang and Shuyao Song},
+   doi = {10.3390/rs14215305},
+   issn = {20724292},
+   issue = {21},
+   journal = {Remote Sensing},
+   keywords = {ensemble learning model,machine learning algorithm,near-surface remote sensing,water quality monitoring},
+   month = {11},
+   note = {Utilizan un dispositivo sobre la superficie que mide la reflectancia},
+   publisher = {MDPI},
+   title = {Retrieval of Water Quality Parameters Based on Near-Surface Remote Sensing and Machine Learning Algorithm},
+   volume = {14},
+   year = {2022},
+}
+
 
 % tss - Vera
 
