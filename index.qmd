@@ -31,6 +31,7 @@ format:
     csl: biblio/ieee.csl
     html-math-method: katex
     callout-icon: false
+    backgroundcolor: "#F5F5F5"
 editor_options:
   chunk_output_type: console
 crossrefs-hover: false
