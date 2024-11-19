@@ -89,6 +89,16 @@ div.callout-note.callout {
     border-radius: 0;
 }
 
+.callout.callout-style-simple .callout-body {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.callout.callout-style-default .callout-body {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
 // color de las secciones activas en la tabla de contenidos
 .sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active {
     border-left: 1px solid $ca;
@@ -162,7 +172,7 @@ div.callout-note.callout-style-default > .callout-header {
     border-radius: 0;
 }
 
-// fuerzo que la tabla de contenido (toc) se ubique por sobre todos 
+// fuerzo que la tabla de contenido (toc) se ubique por sobre todos
 // los elementos del sitio, evitando que las tablas generadas con
 // {gt} bloqueen la toc
 .sidebar.toc-left, .sidebar.margin-sidebar {
