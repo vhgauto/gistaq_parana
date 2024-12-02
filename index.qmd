@@ -524,7 +524,7 @@ Sobre el curso de agua se obtienen pH, conductividad, profundidad de disco de Se
 
 Los productos S2-MSI son recortados a la región de interés, alrededor del [Puente Chaco-Corrientes](https://www.openstreetmap.org/#map=15/-27.4687/-58.8608).
 
-Se genera un stack con las bandas de interés ([$\S$@sec-datos-gis]) y se almacena con el nombre de la fecha correspondiente en la carpeta `recorte/` con formato `.tif`.
+Se genera un stack con las bandas de interés y se almacena con el nombre de la fecha correspondiente en la carpeta `recorte/` con formato `.tif`.
 
 ## Entorno de ejecución
 
