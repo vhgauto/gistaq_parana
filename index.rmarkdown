@@ -1,0 +1,883 @@
+---
+title: "Proyecto Paraná 2023"
+format:
+  html:
+    anchor-sections: true
+    number-sections: true
+    smooth-scroll: true
+    embed-resources: true
+    include-in-header:
+      - extras/favicon.html
+      - extras/esquina.html
+      - extras/abrev_toc.html
+      - extras/boton_arriba.html
+    theme:
+      - extras/mis_estilos.scss
+    toc: true
+    toc-float: false
+    toc-location: left
+    toc-title: "Contenido"
+    mainfont: Ubuntu
+    link-external-icon: false
+    link-external-newwindow: true
+    link-citations: true
+    code-link: true
+    code-copy: true
+    code-annotations: false
+    code-line-numbers: false
+    tbl-cap-location: margin
+    fig-cap-location: bottom
+    bibliography: biblio/bibliografia.bib
+    csl: biblio/ieee.csl
+    html-math-method: katex
+    callout-icon: false
+    backgroundcolor: "#F5F5F5"
+editor_options:
+  chunk_output_type: console
+crossrefs-hover: false
+crossref:
+  chapters: true
+lang: es
+execute:
+  echo: false
+  warning: false
+  eval: true
+date: last-modified
+---
+
+```{r scripts}
+#| eval: true
+
+# corro todos los scripts
+source("scripts_quarto/soporte.R")
+```
+
+
+
+<!-- cómo agregar referencias cruzadas
+https://quarto.org/docs/authoring/cross-references.html#references -->
+
+<!-- link a los sitios de las funciones
+https://quarto.org/docs/authoring/cross-references.html#references -->
+
+<!-- los bloques de callout
+https://quarto.org/docs/authoring/callouts.html -->
+
+<!-- layout de las columnas
+https://quarto.org/docs/authoring/article-layout.html#body-column -->
+
+<!-- referencias cruzadas de figuras/tablas/secciones
+https://quarto.org/docs/authoring/cross-references.html#references -->
+
+<!-- formatos de tiempo
+?strptime -->
+
+<!-- agregar favicon
+https://quarto.org/docs/output-formats/html-basics.html#includes -->
+
+<!-- formato de citas
+https://quarto.org/docs/authoring/citations.html#sec-citations -->
+
+<!-- cambiar el texto en toc
+https://stackoverflow.com/a/76764108/13742303 -->
+
+Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
+
+El mencionado proyecto forma parte de las tareas de investigación del MS. Víctor Gauto, en el marco del <b>Doctorado en Geomática y Sistemas Espaciales</b>, dictado por el [Instituto Gulich](https://ig.conae.unc.edu.ar), en conjunto con la <b>Universidad Nacional de Córdoba</b> ([UNC](https://www.unc.edu.ar/)) y la <b>Comisión Nacional de Actividades Espaciales</b> ([CONAE](https://www.argentina.gob.ar/ciencia/conae)).
+
+Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto de Investigaciones para el Desarrollo Territorial y del Hábitat Humano</b> ([IIDTHH](https://iidthh.conicet.gov.ar/)) de la <b>Universidad Nacional del Nordeste</b> ([UNNE](https://www.unne.edu.ar)).
+
+El presente sitio web contiene una introducción ([-@sec-introduccion]) al proyecto, seguido de la descripción del área de estudio ([-@sec-roi]). Hay un calendario de muestreos ([-@sec-muestreos]) y los resultados ([-@sec-resultados]) se muestran por sitio y característica fisicoquímica, seguido de las firmas espectrales ([-@sec-firmas-espectrales]). En la discusión ([-@sec-discusion]) se analizan trabajos referentes a turbidez, sólidos suspendidos y profundidad de disco de Secchi. Se indican el objetivo ([-@sec-objetivos]) general y específicos junto con las tareas informáticas de procesamiento ([-@sec-ejecucion]) de datos. Se proponen y analizan múltiples algoritmos ([-@sec-algoritmos]). Finalmente, la informacón de contacto ([-@sec-contacto]).
+
+La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto de investigación para entender cómo registrar datos, visualizar resultados, evaluar algoritmos y que, además, sea utilizado como material de consulta general de la metodología.
+
+# Introducción {#sec-introduccion}
+
+La preservación del agua es fundamental para el desarrollo humano y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible @agenda2030, es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital, aplicadas a la calidad de los cuerpos de agua, han ido incrementándose en los últimos años verificando la viabilidad de los sensores satelitales @Bonansea2019. Dichas técnicas, que se pueden utilizar para desarrollar algoritmos que permiten estimar distintos parámetros fisicoquímicos del agua [@Gholizadeh2016; @Ferral2018a], requieren datos espectrales obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra, de la Agencia Espacial Europea (ESA), que consta de dos plataformas (S2A, S2B). El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica @Gorroño2017, los productos generados por S2--MSI son confiables @Phiri2020 y se han utilizado para estimar el color del agua @wangWaterColorSentinel22023, la concentración de clorofila-a @bramichImprovedRededgeChlorophylldetection2021 y la materia orgánica disuelta coloreada (CDOM) @liuRemoteSensingCDOM2021.
+
+Los ecosistemas de agua dulce son vulnerables a los cambios en la gestión de usos de la tierra, los impactos antrópicos @Lovino2018 y la variabilidad climática @Hestir2015. Estos ecosistemas están presentes en lagos, arroyos, ríos y humedales. La aplicación de técnicas de teledetección a las aguas superficiales continentales presenta un desafío debido a la extensión relativamente menor y la alta complejidad espacial. Tradicionalmente, las aguas continentales se estudian mediante el desarrollo de algoritmos que correlacionan las propiedades espectrales con los parámetros fisicoquímicos. Este proceso debe validarse a través de mediciones in situ @Liang2004.
+
+Los algoritmos de teledetección, para recuperar las propiedades de las aguas superficiales, incluyen clorofila-a, sólidos suspendidos totales, turbidez y otras @Sagan2020a. Los modelos de regresión empírica se basan en ecuaciones lineales o exponenciales de reflectancia o radiancia detectadas remotamente @Chen2017. El desarrollo de un algoritmo empírico requiere un análisis estadístico entre la medición de los componentes o propiedades del agua y los datos radiométricos @ogashawaraRemoteSensingInland2017d. Para analizar dichas propiedades, esos algoritmos requieren campañas de campo y, debido a la presencia de componentes múltiples y complejos en las aguas, el desarrollo de modelos globales no es factible; por ende, un enfoque adecuado consistiría en desarrollar modelos regionales validados @yangReviewRemoteSensing2022.
+
+El Área Metropolitana del Gran Resistencia (AMGR), en el noreste de Argentina, es la principal área urbana de la provincia del Chaco e incluye cuatro ciudades y 423.000 habitantes, según el último censo de 2022 @indec2022. Está emplazada en el valle de inundación del río Paraná y se desarrolla principalmente en el interfluvio del río Negro y el riacho Arazá. Las lluvias o sequías continuas modifican el patrón de los ríos y arroyos, generando lagunasgit de meandros @PoideNeiff2003. Aunque el terreno del AMGR es plano, el ecosistema corresponde a un humedal y, como consecuencia, en el área urbana están insertos múltiples cursos y cuerpos de agua. En concordancia con esto, la estimación de la calidad del agua es sumamente relevante para evaluar el impacto humano en el ambiente, planificar medidas de corrección y evaluar sus efectos.
+
+
+
+
+# Área de estudio {#sec-roi}
+
+El río Paraná es el segundo río más largo de América del Sur, con 4000 km @Bonetto1986. En Argentina, es el límite natural de múltiples provincias, hasta llegar al Río de la Plata, para terminar en el Océano Atlántico. El Paraná, posee un módulo anual de 17.300 m3/s producto de los aportes del río Alto Paraná (en la República de Paraguay) y del río Paraguay @Espínola2020. Este último, con 2550 km @Bonetto1986, es un afluente del río Paraná, en su cuenca media, en el Noreste argentino.
+
+El río Paraguay recibe del río Bermejo un volumen considerable de sedimentos finos en suspensión, provenientes de la Cordillera de los Andes que se descargan en el río Paraná  @Amsler2009, @Orfeo2002. A partir de la confluencia con el río Paraguay (frente a la localidad de Paso de la Patria, provincia de Corrientes), el río Paraná muestra marcadas diferencias espaciales y temporales en las concentraciones de esos sedimentos que modifican las características de la composición del agua. Debido a ello se generan dos regiones distintas: de alta (oeste) y baja (este) concentración de dichos sedimentos en suspensión @Lane2008.
+
+Debido a las concentraciones tan dispares mencionadas en el párrafo anterior, la interfaz de mezcla entre las aguas donde dos grandes ríos se unen se puede visualizar claramente. No obstante, esa mezcla completa comúnmente requiere una longitud de río significativa y esa distancia puede extenderse a decenas e incluso cientos de kilómetros. Las observaciones de campo de la unión de los ríos Paraná y Paraguay, muestran que la longitud de mezcla puede ser mayor a 400 km (mezcla lenta) pero también tan baja como 8 km (mezcla rápida) @Lane2008. En general, la visualización sólo puede manifestarse mediante mediciones de campo y datos de sensado remoto [@Mackay1970; @Krouse1971; @Matsui1976; @Stallard1987.]
+
+A partir de la confluencia mencionada y su planicie de inundación, el río Paraná incorpora varios m3/s en términos de caudales medios. El aporte de esos caudales es uno de los factores que altera el ciclo hidrológico; los otros que también pueden incidir son:
+- Los parámetros como pH, temperatura, sólidos en suspensión, conductividad y turbidez también involucran procesos que los afectan @RodriguesCapítulo2022.
+- Las oscilaciones vinculadas a cambios climáticos a escala global como por ejemplo el ENOS (El Niño oscilación sur) en nuestro país [@Pasquini2011; @Bohn2016; @Lovino2018; @DelaCasa2021].
+- Los efectos antrópicos [@Molfino2021; @Ferreira2020;  @RomeroAcuña2020;  @Abrial2021] modifican los procesos físico-químicos de los hábitats y los patrones de las comunidades biológicas, producen períodos de inundación, sequía y variaciones extremas del caudal (flujos bajos, altos, extremadamente altos, etc.).
+
+
+El Paraná tiene un gran impacto en la sociedad del AMGR, específicamente sobre la industria pesquera, el turismo, las actividades recreativas de la población local y las rutas de transporte @Neiff2005. Es el recurso hídrico requerido por la planta potabilizadora, cuyas tomas de agua cruda están ubicadas en dos sectores del mencionado río. Una de ellas, la más antigua, está ubicada sobre un brazo del río Paraná, el río Barranqueras; éste, a su vez, está conectado con dos ríos principales del área metropolitana que son los ríos Negro y Tragadero. A fines del 2023, entró en operaciones la nueva toma de agua situada sobre el canal principal de navegación del río Paraná, en una zona cercana al puente Gral. Belgrano que une las provincias de Chaco y Corrientes.
+
+Dada la gran variabilidad en la cantidad de sedimentos presentes en el agua del Paraná, la planta potabilizadora necesita adaptar frecuentemente la operación de filtración; ésta es una etapa crítica del proceso, debido a la necesidad de dosificar agentes floculantes para asegurar la remoción de los sólidos.  La aplicación de las técnicas de teledetección, en la recuperación de los datos espectrales del agua, tiene como objetivo crear un modelo que los estime de forma remota; asimismo, esas técnicas le brindarían a la empresa herramientas valiosas para la toma de decisiones.
+
+
+
+
+
+
+::: {.column-screen-right}
+![Imagen satelital de la región de interés. Mapa superior: ubicación relativa a Argentina.](figuras/roi.png){#fig-roi}
+:::
+
+La región de interés, donde se hacen las campañas de campo se muestra en la figura [-@fig-roi].
+
+# Muestreos {#sec-muestreos}
+
+Los muestreos, según lo permita la logística, se llevan a cabo en la fecha de adquisición de Sentinel-2 (S2-MSI) cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
+
+En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
+
+
+
+```{r tbl-adq}
+#| label: tbl-adq
+#| tbl-cap: !expr caption_adq
+
+tabla_adquisicion
+```
+
+
+
+## Metodología de muestreo
+
+::: {.callout-note title="Mostrar" collapse=true}
+
+El calendario completo de muestreos para el resto del año se encuentra en el siguiente [link](https://github.com/vhgauto/gistaq_parana/blob/main/calendario_2024.pdf).
+
+Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
+
+In situ, se miden: pH, conductividad y profundidad de disco de Secchi (SDD). Luego, en el laboratorio se analizan turbidez y sólidos suspendidos totales (TSM). A continuación se describe cada parámetro fisicoquímico:
+
+* pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
+
+* Profundidad de disco de Secchi (cm).
+
+* Sólidos suspendidos totales (ppm) por gravimetría, utilizando el método 2540 D. sólidos totales en suspensión secados a 103-105°C del Standard Methods (APHA, AWWA, WPCF, 2017, p.2-70), que emplea filtros de fibra de vidrio de 47 mm de diámetro y 0,5 μm de poro.
+
+* Turbidez, a través de dos métodos:
+  - Colorimétrico (NTU), utilizando el equipo HACH, programa 95.
+  - Turbidímetro (EBC), que emplea el Hazemeter.
+
+La relación entre las unidades de turbidez es: $1~NTU = 0,25~EBC$.
+
+:::
+
+Para simplificar, se van a usar las siguientes siglas para denominar a las propiedades fisicoquímicas en el resto del presente documento.
+
+::: {.callout-note appearance="simple" title=""}
+
+* Conductividad (μS/cm) = *cond*
+* Sólidos suspendidos totales (ppm) = *susp*
+* Turbidez (NTU) = *turb*
+* Profundidad de disco de Secchi (cm) = *secchi*
+
+:::
+
+# Resultados {#sec-resultados}
+
+Se muestran las correlaciones lineales entre los parámetros espectrales y fisicoquímicos. De estos últimos, se incluye la serie temporal según el sitio de muestreo.
+
+Las firmas espectrales se encuentran en la siguiente sección ([$\S$@sec-firmas-espectrales]).
+
+## Sitios muestrales
+
+Se indican los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
+
+
+
+```{r mapa_interactivo}
+#| column: screen-right
+#| warning: false
+#| fig-align: left
+#| fig-asp: 1
+
+mapa_interactivo
+```
+
+
+
+<br>
+Actualmente, se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se recolectaron <b>`r cantidad_muetras` muestras de agua</b>.
+
+En todos los casos, no se apreció la presencia de nubes sobre los puntos de toma de muestras.
+
+Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la <b style='color:`r c1`'>orilla chaqueña</b> y finalizando en la <b style='color:`r c2`'>costa de Corrientes</b>.
+
+## Datos fisicoquímicos
+
+Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
+
+::: {.panel-tabset}
+
+## pH
+
+
+
+```{r}
+lista_figura_evolucion_lab[[1]]
+```
+
+
+
+## *cond*
+
+
+
+```{r}
+lista_figura_evolucion_lab[[2]]
+```
+
+
+
+## *susp*
+
+
+
+```{r}
+lista_figura_evolucion_lab[[3]]
+```
+
+
+
+## *turb*
+
+
+
+```{r}
+lista_figura_evolucion_lab[[4]]
+```
+
+
+
+## *secchi*
+
+
+
+```{r}
+lista_figura_evolucion_lab[[5]]
+```
+
+
+
+:::
+
+Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
+
+
+
+```{r corr_laboratorio}
+#| label: tbl-corr-lab
+#| tbl-cap: !expr caption_tabla
+
+tabla_corr_lab
+```
+
+
+
+Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
+
+
+:::: {.panel-tabset}
+
+## <i>turb</i> vs <i>cond</i>
+
+![](figuras/cond_vs_turb.png)
+
+## <i>susp</i> vs <i>cond</i>
+
+![](figuras/cond_vs_sol_sus.png)
+
+::: {.column-margin}
+
+:::
+
+## <i>secchi</i> vs <i>susp</i>
+
+![](figuras/sol_sus_vs_secchi.png)
+
+::: {.column-margin}
+<br><br>Figura en escala doble logarítmica.
+:::
+
+## <i>secchi</i> vs <i>turb</i>
+
+![](figuras/turb_vs_secchi.png)
+
+::: {.column-margin}
+<br><br>Figura en escala doble logarítmica.
+:::
+
+## <i>susp</i> vs <i>turb</i>
+
+![](figuras/turb_vs_sol_sus.png)
+
+::::
+
+Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se  divide el conjunto de datos en <b>lado Chaco</b> o <b>lado Corrientes</b>, según si la longitud geográfica de las observaciones son menores o mayores a la longitud media, respectivamente.
+
+:::: {.panel-tabset}
+
+## pH
+
+![](figuras/lado_ph.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>cond</i>
+
+![](figuras/lado_cond.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>susp</i>
+
+![](figuras/lado_sol_sus.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>turb</i>
+
+![](figuras/lado_turb.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>secchi</i>
+
+![](figuras/lado_secchi.png)
+
+[`r caption_boxplot`]{.aside}
+
+::::
+
+# Firmas espectrales {#sec-firmas-espectrales}
+
+La reflectancia de superficie ($\rho_{r}$) @chuvieco1996 se define como el cociente entre la radiación reflejada por la superficie de interés ($\Phi_{r}$) y la radiación solar incidente ($\Phi_{i}$), a una longitud de onda específica ($\lambda$), de acuerdo a la ecuación [-@eq-reflect].
+
+$$
+\rho_{r}(\lambda)=\frac{\Phi_{r}(\lambda)}{\Phi_{i}(\lambda)}
+$$ {#eq-reflect}
+
+Por definición, $\rho_{r}$ adopta el rango entre $0-1$.
+
+Una definición más rigurosa @Chen2017 indica que la reflectancia de sensado remoto ($R_{rs}(\lambda)$) se expresa como el cociente entre la radiancia saliente del agua verticalmente ascendente ($L_{w}(\lambda)$) y la irradiancia verticalmente descendente sobre la superficie del agua ($E_d(0^{+})$), a una longitud de onda $\lambda$, según la ecuación [-@eq-r-rs].
+
+$$
+R_{rs}(\lambda)=\frac{L_{w}(\lambda)}{E_{d}(0^{+})}
+$$ {#eq-r-rs}
+
+Con los pares ordenados de $R_{rs}$ y $\lambda$ para las bandas de S2-MSI, se construyen figuras que muestran el comportamiento espectral del agua, llamadas **firmas espectrales**, las cuales son específicas para cada cobertura y dan cuenta de algunas de sus propiedades.
+
+A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-base-de-datos]) se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná, sirven para ver el cambio entre costas.
+
+Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
+
+::: {.panel-tabset}
+
+## `r fechas_gis_v[1]`
+
+
+
+```{r}
+lista_firma_espectral[[1]]
+```
+
+
+
+## `r fechas_gis_v[2]`
+
+
+
+```{r}
+lista_firma_espectral[[2]]
+```
+
+
+
+## `r fechas_gis_v[3]`
+
+
+
+```{r}
+lista_firma_espectral[[3]]
+```
+
+
+
+## `r fechas_gis_v[4]`
+
+
+
+```{r}
+lista_firma_espectral[[4]]
+```
+
+
+
+:::
+
+<br>
+Las curvas de <b style='color:`r c1`'>color violeta</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos próximos a la costa correntina son de <b style='color:`r c2`'>color verde</b>.
+
+Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
+
+Las características espectrales de S2-MSI se muestran en la siguiente tabla:
+
+
+
+```{r tbl-s2msi}
+#| label: tbl-s2msi
+#| tbl-cap: <br>Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B.
+
+tabla_s2msi
+```
+
+
+
+# Discusión {#sec-discusion}
+
+Esta sección recolecta información bibliográfica referente a parámetros de laboratorio estimados mediante teledetección satelital.
+
+Se eligieron tres propiedades del agua: turbidez, sólidos suspendidos y profundidad de disco de Secchi.
+
+A continuación se muestran (según en caso) las ecuaciones para la estimación de las propiedades, los sensores y longitudes de onda empleados, las características de los cuerpos de agua y la justificación de los autores, junto con la referencia bibliográfica.
+
+Se pretende poder justificar los algoritmos desarrollados propios a partir de los obtenido por otros autores.
+
+Las características de las bandas espectrales de S2-MSI se encuentran en la tabla [-@tbl-s2msi].
+
+* Métodos tradicionales
+
+Ecuaciones directas, usualmente polinomios, de la forma general:
+
+$$
+propiedad = f(bandas~espectrales)
+$$
+
+Estas expresiones permiten evaluar la contribución de las bandas espectrales, y sus combinaciones, al valor de la propiedad fisicoquímica estimada.
+
+Son usuales las expresiones que incorporan índices espectrales, sensibles a alguna característica del agua, como ser NDCI (índice normalizado de diferencia de clorofila) [@Mishra2012; @Buma2020], NDTI (índice normalizado de diferencia de turbidez) @Lacaux2007, entre otros.
+
+* Aprendizaje automático
+
+Las técnicas de aprendizaje automático permiten encontrar relaciones entre las propiedades del agua y la reflectancia de superficie, a distintas longitudes de onda.
+
+
+## Turbidez<span style="font-weight:normal; font-size: 1rem">, por Víctor Gómez [{{< fa brands github >}}](https://github.com/gomezvictoriq)</span> {toc-text="Turbidez"}
+
+La turbidez se refiere a la opacidad o falta de claridad en un líquido provocada por la presencia de partículas suspendidas. Este fenómeno es un indicador clave en el monitoreo de la calidad del agua y su influencia en diferentes ecosistemas es significativa.
+
+La turbidez es un indicador de la calidad del agua, reflejando la presencia de partículas en suspensión. Su medición es crucial para garantizar la potabilidad del agua y la salud de los ecosistemas acuáticos. Este fenómeno puede ser resultado de diversas causas, como la erosión del suelo, la actividad biológica y la contaminación. La comprensión de la turbidez y su impacto es esencial para la gestión de recursos hídricos y la protección del medio ambiente.
+
+La turbidez viene determinada por la dispersión de la luz causada por la materia suspendida en el agua, se obtiene normalmente mediante un turbidímetro, que proporciona medidas en Nephelometric Turbidity Unit (NTU) y mide la dispersión de un rayo de luz en el agua a 90º de la luz incidente.@Delegido2019
+
+Muchas propiedades, como la cloroﬁla-a (Chl-a), sólidos suspendidos totales (SST) y la materia orgánica disuelta coloreada (CDOM), se utilizan a menudo como indicadores del estado del agua. Estos constituyentes del agua a su vez son responsables de la turbidez.
+
+Existe una fuerte correlación entre turbidez y solidos suspendidos totales, por lo que se puede estimar SST a partir de la turbidez. Por lo general, es una relación directa, a mayor concentración de SST mayor turbidez.
+
+Existe una relación inversa entre la Turbidez y la profundidad del disco de Secchi (a valores bajos de secchi mayor turbidez), por lo que tambien se puede estimar turbidez a partir de medicones de disco de secchi.
+
+### Métodos tradicionales
+
+
+```{r tbl-turb}
+#| column: screen-right
+
+tabla_turb
+```
+
+
+Múltiples modelos (lineal, logaritmos, inversa, cuadrática, exponencial, potencial) y plataformas (Sentinel-2, Landsat-5 y Landsat-8) emplean el cociente de bandas B04/B03 @Shen2021.
+
+Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones lineales, cuadráticas y logarítmicas empleando B02, B03, B04, B01 (con menos apariciones) y cocientes entre éstas @Ouma2020.
+
+### Métodos de aprendizaje automático
+
+El aprendizaje automático es un subconjunto de la inteligencia artificial que permite que un sistema aprenda y mejore de forma autónoma, sin necesidad de una programación explícita, a través del análisis de grandes cantidades de datos. El aprendizaje automático permite que los sistemas informáticos se ajusten y mejoren continuamente a medida que acumulan más "experiencias". Por lo tanto, el rendimiento de estos sistemas puede mejorar si se proporcionan conjuntos de datos más grandes y variados para su procesamiento.
+
+Cuando se entrenan modelos de machine learning, cada conjunto de datos y cada modelo necesitan un conjunto diferente de "hiperparámetros".
+Los hiperparámetros son variables de configuración externa que se utilizan para administrar el entrenamiento de modelos de machine learning. Controlan de forma directa la estructura, funciones y rendimiento de los modelos.
+Los hiperparámetros son los parámetros de un modelo de aprendizaje automático, que no se aprenden durante el entrenamiento, sino que se establecen antes de que comience.
+
+El "ajuste de hiperparámetros" permite modificar el rendimiento del modelo para lograr resultados óptimos. Este proceso es una parte fundamental del machine learning.
+El ajuste de hiperparámetros puede ser manual o automático. A pesar de que el ajuste manual es lento y tedioso, permite entender mejor cómo afectan al modelo las ponderaciones de los hiperparámetros. El proceso de ajuste de hiperparámetros es iterativo, y debe probar diferentes combinaciones de parámetros y valores.
+
+En el aprendizaje automático es importante utilizar técnicas de "validación cruzada" , de modo que el modelo no se centre únicamente en una única porción de sus datos.
+La validación cruzada o cross-validation es una técnica utilizada para evaluar los resultados de un análisis estadístico y garantizar que son independientes de la partición entre datos de entrenamiento y prueba.
+La idea básica de la validación cruzada es dividir los datos en conjuntos de entrenamiento y validación, y luego entrenar el modelo en el conjunto de entrenamiento y evaluar su rendimiento en el conjunto de validación. Este proceso se repite varias veces, con diferentes subconjuntos de los datos utilizados para el entrenamiento y la validación, y se calcula el rendimiento promedio.
+
+En los procesos de machine learning supervisado se utilizan diversos algoritmos y técnicas de cálculo, generalmente calculados mediante el uso de programas como R o Python.
+
+Dependiendo del tipo de datos que se usen para el entrenamiento, será de modelo de aprendizaje automático que se use.
+A grandes rasgos, existen tres tipos de modelos que se usan en el aprendizaje automático: aprendizaje supervisado , no supervisado y por refuerzo.
+
+Consultanto el trabajo de otros investigadores, se observa que utilizan principalmente el aprendizaje automático supervisado.
+Este tipo aprendizaje supervisado utiliza un conjunto de entrenamiento para enseñar a los modelos a producir el resultado deseado. Este conjunto de datos de entrenamiento incluye entradas y salidas correctas, que permiten al modelo aprender con el tiempo. El algoritmo mide su precisión a través de la función de pérdida, ajustando hasta que el error se haya minimizado lo suficiente.
+
+Yang Zhe y otros, utilizaron como datos de entrada la reflectancia de superficie y datos de salida la turbidez, utilizaron los modelos SVR (support vector regression), random forest (RF) y eXtreme Gradiente Boostring (XGBoost).
+Los hiperparámetros de cada modelo se determinaron mediante una búsqueda en cuadrícula de validación cruzada en Scikit-Learn de Python @Yang2023.
+
+Ma Yue y otros, utilizaron varios modelos de aprendizaje automático, usaron Python 3.7 tanto para la prediccion de la turbidez del agua y la optimición de la los hiperparámetros @Ma2021.
+
+Zhao y otros probaron 14 modelos de machine learning en un estanque de peces con un dispositvo de construcion propia, de los cuales ETR, Bagging, RFR, and ABR son los que presentaron un mejor desempeño en la estimación de la turbidez. Los algoritmos se implementaron utilizando Python 3.6 y bibliotecas de aprendizaje
+scikit @Zhao2022.
+
+::: {.column-screen-right}
+
+|                                                                                                                                                                                                                                                Modelo de machine learning                                                                                                                                                                                                                                                |   Cuerpo de agua  |            Métricas           |          Plataforma         | Referencia |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------:|:-----------------------------:|:---------------------------:|:----------:|
+|                                                                                                                                                                                                                                             SVR, ELM ,BP ,CART ,GBT ,RF ,KNN                                                                                                                                                                                                                                             |       Lagos       |         RMSE, R^2, MAE        |         Sentinel-MSI        |   @Ma2021  |
+|                                                                                                                                                                                                                 eXtreme Gradient Boosting (XGBoost),  support vector regression (SVR), random forest (RF)                                                                                                                                                                                                                |        Lago       |        RMSE, R^2, MAPE        | Sentinel-2A/B y Landsat-8/9 |  @Yang2023 |
+| linear regression (LR), ridge regression (RR),  least absolute shrinkage and selection operator regression(LASSO), elastic net regression (ENR),  k-nearest neighbor regression (KNN), Gaussian process regression (GPR), decision tree regression (DTR), support vector regression (SVR), multilayer perceptron regression (MLP), adaptive boosting regression (ABR), gradient boosting regression (GBR), bootstrap aggregating regression (Bagging), random forest regression (RFR), and extreme tree regression (ETR) | Estanque de peces | MAE, MRSE, MAPE, R^2, RE, Acc |            Propia           |  @Zhao2022 |
+
+
+: {.striped}
+
+:::
+
+
+## Profundidad de disco de Secchi<span style="font-weight:normal; font-size: 1rem">, por Mauricio Acosta [{{< fa brands github >}}](https://github.com/mauri491)</span> {toc-text="Profundidad de disco de Secchi"}
+
+La transparencia del agua es uno de los componentes clave para describir la calidad y productividad de aguas naturales. Antes de la disponibilidad de radiometros, el campo de luz bajo el agua era estimado sólo mediante la observación visual del disco de Secchi.
+
+El disco de Secchi <b>es un instrumento de medición de la penetración luminosa.</b> Se utiliza midiendo la profundidad desde la superficie de masa de agua que el disco alcanza hasta perderse de vista.
+
+El disco de Secchi sigue siendo utilizado debido a la simplicidad y rango de aplicación universal del método, además de tratarse de un parámetro facilmente entendible por el público.
+
+La profundidad de disco de Secchi es influenciada por tres componentes ópticos principales: clorofila-a, materia orgánica disuelta coloreada, y sólidos suspendidos totales.
+
+Como se señaló en el apartado de turbidez, se observa una relación inversa entre esta y la profundidad de disco de Secchi.
+
+### Métodos tradicionales
+
+Las ecuaciones principales propuestas son de tipo <b>logarítmica</b> o <b>potencial</b>, lo cual tiene sentido considerando que la relación entre la reflectancia y la turbidez no es lineal. No obstante, algunas ecuaciones lineales presentan un buen desempeño. En ambos tipos de ecuación se repite la presencia de un <b>cociente</b> entre bandas.
+
+
+
+```{r tbl-sdd}
+#| column: screen-right
+
+tabla_sdd
+```
+
+
+### Métodos de aprendizaje automático
+
+A modo de identificar y aprender los patrones subyacentes en las series de datos para asegurar la transferibilidad a través de espacio y tiempo de los distintos modelos obtenidos se destaca el uso de algoritmos como <b>Random Forest</b> y la aplicación de <b>Redes neuronales</b>.
+
+Los <b>modelos de regresión mediante random forest</b>, construidos utilizando las bandas previamente halladas por modelos algebraicos, demostraron explicar de manera consistente una mayor variabilidad que otros algoritmos, indicado por un mayor $pseudo-R^2$. Se señala además que los algoritmos con el mejor rendimiento tienden a ser aquellos que incluyed bandas del infrarrojo cercano.
+
+Una alternativa con un rendimiento superior a los modelos regresión resulta de aplicación de <b>redes neuronales convolucionales de una dimensión</b>. Estas aplican operaciones de convolución y extracción de características en la dimensión espectral de una imagen multiespectral, permitiendo encontrar patrones complejos y relaciones entre las características y el valor medido.
+
+La información se procesa interpretando a los datos como unidimensionales, representando a los valores de reflectancia tomados en todas las longitudes de onda disponibles para una única profundidad medida. La hipótesis es que la relación entre la reflectividad de distintas bandas, capturadas utilizando convolución, codifica la claridad del cuerpo de agua medido como profundidad de disco de Secchi.
+
+
+## Sólidos suspendidos totales<span style="font-weight:normal; font-size: 1rem">, por Vera Geneyer [{{< fa brands github >}}](https://github.com/VeraGeneyer)</span> {toc-text="Sólidos suspendidos totales"}
+
+Los sólidos suspendidos totales (TSM): es la cantidad de materia en suspensión en el agua, que incluye placton, minerales, arena, y microorganismos. Se determinan como el residuo no filtrable de una muestra de agua. Niveles altos (TSM) pueden reducir la transparencia del agua, limitar la luz y y transportar sustancias tóxicas, afectando la vida acuatica y la calidad del agua.
+Este parámetro, medido mediante sensores remotos, nos da información sobre el estado físico del cuerpo de agua y estan relacionados con factores como la humedad, temperatura y entre otros, que es vital para detectar riesgos al ecosistema y cumplir con las normas ambientales.
+
+### Métodos tradicionales
+
+
+```{r tbl-tsm}
+#| column: screen-right
+
+tabla_tsm
+```
+
+
+De acuerdo a un estudio que analizó 48 cuerpos de agua, la estimación de TSM se hizo en su mayoría por modelos lineales, siendo la banda B8A la más frecuente @Cruz2023.
+
+### Métodos de aprendizaje automático
+
+El **aprendizaje automático (ML)**  es una rama de la inteligencia artificial cuyo objetivo es desarrollar algoritmos capaces de resolver problemas mediante el análisis de datos y la creación de funciones que describen el comportamiento de fenómenos monitoreados @Carpio2021. Los modelos de aprendizaje automático más utilizados y mencionados por los investigadores para predecir la concentración de SST son:
+
+* **Bosque Aleatorio (RF) y Refuerzo Adaptativo (AdB)**, modelos que se destacan por su robustez ante datos complejos y ruidosos. Estos algoritmos construyen múltiples árboles de decisión que analizan las relaciones entre características como el uso del suelo o el volumen de escorrentía y los niveles de SST @Moeini2021.
+
+* **Redes Neuronales Artificiales (ANN)**, copian las redes neuronales biológicas y aprenden patrones complejos en grandes volúmenes de datos, como los niveles de SST en distintas condiciones ambientales @Moeini2021,
+
+* **k-Nearest Neighbors (kNN)**, en sus variantes de ponderación uniforme y variable, que estima el SST en función de la cercanía en características de nuevos puntos de muestreo con datos históricos @Moeini2021,
+
+
+El aprendizaje automático es esencial para mejorar la precisión y rapidez en el análisis de la calidad del agua, proporcionando un monitoreo más eficiente y menos costoso en comparación con los métodos tradicionales, especialmente en áreas de difícil acceso o con datos limitados.
+
+::: {.column-screen-right}
+
+| **Modelo de machine learning**                                                                                                                                |       **Software**       |        **Agua**       |                          **Datos**                          |                            **Métricas**                           | **Referencias** |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------:|:---------------------:|:-----------------------------------------------------------:|:-----------------------------------------------------------------:|-----------------|
+|     Bagging y Random Forest                                                                                                                                         |        Programa   R      |          Bahía        |                           Muestreo                          |     Prueba   de normalidad multivalente Mardia-tests y Royston    | @Carpio2021     |
+|     Regresión lineal, LASSO, regresión de vectores de soporte (SVR), K vecinos más cercanos   (KNN), bosque aleatorio (RF) y redes neuronales artificiales (ANN).   |             -            |     Lago y embalse    |                       Sentinel-2 y UAV                      |                                 R<sup>2</sup>                                | @Silveira2020   |
+|     Regresión lineal, regresión de vectores de soporte (SVR), K vecinos más cercanos (KNN),   bosque aleatorio (RF) y redes neuronales artificiales (ANN).          |     Programa   Python    |          Lagos        |     Estación de monitoreo (Sensores para cada parámetro)    |                          R<sup>2</sup>   , NSE y RMSE                        | @Moeini2021     |
+
+: {.striped}
+
+:::
+
+
+
+# Objetivos {#sec-objetivos}
+
+El objetivo principal del proyecto de investigación es:
+
+::: {.callout-note appearance="simple" icon=false}
+<p style='font-size:1.1rem'>
+Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos de campo.
+</p>
+:::
+
+## Objetivos específicos
+
+::: {.callout-note title="Mostrar" collapse=true}
+
+* Seleccionar un sector de la cuenca media del río Paraná, en la confluencia de los ríos Paraguay-Paraná, y en la toma de agua de la empresa potabilizadora de la ciudad de Resistencia.
+
+* Definir la cantidad y ubicación geográfica de los sitios de muestreo considerando el sensor satelital elegido, la logística y las características de la región de interés.
+
+* Analizar los sólidos suspendidos y la turbidez como indicadores de la calidad del agua en las muestras recolectadas en los sitios previamente seleccionados.
+
+* Construir una base de datos espaciotemporales a partir de productos satelitales ópticos, en reflectancia de superficie.
+
+* Calcular índices espectrales relacionados con la cuantificación de los indicadores de calidad del agua.
+
+* Desarrollar un algoritmo semiempírico que permita estimar indicadores de la calidad del agua a partir de los datos de campo y los datos espectrales de los productos espaciales.
+
+* Validar el algoritmo desarrollado, evaluar su significancia estadística y compararlo con otros encontrados en referencias bibliográficas.
+
+* Generar mapas de los parámetros estimados y su evolución temporal a partir de la aplicación del algoritmo obtenido.
+
+* Analizar espaciotemporalmente el comportamiento de los indicadores de calidad de agua.
+
+* Formar RRHH en el área específica.
+
+:::
+
+El desarrollo de algoritmos empíricos requiere de datos espectrales y fisicoquímicos del agua, la propuesta de modelos candidatos, la selección final de los modelos y la validación de los mismos. Luego, la generación de mapas para evaluar la distribución espacial de las propiedades.
+
+Se pretende automatizar la descarga, extracción y almacenamiento de los datos espectrales y fisicoquímicos del agua en los sitios de muestreo, junto con las coordenadas geográficas.
+
+A medida que el proyecto avance, los resultados parciales serán registrados en el presente sitio web, para su seguimiento y revisión por parte de los integrantes.
+
+# Ejecución {#sec-ejecucion}
+
+::: {.callout-note title="Mostrar" collapse=true}
+
+El proyecto está gestionado mediante el paquete [`targets`](https://books.ropensci.org/targets/). Para ejecutar todas las funciones, correr en la consola:
+
+
+
+```{r tar_make}
+#| eval: false
+#| echo: true
+
+targets::tar_make()
+```
+
+
+
+Esto genera una ejecución en cadena de múltiples funciones que permiten la obtención de datos espectrales y fisicoquímicos para la generación y almacenamiento de resultados.
+
+Utilizar `targets` permite asegurar el orden correcto de ejecución y facilita la resolución de potenciales problemas.
+
+## Funciones
+
+El archivo `_targets.R` contiene los paquetes necesarios y las funciones a ejecutar, en el orden adecuado y las relaciones entre sí.
+
+Para visualizar las dependencias y el estado actual entre funciones correr:
+
+
+
+```{r tar_viz}
+#| eval: false
+#| echo: true
+
+targets::tar_visnetwork()
+```
+
+```{r grafo_funciones}
+#| fig-cap: Grafo de dependencias.
+#| label: fig-visnetwork
+
+targets::tar_visnetwork()
+```
+
+
+
+La figura es interactiva y pueden seleccionarse los nodos para identificar las dependencias.
+
+## Creación de objetivos
+
+Para generar nuevos objetivos, hay que editar el archivo `_targets.R` agregando un nuevo elemento a `list()`:
+
+
+
+```{r tar_target}
+#| eval: false
+#| echo: true
+
+targets::tar_target(
+  names = nombre_de_objetivo,
+  command = funcion()
+)
+
+```
+
+
+
+La `funcion()` se desarrolla en el archivo `scripts/funciones.R`. En caso de hacer el seguimiento de archivos agregar el argumento `format = "file"`.
+
+Los objetivos se muestran como círculos (`r icono_circulo`) en el [grafo -@fig-visnetwork] de dependencias.
+
+## Datos
+
+Los datos generados son del tipo archivo de texto (`.csv`) y ráster (`.tif`).
+
+### Bases de datos {#sec-base-de-datos}
+
+La ejecución de `targets` tiene como propósito ([$\S$@sec-objetivos]) la obtención de los datos espectrales y fisicoquímicos de los sitios de muestreo sobre el río Paraná.
+
+* Datos espectrales, `datos/base_de_datos_gis.csv`
+
+El archivo de texto posee los valores de reflectancia de superficie (entre $0 - 1$) para cada banda de S2-MSI. Se generan dos valores para cada sitio: <b>1x1</b>, que consiste en el valor exacto del píxel; y <b>3x3</b>, que toma la media de una ventana de píxeles alrededor del píxel central.
+
+Se incluye la fecha, el número de sitio y las coordenadas geográficas en el sistema EPSG:4326, en latitud y longitud.
+
+* Datos fisicoquímicos, `datos/base_de_datos_lab.csv`
+
+Sobre el curso de agua se obtienen pH, conductividad, profundidad de disco de Secchi y las coordenadas geográficas. En laboratorio se miden turbidez por dos métodos: colorimétrico (HACH) y turbidímetro (Hazemeter), y sólidos suspendidos por gravimetría.
+
+### Recortes ráster
+
+Los productos S2-MSI son recortados a la región de interés, alrededor del [Puente Chaco-Corrientes](https://www.openstreetmap.org/#map=15/-27.4687/-58.8608).
+
+Se genera un stack con las bandas de interés y se almacena con el nombre de la fecha correspondiente en la carpeta `recorte/` con formato `.tif`.
+
+## Entorno de ejecución
+
+Definir las versiones de los paquetes utilizados en el presente proyecto es relevante ya que permite asegurar la reproducibilidad de los resultados. Para tal fin se emplea el paquete [`renv`](https://rstudio.github.io/renv/).
+
+La instalación de paquetes se realiza de manera tradicional:
+
+
+
+```{r install-pack}
+#| eval: false
+#| echo: true
+
+install.packages("nombre_del_paquete")
+
+```
+
+
+
+Cada vez que se instale, actualice o remueva un nuevo paquete ejecutar en la consola:
+
+
+
+```{r renv-snap}
+#| eval: false
+#| echo: true
+
+renv::snapshot()
+
+```
+
+
+
+Esto actualiza el archivo `renv.lock` con la información de cada paquete. Para verificar el estado actual de `renv`, correr:
+
+
+
+```{r renv-status}
+#| eval: false
+#| echo: true
+
+renv::status()
+```
+
+
+
+## Quarto
+
+El presente sitio web fue desarrollado con la herramienta [Quarto](https://quarto.org/). Para generar el sitio web se debe renderizar el archivo `index.qmd` que produce `index.html`.
+
+La publicación se lleva a cabo en [Quarto Pub](https://quartopub.com/). Los datos de publicación se registran en el archivo `_publish.yml`.
+
+Para regenerar el `.html` e inmediatamente publicar el sitio web, correr en la terminal:
+
+```{.bash}
+quarto publish index.qmd
+```
+
+En la terminal se debe elegir la cuenta asociada a Quarto Pub.
+
+:::
+
+# Algoritmos {#sec-algoritmos}
+
+El desarrollo de los algoritmos para la estimación de indicadores de calidad del agua requiere la combinación de datos espectrales y fisicoquímicos.
+
+Se proponen múltiples modelos para la estimación de parámetros. Se siguen los lineamientos de [`tidymodels`](https://www.tmwr.org/) para el entrenamiento y validación de los modelos.
+
+# Contacto {#sec-contacto}
+
+Integrantes del Proyecto de Investigación.
+
+Profesionales:
+
+* Enid Utgés
+* Daniela Tenev
+* Víctor Gauto
+
+Becarios:
+
+* Mauricio Acosta
+* Vera Geneyer
+* Víctor Gómez
+* Bruno Lossada Dusset
+
+Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://vhgauto.quarto.pub/gistaq-parana/).
+
+Sitio web desarrollado y mantenido por: <b>Víctor Gauto</b>. [{{< fa envelope >}}](mailto:victor.gauto@outlook.com), [{{< fa brands github >}}](https://github.com/vhgauto).
+
+Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [{{< fa envelope >}}](mailto:gistaq@ca.frre.utn.edu.ar), [{{< fa brands instagram >}}](https://www.instagram.com/gistaq.utn/), [{{< fa brands facebook >}}](https://www.facebook.com/GISTAQ/).
+
+<br>
+
+::: {.column-screen-inset}
+
+<center>
+
+
+![](extras/logo-gistaq.png){height=50}
+`r espacios()`
+![](extras/logo-utn-frre.png){height=50}
+`r espacios()`
+![](extras/logo-gulich.png){height=50}
+`r espacios()`
+![](extras/logo-conae.png){height=50}
+`r espacios()`
+![](extras/logo-unc.png){height=50}
+`r espacios()`
+![](extras/logo-iidthh.png){height=50}
+`r espacios()`
+![](extras/logo-conicet.png){height=50}
+`r espacios()`
+![](extras/logo-unne.png){height=50}
+
+
+</center>
+
+:::
+
