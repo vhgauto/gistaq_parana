@@ -1,4 +1,4 @@
 - source: index.qmd
   quarto-pub:
     - id: ff90d76c-20c0-4210-8791-5d868ede4c50
-      url: 'https://vhgauto.quarto.pub/gistaq-parana'
+      url: https://vhgauto.quarto.pub/gistaq-parana
