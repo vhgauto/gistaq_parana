@@ -446,6 +446,8 @@ A medida que el proyecto avance, los resultados parciales serán registrados en 
 
 # Ejecución {#sec-ejecucion}
 
+::: {.callout-note title="Mostrar" collapse=true}
+
 El proyecto está gestionado mediante el paquete [`targets`](https://books.ropensci.org/targets/). Para ejecutar todas las funciones, correr en la consola:
 
 ```{r tar_make}
@@ -570,6 +572,8 @@ quarto publish index.qmd
 ```
 
 En la terminal se debe elegir la cuenta asociada a Quarto Pub.
+
+:::
 
 # Algoritmos {#sec-algoritmos}
 
