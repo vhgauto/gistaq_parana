@@ -446,8 +446,6 @@ A medida que el proyecto avance, los resultados parciales serán registrados en 
 
 # Ejecución {#sec-ejecucion}
 
-:::: {.callout-note title="Mostrar" collapse=true}
-
 El proyecto está gestionado mediante el paquete [`targets`](https://books.ropensci.org/targets/). Para ejecutar todas las funciones, correr en la consola:
 
 ```{r tar_make}
@@ -482,52 +480,6 @@ targets::tar_visnetwork()
 ```
 
 La figura es interactiva y pueden seleccionarse los nodos para identificar las dependencias.
-
-A continuación, se describen las funciones objetivo, indicadas con triángulos (`r icono_triangulo`) en la figura anterior.
-
-### `excel` {#sec-excel}
-
-El archivo Excel `datos/datos_gistaq.xlsx` contiene todos los datos del muestreo y los resultados de los análisis fisicoquímicos.
-
-Incluye la fecha, las coordenadas geográficas de los sitios de muestreo, los valores de pH, conductividad (μS/cm), profundidad de disco de Secchi (cm), sólidos suspendidos (ppm) y turbidez, por dos métodos: colorimétrico (HACH, NTU) y turbidímetro (Hazemeter, EBC).
-
-Al finalizar el procesamiento de cada nueva muestra de agua ([$\S$-@sec-muestreos]), se actualiza manualmente con los datos obtenidos. La ejecución del comando mostrado al inicio de esta sección ([$\S$-@sec-ejecucion]) genera la suceción de todas las funciones siguientes.
-
-### `fecha_descarga` {#sec-fecha-descarga}
-
-A partir de las fechas previamente analizadas, tomadas de la base de datos, se obtiene del archivo Excel la última fecha faltante.
-
-A partir de esta fecha se procede a la descarga del producto correspondiente.
-
-### `script_py`
-
-Usando la plantilla `scripts/plantilla.py` de un código de programación en Python, se genera el archivo `scripts/d.py` que contiene los parámetros de búsqueda del producto de interés.
-
-Se establecen las coordenadas de la región de interés ($-58° 48' 48''S$, $+27° 29' 18''O$), la fecha ([$\S$@sec-fecha-descarga]) y el nivel de procesamiento.
-
-### `producto_zip`
-
-Se ejecuta el script Python que descarga el producto. Utiliza las credenciales de mi cuenta en [Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu/). El nivel de procesamiento es L2A, en reflectancia de superficie, con corrección atmosférica automática.
-
-El producto a descargar corresponde al SAFE y se encuentra comprimido en un archivo `.zip`. El tamaño del producto es 1Gb aproximadamente.
-
-### `recorte_tif`
-
-Extracción del contenido del `.zip` y creación de un stack a partir de las bandas de interés.
-
-El stack contiene las bandas espectrales: B01, B02, B03, B04, B05, B06, B07, B08, B8A, B11 y B12. Se recorta al polígono `vector/recorte_puente.gpkg` y luego se hace un remuestreo a 10 m. Las características de estas bandas se detallan en la @tbl-s2msi.
-
-Se almacena el recorte `.tif`, siendo el nombre del archivo la fecha de adquisición del producto.
-
-### `datos_gis` {#sec-datos-gis}
-
-A partir de la fecha ([$\S$@sec-fecha-descarga]), se genera un vector con las coordenadas geográficas del Excel ([$\S$@sec-excel]). Luego, se extraen los valores de píxeles por cada banda. Se actualiza el archivo `datos/base_de_datos_gis.csv` ([$\S$@sec-base-de-datos]) con los nuevos datos espectrales.
-
-Las características de las bandas espectrales se muestran a continuación:
-
-### `datos_lab`
-
-Los datos fisicoquímicos del Excel se extraen a partir de la fecha y se combinan con los datos ya presentes en el archivo `datos/base_de_datos_lab.csv`.
 
 ## Creación de objetivos
 
@@ -618,8 +570,6 @@ quarto publish index.qmd
 ```
 
 En la terminal se debe elegir la cuenta asociada a Quarto Pub.
-
-::::
 
 # Algoritmos {#sec-algoritmos}
 
