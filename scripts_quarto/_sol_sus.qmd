@@ -15,13 +15,13 @@ De acuerdo a un estudio que analizó 48 cuerpos de agua, la estimación de TSM s
 
 ### Métodos de aprendizaje automático
 
-El ** aprendizaje automático (ML) **  es una rama de la inteligencia artificial cuyo objetivo es desarrollar algoritmos capaces de resolver problemas mediante el análisis de datos y la creación de funciones que describen el comportamiento de fenómenos monitoreados. (@Carpio2021) Los modelos de aprendizaje automático más utilizados y mencionados por los investigadores para predecir la concentración de SST son:
+El **aprendizaje automático (ML)**  es una rama de la inteligencia artificial cuyo objetivo es desarrollar algoritmos capaces de resolver problemas mediante el análisis de datos y la creación de funciones que describen el comportamiento de fenómenos monitoreados @Carpio2021. Los modelos de aprendizaje automático más utilizados y mencionados por los investigadores para predecir la concentración de SST son:
 
-* **Bosque Aleatorio (RF) y Refuerzo Adaptativo (AdB)**, modelos que se destacan por su robustez ante datos complejos y ruidosos. Estos algoritmos construyen múltiples árboles de decisión que analizan las relaciones entre características como el uso del suelo o el volumen de escorrentía y los niveles de SST. @Moeini2021
+* **Bosque Aleatorio (RF) y Refuerzo Adaptativo (AdB)**, modelos que se destacan por su robustez ante datos complejos y ruidosos. Estos algoritmos construyen múltiples árboles de decisión que analizan las relaciones entre características como el uso del suelo o el volumen de escorrentía y los niveles de SST @Moeini2021.
 
-* **Redes Neuronales Artificiales (ANN)**, copian las redes neuronales biológicas y aprenden patrones complejos en grandes volúmenes de datos, como los niveles de SST en distintas condiciones ambientales. @Moeini2021,
+* **Redes Neuronales Artificiales (ANN)**, copian las redes neuronales biológicas y aprenden patrones complejos en grandes volúmenes de datos, como los niveles de SST en distintas condiciones ambientales @Moeini2021,
 
-* **k-Nearest Neighbors (kNN)**, en sus variantes de ponderación uniforme y variable, que estima el SST en función de la cercanía en características de nuevos puntos de muestreo con datos históricos. @Moeini2021,
+* **k-Nearest Neighbors (kNN)**, en sus variantes de ponderación uniforme y variable, que estima el SST en función de la cercanía en características de nuevos puntos de muestreo con datos históricos @Moeini2021,
 
 
 El aprendizaje automático es esencial para mejorar la precisión y rapidez en el análisis de la calidad del agua, proporcionando un monitoreo más eficiente y menos costoso en comparación con los métodos tradicionales, especialmente en áreas de difícil acceso o con datos limitados.

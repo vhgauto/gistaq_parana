@@ -35,7 +35,6 @@ Los hiperparámetros son los parámetros de un modelo de aprendizaje automático
 El "ajuste de hiperparámetros" permite modificar el rendimiento del modelo para lograr resultados óptimos. Este proceso es una parte fundamental del machine learning.
 El ajuste de hiperparámetros puede ser manual o automático. A pesar de que el ajuste manual es lento y tedioso, permite entender mejor cómo afectan al modelo las ponderaciones de los hiperparámetros. El proceso de ajuste de hiperparámetros es iterativo, y debe probar diferentes combinaciones de parámetros y valores.
 
-
 En el aprendizaje automático es importante utilizar técnicas de "validación cruzada" , de modo que el modelo no se centre únicamente en una única porción de sus datos.
 La validación cruzada o cross-validation es una técnica utilizada para evaluar los resultados de un análisis estadístico y garantizar que son independientes de la partición entre datos de entrenamiento y prueba.
 La idea básica de la validación cruzada es dividir los datos en conjuntos de entrenamiento y validación, y luego entrenar el modelo en el conjunto de entrenamiento y evaluar su rendimiento en el conjunto de validación. Este proceso se repite varias veces, con diferentes subconjuntos de los datos utilizados para el entrenamiento y la validación, y se calcula el rendimiento promedio.
@@ -49,12 +48,12 @@ Consultanto el trabajo de otros investigadores, se observa que utilizan principa
 Este tipo aprendizaje supervisado utiliza un conjunto de entrenamiento para enseñar a los modelos a producir el resultado deseado. Este conjunto de datos de entrenamiento incluye entradas y salidas correctas, que permiten al modelo aprender con el tiempo. El algoritmo mide su precisión a través de la función de pérdida, ajustando hasta que el error se haya minimizado lo suficiente.
 
 Yang Zhe y otros, utilizaron como datos de entrada la reflectancia de superficie y datos de salida la turbidez, utilizaron los modelos SVR (support vector regression), random forest (RF) y eXtreme Gradiente Boostring (XGBoost).
-Los hiperparámetros de cada modelo se determinaron mediante una búsqueda en cuadrícula de validación cruzada en Scikit-Learn de Python. @Yang2023
+Los hiperparámetros de cada modelo se determinaron mediante una búsqueda en cuadrícula de validación cruzada en Scikit-Learn de Python @Yang2023.
 
-Ma Yue y otros, utilizaron varios modelos de aprendizaje automático, usaron Python 3.7 tanto para la prediccion de la turbidez del agua y la optimición de la los hiperparámetros. @Ma2021
+Ma Yue y otros, utilizaron varios modelos de aprendizaje automático, usaron Python 3.7 tanto para la prediccion de la turbidez del agua y la optimición de la los hiperparámetros @Ma2021.
 
 Zhao y otros probaron 14 modelos de machine learning en un estanque de peces con un dispositvo de construcion propia, de los cuales ETR, Bagging, RFR, and ABR son los que presentaron un mejor desempeño en la estimación de la turbidez. Los algoritmos se implementaron utilizando Python 3.6 y bibliotecas de aprendizaje
-scikit. @Zhao2022
+scikit @Zhao2022.
 
 ::: {.column-screen-right}
 

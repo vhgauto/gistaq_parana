@@ -10,8 +10,6 @@ La profundidad de disco de Secchi es influenciada por tres componentes ópticos 
 
 Como se señaló en el apartado de turbidez, se observa una relación inversa entre esta y la profundidad de disco de Secchi.
 
-
-
 ### Métodos tradicionales
 
 Las ecuaciones principales propuestas son de tipo <b>logarítmica</b> o <b>potencial</b>, lo cual tiene sentido considerando que la relación entre la reflectancia y la turbidez no es lineal. No obstante, algunas ecuaciones lineales presentan un buen desempeño. En ambos tipos de ecuación se repite la presencia de un <b>cociente</b> entre bandas.
