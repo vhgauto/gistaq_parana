@@ -9,6 +9,8 @@ $cr: #007E2E;
 $cg: #FAFAFA;
 $cn: #000000;
 $cb: #FFFFFF;
+$cg2: #D3D3D3;
+$cg3: #F5F5F5;
 
 // Ubuntu
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
@@ -41,7 +43,7 @@ $cb: #FFFFFF;
 
 // línea en encabezado
 h2, .h2 {
-    border-bottom: 1px solid #D3D3D3;
+    border-bottom: 1px solid $cg2;
     padding-bottom: .5rem;
 }
 
@@ -176,6 +178,9 @@ div.callout-note.callout-style-default > .callout-header {
 	color: $ca;
 	border-color: $ca;
     border-radius: 0;
+    --bs-nav-tabs-border-radius: 0;
+    --bs-nav-tabs-link-active-bg: #F5F5F5;
+    // border-bottom: 1px solid $cg2;
 }
 
 // fuerzo que la tabla de contenido (toc) se ubique por sobre todos
@@ -188,4 +193,31 @@ div.callout-note.callout-style-default > .callout-header {
 // fuente de la fecha
 .date {
     font-family: JetBrains Mono;
+}
+
+.nav-tabs {
+    --bs-nav-tabs-border-width: 1px;
+    --bs-nav-tabs-border-color: white;
+    --bs-nav-tabs-border-radius: 0.375rem;
+    --bs-nav-tabs-link-hover-border-color: #e9ecef #e9ecef white;
+    --bs-nav-tabs-link-active-color: #000;
+    --bs-nav-tabs-link-active-bg: #ffffff;
+    --bs-nav-tabs-link-active-border-color: white white #ffffff;
+    border-bottom: 1px solid $cg2;
+}
+
+.nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: ;
+    --bs-nav-link-color: #0d6efd;
+    --bs-nav-link-hover-color: #0a58ca;
+    --bs-nav-link-disabled-color: rgba(33, 37, 41, 0.75);
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
 }
