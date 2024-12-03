@@ -39,6 +39,12 @@ $cb: #FFFFFF;
     color: $cr;
 }
 
+// línea en encabezado
+h2, .h2 {
+    border-bottom: 1px solid #D3D3D3;
+    padding-bottom: .5rem;
+}
+
 #title-block-header.quarto-title-block.default .quarto-title .title {
     margin-bottom: 200;
 }
