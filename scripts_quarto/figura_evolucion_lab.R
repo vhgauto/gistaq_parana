@@ -9,24 +9,24 @@ param_unid_v <- c(
   "<i>secchi</i> (cm)")
 names(param_unid_v) <- param_v
 
-d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |> 
+d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
   mutate(
     param = param_unid_v[param]
-  ) |> 
-  drop_na() |> 
-  group_by(fecha, param) |> 
-  mutate(p = row_number()) |> 
-  ungroup() |> 
+  ) |>
+  drop_na() |>
+  group_by(fecha, param) |>
+  mutate(p = row_number()) |>
+  ungroup() |>
   mutate(
     unidad = str_extract(param, "\\(([^)]+)\\)"),
     unidad = str_remove(unidad, "\\("),
     unidad = str_remove(unidad, "\\)")
-  ) |> 
+  ) |>
   mutate(
-    unidad = if_else(is.na(unidad), "", unidad)) |> 
-  mutate(v = format(valor, nsmall = 1, digits = 1, decimal.mark = ",")) |> 
-  mutate(label = glue("{fecha}<br>{v} {unidad}")) |> 
-  mutate(p = glue("P{p}")) |> 
+    unidad = if_else(is.na(unidad), "", unidad)) |>
+  mutate(v = format(valor, nsmall = 1, digits = 1, decimal.mark = ",")) |>
+  mutate(label = glue("{fecha}<br>{v} {unidad}")) |>
+  mutate(p = glue("P{p}")) |>
   mutate(
     estado = if_else(
       fecha == max(fecha),
@@ -44,16 +44,16 @@ estado_color <- c(
 
 # función que genera las figuras interactivas por parámetros
 f_figura_evolucion_lab <- function(parametro) {
-  g <- d |> 
-    filter(param == parametro) |> 
+  g <- d |>
+    filter(param == parametro) |>
     ggplot(aes(p, valor, group = fecha, color = estado, fill = estado)) +
     geom_line_interactive(
       aes(data_id = interaction(fecha, param)), hover_nearest = TRUE,
       linewidth = 2, alpha = .8) +
     geom_point_interactive(
       aes(
-        data_id = interaction(fecha, param), tooltip = label, 
-        hover_nearest = TRUE), size = 2.5, shape = 21, color = c3, 
+        data_id = interaction(fecha, param), tooltip = label,
+        hover_nearest = TRUE), size = 2.5, shape = 21, color = c3,
       stroke = .2, show.legend = FALSE) +
     facet_wrap(vars(param), ncol = 3, scales = "free") +
     scale_x_discrete(expand = c(0, 0)) +
@@ -88,14 +88,14 @@ f_figura_evolucion_lab <- function(parametro) {
       legend.text = element_text(
         family = "ubuntu", size = 12, margin = margin(r = 10, l = 3)
       ),
-      legend.background = element_rect(fill = c6, color = NA),
+      legend.background = element_rect(fill = c10, color = NA),
       legend.key = element_rect(fill = NA, color = NA),
       legend.key.spacing.x = unit(.3, "cm")
     )
-  
+
   gg_int <- girafe(
     ggobj = g,
-    bg = c6,
+    bg = c10,
     options = list(
       opts_hover(
         css = girafe_css(
@@ -116,7 +116,7 @@ f_figura_evolucion_lab <- function(parametro) {
       opts_toolbar(saveaspng = FALSE)
     )
   )
-  
+
   return(gg_int)
 }
 
@@ -129,6 +129,6 @@ lista_figura_evolucion_lab <- map(param_v, f_figura_evolucion_lab)
 # datos -------------------------------------------------------------------
 
 cantidad_fechas <- length(unique(d$fecha))
-cantidad_muetras <- d |> 
-  filter(str_detect(param, "turb")) |> 
+cantidad_muetras <- d |>
+  filter(str_detect(param, "turb")) |>
   nrow()

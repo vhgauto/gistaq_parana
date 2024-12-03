@@ -28,11 +28,11 @@ punto_tamaño <- 3
 g_recta <- function(g, etq) {
   g +
     geom_smooth(
-      method = lm, formula = y ~ x, se = FALSE, color = c1,  
+      method = lm, formula = y ~ x, se = FALSE, color = c1,
       linetype = linea_tipo, linewidth = linea_ancho) +
     annotate(
-      geom = "richtext", x = I(1), y = I(1), hjust = 1, vjust = 1, 
-      size = texto_tamaño, label = etq, label.color = NA, fill = c6, 
+      geom = "richtext", x = I(1), y = I(1), hjust = 1, vjust = 1,
+      size = texto_tamaño, label = etq, label.color = NA, fill = c10,
       family = "jet") +
     scale_x_log10(breaks = scales::breaks_pretty()) +
     scale_y_log10(expand = c(0, 0))
@@ -40,13 +40,13 @@ g_recta <- function(g, etq) {
 
 # configuración de las figuras asociadas a una EXPONENCIAL
 g_log <- function(g, etq) {
-  g + 
+  g +
     geom_smooth(
-      method = lm, formula = y ~ x, se = FALSE, color = c1, 
+      method = lm, formula = y ~ x, se = FALSE, color = c1,
       linetype = linea_tipo, linewidth = linea_ancho) +
     annotate(
-      geom = "richtext", x = I(0), y = I(1), hjust = 0, vjust = 1, 
-      size = texto_tamaño, label = etq, label.color = NA, fill = c6, 
+      geom = "richtext", x = I(0), y = I(1), hjust = 0, vjust = 1,
+      size = texto_tamaño, label = etq, label.color = NA, fill = c10,
       family = "jet") +
     scale_y_continuous(breaks = scales::breaks_pretty()) +
     scale_x_continuous(breaks = scales::breaks_pretty())
@@ -54,15 +54,15 @@ g_log <- function(g, etq) {
 
 # figuras
 f_gg <- function(eje_x, eje_y) {
-  e <- d |> 
+  e <- d |>
     pivot_wider(
       names_from = param,
       values_from = valor
-    ) |> 
-    select(any_of(c(eje_x, eje_y))) |> 
-    rename(x = 1, y = 2) |> 
+    ) |>
+    select(any_of(c(eje_x, eje_y))) |>
+    rename(x = 1, y = 2) |>
     drop_na()
-  
+
   # figura básica
   g <- ggplot(e, aes(x, y)) +
     geom_point(size = punto_tamaño, alpha = punto_transparencia, color = c2) +
@@ -72,7 +72,7 @@ f_gg <- function(eje_x, eje_y) {
     theme(
       aspect.ratio = 1,
       plot.margin = margin(t = 5, r = 7, b = 14, l = 10),
-      panel.background = element_rect(fill = c6, color = NA),
+      panel.background = element_rect(fill = c10, color = NA),
       panel.grid.major = element_line(
         color = c4, linewidth = .1, linetype = "FF"),
       axis.title = element_markdown(family = "Ubuntu", size = 12),
@@ -82,37 +82,37 @@ f_gg <- function(eje_x, eje_y) {
       axis.text.x = element_text(margin = margin(t = 6)),
       axis.text.y = element_text(margin = margin(r = 5), hjust = 1)
     )
-  
+
   # figuras que contienen profundidad de disco de Secchi
   if (eje_x == "secchi" | eje_y == "secchi") {
-    
+
     mod <- lm(log(y) ~ log(x), data = e)
-    
-    r2 <- broom::glance(mod)$r.squared |> 
+
+    r2 <- broom::glance(mod)$r.squared |>
       f_formato()
-    
+
     n <- nrow(e)
-    
+
     etq_recta <- glue("R<sup>2</sup> = {r2}<br>n = {n}")
-    
+
     g <- g_recta(g, etq_recta)
-      
-    
+
+
   } else { # figuras NO asociadas a profundidad de disco de Secchi
-    
+
     mod <- lm(y ~ x, data = e)
-    
-    r2 <- broom::glance(mod)$r.squared |> 
+
+    r2 <- broom::glance(mod)$r.squared |>
       f_formato()
-    
+
     n <- nrow(e)
-    
+
     etq_log <- glue("R<sup>2</sup> = {r2}<br>n = {n}")
-    
+
     g <- g_log(g, etq_log)
-      
+
   }
-  
+
   return(g)
 }
 

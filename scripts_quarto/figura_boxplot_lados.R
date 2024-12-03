@@ -10,46 +10,46 @@ names(param_unid_v) <- param_v
 d <- read_csv("datos/base_de_datos_lab.csv") |>
   filter(param != "hazemeter")
 
-# distingo dos grupos: lado Chaco y lado Corrientes 
+# distingo dos grupos: lado Chaco y lado Corrientes
 # según la mediana de la longitud geográfica
 m <- median(d$longitud)
 
 # función que calcula si los grupos son diferentes significativamente
 # usando el test de Wilcox
 f_lado_signif <- function(x) {
-  d_chaco <- d |> 
+  d_chaco <- d |>
     mutate(
       lado = if_else(
         longitud >= m,
         "Corrientes",
         "Chaco"
       )
-    ) |> 
-    filter(param == x & lado == "Chaco") |> 
+    ) |>
+    filter(param == x & lado == "Chaco") |>
     pull(valor)
-  
-  d_corrientes <- d |> 
+
+  d_corrientes <- d |>
     mutate(
       lado = if_else(
         longitud >= m,
         "Corrientes",
         "Chaco"
       )
-    ) |> 
-    filter(param == x & lado == "Corrientes") |> 
+    ) |>
+    filter(param == x & lado == "Corrientes") |>
     pull(valor)
-  
-  
-  signif <- wilcox.test(d_corrientes, d_chaco, paired = FALSE, exact = TRUE) |> 
-    broom::tidy() |> 
-    select(p.value) |> 
+
+
+  signif <- wilcox.test(d_corrientes, d_chaco, paired = FALSE, exact = TRUE) |>
+    broom::tidy() |>
+    select(p.value) |>
     mutate(
       es_significativo = p.value < .05
-    ) |> 
+    ) |>
     mutate(
       param = x
     )
-  
+
   return(signif)
 }
 
@@ -65,7 +65,7 @@ f_figura_lado <- function(x) {
     )
   ) |>
   filter(param == x)
-  
+
   if (f_lado_signif(x)$es_significativo) {
     signif_label <- simbolo_sig
   } else {
@@ -77,7 +77,7 @@ f_figura_lado <- function(x) {
       color = c1, outlier.color = c2, fill = c3, outlier.alpha = .8
     ) +
     annotate(
-      geom = "richtext", x = Inf, y = Inf, hjust = 1, vjust = 1, fill = c6,
+      geom = "richtext", x = Inf, y = Inf, hjust = 1, vjust = 1, fill = c10,
       label = signif_label, label.color = NA, size = 5
     ) +
     facet_wrap(vars(param), nrow = 1, scales = "free") +
@@ -89,7 +89,7 @@ f_figura_lado <- function(x) {
     theme(
       aspect.ratio = 1,
       plot.margin = margin(r = 5, l = 5, t = 0, b = 0),
-      panel.background = element_rect(fill = c6, color = NA),
+      panel.background = element_rect(fill = c10, color = NA),
       panel.grid.major.y = element_line(
         color = c4, linewidth = .1, linetype = "FF"),
       axis.text.x = element_text(

@@ -4,28 +4,28 @@
 banda_orden <- c(
   "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12")
 
-d <- read_csv("datos/base_de_datos_gis.csv", show_col_types = FALSE) |> 
-  drop_na() |> 
-  filter(pixel == "3x3") |> 
-  group_by(fecha, banda) |> 
-  arrange(longitud) |> 
-  mutate(p = row_number()) |> 
-  ungroup() |> 
-  mutate(reflect = round(reflect, 3)) |> 
-  mutate(banda = fct(banda, banda_orden)) |> 
+d <- read_csv("datos/base_de_datos_gis.csv", show_col_types = FALSE) |>
+  drop_na() |>
+  filter(pixel == "3x3") |>
+  group_by(fecha, banda) |>
+  arrange(longitud) |>
+  mutate(p = row_number()) |>
+  ungroup() |>
+  mutate(reflect = round(reflect, 3)) |>
+  mutate(banda = fct(banda, banda_orden)) |>
   mutate(label = glue("P{p}: {reflect}"))
 
 pal <- colorRampPalette(colors = c(c1, c4, c2))(max(d$p))
 names(pal) <- 1:max(d$p)
 
-col_tbl <- d |> 
-  distinct(fecha, p) |> 
-  nest(.by = fecha) |> 
+col_tbl <- d |>
+  distinct(fecha, p) |>
+  nest(.by = fecha) |>
   mutate(
     col = map(.x = data, ~ colorRampPalette(colors = c(c1, c9, c2))(nrow(.x)))
-  ) |> 
+  ) |>
   unnest(cols = c(data, col))
-  
+
 e <- inner_join(
   d,
   col_tbl,
@@ -36,7 +36,7 @@ e <- inner_join(
 
 f_firma_espectral <- function(x) {
 
-  d <- e |> 
+  d <- e |>
     filter(fecha == x)
 
   fig_evo_gis_label <- c("Chaco", rep("", length(unique(d$p))-2), "Corrientes")
@@ -69,7 +69,7 @@ f_firma_espectral <- function(x) {
     labs(y = "R<sub>rs</sub>", x = NULL, color = NULL, fill = NULL) +
     guides(
       fill = guide_colorbar(
-        nrow = 1, 
+        nrow = 1,
         override.aes = list(size = 16, shape = 15, color = colores_gis),
         reverse = FALSE),
       color = guide_none()
@@ -95,7 +95,7 @@ f_firma_espectral <- function(x) {
       strip.background = element_blank(),
       strip.text = element_markdown(
         family = "jet", size = 7, margin = margin(b = 3)),
-      legend.background = element_rect(fill = c6, color = NA),
+      legend.background = element_rect(fill = c10, color = NA),
       legend.key = element_rect(fill = NA, color = NA),
       legend.key.size = unit(1, "mm"),
       legend.position = "top",
@@ -110,7 +110,7 @@ f_firma_espectral <- function(x) {
 
   figura_evolucion_gis <- girafe(
     ggobj = g,
-    bg = c6,
+    bg = c10,
     options = list(
       opts_hover(
         css = girafe_css(css = "")
@@ -129,7 +129,7 @@ f_firma_espectral <- function(x) {
   )
 
 )
-  
+
   return(figura_evolucion_gis)
 
 }
