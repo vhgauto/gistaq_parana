@@ -47,9 +47,15 @@ date: last-modified
 
 ```{r scripts}
 #| eval: true
+#| echo: false
+#| output: false
 
 # corro todos los scripts
 source("scripts_quarto/soporte.R")
+r_script <- list.files(path = "scripts_quarto/", full.names = TRUE)
+r_script <- r_script[!str_detect(r_script, "soporte")]
+r_script <- r_script[!str_detect(r_script, "/_")]
+purrr::map(r_script, source)
 ```
 
 <!-- cómo agregar referencias cruzadas
@@ -188,13 +194,13 @@ Las siguientes figuras muestran la evolución de los datos fisicoquímicos por s
 
 ::: {.panel-tabset}
 
-## pH
+## *turb*
 
 ```{r}
 lista_figura_evolucion_lab[[1]]
 ```
 
-## *cond*
+## *secchi*
 
 ```{r}
 lista_figura_evolucion_lab[[2]]
@@ -206,13 +212,13 @@ lista_figura_evolucion_lab[[2]]
 lista_figura_evolucion_lab[[3]]
 ```
 
-## *turb*
+## *cond*
 
 ```{r}
 lista_figura_evolucion_lab[[4]]
 ```
 
-## *secchi*
+## pH
 
 ```{r}
 lista_figura_evolucion_lab[[5]]
@@ -272,24 +278,6 @@ Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se 
 
 :::: {.panel-tabset}
 
-## pH
-
-![](figuras/lado_ph.png)
-
-[`r caption_boxplot`]{.aside}
-
-## <i>cond</i>
-
-![](figuras/lado_cond.png)
-
-[`r caption_boxplot`]{.aside}
-
-## <i>susp</i>
-
-![](figuras/lado_sol_sus.png)
-
-[`r caption_boxplot`]{.aside}
-
 ## <i>turb</i>
 
 ![](figuras/lado_turb.png)
@@ -299,6 +287,24 @@ Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se 
 ## <i>secchi</i>
 
 ![](figuras/lado_secchi.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>susp</i>
+
+![](figuras/lado_sol_sus.png)
+
+[`r caption_boxplot`]{.aside}
+
+## <i>cond</i>
+
+![](figuras/lado_cond.png)
+
+[`r caption_boxplot`]{.aside}
+
+## pH
+
+![](figuras/lado_ph.png)
 
 [`r caption_boxplot`]{.aside}
 

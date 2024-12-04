@@ -1,12 +1,12 @@
 
 # datos -------------------------------------------------------------------
 
-param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
-# param_unid_v <- c(
-#   "pH", 'Cond (μS/cm)', "Sól. susp. (ppm)", "Turb (NTU)", "SDD (cm)")
+# param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
+param_v <- c("turb", "secchi", "sol_sus", "cond", "ph")
 param_unid_v <- c(
-  "pH", "<i>cond</i> (μS/cm)", "<i>susp</i> (ppm)", "<i>turb</i> (NTU)",
-  "<i>secchi</i> (cm)")
+  "<i>turb</i> (NTU)", "<i>secchi</i> (cm)", "<i>susp</i> (ppm)",
+  "<i>cond</i> (μS/cm)", "pH"
+)
 names(param_unid_v) <- param_v
 
 d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
@@ -121,10 +121,10 @@ f_figura_evolucion_lab <- function(parametro) {
 }
 
 # parámetros
-param_v <- unique(d$param)
+# param_v <- unique(d$param)
 
 # lista con las figuras
-lista_figura_evolucion_lab <- map(param_v, f_figura_evolucion_lab)
+lista_figura_evolucion_lab <- map(param_unid_v, f_figura_evolucion_lab)
 
 # datos -------------------------------------------------------------------
 
