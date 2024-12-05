@@ -365,6 +365,23 @@ Las curvas de <b style='color:`r c1`'>color violeta</b> corresponden a los sitio
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
+El efecto de las características cambiantes del agua no es el mismo para las bandas espectrales de S2-MSI, tal como se muestra en la tabla @tbl-boxplot-firma-espectral.
+
+La distribución (en formato de gráfico de cajas) de R<sub>rs</sub> por banda, indica que en ciertas bandas se observa un efecto de la composición del agua más que en otras.
+
+Las bandas B11 y B12 muetran una distribución estrecha, con bajos valores de reflectancia, a pesar de los cambios observados en el agua. En contraste, las bandas B04 y B05 abarcan un mayor rango de respuesta espectral y valores altos.
+
+```{r tbl-boxplot-firma-espectral}
+#| label: tbl-boxplot-firma-espectral
+#| tbl-cap: Distribución de reflectancia de superficie por banda espectral.
+
+tabla_boxplot_firma_espectral
+```
+
+Asimismo, es posible trazar una transecta que atravieze transversalmente el río Paraná para identificar el cambio en R<sub>rs</sub> por banda espectral.
+
+Para ello se define un punto fijo cercano a la costa chaqueña, y se mide la distancia hacia la costa correntina.
+
 Las características espectrales de S2-MSI se muestran en la siguiente tabla:
 
 ```{r tbl-s2msi}
