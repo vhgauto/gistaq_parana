@@ -112,7 +112,7 @@ El Área Metropolitana del Gran Resistencia (AMGR), en el noreste de Argentina, 
 ![Imagen satelital de la región de interés. Mapa superior: ubicación relativa a Argentina.](figuras/roi.png){#fig-roi}
 :::
 
-La región de interés, donde se hacen las campañas de campo se muestra en la figura [-@fig-roi].
+La región de interés, donde se hacen las campañas de campo se muestra en la figura [-@fig-roi]. Los tres puntos señalados sobre el río Paraná se utilizaron para generar la figura [-@fig-boxplot-puntos].
 
 # Muestreos {#sec-muestreos}
 
@@ -395,9 +395,15 @@ Las bandas B11 y B12 muetran una distribución estrecha, con bajos valores de re
 tabla_boxplot_firma_espectral
 ```
 
-Asimismo, es posible trazar una transecta que atravieze transversalmente el río Paraná para identificar el cambio en R<sub>rs</sub> por banda espectral.
+Se seleccionaron tres sitios fijos, mostrados en la figura @fig-roi, para extraer los valores de R<sub>rs</sub> y evaluar el cambio en la respuesta espectral a lo largo del río Paraná.
 
-Para ello se define un punto fijo cercano a la costa chaqueña, y se mide la distancia hacia la costa correntina.
+La figura @fig-boxplot-puntos muestra que las características de la composición del agua tiene poca repercusión para las bandas B11 y B12, dado que se mantienen constantes en los puntos extremos y en el medio del curso de agua.
+
+En cambio, las bandas B04 y B05 muestran una notable disminución de la R<sub>rs</sub> en dirección Chaco-Corrientes.
+
+::: {.column-screen-right}
+![Distribución de R<sub>rs</sub> a partir de gráficos de cajas por sitio fijo (ver @fig-roi) y banda espectral.](figuras/puntos_boxplot.png){#fig-boxplot-puntos}
+:::
 
 Las características espectrales de S2-MSI se muestran en la siguiente tabla:
 
