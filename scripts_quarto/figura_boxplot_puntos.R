@@ -43,30 +43,31 @@ g <- e_tbl |>
   ggplot(aes(punto, reflect, group = x, fill = punto)) +
   geom_boxplot(
     linewidth = .2, outlier.size = .3, key_glyph = draw_key_point,
-    outlier.color = c9, width = .6
+    outlier.color = c9, width = .8
   ) +
   facet_wrap(vars(banda), scales = "free", nrow = 2) +
   scale_y_continuous(
     breaks = seq(.1, .3, .05),
     limits = c(.1, .3),
-    # expand = c(0, 0),
     labels = scales::label_number(big.mark = ".", decimal.mark = ",")
   ) +
   scale_fill_manual(
     values = c(c1, c5, c2),
+    breaks = c("P1", "P2", "P3"),
+    labels = c("Costa\nchaqueña", "Punto\nintermedio", "Costa\ncorrentina"),
     name = NULL
   ) +
   coord_cartesian(clip = "off") +
   labs(x = NULL, y = "R<sub>rs</sub>", color = "Sitio") +
   guides(
     fill = guide_legend(
-      override.aes = list(color = c7, shape = 22, size = 4, stroke = .3)
+      override.aes = list(color = c7, shape = 22, size = 3, stroke = .3)
     )
   ) +
   theme_minimal(base_size = 7) +
   theme(
-    aspect.ratio = 1.5,
-    plot.margin = margin(r = 5, l = 5, t = 5, b = 5),
+    aspect.ratio = 1,
+    plot.margin = margin(r = 1, l = 1, t = 0, b = 0),
     panel.background = element_rect(fill = c10, color = NA),
     panel.spacing.x = unit(1.6, "line"),
     panel.spacing.y = unit(1, "line"),
@@ -79,21 +80,22 @@ g <- e_tbl |>
       margin = margin(r = 0), hjust = 1, family = "jet", color = c7
     ),
     axis.title.y = element_markdown(
-      family = "Ubuntu", angle = 0, margin = margin(r = 10), vjust = .5
+      family = "Ubuntu", angle = 0, margin = margin(r = 0), vjust = .5
     ),
     strip.text = element_text(family = "Ubuntu", face = "bold", color = c7),
-    legend.position = "inside",
-    legend.position.inside = c(.95, .1),
+    legend.position = "top",
+    legend.key.spacing.x = unit(24, "pt"),
     legend.background = element_blank(),
     legend.justification.inside = c(1, 0),
-    legend.text = element_text(margin = margin(l = 0, t = 0)),
-    legend.key.height = unit(3, "pt")
+    legend.text = element_text(margin = margin(l = 0, t = 0), hjust = 0, vjust = .5),
+    legend.text.position = "right",
+    legend.box.spacing = unit(0, "pt")
   )
 
 ggsave(
   plot = g,
   filename = "figuras/puntos_boxplot.png",
   width = 20,
-  height = 7.5,
+  height = 6.35,
   units = "cm"
 )
