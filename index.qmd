@@ -402,7 +402,7 @@ La figura @fig-boxplot-puntos muestra que las características de la composició
 En cambio, las bandas B04 y B05 muestran una notable disminución de la R<sub>rs</sub> en dirección Chaco-Corrientes.
 
 ::: {.column-screen-right}
-![Distribución de R<sub>rs</sub> a partir de gráficos de cajas por sitio fijo (ver @fig-roi) y banda espectral.](figuras/puntos_boxplot.png){#fig-boxplot-puntos}
+![Distribución de R<sub>rs</sub> a partir de gráficos de cajas por sitio fijo (ver figura [-@fig-roi]) y banda espectral.](figuras/puntos_boxplot.png){#fig-boxplot-puntos}
 :::
 
 Las características espectrales de S2-MSI se muestran en la siguiente tabla:
