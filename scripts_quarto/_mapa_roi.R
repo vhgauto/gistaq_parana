@@ -81,6 +81,9 @@ l <- st_difference(
 ) |>
 	st_geometry()
 
+# puntos para boxplot
+p <- sf::st_read("vector/3puntos_transecta.gpkg")
+
 # figura -----------------------------------------------------------------
 
 # mapa Argentina
@@ -130,6 +133,15 @@ g_roi <- ggplot() +
 	geom_sf(
 		data = l, linewidth = .2, linetype = 2, color = alpha(c5, .5)
 	) +
+  # 3 puntos
+  geom_sf(
+    data = p, aes(fill = punto), shape = 21, size = 1.3, stroke = .3,
+    show.legend = FALSE
+  ) +
+  geom_sf_text(
+    data = p, aes(label = punto), size = 1.3, nudge_y = -160, color = c5,
+    family = "jet", show.legend = FALSE
+  ) +
 	# crédito del mapa base
 	annotate(
 		geom = "richtext", x = I(1), y = I(0), hjust = 1, vjust = 0, size = 1.6,
@@ -173,6 +185,9 @@ g_roi <- ggplot() +
 		text_family = "ubuntu",
 		width_hint = .17
 	) +
+  scale_fill_manual(
+    values = c(c1, c5, c2)
+  ) +
 	coord_sf(expand = FALSE) +
 	theme_void()
 
