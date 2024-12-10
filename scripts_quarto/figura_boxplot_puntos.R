@@ -45,7 +45,7 @@ g <- e_tbl |>
     linewidth = .2, outlier.size = .3, key_glyph = draw_key_point,
     outlier.color = c9, width = .8
   ) +
-  facet_wrap(vars(banda), scales = "free", nrow = 2) +
+  facet_wrap(vars(banda), scales = "free", nrow = 3) +
   scale_y_continuous(
     breaks = seq(.1, .3, .05),
     limits = c(.1, .3),
@@ -96,6 +96,6 @@ ggsave(
   plot = g,
   filename = "figuras/puntos_boxplot.png",
   width = 20,
-  height = 6.35,
+  height = 14.8,
   units = "cm"
 )
