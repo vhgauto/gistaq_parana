@@ -293,37 +293,45 @@ Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las sigui
 
 Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se  divide el conjunto de datos en <b>lado Chaco</b> o <b>lado Corrientes</b>, según si la longitud geográfica de las observaciones son menores o mayores a la longitud media, respectivamente.
 
+```{r}
+cap1 <- glue(
+  "<br><br><br>{simbolo_sig} $=pvalor<0.05$<br><br>",
+  "Existe diferencia significativa entre los grupos."
+)
+```
+
+
 :::: {.panel-tabset}
 
 ## <i>turb</i>
 
 ![](figuras/lado_turb.png)
 
-[`r caption_boxplot`]{.aside}
+[`r cap1`]{.aside}
 
 ## <i>secchi</i>
 
 ![](figuras/lado_secchi.png)
 
-[`r caption_boxplot`]{.aside}
+[`r cap1`]{.aside}
 
 ## <i>susp</i>
 
 ![](figuras/lado_sol_sus.png)
 
-[`r caption_boxplot`]{.aside}
+[`r cap1`]{.aside}
 
 ## <i>cond</i>
 
 ![](figuras/lado_cond.png)
 
-[`r caption_boxplot`]{.aside}
+[`r cap1`]{.aside}
 
 ## pH
 
 ![](figuras/lado_ph.png)
 
-[`r caption_boxplot`]{.aside}
+[`r cap1`]{.aside}
 
 ::::
 
@@ -397,12 +405,24 @@ tabla_boxplot_firma_espectral
 
 Se seleccionaron tres sitios fijos, mostrados en la figura @fig-roi, para extraer los valores de R<sub>rs</sub> y evaluar el cambio en la respuesta espectral a lo largo del río Paraná.
 
-La figura @fig-boxplot-puntos muestra que las características de la composición del agua tiene poca repercusión para las bandas B11 y B12, dado que se mantienen constantes en los puntos extremos y en el medio del curso de agua.
+La figura [-@fig-boxplot-puntos] muestra que las características de la composición del agua tiene poca repercusión para las bandas B11 y B12, dado que se mantienen constantes en los puntos extremos y en el medio del curso de agua.
 
 En cambio, las bandas B04 y B05 muestran una notable disminución de la R<sub>rs</sub> en dirección Chaco-Corrientes.
 
+
+```{r}
+cap2 <- glue(
+  "Distribución de R<sub>rs</sub> a partir de gráficos de cajas por sitio ",
+  "fijo y banda espectral. {simbolo_sig} en la esquina de cada panel marca ",
+  "diferencia significativa ($pvalor<0.05$) entre los conjuntos de la costa ",
+  "<b style='color: {c1}'>chaqueña</b> y ",
+  "<b style='color: {c2}'>correntina</b>."
+)
+```
+
+
 ::: {.column-screen-right}
-![Distribución de R<sub>rs</sub> a partir de gráficos de cajas por sitio fijo (ver figura [-@fig-roi]) y banda espectral.](figuras/puntos_boxplot.png){#fig-boxplot-puntos}
+![`r cap2`](figuras/puntos_boxplot.png){#fig-boxplot-puntos}
 :::
 
 Las características espectrales de S2-MSI se muestran en la siguiente tabla:
