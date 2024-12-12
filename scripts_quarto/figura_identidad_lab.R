@@ -46,7 +46,7 @@ g_log <- function(g, etq) {
       linetype = linea_tipo, linewidth = linea_ancho) +
     annotate(
       geom = "richtext", x = I(0), y = I(1), hjust = 0, vjust = 1,
-      size = texto_tamaño, label = etq, label.color = NA, fill = c10,
+      size = texto_tamaño, label = etq, label.color = NA, fill = c11,
       family = "jet") +
     scale_y_continuous(breaks = scales::breaks_pretty()) +
     scale_x_continuous(breaks = scales::breaks_pretty())
@@ -72,7 +72,7 @@ f_gg <- function(eje_x, eje_y) {
     theme(
       aspect.ratio = 1,
       plot.margin = margin(t = 5, r = 7, b = 14, l = 10),
-      panel.background = element_rect(fill = c10, color = NA),
+      panel.background = element_rect(fill = c11, color = NA),
       panel.grid.major = element_line(
         color = c4, linewidth = .1, linetype = "FF"),
       axis.title = element_markdown(family = "Ubuntu", size = 12),

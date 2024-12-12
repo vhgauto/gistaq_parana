@@ -81,7 +81,7 @@ f_figura_evolucion_lab <- function(parametro) {
       axis.text.x = element_text(margin = margin(t = 2)),
       axis.ticks = element_line(),
       axis.ticks.length = unit(1, "mm"),
-      panel.background = element_rect(fill = c3),
+      panel.background = element_rect(fill = c11),
       strip.background = element_blank(),
       strip.text = element_blank(),
       legend.position = "top",

@@ -77,7 +77,7 @@ f_figura_lado <- function(x) {
       color = c1, outlier.color = c2, fill = c3, outlier.alpha = .8
     ) +
     annotate(
-      geom = "richtext", x = Inf, y = Inf, hjust = 1, vjust = 1, fill = c10,
+      geom = "richtext", x = Inf, y = Inf, hjust = 1, vjust = 1, fill = c11,
       label = signif_label, label.color = NA, size = 5
     ) +
     facet_wrap(vars(param), nrow = 1, scales = "free") +
@@ -89,7 +89,7 @@ f_figura_lado <- function(x) {
     theme(
       aspect.ratio = 1,
       plot.margin = margin(r = 5, l = 5, t = 0, b = 0),
-      panel.background = element_rect(fill = c10, color = NA),
+      panel.background = element_rect(fill = c11, color = NA),
       panel.grid.major.y = element_line(
         color = c4, linewidth = .1, linetype = "FF"),
       axis.text.x = element_text(
