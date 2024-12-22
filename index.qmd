@@ -134,7 +134,6 @@ El diagrama mostrado en la figura [-@fig-workflow] corresponde al flujo de traba
   }
 }%%
 
-
 flowchart LR
     a1([Muestreo de agua])-->a2[Mediciones in-situ y<br>en laboratorio]
     a2-->a3([Propiedades fisicoquímicas])
