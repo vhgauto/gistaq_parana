@@ -15,6 +15,7 @@ d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
   ) |>
   drop_na() |>
   group_by(fecha, param) |>
+  arrange(longitud) |>
   mutate(p = row_number()) |>
   ungroup() |>
   mutate(
@@ -27,6 +28,7 @@ d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
   mutate(v = format(valor, nsmall = 1, digits = 1, decimal.mark = ",")) |>
   mutate(label = glue("{fecha}<br>{v} {unidad}")) |>
   mutate(p = glue("P{p}")) |>
+  mutate(p = fct_reorder(p, longitud)) |>
   mutate(
     estado = if_else(
       fecha == max(fecha),
@@ -46,7 +48,7 @@ estado_color <- c(
 f_figura_evolucion_lab <- function(parametro) {
   g <- d |>
     filter(param == parametro) |>
-    ggplot(aes(p, valor, group = fecha, color = estado, fill = estado)) +
+    ggplot(aes(longitud, valor, group = fecha, color = estado, fill = estado)) +
     geom_line_interactive(
       aes(data_id = interaction(fecha, param)), hover_nearest = TRUE,
       linewidth = 2, alpha = .8) +
@@ -56,10 +58,14 @@ f_figura_evolucion_lab <- function(parametro) {
         hover_nearest = TRUE), size = 2.5, shape = 21, color = c3,
       stroke = .2, show.legend = FALSE) +
     facet_wrap(vars(param), ncol = 3, scales = "free") +
-    scale_x_discrete(expand = c(0, 0)) +
+    # scale_x_discrete(expand = c(0, 0)) +
     scale_y_continuous(
       breaks = scales::breaks_pretty(),
       labels = scales::label_number(decimal.mark = ",", big.mark = ".")
+    ) +
+    scale_x_continuous(
+      breaks = range(d$longitud),
+      labels = c("Costa\nchaqueña", "Costa\ncorrentina")
     ) +
     scale_color_manual(values = estado_color) +
     scale_fill_manual(values = estado_color) +
@@ -70,7 +76,7 @@ f_figura_evolucion_lab <- function(parametro) {
       aspect.ratio = 1,
       plot.margin = margin(6, 6, 6, 6),
       panel.grid.minor = element_blank(),
-      panel.grid.major = element_line(
+      panel.grid.major.y = element_line(
         color = c4, linewidth = .06, linetype = 3),
       panel.spacing = unit(1.1, "line"),
       axis.title.y = element_markdown(
@@ -78,7 +84,7 @@ f_figura_evolucion_lab <- function(parametro) {
       ),
       axis.text = element_text(family = "jet", color = c7),
       axis.text.y = element_markdown(hjust = 1, margin = margin(r = 2)),
-      axis.text.x = element_text(margin = margin(t = 2)),
+      axis.text.x = element_text(margin = margin(t = 2), family = "Ubuntu"),
       axis.ticks = element_line(),
       axis.ticks.length = unit(1, "mm"),
       panel.background = element_rect(fill = c11),
