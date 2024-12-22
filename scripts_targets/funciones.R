@@ -194,7 +194,7 @@ reflectancia <- function(x, y, z) {
     path = x,
     sheet = 1,
     .name_repair = "unique_quiet") |> 
-    select(fechas = 1, latitud = 4,longitud = 5) |> 
+    select(fechas = 1, longitud = 4, latitud = 5) |> 
     fill(fechas) |> 
     mutate(fechas = ymd(fechas)) |> 
     dplyr::filter(fechas == ymd(y)) |> 
@@ -315,11 +315,10 @@ lab <- function(x) {
   d <- readxl::read_xlsx(
     path = x,
     sheet = 1,
-    skip = 2,
     .name_repair = "unique_quiet") |> 
     select(
-      fecha = 1, latitud = 4, longitud = 5, ph = 6, cond = 8, secchi = 10,
-      sol_sus = 12, turb = 15, hazemeter = 18) |> 
+      fecha = 1, longitud = 4, latitud = 5, ph = 6, cond = 8, secchi = 10,
+      sol_sus = 12, turb = 13, hazemeter = 14) |> 
     fill(fecha) |> 
     mutate(fecha = ymd(fecha)) |> 
     pivot_longer(
