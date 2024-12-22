@@ -114,6 +114,52 @@ El Área Metropolitana del Gran Resistencia (AMGR), en el noreste de Argentina, 
 
 La región de interés, donde se hacen las campañas de campo se muestra en la figura [-@fig-roi]. Los tres puntos señalados sobre el río Paraná se utilizaron para generar la figura [-@fig-boxplot-puntos].
 
+# Materiales y métodos
+
+El diagrama mostrado en la figura [-@fig-workflow] corresponde al flujo de trabajo para la obtención y generación de resultados.
+
+:::{.column-screen-right}
+
+<center>
+
+```{mermaid}
+%%| fig-cap: Flujo de trabajo.
+%%| label: fig-workflow
+
+%%{
+  init: {
+    'themeVariables': {
+      'lineColor': '#B86092'
+    }
+  }
+}%%
+
+
+flowchart LR
+    a1([Muestreo de agua])-->a2[Mediciones in-situ y<br>en laboratorio]
+    a2-->a3([Propiedades fisicoquímicas])
+
+    b1([Producto S2-MSI L2A])-->b2[Extracción de R<sub>rs</sub>]
+    b2-->b3([Firma espectral])
+
+    %% a3--> |<i>turb, cond<br>susp, secchi<br></i>pH| E((Combinación<br>de datos))
+    %% b3--> |B01~B8A,<br>B11, B12| E
+
+    a3--> E((Combinación<br>de datos))
+    b3--> E
+
+    E-->F([Figuras])
+    E-->G([Tablas])
+    E-->H([Mapas])
+
+    classDef default fill:#F5F5F5,stroke:#007E2E,stroke-width:1px,font-family:Ubuntu,color:black;
+    linkStyle default stroke:#B86092,stroke-width:1px;
+```
+
+</center>
+
+:::
+
 # Muestreos {#sec-muestreos}
 
 Los muestreos, según lo permita la logística, se llevan a cabo en la fecha de adquisición de Sentinel-2 (S2-MSI) cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.

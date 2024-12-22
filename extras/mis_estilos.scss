@@ -218,3 +218,14 @@ div.callout-note.callout-style-default > .callout-header {
     margin-bottom: 0;
     list-style: none;
 }
+
+// mermaid
+
+#mermaid-1 .edgeLabel p {
+    background-color: $cg3;
+    color: black;
+}
+
+:root {
+    --mermaid-edge-color: #B86092;
+}
