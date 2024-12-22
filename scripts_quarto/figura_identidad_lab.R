@@ -32,7 +32,7 @@ g_recta <- function(g, etq) {
       linetype = linea_tipo, linewidth = linea_ancho) +
     annotate(
       geom = "richtext", x = I(1), y = I(1), hjust = 1, vjust = 1,
-      size = texto_tamaño, label = etq, label.color = NA, fill = c10,
+      size = texto_tamaño, label = etq, label.color = NA, fill = c11,
       family = "jet") +
     scale_x_log10(breaks = scales::breaks_pretty()) +
     scale_y_log10(expand = c(0, 0))
