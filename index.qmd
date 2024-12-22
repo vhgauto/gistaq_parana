@@ -194,6 +194,7 @@ Se indican los sitios de muestreo para todas las fechas disponibles junto con la
 #| warning: false
 #| fig-align: left
 #| fig-asp: 1
+#| fig-cap: Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
 
 mapa_interactivo
 ```
@@ -381,6 +382,12 @@ lista_firma_espectral[[3]]
 
 ```{r}
 lista_firma_espectral[[4]]
+```
+
+## `r fechas_gis_v[5]`
+
+```{r}
+lista_firma_espectral[[5]]
 ```
 
 :::
