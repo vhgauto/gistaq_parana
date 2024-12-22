@@ -92,10 +92,10 @@ g_arg <- ggplot() +
 		data = arg_sf, color = c7, fill = c3, linewidth = .05
 	) +
 	geom_sf(
-		data = centro_sf, fill = c5, shape = 21, color = c7, size = 1, stroke = .5
+		data = centro_sf, fill = c5, shape = 21, color = c1, size = 1, stroke = .5
 	) +
 	geom_sf(
-		data = centro_sf, fill = c5, shape = 21, color = c7, size = .3, stroke = .3
+		data = centro_sf, fill = c5, shape = 21, color = c1, size = .3, stroke = .3
 	) +
 	coord_sf(expand = TRUE) +
 	theme_void() +
@@ -135,11 +135,11 @@ g_roi <- ggplot() +
 	) +
   # 3 puntos
   geom_sf(
-    data = p, aes(fill = punto), shape = 21, size = 1.3, stroke = .3,
+    data = p, aes(fill = punto), shape = 21, size = 1.8, stroke = .3,
     show.legend = FALSE
   ) +
   geom_sf_text(
-    data = p, aes(label = punto), size = 1.3, nudge_y = -160, color = c5,
+    data = p, aes(label = punto), size = 1.8, nudge_y = -170, color = c5,
     family = "jet", show.legend = FALSE
   ) +
 	# crédito del mapa base
