@@ -41,7 +41,7 @@ result = pd.DataFrame.from_dict(response["value"])
 
 # credenciales, nombre de usuario y contraseña
 username = "victor.gauto@outlook.com"
-password = "kcQkEstz..nh;7L'HuO~"
+password = "******************"
 
 # obtengo el token
 auth_server_url = "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token"
