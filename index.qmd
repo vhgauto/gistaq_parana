@@ -11,6 +11,7 @@ format:
       - extras/esquina.html
       - extras/abrev_toc.html
       - extras/boton_arriba.html
+      - extras/fontawesome-mermaid.html
     theme:
       - extras/mis_estilos.scss
     toc: true
@@ -85,6 +86,11 @@ https://quarto.org/docs/authoring/citations.html#sec-citations -->
 <!-- cambiar el texto en toc
 https://stackoverflow.com/a/76764108/13742303 -->
 
+<!-- mermaid para generar diagramas de flujo 
+https://mermaid.js.org/syntax/flowchart.html -->
+
+<!-- agregar transparencia a colores HEX https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4 -->
+
 Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
 El mencionado proyecto forma parte de las tareas de investigación del MS. Víctor Gauto, en el marco del <b>Doctorado en Geomática y Sistemas Espaciales</b>, dictado por el [Instituto Gulich](https://ig.conae.unc.edu.ar), en conjunto con la <b>Universidad Nacional de Córdoba</b> ([UNC](https://www.unc.edu.ar/)) y la <b>Comisión Nacional de Actividades Espaciales</b> ([CONAE](https://www.argentina.gob.ar/ciencia/conae)).
@@ -129,27 +135,25 @@ El diagrama mostrado en la figura [-@fig-workflow] corresponde al flujo de traba
 %%{
   init: {
     'themeVariables': {
-      'lineColor': '#B86092'
+      'lineColor': '#B86092',
+      'edgeLabelBackground': '#F5F5F5B3'
     }
   }
 }%%
 
 flowchart LR
-    a1([Muestreo de agua])-->a2[Mediciones in-situ y<br>en laboratorio]
+    a1([fa:fa-droplet Muestreo de agua])-->a2[Mediciones in-situ y<br>en laboratorio]
     a2-->a3([Propiedades fisicoquímicas])
 
-    b1([Producto S2-MSI L2A])-->b2[Extracción de R<sub>rs</sub>]
+    b1([fa:fa-satellite Producto S2-MSI L2A])-->b2[Extracción de R<sub>rs</sub>]
     b2-->b3([Firma espectral])
 
-    %% a3--> |<i>turb, cond<br>susp, secchi<br></i>pH| E((Combinación<br>de datos))
-    %% b3--> |B01~B8A,<br>B11, B12| E
+    a3--> |<i>turb, cond<br>susp, secchi<br></i>pH| E[(Base<br>de datos)]
+    b3--> |B01~B8A,<br>B11, B12| E
 
-    a3--> E((Combinación<br>de datos))
-    b3--> E
-
-    E-->F([Figuras])
-    E-->G([Tablas])
-    E-->H([Mapas])
+    E-->F([Figuras fa:fa-chart-line])
+    E-->G([Tablas fa:fa-table])
+    E-->H([Mapas fa:fa-map])
 
     classDef default fill:#F5F5F5,stroke:#007E2E,stroke-width:1px,font-family:Ubuntu,color:black;
     linkStyle default stroke:#B86092,stroke-width:1px;
