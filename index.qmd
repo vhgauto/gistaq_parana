@@ -208,7 +208,7 @@ Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando
 
 ## Datos fisicoquímicos
 
-Las siguientes figuras muestran la evolución de los datos fisicoquímicos por sitio muestral y fecha.
+Las siguientes figuras muestran la evolución de las propiedades fisicoquímicos a lo largo de la longitud geográfica entre orillas y la fecha de muestreo.
 
 ::: {.panel-tabset}
 
