@@ -58,7 +58,6 @@ f_figura_evolucion_lab <- function(parametro) {
         hover_nearest = TRUE), size = 2.5, shape = 21, color = c3,
       stroke = .2, show.legend = FALSE) +
     facet_wrap(vars(param), ncol = 3, scales = "free") +
-    # scale_x_discrete(expand = c(0, 0)) +
     scale_y_continuous(
       breaks = scales::breaks_pretty(),
       labels = scales::label_number(decimal.mark = ",", big.mark = ".")
@@ -125,9 +124,6 @@ f_figura_evolucion_lab <- function(parametro) {
 
   return(gg_int)
 }
-
-# parámetros
-# param_v <- unique(d$param)
 
 # lista con las figuras
 lista_figura_evolucion_lab <- map(param_unid_v, f_figura_evolucion_lab)
