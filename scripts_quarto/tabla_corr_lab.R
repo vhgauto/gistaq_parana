@@ -1,20 +1,6 @@
 
 # https://corrr.tidymodels.org/reference/colpair_map.html
 
-# funciones ---------------------------------------------------------------
-
-# función que aplica formato a los números de R
-f_formato <- function(x, digits = 3, nsmall = 3) {
-  format(
-    x, digits = digits, nsmall = nsmall, trim = TRUE, decimal.mark = ",",
-    big.mark = ".")
-}
-
-# función que obtiene el pvalor de las correlaciones
-f_pvalor <- function(vec_a, vec_b) {
-  cor.test(vec_a, vec_b)$p.value
-}
-
 # datos -------------------------------------------------------------------
 
 # leo los datos de laboratorio
@@ -74,7 +60,7 @@ e <- inner_join(
     es_significativo = pvalor < .05
   ) |> 
   mutate(
-    label = f_formato(r)
+    label = f_formato(r, digits = 2)
   ) |> 
   mutate(
     label = if_else(
