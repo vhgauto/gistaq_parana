@@ -86,7 +86,7 @@ https://quarto.org/docs/authoring/citations.html#sec-citations -->
 <!-- cambiar el texto en toc
 https://stackoverflow.com/a/76764108/13742303 -->
 
-<!-- mermaid para generar diagramas de flujo 
+<!-- mermaid para generar diagramas de flujo
 https://mermaid.js.org/syntax/flowchart.html -->
 
 <!-- agregar transparencia a colores HEX https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4 -->
@@ -295,49 +295,61 @@ lista_figura_evolucion_lab[[5]]
 
 Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
 
-```{r corr_laboratorio}
-#| label: tbl-corr-lab
-#| tbl-cap: !expr caption_tabla
+La figura [-@fig-heatmap-lab] muestra el coeficiente de correlación lineal de Pearson ($r$) entre pares de parámetros fisicoquímicos.
 
-tabla_corr_lab
+```{r corr_laboratorio}
+#| fig-cap: Mapa de calor de las correlaciones lineales entre parámetros fisicoquímicos. Con &#9733; se indica significancia estadística ($pvalor<0,05$)
+#| label: fig-heatmap-lab
+#| fig-cap-location: margin
+
+heatmap_lab
 ```
 
-Las correlaciones mostradas en la @tbl-corr-lab pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
+Es notable que el pH no se correlaciona con ninguna otra variable. Existe una correlación positiva ($r>0,5$) entre la *turb* con *cond* y *susp*. En contraste, *secchi* se correlaciona de forma negativa ($r<0,5$) con *turb*, *susp* y *cond*.
 
+Las correlaciones mostradas en la figura [-@fig-heatmap-lab] pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
 
 :::: {.panel-tabset}
 
-## <i>turb</i> vs <i>cond</i>
+## *turb* y *cond*
 
-![](figuras/cond_vs_turb.png)
+![](figuras/identidad_cond_vs_turb.png)
 
-## <i>susp</i> vs <i>cond</i>
+## *susp* y *cond*
 
-![](figuras/cond_vs_sol_sus.png)
+![](figuras/identidad_cond_vs_sol_sus.png)
 
 ::: {.column-margin}
 
 :::
 
-## <i>secchi</i> vs <i>susp</i>
+## *secchi* y *cond*
 
-![](figuras/sol_sus_vs_secchi.png)
-
-::: {.column-margin}
-<br><br>Figura en escala doble logarítmica.
-:::
-
-## <i>secchi</i> vs <i>turb</i>
-
-![](figuras/turb_vs_secchi.png)
+![](figuras/identidad_cond_vs_secchi.png)
 
 ::: {.column-margin}
 <br><br>Figura en escala doble logarítmica.
 :::
 
-## <i>susp</i> vs <i>turb</i>
+## *secchi* y *susp*
 
-![](figuras/turb_vs_sol_sus.png)
+![](figuras/identidad_sol_sus_vs_secchi.png)
+
+::: {.column-margin}
+<br><br>Figura en escala doble logarítmica.
+:::
+
+## *secchi* y *turb*
+
+![](figuras/identidad_turb_vs_secchi.png)
+
+::: {.column-margin}
+<br><br>Figura en escala doble logarítmica.
+:::
+
+## *susp* y *turb*
+
+![](figuras/identidad_turb_vs_sol_sus.png)
 
 ::::
 
