@@ -120,11 +120,16 @@ caption_boxplot <- glue(
   "Existe diferencia significativa entre los grupos."
 )
 
-# scripts -----------------------------------------------------------------
-# corro todos los scripts,
-# excepto este mismo archivo (soporte.R), todos los que comienzan con '_'
+# funciones ---------------------------------------------------------------
 
-# r_script <- list.files(path = "scripts_quarto/", full.names = TRUE)
-# r_script <- r_script[!str_detect(r_script, "soporte")]
-# r_script <- r_script[!str_detect(r_script, "/_")]
-# purrr::map(r_script, source)
+# función que aplica formato a los números de R
+f_formato <- function(x, digits = 3, nsmall = 3) {
+  format(
+    x, digits = digits, nsmall = nsmall, trim = TRUE, decimal.mark = ",",
+    big.mark = ".")
+}
+
+# función que obtiene el pvalor de las correlaciones
+f_pvalor <- function(vec_a, vec_b) {
+  cor.test(vec_a, vec_b)$p.value
+}
