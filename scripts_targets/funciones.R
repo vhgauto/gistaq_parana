@@ -25,7 +25,7 @@ fecha <- function(x) {
     distinct(fecha)
   
   fechas_base_de_datos <- read_csv(
-    file = "datos/base_de_datos_gis.csv",
+    file = "datos/base_de_datos_lab.csv",
     show_col_types = FALSE) |> 
     distinct(fecha)
   
