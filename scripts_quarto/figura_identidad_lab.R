@@ -1,12 +1,4 @@
 
-# fuentes -----------------------------------------------------------------
-
-f_formato <- function(x, digits = 3, nsmall = 3) {
-  format(
-    x, digits = digits, nsmall = 3, trim = TRUE, decimal.mark = ",",
-    big.mark = ".")
-}
-
 # datos -------------------------------------------------------------------
 
 d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
@@ -71,7 +63,7 @@ f_gg <- function(eje_x, eje_y) {
     theme_void() +
     theme(
       aspect.ratio = 1,
-      plot.margin = margin(t = 5, r = 7, b = 14, l = 10),
+      plot.margin = margin(t = 5, r = 7, b = 0, l = 5),
       panel.background = element_rect(fill = c11, color = NA),
       panel.grid.major = element_line(
         color = c4, linewidth = .1, linetype = "FF"),
@@ -121,16 +113,18 @@ f_guardar <- function(prop1, prop2) {
   g <- f_gg(prop1, prop2)
   ggsave(
     plot = g,
-    filename = glue("figuras/{prop1}_vs_{prop2}.png"),
-    width = 13,
-    height = 13,
-    units = "cm"
+    filename = glue("figuras/identidad_{prop1}_vs_{prop2}.png"),
+    width = 1500,
+    height = 1478,
+    units = "px"
   )
 }
 
 # genero y guardo cada combinación de parámetros
 f_guardar("cond", "turb")
 f_guardar("cond", "sol_sus")
+f_guardar("cond", "secchi")
 f_guardar("turb", "sol_sus")
-f_guardar("sol_sus", "secchi")
 f_guardar("turb", "secchi")
+f_guardar("sol_sus", "secchi")
+
