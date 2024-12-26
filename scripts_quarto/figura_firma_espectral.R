@@ -89,9 +89,8 @@ f_firma_espectral <- function(x) {
       axis.text = element_text(family = "jet", color = c7),
       axis.text.y = element_text(hjust = 1, margin = margin(r = 2)),
       axis.text.x = element_text(margin = margin(t = 2)),
-      axis.ticks = element_line(color = c7),
-      axis.ticks.length = unit(1, "mm"),
-      panel.background = element_rect(fill = c11),
+      axis.ticks = element_blank(),
+      panel.background = element_rect(fill = c11, color = NA),
       strip.background = element_blank(),
       strip.text = element_markdown(
         family = "jet", size = 7, margin = margin(b = 3)),

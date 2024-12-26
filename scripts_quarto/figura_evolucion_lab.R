@@ -64,7 +64,7 @@ f_figura_evolucion_lab <- function(parametro) {
     ) +
     scale_x_continuous(
       breaks = range(d$longitud),
-      labels = c("Costa\nchaqueña", "Costa\ncorrentina")
+      labels = c("Orilla\nchaqueña", "Orilla\ncorrentina")
     ) +
     scale_color_manual(values = estado_color) +
     scale_fill_manual(values = estado_color) +
@@ -84,9 +84,8 @@ f_figura_evolucion_lab <- function(parametro) {
       axis.text = element_text(family = "jet", color = c7),
       axis.text.y = element_markdown(hjust = 1, margin = margin(r = 2)),
       axis.text.x = element_text(margin = margin(t = 2), family = "Ubuntu"),
-      axis.ticks = element_line(),
-      axis.ticks.length = unit(1, "mm"),
-      panel.background = element_rect(fill = c11),
+      axis.ticks = element_blank(),
+      panel.background = element_rect(fill = c11, color = NA),
       strip.background = element_blank(),
       strip.text = element_blank(),
       legend.position = "top",
