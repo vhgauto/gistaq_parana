@@ -26,16 +26,16 @@ label_unidad <- c(
 d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
 
 # vector de sitios de muestreo
-v_tbl <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |> 
-  distinct(fecha, longitud, latitud) |> 
+v_tbl <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
+  distinct(fecha, longitud, latitud) |>
   arrange(fecha, longitud, latitud)
 
 fechas_v <- unique(v_tbl$fecha) |> str_remove_all("-")
 
 # ráster
 r_files <- list.files(
-  path = "recorte/", 
-  pattern = str_flatten(fechas_v, "|"), 
+  path = "recorte/",
+  pattern = str_flatten(fechas_v, "|"),
   full.names = TRUE)
 
 # creo el stack de bandas y agrego las fechas como nombres
@@ -44,10 +44,10 @@ r_list <- map(r_files, raster::stack)
 names(r_list) <- fechas_v
 
 # vector de bbox, le quito el nombre a los elementos
-e <- ext(rast(r_list[[1]])) |> 
-  vect(crs = "EPSG:32721") |> 
-  project("EPSG:4326") |> 
-  ext() |> 
+e <- ext(rast(r_list[[1]])) |>
+  vect(crs = "EPSG:32721") |>
+  project("EPSG:4326") |>
+  ext() |>
   as.vector()
 
 names(e) <- NULL
@@ -73,27 +73,27 @@ pchIcons <- function(pch = 0:14, ancho, alto, ...) {
 
 # etiquetas con las propiedades de los puntos
 f_label <- function(fecha_date) {
-  labels <- d |> 
-    mutate(nombre = label_param[param]) |> 
-    mutate(unidad = label_unidad[param]) |> 
-    filter(fecha == ymd(fecha_date)) |> 
-    mutate(v = format(valor, nsmall = 1, digits = 1, decimal.mark = ",")) |> 
+  labels <- d |>
+    mutate(nombre = label_param[param]) |>
+    mutate(unidad = label_unidad[param]) |>
+    filter(fecha == ymd(fecha_date)) |>
+    mutate(v = format(valor, nsmall = 1, digits = 1, decimal.mark = ",")) |>
     mutate(label = glue("{nombre}: {v} {unidad}")) |>
     reframe(
       l = str_flatten(label, collapse = "<br>"),
       .by = c(longitud, latitud)
-    ) |> 
+    ) |>
     pull(l)
-  
+
   filas <- glue(
     "<span style='font-size:13px; font-family: Ubuntu'>{labels}</span>")
-  
+
   p_label <- glue(
     "<span style='font-family: JetBrains Mono; font-size: 16px'>",
     "P{1:length(labels)}</span>")
-  
+
   glue("{p_label}<br>{filas}")
-  
+
 }
 
 # escala de colores de los marcadores
@@ -102,23 +102,23 @@ f_relleno <- function(fecha_date) {
     filter(fecha == ymd(fecha_date)) |>
     distinct(longitud, latitud) |>
     nrow()
-  
+
   colorRampPalette(c(c1, c2))(n)
-  
+
 }
 
 f_etq <- function(fecha_date) {
   tibble(
     l = f_label(fecha_date),
     col = f_relleno(fecha_date)
-  ) |> 
+  ) |>
     mutate(
       l2 = str_replace(
         l,
-        "font-family", 
+        "font-family",
         glue("color: {col}; font-family")
       )
-    ) |> 
+    ) |>
     pull(l2)
 
 }
@@ -129,7 +129,7 @@ f_icono <- function(
   map(
     .x = f_relleno(fecha),
     .f = ~ pchIcons(
-      pch, bg = .x, lwd = lwd, col = color, alto = alto, ancho = ancho)) |> 
+      pch, bg = .x, lwd = lwd, col = color, alto = alto, ancho = ancho)) |>
     list_c()
 }
 
@@ -142,14 +142,14 @@ f_circulo <- function(
     lat = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha_date), "latitud"])),
     icon = icons(iconUrl = f_icono(fecha_date)),
     popup = f_etq(fecha_date),
-    
+
     popupOptions = popupOptions(
       closeButton = FALSE,
       closeOnClick = TRUE,
       offset = c(10, 10),
       fontSize = 100
     ),
-    
+
     group = ymd(fecha_date)
     )
 }
@@ -159,7 +159,7 @@ f_rgb <- function(map, fecha, qmin = .03, qmax = .97) {
   addRasterRGB(
     map,
     r_list[[fecha]], r = 4, g = 3, b = 2, quantiles = c(qmin, qmax),
-    na.color = NA, 
+    na.color = NA,
     group = ymd(fecha)
   )
 }
@@ -179,7 +179,7 @@ logo_link <- "https://raw.githubusercontent.com/vhgauto/sameep/main/extras/gista
 logo_url <- "https://www.instagram.com/gistaq.utn/"
 
 # mapa base
-base <- leaflet() |> 
+base <- leaflet() |>
   # posición y zoom del mapa
   setView(lng = zoom_lon, lat = zoom_lat, zoom = 15) |>
   # mapa base
@@ -187,8 +187,8 @@ base <- leaflet() |>
 
 # loop que agregar puntos de muestreo y ráster
 for (i in 1:length(fechas_v)) {
-  base <- base |> 
-    f_circulo(fecha = fechas_v[i]) |> 
+  base <- base |>
+    f_circulo(fecha = fechas_v[i]) |>
     f_rgb(fecha = fechas_v[i])
 }
 
@@ -198,15 +198,15 @@ mapa_interactivo <- base |>
   addLayersControl(
     baseGroups = ymd(fechas_v),
     options = layersControlOptions(collapsed = FALSE)
-  ) |> 
+  ) |>
   # logo
   addLogo(
     img = logo_link, position = "bottomleft", src = "remote",
     width = logo_ancho, height = logo_alto, url = logo_url
-  ) |> 
+  ) |>
   # botones
-  addResetMapButton() |> 
-  addFullscreenControl(position = "bottomright") |> 
+  addResetMapButton() |>
+  addFullscreenControl(position = "bottomright") |>
   # muestro la última fecha al iniciar
   showGroup(max(ymd(fechas_v)))
 
