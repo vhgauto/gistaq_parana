@@ -1,2 +1,36 @@
 execute:
   freeze: auto
+
+format:
+  html:
+    anchor-sections: true
+    number-sections: true
+    smooth-scroll: true
+    embed-resources: true
+    include-in-header:
+      - extras/favicon.html
+      - extras/esquina.html
+      - extras/abrev_toc.html
+      - extras/boton_arriba.html
+      - extras/fontawesome-mermaid.html
+    theme:
+      - extras/mis_estilos.scss
+    toc: true
+    toc-float: false
+    toc-location: left
+    toc-title: "Contenido"
+    mainfont: Ubuntu
+    link-external-icon: false
+    link-external-newwindow: true
+    link-citations: true
+    code-link: true
+    code-copy: true
+    code-annotations: false
+    code-line-numbers: false
+    tbl-cap-location: margin
+    fig-cap-location: bottom
+    bibliography: biblio/bibliografia.bib
+    csl: biblio/ieee.csl
+    html-math-method: katex
+    callout-icon: false
+    backgroundcolor: "#F5F5F5"
