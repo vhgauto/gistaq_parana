@@ -1,3 +1,7 @@
+---
+format: html
+---
+
 ## Sólidos suspendidos totales<span style="font-weight:normal; font-size: 1rem">, por Vera Geneyer [{{< fa brands github >}}](https://github.com/VeraGeneyer)</span> {toc-text="Sólidos suspendidos totales"}
 
 Los sólidos suspendidos totales (TSM): es la cantidad de materia en suspensión en el agua, que incluye placton, minerales, arena, y microorganismos. Se determinan como el residuo no filtrable de una muestra de agua. Niveles altos (TSM) pueden reducir la transparencia del agua, limitar la luz y y transportar sustancias tóxicas, afectando la vida acuatica y la calidad del agua.

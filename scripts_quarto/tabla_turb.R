@@ -62,26 +62,25 @@ tabla_turb <- tibble(
   Aguas = agua_tbl,
   Plataforma = c(plat1, plat2, plat3, plat4, plat5),
   Referencia = c(aut1, aut2, aut3, aut4, aut5)
-) |> 
-  gt() |> 
-  fmt_markdown() |> 
+) |>
+  gt() |>
+  fmt_markdown() |>
   tab_style(
     style = cell_text(align = "left"),
     locations = cells_body()
-  ) |> 
+  ) |>
   tab_style(
     style = cell_text(align = "center"),
     locations = cells_body(columns = Referencia)
-  ) |> 
+  ) |>
     tab_style(
       style = cell_text(align = "left", weight = "bold"),
       locations = cells_column_labels()
-    ) |> 
+    ) |>
     tab_style(
       style = cell_text(align = "center"),
       locations = cells_column_labels(columns = Ecuación)
-    ) |> 
+    ) |>
   cols_width(
     Referencia ~ px(20)
-  ) |> 
-  as_raw_html()
+  )
