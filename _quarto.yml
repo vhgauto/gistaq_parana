@@ -1,3 +1,12 @@
+# project:
+#   type: manuscript
+# 
+# manuscript:
+#   article: test.qmd
+#   notebooks:
+#     - notebook: test.qmd
+#       title: "Test"
+
 execute:
   freeze: auto
 
@@ -7,6 +16,11 @@ format:
     number-sections: true
     smooth-scroll: true
     embed-resources: true
+    collapse-level: 2
+    lang: es
+    language:
+      es:
+        title-block-author-plural: "Autores"
     include-in-header:
       - extras/favicon.html
       - extras/esquina.html
@@ -34,3 +48,6 @@ format:
     html-math-method: katex
     callout-icon: false
     backgroundcolor: "#F5F5F5"
+    docx: false
+    jats: false
+    agu-pdf: false
