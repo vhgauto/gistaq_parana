@@ -1,5 +1,7 @@
 ---
 format: html
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Profundidad de disco de Secchi<span style="font-weight:normal; font-size: 1rem">, por Mauricio Acosta [{{< fa brands github >}}](https://github.com/mauri491)</span> {toc-text="Profundidad de disco de Secchi"}
@@ -18,12 +20,19 @@ Como se señaló en el apartado de turbidez, se observa una relación inversa en
 
 Las ecuaciones principales propuestas son de tipo <b>logarítmica</b> o <b>potencial</b>, lo cual tiene sentido considerando que la relación entre la reflectancia y la turbidez no es lineal. No obstante, algunas ecuaciones lineales presentan un buen desempeño. En ambos tipos de ecuación se repite la presencia de un <b>cociente</b> entre bandas.
 
+::: {.column-screen-right}
 
-```{r tbl-sdd}
-#| column: screen-right
+| Ecuación | Bandas (nm) | Métricas | Aguas | Plataforma | Referencia |
+|:-:|:--|:--|:--|:--|:-:|
+| $A \left[  \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})}  \right]^{B}$ | 409 (B02)<br>709 (B05) | R<sup>2</sup>, RMSE | Ópticamente complejas^[Señalan una mala correlación para el cociente 409/560 (B02/B03).] | MERIS | @Alikas2017 |
+| $e^{a \left[ \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})} \right]+b}$ | 409 (B02)<br>709 (B05) | R<sup>2</sup>, RMSE, Bias | Interiores variadas^[Modificación de Alikas-Kratzer. Señala que el previamente descartado cociente 409/560 se usa para aguas donde el contribuyente principal a la turbidez es el fitoplancton.] | Sentinel-2 | @Pereira-Sandoval2019 |
+| $A \left[ \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})}  \right]^{B}$ | 409 (B02)<br>560 (B03) | R<sup>2</sup>, RMSE | Embalses^[Señala Polymer y C2X como los mejores algoritmos de corrección atmosférica. Indica que su ecuación es equivalente a la de Pereira-Sandoval.] | Sentinel-2 | @Delegido2019 |
+| $1.79-134.15 \cdot B_{RE1}+157.72 \cdot B_{NIR}+0.52 \frac{B_{RE3}}{NIR_{n}}$ |  | R<sup>2</sup>, RMSE | Reserva^[Corrección atmosférica con el módulo Sen2Cor. Al ser lineal, produce una sobrestimación para valores bajos y una subestimación para valores altos.] | Sentinel-2 | @Bonansea2019 |
+| $\log(SDD)=-3.0257-1.4379 \cdot  \log(R_{B8A})-0.127 \left[ \log(R_{B8A}) \right]^{2}$ |  | R<sup>2</sup> | Oceános^[Corrección con Sen2Cor.] | Sentinel-2 | @Delegido2016 |
 
-tabla_sdd
-```
+: Características principales de algoritmos de aprendizaje automático para la estimación de profundidad de disco de Secchi. {#tbl-secchi-machine .striped .hover tbl-colwidths="[50,10,10,10,10]"}
+
+:::
 
 ### Métodos de aprendizaje automático
 
