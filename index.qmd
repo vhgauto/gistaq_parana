@@ -1,11 +1,44 @@
 ---
 title: "Proyecto Paraná 2023"
+author:
+  - name: Víctor Gauto
+    orcid: 0000-0002-0760-5497
+    corresponding: true
+    email: victor.gauto@ca.frre.utn.edu.ar
+    affiliations:
+      - GISTAQ, UTN-FRRe, CONICET
+  - name: Enid Utgés
+    orcid: 0009-0003-5263-5198
+    affiliations:
+      - GISTAQ, UTN-FRRe
+  - name: Daniela Tenev
+    orcid: 0000-0003-0860-9139
+    affiliations:
+      - GISTAQ, UTN-FRRe
+  - name: Mauricio Acosta
+    affiliations:
+      - GISTAQ, UTN-FRRe
+  - name: Vera Geneyer
+    affiliations:
+      - GISTAQ, UTN-FRRe
+  - name: Víctor Gómez
+    affiliations:
+      - GISTAQ, UTN-FRRe
+  - name: Bruno Lossada Dusset
+    affiliations:
+      - GISTAQ, UTN-FRRe
+abstract: |
+  La calidad del agua del Río Paraná...
+keywords:
+  - Río Paraná
+  - Calidad de agua
+  - Sentinel-2
+  - Teledetección satelital
 editor_options:
   chunk_output_type: console
 crossrefs-hover: false
 crossref:
   chapters: true
-lang: es
 execute:
   echo: false
   warning: false
@@ -57,6 +90,9 @@ https://stackoverflow.com/a/76764108/13742303 -->
 https://mermaid.js.org/syntax/flowchart.html -->
 
 <!-- agregar transparencia a colores HEX https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4 -->
+
+<br>
+<br>
 
 Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
