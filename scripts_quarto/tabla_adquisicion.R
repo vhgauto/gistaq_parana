@@ -16,7 +16,7 @@ adq <- tibble(
   slice_head(n = 10)
 
 # agrego al inicio la fecha actual
-d <- tibble(
+tabla_adquisicion_tbl <- tibble(
   Fecha = today(),
   Día = weekdays(today())
 ) |>
@@ -24,26 +24,3 @@ d <- tibble(
     adq
   ) |>
   mutate(Día = str_to_sentence(Día))
-
-# tabla -------------------------------------------------------------------
-
-tabla_adquisicion <- gt(d) |>
-  # formato de la fecha actual
-  tab_style(
-    locations = cells_body(columns = everything(), rows = 1),
-    style = cell_text(weight = "bold", color = c2)
-  ) |>
-  # aplico formato a la columna de días
-  tab_style(
-    locations = cells_body(columns = Día),
-    style = cell_text(font = "Ubuntu")
-  ) |>
-  # aplico formato a la columna de fechas
-  tab_style(
-    locations = cells_body(columns = Fecha),
-    style = cell_text(font = "JetBrains Mono", align = "left")
-  ) |>
-  tab_style(
-    locations = cells_column_labels(),
-    style = cell_text(font = "Ubuntu", weight = "bold", align = "left")
-  )
