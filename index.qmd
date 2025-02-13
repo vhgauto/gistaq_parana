@@ -2,31 +2,31 @@
 title: "Proyecto Paraná 2023"
 author:
   - name: Víctor Gauto
-    orcid: 0000-0002-0760-5497
+    orcid: 0000-0001-9960-8558
     corresponding: true
     email: victor.gauto@ca.frre.utn.edu.ar
     affiliations:
-      - GISTAQ, UTN-FRRe, CONICET
+      - GISTAQ (UTN-FRRe), IIDTHH (UNNE, CONICET)
   - name: Enid Utgés
     orcid: 0009-0003-5263-5198
     affiliations:
-      - GISTAQ, UTN-FRRe
+      - GISTAQ (UTN-FRRe)
   - name: Daniela Tenev
     orcid: 0000-0003-0860-9139
     affiliations:
-      - GISTAQ, UTN-FRRe
+      - GISTAQ (UTN-FRRe)
   - name: Mauricio Acosta
     affiliations:
-      - GISTAQ, UTN-FRRe
+      - GISTAQ (UTN-FRRe)
   - name: Vera Geneyer
     affiliations:
-      - GISTAQ, UTN-FRRe
+      - GISTAQ (UTN-FRRe)
   - name: Víctor Gómez
     affiliations:
-      - GISTAQ, UTN-FRRe
+      - GISTAQ (UTN-FRRe)
   - name: Bruno Lossada Dusset
     affiliations:
-      - GISTAQ, UTN-FRRe
+      - GISTAQ (UTN-FRRe)
 abstract: |
   La calidad del agua del Río Paraná...
 keywords:
@@ -90,8 +90,6 @@ https://stackoverflow.com/a/76764108/13742303 -->
 https://mermaid.js.org/syntax/flowchart.html -->
 
 <!-- agregar transparencia a colores HEX https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4 -->
-
-<br>
 <br>
 
 Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
@@ -172,12 +170,21 @@ Los muestreos, según lo permita la logística, se llevan a cabo en la fecha de 
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
 
-```{r tbl-adq}
-#| label: tbl-adq
-#| tbl-cap: !expr caption_adq
+|Fecha|Día|
+|:-:|:-:|
+| **`{r} tabla_adquisicion_tbl$Fecha[1]`** | **`{r} tabla_adquisicion_tbl$Día[1]`** |
+|`{r} tabla_adquisicion_tbl$Fecha[2]`|`{r} tabla_adquisicion_tbl$Día[2]`|
+|`{r} tabla_adquisicion_tbl$Fecha[3]`|`{r} tabla_adquisicion_tbl$Día[3]`|
+|`{r} tabla_adquisicion_tbl$Fecha[4]`|`{r} tabla_adquisicion_tbl$Día[4]`|
+|`{r} tabla_adquisicion_tbl$Fecha[5]`|`{r} tabla_adquisicion_tbl$Día[5]`|
+|`{r} tabla_adquisicion_tbl$Fecha[6]`|`{r} tabla_adquisicion_tbl$Día[6]`|
+|`{r} tabla_adquisicion_tbl$Fecha[7]`|`{r} tabla_adquisicion_tbl$Día[7]`|
+|`{r} tabla_adquisicion_tbl$Fecha[8]`|`{r} tabla_adquisicion_tbl$Día[8]`|
+|`{r} tabla_adquisicion_tbl$Fecha[9]`|`{r} tabla_adquisicion_tbl$Día[9]`|
+|`{r} tabla_adquisicion_tbl$Fecha[10]`|`{r} tabla_adquisicion_tbl$Día[10]`|
+|`{r} tabla_adquisicion_tbl$Fecha[11]`|`{r} tabla_adquisicion_tbl$Día[11]`|
 
-tabla_adquisicion
-```
+: **Fecha actual** y de los próximos 10 muestreos. {#tbl-adq .striped .hover tbl-colwidths="[20,20,15,15,15,15]" tbl-cap-location="bottom"}
 
 ## Metodología de muestreo
 
@@ -498,12 +505,28 @@ cap2 <- glue(
 
 Las características espectrales de S2-MSI se muestran en la siguiente tabla:
 
-```{r tbl-s2msi}
-#| label: tbl-s2msi
-#| tbl-cap: <br>Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B.
+::: {.column-body-outset-right}
 
-tabla_s2msi
-```
+|  |  | Sentinel-2A | | Sentinel-2B | |
+|:--|--:|--:|--:|--:|--:|
+| **Banda** | **Resolución espacial (m)** | **Longitud de onda (nm)** | **Ancho de banda (nm)** | **Longitud de onda (nm)** | **Ancho de banda (nm)** |
+| B01 (aerosol) | 60 | 442,7 | 20 | 442,3 | 20 |
+| B02 (blue) | 10 | 492,7 | 65 | 492,3 | 65 |
+| B03 (green) | 10 | 559,8 | 35 | 558,9 | 35 |
+| B04 (red) | 10 | 664,6 | 38 | 664,9 | 31 |
+| B05 (red edge) | 20 | 794,1 | 14 | 703,8 | 15 |
+| B06 | 20 | 748,5 | 14 | 739,1 | 13 |
+| B07 | 20 | 782,8 | 19 | 779,7 | 19 |
+| B08 (NIR) | 10 | 832,8 | 105 | 832,9 | 104 |
+| B8A | 20 | 864,7 | 21 | 864,0 | 21 |
+| B09 | 60 | 945,1 | 19 | 943,2 | 20 |
+| B10 | 60 | 1373,5 | 29 | 1376,9 | 29 |
+| B11 (SWIR 1) | 20 | 1613,7 | 90 | 1616,4 | 94 |
+| B11 (SWIR 2) | 20 | 2292,4 | 174 | 2185,7 | 184 |
+
+: Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B. {#tbl-s2msi .striped .hover tbl-colwidths="[20,20,15,15,15,15]" tbl-cap-location="bottom"}
+
+:::
 
 # Discusión {#sec-discusion}
 
