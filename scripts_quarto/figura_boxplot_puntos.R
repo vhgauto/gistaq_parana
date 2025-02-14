@@ -5,19 +5,19 @@
 # función que verifica la diferencia entre reflectancias por banda espectral
 # y sitio
 f_puntos <- function(df, p_i, p_f) {
-  p <- df |> 
-    filter(punto %in% c(p_i, p_f)) |> 
+  p <- df |>
+    filter(punto %in% c(p_i, p_f)) |>
     pivot_wider(
       id_cols = fecha,
       names_from = punto,
       values_from = reflect
     ) |>
-    unnest(everything()) |> 
+    unnest(everything()) |>
     rename(
       "p_inicial" = 2,
       "p_final" = 3
     )
-  
+
   wilcox.test(p$p_inicial, p$p_final, paired = FALSE, exact = TRUE) |>
     broom::tidy() |>
     select(p.value) |>
@@ -33,6 +33,7 @@ puntos <- vect("vector/3puntos_transecta.gpkg")
 
 # ráster de recortes
 archivos_r <- list.files("recorte/", pattern = "tif$", full.names = TRUE)
+archivos_r <- archivos_r[!str_detect(archivos_r, "rsi")]
 fechas_r <- str_remove(basename(archivos_r), ".tif")
 
 lista_r <- map(
@@ -65,22 +66,22 @@ e_tbl <- map(lista_r3, ~terra::extract(.x, puntos, xy = TRUE)) |>
   select(-ID)
 
 # obtengo la significancia en los diferentes puntos, por banda
-p_tbl <- e_tbl |> 
-  nest(.by = banda) |> 
+p_tbl <- e_tbl |>
+  nest(.by = banda) |>
   mutate(
     P1P3 = map(data, ~f_puntos(.x, "P1", "P3"))
-  ) |> 
-  select(-data) |> 
+  ) |>
+  select(-data) |>
   pivot_longer(
     cols = -banda
-  ) |> 
-  unnest(value) |> 
+  ) |>
+  unnest(value) |>
   mutate(
     x = 1,
     xend = 3,
     y = .3,
     yend = .3
-  ) |> 
+  ) |>
   mutate(
     label = if_else(es_significativo, simbolo_sig, NA)
   )
