@@ -170,6 +170,10 @@ Los muestreos, según lo permita la logística, se llevan a cabo en la fecha de 
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
 
+:::: {.grid}
+
+::: {.g-col-6 .g-start-4}
+
 |Fecha|Día|
 |:-:|:-:|
 | **`{r} tabla_adquisicion_tbl$Fecha[1]`** | **`{r} tabla_adquisicion_tbl$Día[1]`** |
@@ -185,6 +189,10 @@ En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del rí
 |`{r} tabla_adquisicion_tbl$Fecha[11]`|`{r} tabla_adquisicion_tbl$Día[11]`|
 
 : **Fecha actual** y de los próximos 10 muestreos. {#tbl-adq .striped .hover tbl-colwidths="[20,20,15,15,15,15]" tbl-cap-location="bottom"}
+
+:::
+
+::::
 
 ## Metodología de muestreo
 
@@ -468,18 +476,13 @@ Las curvas de <b style='color:`r c1`'>color violeta</b> corresponden a los sitio
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
-El efecto de las características cambiantes del agua no es el mismo para las bandas espectrales de S2-MSI, tal como se muestra en la tabla @tbl-boxplot-firma-espectral.
+El efecto de las características cambiantes del agua no es el mismo para las bandas espectrales de S2-MSI, tal como se muestra en la figura [-@fig-boxplot-firma-espectral].
 
 La distribución (en formato de gráfico de cajas) de R<sub>rs</sub> por banda, indica que en ciertas bandas se observa un efecto de la composición del agua más que en otras.
 
 Las bandas B11 y B12 muetran una distribución estrecha, con bajos valores de reflectancia, a pesar de los cambios observados en el agua. En contraste, las bandas B04 y B05 abarcan un mayor rango de respuesta espectral y valores altos.
 
-```{r tbl-boxplot-firma-espectral}
-#| label: tbl-boxplot-firma-espectral
-#| tbl-cap: Distribución de reflectancia de superficie por banda espectral.
-
-tabla_boxplot_firma_espectral
-```
+![Distribución de reflectancia de superficie por banda espectral.](figuras/boxplot_reflect.png){#fig-boxplot-firma-espectral width=60%}
 
 Se seleccionaron tres sitios fijos, mostrados en la figura @fig-roi, para extraer los valores de R<sub>rs</sub> y evaluar el cambio en la respuesta espectral a lo largo del río Paraná.
 
