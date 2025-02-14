@@ -221,3 +221,8 @@ div.callout-note.callout-style-default > .callout-header {
     --mermaid-edge-color: #B86092;
     --mermaid-label-fg-color: black;
 }
+
+// línea horizontal sobre Referencias
+#quarto-appendix.default {
+    border-top: 1px solid $cg2;
+}
