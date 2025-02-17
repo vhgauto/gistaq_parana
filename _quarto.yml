@@ -35,7 +35,6 @@ format:
     toc-float: false
     toc-location: left
     toc-title: "Contenido"
-    mainfont: Ubuntu
     link-external-icon: false
     link-external-newwindow: true
     link-citations: true
