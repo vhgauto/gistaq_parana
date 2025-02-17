@@ -6,7 +6,8 @@ author:
     corresponding: true
     email: victor.gauto@ca.frre.utn.edu.ar
     affiliations:
-      - GISTAQ (UTN-FRRe), IIDTHH (UNNE, CONICET)
+      - GISTAQ (UTN-FRRe)
+      - IIDTHH (UNNE, CONICET)
   - name: Enid Utgés
     orcid: 0009-0003-5263-5198
     affiliations:
