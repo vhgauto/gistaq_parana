@@ -1,4 +1,7 @@
-# saco freez y targets
+# contenido asociado al manuscrito
+_manuscript/
+
+# saco freeze y targets
 _freeze/
 _targets/
 
