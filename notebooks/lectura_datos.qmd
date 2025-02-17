@@ -1,0 +1,18 @@
+---
+title: "Lectura de Datos"
+type: html
+---
+
+# Datos
+
+```{r}
+library(glue)
+```
+
+```{r}
+1+1
+```
+
+# Resultados
+
+Cosas.
