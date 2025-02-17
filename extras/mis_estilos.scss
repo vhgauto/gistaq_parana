@@ -12,8 +12,8 @@ $cb: #FFFFFF;
 $cg2: #D3D3D3;
 $cg3: #F5F5F5;
 
-// Ubuntu
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+// Noto Sans
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 // Nerd Font
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
@@ -22,7 +22,15 @@ $cg3: #F5F5F5;
 @import url('https://fonts.googleapis.com/css2?family=Gloock&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 // Bebas Neue
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gloock&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+// Libre Bodoni
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&display=swap');
+
+$font-family-sans-serif: "Noto Sans", sans-serif;
+$font-family-monospace: "JetBrains Mono";
+$font-family-title: "Bebas Neue";
+$font-family-header: "Libre Bodoni";
 
 /*-- scss:rules --*/
 
@@ -46,11 +54,9 @@ h2, .h2 {
 
 pre > code.sourceCode > span {
     color: $cr;
-    font-family: JetBrains Mono;
 }
 
 code {
-    font-family: JetBrains Mono;
     color: $cr;
 }
 
@@ -73,15 +79,15 @@ a {
 
 // color de texto del título de los callout
 .callout > div.callout-header {
-	cursor: pointer;
-	color: $cn;
+  cursor: pointer;
+  color: $cn;
 }
 
 .callout.callout-style-default .callout-header[aria-expanded="false"], .callout.callout-style-default .callout-header[aria-expanded="true"] {
-	padding-top: 0px;
-	margin-bottom: 0px;
-	align-items: center;
-	// background: #FFFBFD;
+  padding-top: 0px;
+  margin-bottom: 0px;
+  align-items: center;
+  // background: #FFFBFD;
 }
 
 // color del borde izquierdo, y forma cuadrada
@@ -91,13 +97,13 @@ div.callout-note.callout {
 }
 
 .callout.callout-style-simple .callout-body {
-	font-size: 1rem;
-	font-weight: 400;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .callout.callout-style-default .callout-body {
-	font-size: 1rem;
-	font-weight: 400;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 // color de las secciones activas en la tabla de contenidos
@@ -142,34 +148,34 @@ pre.sourceCode {
 
 // color de fondo del título de los callout
 div.callout-note.callout-style-default > .callout-header {
-	background-color: #F9FFF9;
+  background-color: #F9FFF9;
 }
 
 // tabsets
 // color del texto
 .nav-link {
-	color: $cn;
+  color: $cn;
 }
 
 .nav-link:hover, .nav-link:focus {
-	color: $cn;
+  color: $cn;
     border-radius: 0;
 }
 
 // contorno del bloque
 .tab-content {
-	margin-top: 0px;
+  margin-top: 0px;
     // border: $ca 1px solid;
     border: transparent;
-	margin-left: 0;
-	padding: 1em;
-	margin-bottom: 1em;
+  margin-left: 0;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 
 // título de los tabset
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-	color: $ca;
-	border-color: $ca;
+  color: $ca;
+  border-color: $ca;
     border-radius: 0;
     --bs-nav-tabs-border-radius: 0;
     --bs-nav-tabs-link-active-bg: #F5F5F5;
@@ -198,8 +204,8 @@ div.callout-note.callout-style-default > .callout-header {
     --bs-nav-link-padding-x: 1rem;
     --bs-nav-link-padding-y: 0.5rem;
     --bs-nav-link-font-weight: ;
-    --bs-nav-link-color: #0d6efd;
-    --bs-nav-link-hover-color: #0a58ca;
+    --bs-nav-link-color:#0d6efd;
+    --bs-nav-link-hover-color:#0a58ca;
     --bs-nav-link-disabled-color: rgba(33, 37, 41, 0.75);
     display: flex;
     display: -webkit-flex;
