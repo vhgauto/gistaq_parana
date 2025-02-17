@@ -1,21 +1,23 @@
-# project:
-#   type: manuscript
-#
-# manuscript:
-#   article: test.qmd
-#   notebooks:
-#     - notebook: test.qmd
-#       title: "Test"
+project:
+  type: manuscript
+
+manuscript:
+  article: manuscrito.qmd
+  notebooks:
+    - notebooks/lectura_datos.qmd
+    - notebook: notebooks/boxplot_reflect.qmd
+      title: "Distribución de reflectancia"
 
 execute:
   freeze: auto
+  warning: false
+  echo: true
 
 format:
   html:
     anchor-sections: true
     number-sections: true
     smooth-scroll: true
-    embed-resources: true
     collapse-level: 2
     lang: es
     language:
