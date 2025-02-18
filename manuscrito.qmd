@@ -52,6 +52,7 @@ date: last-modified
 #| eval: true
 #| echo: false
 #| output: false
+#| warning: false
 
 # corro todos los scripts
 source("scripts_quarto/soporte.R")
