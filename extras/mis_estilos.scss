@@ -12,8 +12,8 @@ $cb: #FFFFFF;
 $cg2: #D3D3D3;
 $cg3: #F5F5F5;
 
-// Noto Sans
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+// Lato
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 // Nerd Font
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
@@ -27,12 +27,16 @@ $cg3: #F5F5F5;
 // Libre Bodoni
 @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&display=swap');
 
-$font-family-sans-serif: "Noto Sans", sans-serif;
+$font-family-sans-serif: "Lato", sans-serif;
 $font-family-monospace: "JetBrains Mono";
 $font-family-title: "Bebas Neue";
 $font-family-header: "Libre Bodoni";
 
 /*-- scss:rules --*/
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Libre Bodoni";
+}
 
 .header-section-number {
     color: $ca;
