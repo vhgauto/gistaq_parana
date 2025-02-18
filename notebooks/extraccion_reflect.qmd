@@ -1,0 +1,117 @@
+---
+title: "Extracción de reflectancia"
+type: html
+date: last-modified
+author:
+  - name: Víctor Gauto
+    orcid: 0000-0001-9960-8558
+    corresponding: true
+    email: victor.gauto@ca.frre.utn.edu.ar
+    affiliations:
+      - GISTAQ (UTN-FRRe)
+      - IIDTHH (UNNE, CONICET)
+      - Instituto Gulich (UNC, CONAE)
+execute:
+  eval: false
+  echo: true
+code-annotations: hover
+---
+
+La reflectancia de superficie (R<sub>rs</sub>) se extrae usando las coordenadas de los muestreos y el producto satelital.
+
+Las coordenadas geográficas provienen del archivo Excel donde se registran las mediciones in situ. El producto satelital es Sentinel-2 MSI, descargado de Data Space de la plataforma Copernicus.
+
+Se inicia con la lectura del Excel extrayendo las columnas de latitud, longitud y la fecha de muestreo.
+
+```{r}
+coord_sitios <- readxl::read_xlsx(
+  path = x,
+  sheet = 1,
+  .name_repair = "unique_quiet") |>
+  select(fechas = 1, longitud = 4, latitud = 5) |>
+  fill(fechas) |>
+  mutate(fechas = ymd(fechas)) |>
+  dplyr::filter(fechas == ymd(y)) |>
+  drop_na() |>
+  select(-fechas) |>
+  mutate(punto = row_number(), .before = 1)
+```
+
+Luego se transforma a vector, transformando las coordenadas a `EPSG:32721` ya que es el sistema de referencia del producto satelital.
+
+```{r}
+coord_vect <- vect(
+  coord_sitios,
+  geom = c("longitud", "latitud"),
+  crs="EPSG:4326",
+  keepgeom = FALSE) |>
+  terra::project("EPSG:32721")
+```
+
+Se procede con la verificación de ausencia de nubes a partir de la máscara de probabilidades de nubosidad a 20 m de resolución. En caso de que un sitio muestral presenta nubes, es descartado.
+
+```{r}
+# nombre del producto
+lis <- list.files(path = "producto/", pattern = "SAFE", full.names = TRUE)
+
+# carpeta con las carpetas de distintas resoluciones
+carpeta1 <- glue("{lis}/GRANULE")
+carpeta2 <- list.files(carpeta1)
+carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA")
+carpeta4 <- glue("{carpeta1}/{carpeta2}/QI_DATA")
+
+# leo el ráster
+raster_prob <- terra::rast(glue("{carpeta4}/MSK_CLDPRB_20m.jp2"))
+
+# extraemos los valores de pixel para cada punto
+nubes <- terra::extract(raster_prob, coord_vect) |>
+  as_tibble() |>
+  rename(punto = ID, probabilidad = MSK_CLDPRB_20m) |>
+  dplyr::filter(probabilidad == 0)
+
+# se conservan los sitios de muestreo con probabilidad de nubes CERO
+coord_sf_sin_nubes <- inner_join(
+  st_as_sf(coord_vect),
+  nubes,
+  by = join_by(punto))
+
+if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) {
+
+  # sitios con nubes
+  puntos_nubes <- anti_join(
+    st_as_sf(coord_vect),
+    nubes,
+    by = join_by(punto)) |>
+    pull(punto) |>
+    str_flatten_comma(string = _, last = " y ")
+
+  mensaje(glue("Los sitios {puntos_nubes} presentan nubes y se descartan"))
+}
+```
+
+Luego de verificar un cielo despejado, se lleva a cabo la extracción de los valores de píxel. Se realiza un promedio a partir de una ventana de 3x3 alrededor del sitio central y se promedia el valor final.
+
+```{r}
+# leo recorte
+stack_bandas <- rast(z)
+
+stack_bandas_3x3 <- terra::focal(
+    stack_bandas, w = 3, fun = mean, na.rm = TRUE)
+
+reflect_3x3 <- terra::extract(stack_bandas_3x3, coord_sf_sin_nubes) |>
+  as_tibble() |>
+  rename(punto = ID) |>
+  pivot_longer(
+    cols = -punto, names_to = "banda", values_to = "reflect"
+  ) |>
+  mutate(reflect = reflect/10000) |>
+  mutate(fecha = ymd(y), .before = 1) |>
+  inner_join(coord_sitios, by = join_by(punto)) |>
+  mutate(pixel = "3x3", .before = banda)
+```
+
+Finalmente se almacenan los valores de R<sub>rs</sub> en un archivo de texto (`.csv`).
+
+```{r}
+write_csv(reflect_3x3, "datos/base_de_datos_gis.csv")
+```
