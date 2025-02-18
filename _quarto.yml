@@ -5,8 +5,15 @@ manuscript:
   article: manuscrito.qmd
   notebooks:
     - notebooks/lectura_datos.qmd
-    - notebook: notebooks/boxplot_reflect.qmd
-      title: "Distribución de reflectancia"
+    - notebooks/extraccion_reflect.qmd
+  code-links:
+    - repo: https://github.com/vhgauto/gistaq_parana
+      text: "Ver en GitHub"
+      icon: github
+      href: https://github.com/vhgauto/gistaq_parana
+    - text: "Informar un problema"
+      icon: github
+      href: https://github.com/vhgauto/gistaq_parana/issues/new/choose
 
 execute:
   freeze: auto
@@ -14,6 +21,7 @@ execute:
   echo: true
 
 format:
+  docx: default
   html:
     anchor-sections: true
     number-sections: true
@@ -49,6 +57,3 @@ format:
     html-math-method: katex
     callout-icon: false
     backgroundcolor: "#F5F5F5"
-    docx: false
-    jats: false
-    agu-pdf: false
