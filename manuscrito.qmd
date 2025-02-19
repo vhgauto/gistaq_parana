@@ -1,5 +1,5 @@
 ---
-title: "Proyecto Paraná 2023"
+title: "<span style='font-size:5rem'>Proyecto Paraná 2023</span>"
 author:
   - name: Víctor Gauto
     orcid: 0000-0001-9960-8558
