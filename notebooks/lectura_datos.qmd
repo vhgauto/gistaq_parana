@@ -8,14 +8,14 @@ author:
     corresponding: true
     email: victor.gauto@ca.frre.utn.edu.ar
     affiliations:
-      - GISTAQ (UTN-FRRe)
-      - IIDTHH (UNNE, CONICET)
-      - Instituto Gulich (UNC, CONAE)
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://iidthh.conicet.gov.ar/' target="_blank">IIDTHH (UNNE, CONICET) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://ig.conae.unc.edu.ar/' target="_blank">Instituto Gulich (UNC, CONAE){{< fa arrow-up-right-from-square >}}</a>
 execute:
   eval: false
   echo: true
 code-annotations: hover
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -49,7 +49,7 @@ datos <- readxl::read_xlsx(
 
 write_csv(datos, "datos/base_de_datos_lab.csv") # <3>
 ```
-1. Selecciono las columnas de interés por la posición y cambio de nombre.
+1. Selecciono las columnas de interés y cambio de nombre.
 2. Transformo a tabla larga para una mejor organización de los datos.
 3. Almaceno los resultados en una base de datos.
 
@@ -58,8 +58,10 @@ write_csv(datos, "datos/base_de_datos_lab.csv") # <3>
 #| eval: true
 #| warning: false
 
-suppressWarnings(suppressMessages(library(tidyverse)))
-read_csv("../datos/base_de_datos_lab.csv", show_col_types = FALSE) |> 
+readr::read_csv(
+  file = "../datos/base_de_datos_lab.csv",
+  show_col_types = FALSE
+) |>
   head()
 ```
 
@@ -68,22 +70,24 @@ read_csv("../datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
 Las imágenes satelitales se obtienen a partir del catálogo de Copernicus. La solicitud require un rango de fecha en torno a la adquisición de la escena, las coordenadas de la imagen y el nivel de procesamiento.
 
 ```{python}
-import requests
-import pandas as pd
-from datetime import datetime, timedelta
-import os
-import certifi
-import json
+import requests # <1>
+import pandas as pd # <1>
+from datetime import datetime, timedelta # <1>
+import os # <1>
+import certifi # <1>
+import json # <1>
 
 catalogue_odata_url = "https://catalogue.dataspace.copernicus.eu/odata/v1"
 
-collection_name = "SENTINEL-2"
-product_type = "S2MSI2A"
-max_cloud_cover = 1
-aoi = "POINT(-58.81348666883592 -27.488354054598737)"
-search_period_start = "2024-01-01T00:00:00.000Z"
-search_period_end = "2024-01-02T00:00:00.000Z"
+collection_name = "SENTINEL-2" # <2>
+product_type = "S2MSI2A" # <2>
+max_cloud_cover = 1 # <2>
+aoi = "POINT(-58.81348666883592 -27.488354054598737)" # <2>
+search_period_start = "2024-01-01T00:00:00.000Z" # <2>
+search_period_end = "2024-01-02T00:00:00.000Z" # <2>
 ```
+1. Cargo todas las librerías.
+2. Indico producto, posición y fechas de interés.
 
 Con los datos mostrados se genera un <i>query</i> y con las credenciales de usuario de la plataforma se accede mediante el token.
 
@@ -91,10 +95,10 @@ Con los datos mostrados se genera un <i>query</i> y con las credenciales de usua
 search_query = f"{catalogue_odata_url}/Products?$filter=Collection/Name eq '{collection_name}' and Attributes/OData.CSC.StringAttribute/any(att:att/Name eq 'productType' and att/OData.CSC.StringAttribute/Value eq '{product_type}') and OData.CSC.Intersects(area=geography'SRID=4326;{aoi}') and ContentDate/Start gt {search_period_start} and ContentDate/Start lt {search_period_end}"
 
 response = requests.get(search_query).json()
-result = pd.DataFrame.from_dict(response["value"])
+result = pd.DataFrame.from_dict(response["value"]) # <1>
 
-username = os.environ['COPERNICUS_USERNAME']
-password = os.environ['COPERNICUS_PASSWORD']
+username = os.environ['COPERNICUS_USERNAME'] # <2>
+password = os.environ['COPERNICUS_PASSWORD'] # <2>
 
 auth_server_url = "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token"
 data = {
@@ -109,14 +113,16 @@ response_cred = requests.post(
 )
 access_token = json.loads(response_cred.text)["access_token"]
 ```
+1. Transformo la respuesta del servidor a tabla.
+2. Credenciales de usuario.
 
 La descarga se realiza a partir de un loop en caso de existir múltiples productos disponibles.
 
 ```{python}
-if len(result) == 0:
+if len(result) == 0: # <1>
     print("\n\n--- NO HAY PRODUCTO DISPONIBLE PARA EL DÍA DE LA FECHA ---\n\n")
 elif os.path.isfile("producto/producto.zip") == True:
-    print("\n\n--- PRODUCTO YA DESCARGADO ---\n\n")
+    print("\n\n--- PRODUCTO YA DESCARGADO ---\n\n") # <2>
 else:
     producto_id = result["Id"][0]
     producto_nombre = result["Name"][0]
@@ -135,12 +141,15 @@ else:
 
     print("\n\n--- DESCARGANDO PRODUCTO ---\n\n")
 
-    with open("producto/producto.zip", "wb") as file:
+    with open("producto/producto.zip", "wb") as file:  # <3>
         for chunk in response_prod.iter_content(chunk_size=8192):
             if chunk:
                 file.write(chunk)
 
     print("\n\n--- PRODUCTO DESCARGADO ---\n\n")
 ```
+1. En caso que no haya resultados de búsqueda, que no continúe con el loop.
+2. Si el producto fue previamente descargado, que se detenga.
+3. Almaceno el producto como archivo comprimido (`.zip`).
 
 La [documentación](https://documentation.dataspace.copernicus.eu/APIs/OData.html) de Data Space Copernicus resultó de gran ayuda para este desarrollo.
