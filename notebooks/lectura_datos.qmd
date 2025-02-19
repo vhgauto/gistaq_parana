@@ -15,9 +15,11 @@ execute:
   eval: false
   echo: true
 code-annotations: hover
+editor_options: 
+  chunk_output_type: console
 ---
 
-Los datos se dividen en dos grupos de acuerdo al formato en el que se presentan, lo cual determina los paquetes requeridos y las operaciones necesarias para operar con estos.
+Los datos se dividen en dos grupos de acuerdo al formato en el que se presentan, lo cual determina los paquetes requeridos y las operaciones necesarias para trabajar con estos.
 
 # Datos numéricos
 
@@ -29,26 +31,37 @@ Las variables de interés son: fecha, longitud y latitud, pH, conductividad, só
 
 ```{r}
 datos <- readxl::read_xlsx(
-    path = x,
-    sheet = 1,
-    .name_repair = "unique_quiet") |>
-    select(# <1>
-      fecha = 1, longitud = 4, latitud = 5, ph = 6, cond = 8, secchi = 10,# <1>
-      sol_sus = 12, turb = 13, hazemeter = 14) |> # <1>
-    fill(fecha) |>
-    mutate(fecha = ymd(fecha)) |>
-    pivot_longer( # <2>
-      cols = -c(fecha, latitud, longitud),# <2>
-      names_to = "param",# <2>
-      values_to = "valor"# <2>
-    ) |># <2>
-    drop_na(valor, latitud, longitud)
+  path = x,
+  sheet = 1,
+  .name_repair = "unique_quiet") |>
+  select( # <1>
+    fecha = 1, longitud = 4, latitud = 5, # <1>
+    ph = 6, cond = 8, secchi = 10, # <1>
+    sol_sus = 12, turb = 13, hazemeter = 14) |> # <1>
+  fill(fecha) |>
+  mutate(fecha = ymd(fecha)) |>
+  pivot_longer( # <2>
+    cols = -c(fecha, latitud, longitud), # <2>
+    names_to = "param", # <2>
+    values_to = "valor" # <2>
+  ) |> # <2>
+  drop_na(valor, latitud, longitud)
 
 write_csv(datos, "datos/base_de_datos_lab.csv") # <3>
 ```
 1. Selecciono las columnas de interés por la posición y cambio de nombre.
 2. Transformo a tabla larga para una mejor organización de los datos.
 3. Almaceno los resultados en una base de datos.
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+
+suppressWarnings(suppressMessages(library(tidyverse)))
+read_csv("../datos/base_de_datos_lab.csv", show_col_types = FALSE) |> 
+  head()
+```
 
 # Ráster
 
