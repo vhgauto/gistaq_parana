@@ -6,6 +6,7 @@ manuscript:
   notebooks:
     - notebooks/lectura_datos.qmd
     - notebooks/extraccion_reflect.qmd
+    - notebooks/figuras_resultados.qmd
   code-links:
     - repo: https://github.com/vhgauto/gistaq_parana
       text: "Ver en GitHub"
@@ -50,6 +51,7 @@ format:
     code-copy: true
     code-annotations: false
     code-line-numbers: false
+    code-overflow: scroll
     tbl-cap-location: margin
     fig-cap-location: bottom
     bibliography: biblio/bibliografia.bib
