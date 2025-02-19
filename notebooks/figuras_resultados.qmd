@@ -1,0 +1,998 @@
+---
+title: "Caracterización de las muestras"
+type: html
+date: last-modified
+author:
+  - name: Víctor Gauto
+    orcid: 0000-0001-9960-8558
+    corresponding: true
+    email: victor.gauto@ca.frre.utn.edu.ar
+    affiliations:
+      - GISTAQ (UTN-FRRe)
+      - IIDTHH (UNNE, CONICET)
+      - Instituto Gulich (UNC, CONAE)
+execute:
+  eval: false
+  echo: true
+code-annotations: hover
+editor_options: 
+  chunk_output_type: console
+---
+
+La generación de figuras se divide para datos fisicoquímicos de laboratorio e in situ, y datos espectrales.
+
+# Propiedades fisicoquímicas
+
+La caracterización fisicoquímica de las muestras de agua se realiza a partir de los resultados de ensayos de laboratorio y de mediciones in situ.
+
+## Distribución espacial
+
+Las propiedades fisicoquímicas se graficaron en función de la longitud geográfica para comprender su distribución espacial. Se inicia con la definición de variables de apoyo.
+
+```{r}
+param_v <- c("turb", "secchi", "sol_sus", "cond", "ph")
+param_unid_v <- c(
+  "<i>turb</i> (NTU)", "<i>secchi</i> (cm)", "<i>susp</i> (ppm)",
+  "<i>cond</i> (μS/cm)", "pH"
+)
+names(param_unid_v) <- param_v
+```
+
+A continuación se ingresan y procesan los datos.
+
+```{r}
+d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE) |>
+  mutate(
+    param = param_unid_v[param]
+  ) |>
+  drop_na() |>
+  group_by(fecha, param) |>
+  arrange(longitud) |>
+  mutate(p = row_number()) |>
+  ungroup() |>
+  mutate(
+    unidad = str_extract(param, "\\(([^)]+)\\)"),
+    unidad = str_remove(unidad, "\\("),
+    unidad = str_remove(unidad, "\\)")
+  ) |>
+  mutate(
+    unidad = if_else(is.na(unidad), "", unidad)) |>
+  mutate(v = format(valor, nsmall = 1, digits = 1, decimal.mark = ",")) |>
+  mutate(label = glue("{fecha}<br>{v} {unidad}")) |>
+  mutate(p = glue("P{p}")) |>
+  mutate(p = fct_reorder(p, longitud)) |>
+  mutate(
+    estado = if_else(
+      fecha == max(fecha),
+      "Actual",
+      "Previos"
+    )
+  )
+
+estado_color <- c(
+  Actual = c2,
+  Previos = c1
+)
+```
+
+La generación de las figuras se lleva a cabo mediante una función personalizada, que itera entre todas las variables disponibles. Al ser una figura interactiva, se utiliza el paquete `{ggiraph}` para incorporar esa funcionalidad.
+
+```{r}
+f_figura_evolucion_lab <- function(parametro) {
+  g <- d |>
+    filter(param == parametro) |>
+    ggplot(aes(longitud, valor, group = fecha, color = estado, fill = estado)) +
+    geom_line_interactive(
+      aes(data_id = interaction(fecha, param)), hover_nearest = TRUE,
+      linewidth = 2, alpha = .8) +
+    geom_point_interactive(
+      aes(
+        data_id = interaction(fecha, param), tooltip = label,
+        hover_nearest = TRUE), size = 2.5, shape = 21, color = c3,
+      stroke = .2, show.legend = FALSE) +
+    facet_wrap(vars(param), ncol = 3, scales = "free") +
+    scale_y_continuous(
+      breaks = scales::breaks_pretty(),
+      labels = scales::label_number(decimal.mark = ",", big.mark = ".")
+    ) +
+    scale_x_continuous(
+      breaks = range(d$longitud),
+      labels = c("Orilla\nchaqueña", "Orilla\ncorrentina")
+    ) +
+    scale_color_manual(values = estado_color) +
+    scale_fill_manual(values = estado_color) +
+    coord_cartesian(clip = "off") +
+    labs(y = parametro, x = NULL, fill = NULL, color = NULL) +
+    theme_void(base_size = 10) +
+    theme(
+      aspect.ratio = 1,
+      plot.margin = margin(6, 6, 6, 6),
+      panel.grid.minor = element_blank(),
+      panel.grid.major.y = element_line(
+        color = c4, linewidth = .06, linetype = 3),
+      panel.spacing = unit(1.1, "line"),
+      axis.title.y = element_markdown(
+        family = "Ubuntu", angle = 90, margin = margin(r = 10), size = 12
+      ),
+      axis.text = element_text(family = "jet", color = c7),
+      axis.text.y = element_markdown(hjust = 1, margin = margin(r = 2)),
+      axis.text.x = element_text(margin = margin(t = 2), family = "Ubuntu"),
+      axis.ticks = element_blank(),
+      panel.background = element_rect(fill = c11, color = NA),
+      strip.background = element_blank(),
+      strip.text = element_blank(),
+      legend.position = "top",
+      legend.text = element_text(
+        family = "ubuntu", size = 12, margin = margin(r = 10, l = 3)
+      ),
+      legend.background = element_rect(fill = c10, color = NA),
+      legend.key = element_rect(fill = NA, color = NA),
+      legend.key.spacing.x = unit(.3, "cm")
+    )
+
+  gg_int <- girafe(
+    ggobj = g,
+    bg = c10,
+    options = list(
+      opts_hover(
+        css = girafe_css(
+          css = "",
+        )
+      ),
+      opts_tooltip(
+        opacity = 1,
+        css = glue(
+          "color:{c7};padding:5px;font-family:JetBrains Mono;",
+          "border-style:solid;border-color:{c4};border-width:2px;",
+          "background:{c3}"),
+        use_cursor_pos = TRUE,
+        offx = 5,
+        offy = 5),
+      opts_sizing(width = 1, rescale = TRUE),
+      opts_hover_inv(css = "opacity:.2"),
+      opts_toolbar(saveaspng = FALSE)
+    )
+  )
+
+  return(gg_int)
+}
+```
+
+Finalmente se aplica la función a todos los parámetros disponibles.
+
+```{r}
+lista_figura_evolucion_lab <- map(param_unid_v, f_figura_evolucion_lab)
+```
+
+## Correlatividad lineal entre parámetros
+
+Se calculó el coeficiente de correlación lineal de Pearson para cada par de parámetros del agua, y su grado de significancia estadística. El paquete `{corrr}` posee funciones que sirvieron para esta exploración.
+
+Inicialmente se leen los datos y se definen variables de utilidad.
+
+```{r}
+# leo los datos de laboratorio
+d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
+
+# nombres de los parámetros y sus etiquetas
+param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
+param_unid_v <- c(
+  "pH", "<i>cond</i>", "<i>susp</i>",
+  "<i>turb</i>", "<i>secchi</i>")
+names(param_unid_v) <- param_v
+```
+
+Se calculó el coeficiente de correlación
+
+```{r}
+e_r <- d |>
+  drop_na() |>
+  pivot_wider(
+    names_from = param,
+    values_from = valor
+  ) |>
+  select(-c(contains("hazemeter"), fecha, longitud, latitud)) |>
+  correlate(
+    method = "pearson", use = "pairwise.complete.obs", quiet = TRUE) |>
+  shave() |>
+  pivot_longer(
+    cols = -term,
+    names_to = "param",
+    values_to = "r"
+  ) |>
+  drop_na()
+```
+
+Asimismo, se obtuvo el p-valor, definiendo un grado de confianza del 95%, por lo que una correlación estadísticamente significativa corresponde a $p-valor<0,05$.
+
+```{r}
+e_pvalor <- d |>
+  drop_na() |>
+  pivot_wider(
+    names_from = param,
+    values_from = valor
+  ) |>
+  select(-c(contains("hazemeter"), fecha, longitud, latitud)) |>
+  colpair_map(f_pvalor) |>
+  shave() |>
+  pivot_longer(
+    cols = -term,
+    names_to = "param",
+    values_to = "pvalor"
+  ) |>
+  drop_na()
+```
+
+Se combinaron los datos y se operó convenientemente.
+
+```{r}
+e <- inner_join(
+  e_r,
+  e_pvalor,
+  by = join_by(term, param)
+) |>
+  mutate(term = factor(term, levels = param_v)) |>
+  mutate(term = fct_rev(term)) |>
+  mutate(param = factor(param, levels = param_v)) |>
+  mutate(es_significativo = pvalor < .05) |> 
+  mutate(label = if_else(es_significativo, "&#9733;", NA)) |> 
+  mutate(id = row_number()) |> 
+  mutate(r_label = paste0("r: ", f_formato(r)))
+```
+
+Con los datos calculados se creó la figura del tipo heatmap, donde la tonalidad de los colores se correspondía con el valor del coeficiente.
+
+```{r}
+g <- e |> 
+  ggplot(
+    aes(term, param, fill = r)
+  ) +
+  geom_tile_interactive(color = c10, linewidth = 1, aes(tooltip = r_label, data_id = id)) +
+  geom_richtext(aes(label = label), label.color = NA, fill = NA, color = c7) +
+  scale_x_discrete(
+    labels = param_unid_v
+  ) +
+  scale_y_discrete(
+    labels = param_unid_v
+  ) +
+  scale_fill_gradient2(
+    low = c1,
+    mid = c11,
+    high = c2,
+    limits = c(-1, 1),
+    labels = f_formato(seq(-1, 1, .5), digits = 1, nsmall = 1)
+  ) +
+  labs(x = NULL, y = NULL, fill = "r") +
+  coord_equal() +
+  theme_void(base_size = 12) +
+  theme(
+    plot.margin = margin(b = 15),
+    axis.text = element_markdown(lineheight = 1.2),
+    legend.text = element_text(family = "jet", hjust = 1),
+    legend.title = element_text(
+      family = "jet", margin = margin(b = 10), hjust = .5
+    ),
+    legend.position = "right",
+    legend.key.height = unit(25, "pt"),
+    legend.justification.right = c(0, 1)
+  )
+```
+
+Finalmente se agregaron características interactivas que muestran el $p-valor$ a pasar el mouse sobre cada bloque.
+
+```{r}
+heatmap_lab <- girafe(
+  ggobj = g,
+  bg = c10,
+  options = list(
+    opts_hover(
+      css = girafe_css(
+        css = ""
+      )
+    ),
+    opts_tooltip(
+      opacity = 1,
+      css = glue(
+        "color:{c7};padding:5px;font-family:JetBrains Mono;",
+        "border-style:solid;border-color:{c4};border-width:2px;",
+        "background:{c3}"),
+      use_cursor_pos = TRUE,
+      offx = 5,
+      offy = 5),
+    opts_sizing(width = 1, rescale = TRUE),
+    opts_hover_inv(css = "opacity:.9"),
+    opts_toolbar(saveaspng = FALSE)
+  )
+)
+```
+
+## Figuras identidad
+
+Para acompañar el heatmap con los coeficientes de correlación lineal, se crearon figuras de dispersión entre pares de parámetros para visualizar dicha correlación.
+
+Se comienza con la lectura de los datos y la definición de variables de apoyo.
+
+```{r}
+d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
+
+param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
+param_unid_v <- c(
+  "pH", "<i>cond</i> (μS/cm)", "<i>susp</i> (ppm)", "<i>turb</i> (NTU)",
+  "<i>secchi</i> (cm)")
+names(param_unid_v) <- param_v
+
+linea_tipo <- 2
+linea_ancho <- 1
+texto_tamaño <- 4
+punto_transparencia <- .6
+punto_tamaño <- 3
+```
+
+La profundidad de disco de secchi tiene una relación logarítmica con el resto de variables, por lo que los ejes deben ser modificados convenientemente, pero conservando la linealidad para el resto de parámetros.
+
+Se crearon funciones personalizadas para modificar los ejes en caso de incluir en los pares de datos la profundidad de disco de Secchi.
+
+```{r}
+g_log <- function(g, etq) {
+  g +
+    geom_smooth(
+      method = lm, formula = y ~ x, se = FALSE, color = c1,
+      linetype = linea_tipo, linewidth = linea_ancho) +
+    annotate(
+      geom = "richtext", x = I(0), y = I(1), hjust = 0, vjust = 1,
+      size = texto_tamaño, label = etq, label.color = NA, fill = c11,
+      family = "jet") +
+    scale_y_continuous(breaks = scales::breaks_pretty()) +
+    scale_x_continuous(breaks = scales::breaks_pretty())
+}
+```
+
+Luego se generan las figuras mediante una función que toma los parámetros
+
+```{r}
+f_gg <- function(eje_x, eje_y) {
+  e <- d |>
+    pivot_wider(
+      names_from = param,
+      values_from = valor
+    ) |>
+    select(any_of(c(eje_x, eje_y))) |>
+    rename(x = 1, y = 2) |>
+    drop_na()
+
+  # figura básica
+  g <- ggplot(e, aes(x, y)) +
+    geom_point(size = punto_tamaño, alpha = punto_transparencia, color = c2) +
+    coord_cartesian(clip = "off") +
+    labs(x = param_unid_v[eje_x], y = param_unid_v[eje_y]) +
+    theme_void() +
+    theme(
+      aspect.ratio = 1,
+      plot.margin = margin(t = 5, r = 7, b = 0, l = 5),
+      panel.background = element_rect(fill = c11, color = NA),
+      panel.grid.major = element_line(
+        color = c4, linewidth = .1, linetype = "FF"),
+      axis.title = element_markdown(family = "Ubuntu", size = 12),
+      axis.title.y = element_markdown(angle = 90, margin = margin(r = 3, l = 5)),
+      axis.title.x = element_markdown(margin = margin(t = 6, b = 10)),
+      axis.text = element_text(family = "jet", size = 8),
+      axis.text.x = element_text(margin = margin(t = 6)),
+      axis.text.y = element_text(margin = margin(r = 5), hjust = 1)
+    )
+
+  # figuras que contienen profundidad de disco de Secchi
+  if (eje_x == "secchi" | eje_y == "secchi") {
+
+    mod <- lm(log(y) ~ log(x), data = e)
+
+    r2 <- broom::glance(mod)$r.squared |>
+      f_formato()
+
+    n <- nrow(e)
+
+    etq_recta <- glue("R<sup>2</sup> = {r2}<br>n = {n}")
+
+    g <- g_recta(g, etq_recta)
+
+
+  } else { # figuras NO asociadas a profundidad de disco de Secchi
+
+    mod <- lm(y ~ x, data = e)
+
+    r2 <- broom::glance(mod)$r.squared |>
+      f_formato()
+
+    n <- nrow(e)
+
+    etq_log <- glue("R<sup>2</sup> = {r2}<br>n = {n}")
+
+    g <- g_log(g, etq_log)
+
+  }
+
+  return(g)
+}
+```
+
+Cada figura es almacenada como imagen (`.png`).
+
+```{r}
+f_guardar <- function(prop1, prop2) {
+  g <- f_gg(prop1, prop2)
+  ggsave(
+    plot = g,
+    filename = glue("figuras/identidad_{prop1}_vs_{prop2}.png"),
+    width = 1500,
+    height = 1478,
+    units = "px"
+  )
+}
+```
+
+Finalmente, se crean todas las figuras de acuerdo a las características medidas.
+
+```{r}
+f_guardar("cond", "turb")
+f_guardar("cond", "sol_sus")
+f_guardar("cond", "secchi")
+f_guardar("turb", "sol_sus")
+f_guardar("turb", "secchi")
+f_guardar("sol_sus", "secchi")
+```
+
+## Distribución en orillas
+
+Mediante figuras de boxplot se identifica si existen diferencias significativas entre orillas del río Paraná de las propiedades de interés.
+
+Para ellos se leen los datos y se calcula la mediana de la longitud geográfica de los sitios de muestreo.
+
+```{r}
+# parámetros y unidades
+param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
+param_unid_v <- c(
+  "pH", "<i>cond</i> (μS/cm)", "<i>susp</i> (ppm)", "<i>turb</i> (NTU)",
+  "<i>secchi</i> (cm)")
+names(param_unid_v) <- param_v
+
+# leo base de datos
+d <- read_csv("datos/base_de_datos_lab.csv") |>
+  filter(param != "hazemeter")
+
+# distingo dos grupos: lado Chaco y lado Corrientes
+# según la mediana de la longitud geográfica
+m <- median(d$longitud)
+```
+
+Con la mediana se dividen los conjuntos de datos para cada parámetros. Se define si existe una diferencia significativa entre conjuntos a partir del test de Wilcox. Para facilitar el análisis, se crea una función personalizada.
+
+```{r}
+f_lado_signif <- function(x) {
+  d_chaco <- d |>
+    mutate(
+      lado = if_else(
+        longitud >= m,
+        "Corrientes",
+        "Chaco"
+      )
+    ) |>
+    filter(param == x & lado == "Chaco") |>
+    pull(valor)
+
+  d_corrientes <- d |>
+    mutate(
+      lado = if_else(
+        longitud >= m,
+        "Corrientes",
+        "Chaco"
+      )
+    ) |>
+    filter(param == x & lado == "Corrientes") |>
+    pull(valor)
+
+
+  signif <- wilcox.test(d_corrientes, d_chaco, paired = FALSE, exact = TRUE) |>
+    broom::tidy() |>
+    select(p.value) |>
+    mutate(
+      es_significativo = p.value < .05
+    ) |>
+    mutate(
+      param = x
+    )
+
+  return(signif)
+}
+```
+
+Las figuras se generaron y almacenaron para cada variable.
+
+```{r}
+f_figura_lado <- function(x) {
+
+  e <- d |>
+  mutate(
+    lado = if_else(
+      longitud >= m,
+      "Lado\nCorrientes",
+      "Lado\nChaco"
+    )
+  ) |>
+  filter(param == x)
+
+  if (f_lado_signif(x)$es_significativo) {
+    signif_label <- simbolo_sig
+  } else {
+    signif_label <- ""
+  }
+
+  g <- ggplot(e, aes(lado, valor)) +
+    geom_boxplot(
+      color = c1, outlier.color = c2, fill = c3, outlier.alpha = .8
+    ) +
+    annotate(
+      geom = "richtext", x = Inf, y = Inf, hjust = 1, vjust = 1, fill = c11,
+      label = signif_label, label.color = NA, size = 5
+    ) +
+    facet_wrap(vars(param), nrow = 1, scales = "free") +
+    labs(x = NULL, y = param_unid_v[x]) +
+    scale_y_continuous(
+      labels = scales::label_number(big.mark = ".", decimal.mark = ",")
+    ) +
+    theme_void() +
+    theme(
+      aspect.ratio = 1,
+      plot.margin = margin(r = 5, l = 5, t = 0, b = 0),
+      panel.background = element_rect(fill = c11, color = NA),
+      panel.grid.major.y = element_line(
+        color = c4, linewidth = .1, linetype = "FF"),
+      axis.text.x = element_text(
+        margin = margin(t = 6), size = 10, family = "ubuntu"
+      ),
+      axis.text.y = element_text(
+        margin = margin(r = 5), hjust = 1, size = 8, family = "jet"
+      ),
+      axis.title.y = element_markdown(
+          family = "Ubuntu", angle = 90, margin = margin(r = 10), size = 12
+      ),
+      strip.text = element_blank()
+    )
+
+  ggsave(
+      plot = g,
+      filename = glue("figuras/lado_{x}.png"),
+      width = 13,
+      height = 13,
+      units = "cm"
+    )
+}
+```
+
+Finalmente, se itera para todas las opciones posibles.
+
+```{r}
+walk(param_v, f_figura_lado)
+```
+
+# Propiedades espectrales
+
+Las caracteráisticas espectrales de las muestras de agua se analizaron a fin de identificar cambios entre orillas sobre el río Paraná.
+
+## Firmas espectrales
+
+La firma espectral es una figura que muestra el valor de la reflectancia de superficie (R<sub>rs</sub>) para cada banda espectral, realizado por cada fecha de muestreo.
+
+Se realizó la lectura de datos y se incorporaron las bandas espectrales en el orden adecuado.
+
+```{r}
+banda_orden <- c(
+  "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12")
+
+d <- read_csv("datos/base_de_datos_gis.csv", show_col_types = FALSE) |>
+  drop_na() |>
+  filter(pixel == "3x3") |>
+  group_by(fecha, banda) |>
+  arrange(longitud) |>
+  mutate(p = row_number()) |>
+  ungroup() |>
+  mutate(reflect = round(reflect, 3)) |>
+  mutate(banda = fct(banda, banda_orden)) |>
+  mutate(label = glue("P{p}: {reflect}"))
+```
+
+Para identificar las curvas para ambas orillas se creó una paleta de colores que fue incorporada a los datos de R<sub>rs</sub>.
+
+```{r}
+pal <- colorRampPalette(colors = c(c1, c4, c2))(max(d$p))
+names(pal) <- 1:max(d$p)
+
+col_tbl <- d |>
+  distinct(fecha, p) |>
+  nest(.by = fecha) |>
+  mutate(
+    col = map(.x = data, ~ colorRampPalette(colors = c(c1, c9, c2))(nrow(.x)))
+  ) |>
+  unnest(cols = c(data, col))
+
+e <- inner_join(
+  d,
+  col_tbl,
+  by = join_by(fecha, p)
+)
+```
+
+Mediante una función personalizada se generaron las firmas espectrales para todas las fechas disponibles. Se incorporó características interactivas para destacar cada sitio muestral.
+
+```{r}
+f_firma_espectral <- function(x) {
+
+  d <- e |>
+    filter(fecha == x)
+
+  fig_evo_gis_label <- c("Chaco", rep("", length(unique(d$p))-2), "Corrientes")
+
+  colores_gis <- colorRampPalette(colors = c(c1, c4, c2))(length(unique(d$p)))
+
+  midpoint_gis <- median(unique(d$p))
+
+  g <- ggplot(d, aes(banda, reflect, group = p, color = p, fill = p)) +
+    geom_line_interactive(
+      aes(data_id = interaction(fecha, p)), hover_nearest = TRUE,
+      linewidth = 1, alpha = .8, show.legend = FALSE) +
+    geom_point_interactive(
+      aes(data_id = interaction(fecha, p)), size = .7, shape = 21) +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_continuous(
+      breaks = scales::breaks_pretty(),
+      labels = scales::label_number(decimal.mark = ",", big.mark = ".")
+    ) +
+    scale_fill_gradient2(
+      low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
+      breaks = unique(d$p),
+      labels = fig_evo_gis_label) +
+    scale_color_gradient2(
+    low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
+    breaks = unique(d$p),
+    labels = fig_evo_gis_label
+  ) +
+    coord_cartesian(clip = "off") +
+    labs(y = "R<sub>rs</sub>", x = NULL, color = NULL, fill = NULL) +
+    guides(
+      fill = guide_colorbar(
+        nrow = 1,
+        override.aes = list(size = 16, shape = 15, color = colores_gis),
+        reverse = FALSE),
+      color = guide_none()
+    ) +
+    theme_void(base_size = 11) +
+    theme(
+      aspect.ratio = 1,
+      plot.margin = margin(6, 6, 6, 6),
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_line(
+        color = c4, linewidth = .06, linetype = 3),
+      panel.spacing = unit(1.1, "line"),
+      axis.title.x = element_text(family = "ubuntu", margin = margin(t = 3)),
+      axis.title.y = element_markdown(
+        family = "ubuntu", margin = margin(r = 10), size = 12
+      ),
+      axis.text = element_text(family = "jet", color = c7),
+      axis.text.y = element_text(hjust = 1, margin = margin(r = 2)),
+      axis.text.x = element_text(margin = margin(t = 2)),
+      axis.ticks = element_blank(),
+      panel.background = element_rect(fill = c11, color = NA),
+      strip.background = element_blank(),
+      strip.text = element_markdown(
+        family = "jet", size = 7, margin = margin(b = 3)),
+      legend.background = element_rect(fill = c10, color = NA),
+      legend.key = element_rect(fill = NA, color = NA),
+      legend.key.size = unit(1, "mm"),
+      legend.position = "top",
+      legend.box = "horizontal",
+      legend.text = element_text(
+        vjust = .5, hjust = .5, family = "ubuntu", margin = margin(t = 3),
+        size = 11),
+      legend.text.position = "bottom",
+      legend.key.width = unit(10, "mm"),
+      legend.key.height = unit(2, "mm")
+    )
+
+  figura_evolucion_gis <- girafe(
+    ggobj = g,
+    bg = c10,
+    options = list(
+      opts_hover(
+        css = girafe_css(css = "")
+      ),
+      opts_tooltip(
+        opacity = 1,
+        css = glue(
+          "color:{c1};padding:5px;font-family:JetBrains Mono;",
+          "border-style:solid;border-color:{c4};background:{c3}"),
+        use_cursor_pos = TRUE,
+        offx = 5,
+        offy = 5),
+      opts_sizing(width = 1, rescale = TRUE),
+      opts_hover_inv(css = "opacity:.2"),
+      opts_toolbar(saveaspng = FALSE)
+  )
+
+)
+
+  return(figura_evolucion_gis)
+
+}
+```
+
+Luego, se generaron las figuras para cada fecha.
+
+```{r}
+fechas_gis_v <- rev(sort(unique(e$fecha)))
+lista_firma_espectral <- map(fechas_gis_v, f_firma_espectral)
+```
+
+## Diferencias entre bandas
+
+Para identificar cambios en los valores de R<sub>rs</sub> se creó una figura boxplot que muestre la distribución entre bandas espectrales.
+
+Se creó una transecta en el río Paraná a través de un vector lineal que sirvió para la extracción de R<sub>rs</sub>, manteniendo las mismas posiciones. El valor final extraído correspondió con el promedio de una ventana de 3x3.
+
+Inicialmente se lee el vector de la transecta, los recortes ráster y se calculan los valores medios por píxel.
+
+```{r}
+v <- vect("vector/transecta.gpkg")
+
+# ráster de recortes
+archivos_r <- list.files("recorte/", pattern = "tif$", full.names = TRUE)
+archivos_r <- archivos_r[!str_detect(archivos_r, "rsi")]
+fechas_r <- str_remove(basename(archivos_r), ".tif")
+
+lista_r <- map(
+  .x = archivos_r,
+  rast
+)
+
+# agrupo en ventana de 3x3
+lista_r3 <- map(lista_r, ~focal(.x, w = 3, fun = "mean"))
+lista_r3 <- set_names(lista_r3, fechas_r)
+```
+
+Se agregaron las bandas espectrales y se realizó la extracción de los valores de píxel.
+
+```{r}
+# factor de las bandas
+orden_bandas <- c(
+  "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12"
+)
+
+# reflectancias a lo largo de la transecta, por banda y fecha
+e_tbl <- map(lista_r3, ~terra::extract(.x, v, xy = TRUE)) |>
+  list_rbind(names_to = "fecha") |>
+  as_tibble() |>
+  mutate(fecha = ymd(fecha)) |>
+  pivot_longer(
+    cols = starts_with("B"),
+    values_to = "reflect",
+    names_to = "banda"
+  ) |>
+  reframe(
+    reflect = mean(reflect)/10000,
+    y = y,
+    .by = c(x, banda, fecha)
+  ) |>
+  mutate(banda = factor(banda, levels = orden_bandas))
+```
+
+La figura boxplot muestra la distribución de R<sub>rs</sub> para todas las bandas espectrales.
+
+```{r}
+g <- e_tbl |>
+  mutate(banda = fct_rev(banda)) |>
+  ggplot(aes(reflect, banda)) +
+  geom_boxplot(
+    color = c1, linewidth = .3, outlier.alpha = .4, outlier.color = c2,
+    fill = c11
+  ) +
+  scale_x_continuous(
+    breaks = scales::breaks_width(.1),
+    labels = scales::label_number(big.mark = ".", decimal.mark = ",")
+  ) +
+  coord_cartesian(xlim = c(0, .45), expand = FALSE, clip = "off") +
+  labs(x = "R<sub>rs</sub>") +
+  theme_void() +
+  theme(
+    plot.margin = margin(t = 3, b = 3),
+    axis.title.x = element_markdown(family = "ubuntu", margin = margin(t = 3)),
+    axis.text.x = element_text(
+      family = "jet", margin = margin(t = 10), size = 9
+    ),
+    axis.text.y = element_text(
+      family = "Ubuntu", face = "bold", margin = margin(r = 3), size = 9
+    ),
+    panel.grid.major.x = element_line(
+      color = c9, linewidth = .1, linetype = "FF"
+    )
+  )
+```
+
+La figura creada se almacenó en formato `.png`.
+
+```{r}
+ggsave(
+  plot = g,
+  filename = "figuras/boxplot_reflect.png",
+  width = 10,
+  height = 14,
+  units = "cm"
+)
+```
+
+## Distribución de R<sub>rs</sub>
+
+A partir de tres sitios muestrales, orillas y mitad del río Paraná, se crearon boxplot que exploran la distribución espacial de reflectancia de superficie.
+
+Se leyeron el vector de tres sitios muestrales, los recortes ráster y las banads espectrales.
+
+```{r}
+# 3 puntos para extraer la reflectancia
+puntos <- vect("vector/3puntos_transecta.gpkg")
+
+# ráster de recortes
+archivos_r <- list.files("recorte/", pattern = "tif$", full.names = TRUE)
+archivos_r <- archivos_r[!str_detect(archivos_r, "rsi")]
+fechas_r <- str_remove(basename(archivos_r), ".tif")
+
+lista_r <- map(
+  .x = archivos_r,
+  rast
+)
+
+# agrupo en ventana de 3x3
+lista_r3 <- map(lista_r, ~focal(.x, w = 3, fun = "mean"))
+lista_r3 <- set_names(lista_r3, fechas_r)
+
+# factor de las bandas
+orden_bandas <- c(
+  "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12"
+)
+```
+
+Con la extracción de los valores de reflectancias se creó una base de datos.
+
+```{r}
+e_tbl <- map(lista_r3, ~terra::extract(.x, puntos, xy = TRUE)) |>
+  list_rbind(names_to = "fecha") |>
+  as_tibble() |>
+  mutate(fecha = ymd(fecha)) |>
+  mutate(punto = paste0("P", ID)) |>
+  pivot_longer(
+    cols = starts_with("B"),
+    values_to = "reflect",
+    names_to = "banda"
+  ) |>
+  mutate(banda = factor(banda, levels = orden_bandas)) |>
+  mutate(reflect = reflect/10000) |>
+  select(-ID)
+```
+
+Para definir la significancia estadística entre conjuntos (orilla chaqueña, orilla correntina y mitad del río) se creó una función que calculó el coeficiente correspondiente al test Wilcox.
+
+```{r}
+f_puntos <- function(df, p_i, p_f) {
+  p <- df |>
+    filter(punto %in% c(p_i, p_f)) |>
+    pivot_wider(
+      id_cols = fecha,
+      names_from = punto,
+      values_from = reflect
+    ) |>
+    unnest(everything()) |>
+    rename(
+      "p_inicial" = 2,
+      "p_final" = 3
+    )
+
+  wilcox.test(p$p_inicial, p$p_final, paired = FALSE, exact = TRUE) |>
+    broom::tidy() |>
+    select(p.value) |>
+    mutate(
+      es_significativo = p.value < .05
+    )
+}
+```
+
+Se aplicó la función a cada par de puntos, por banda espectral.
+
+```{r}
+p_tbl <- e_tbl |>
+  nest(.by = banda) |>
+  mutate(
+    P1P3 = map(data, ~f_puntos(.x, "P1", "P3"))
+  ) |>
+  select(-data) |>
+  pivot_longer(
+    cols = -banda
+  ) |>
+  unnest(value) |>
+  mutate(
+    x = 1,
+    xend = 3,
+    y = .3,
+    yend = .3
+  ) |>
+  mutate(
+    label = if_else(es_significativo, simbolo_sig, NA)
+  )
+```
+
+Una vez calculados todos los datos, se generó la figura final como paneles por banda espectral, mostrando tres boxplot e indicando su significancia estadística.
+
+```{r}
+g <- e_tbl |>
+  ggplot(aes(punto, reflect, group = x, fill = punto)) +
+  geom_boxplot(
+    linewidth = .2, outlier.size = .3, key_glyph = draw_key_point,
+    outlier.color = c9, width = .8
+  ) +
+  geom_richtext(
+    data = p_tbl, aes(Inf, Inf, label = label), inherit.aes = FALSE, fill = c11,
+    size = 4, label.color = NA, hjust = 1, vjust = 1
+  ) +
+  facet_wrap(vars(banda), scales = "free", nrow = 4) +
+  scale_y_continuous(
+    breaks = seq(.1, .3, .05),
+    limits = c(.1, .3),
+    labels = scales::label_number(big.mark = ".", decimal.mark = ",")
+  ) +
+  scale_fill_manual(
+    values = c(c1, c5, c2),
+    breaks = c("P1", "P2", "P3"),
+    labels = c("Costa\nchaqueña", "Punto\nintermedio", "Costa\ncorrentina"),
+    name = NULL
+  ) +
+  coord_cartesian(clip = "off") +
+  labs(x = NULL, y = "R<sub>rs</sub>", color = "Sitio") +
+  guides(
+    fill = guide_legend(
+      override.aes = list(color = c7, shape = 22, size = 5, stroke = .3)
+    )
+  ) +
+  theme_minimal(base_size = 9) +
+  theme(
+    aspect.ratio = 1,
+    plot.margin = margin(r = 1, l = 1, t = 0, b = 0),
+    panel.background = element_rect(fill = c11, color = NA),
+    panel.spacing.x = unit(1.6, "line"),
+    panel.spacing.y = unit(1, "line"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(
+      color = c4, linewidth = .06, linetype = "FF"),
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_text(
+      margin = margin(r = 0), hjust = 1, family = "jet", color = c7
+    ),
+    axis.title.y = element_markdown(
+      family = "Ubuntu", angle = 0, margin = margin(r = 0), vjust = .5
+    ),
+    strip.text = element_text(family = "Ubuntu", face = "bold", color = c7),
+    legend.position = "top",
+    legend.key.spacing.x = unit(24, "pt"),
+    legend.background = element_blank(),
+    legend.justification.inside = c(1, 0),
+    legend.text = element_text(margin = margin(l = 0, t = 0), hjust = 0, vjust = .5),
+    legend.text.position = "right",
+    legend.box.spacing = unit(0, "pt")
+  )
+```
+
+Finalmente se almacenó la figura.
+
+```{r}
+ggsave(
+  plot = g,
+  filename = "figuras/puntos_boxplot.png",
+  width = 20,
+  height = 25,
+  units = "cm"
+)
+```
