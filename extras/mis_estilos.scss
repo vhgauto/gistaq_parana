@@ -42,12 +42,12 @@ h1, h2, h3, h4, h5, h6 {
     color: $ca;
 }
 
-// remuevo el título
-.title {
-    text-align: left;
-    font-size: 5.5rem;
+// estilo de título
+#title-block-header.quarto-title-block.default .quarto-title .title {
+    margin-bottom: 0;
     font-family: Bebas Neue;
     color: $cr;
+    font-size: 4rem;
 }
 
 // línea en encabezado
