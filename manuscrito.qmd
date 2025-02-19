@@ -6,29 +6,29 @@ author:
     corresponding: true
     email: victor.gauto@ca.frre.utn.edu.ar
     affiliations:
-      - GISTAQ (UTN-FRRe)
-      - IIDTHH (UNNE, CONICET)
-      - Instituto Gulich (UNC, CONAE)
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://iidthh.conicet.gov.ar/' target="_blank">IIDTHH (UNNE, CONICET) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://ig.conae.unc.edu.ar/' target="_blank">Instituto Gulich (UNC, CONAE){{< fa arrow-up-right-from-square >}}</a>
   - name: Enid Utgés
     orcid: 0009-0003-5263-5198
     affiliations:
-      - GISTAQ (UTN-FRRe)
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
   - name: Daniela Tenev
     orcid: 0000-0003-0860-9139
     affiliations:
-      - GISTAQ (UTN-FRRe)
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
   - name: Mauricio Acosta
     affiliations:
-      - GISTAQ (UTN-FRRe)
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
   - name: Vera Geneyer
     affiliations:
-      - GISTAQ (UTN-FRRe)
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
   - name: Víctor Gómez
     affiliations:
-      - GISTAQ (UTN-FRRe)
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
   - name: Bruno Lossada Dusset
     affiliations:
-      - GISTAQ (UTN-FRRe)
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
 abstract: |
   La calidad del agua del Río Paraná...
 keywords:
@@ -53,13 +53,14 @@ date: last-modified
 #| echo: false
 #| output: false
 #| warning: false
+#| include: false
 
 # corro todos los scripts
-source("scripts_quarto/soporte.R")
+suppressMessages(suppressWarnings(source("scripts_quarto/soporte.R")))
 r_script <- list.files(path = "scripts_quarto/", full.names = TRUE)
 r_script <- r_script[!str_detect(r_script, "soporte")]
 r_script <- r_script[!str_detect(r_script, "/_")]
-purrr::map(r_script, source)
+suppressMessages(suppressWarnings(purrr::walk(r_script, source)))
 ```
 
 <!-- cómo agregar referencias cruzadas
