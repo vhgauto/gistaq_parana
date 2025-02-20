@@ -1,0 +1,105 @@
+---
+title: "Ejecución automática"
+type: html
+date: last-modified
+author:
+  - name: Víctor Gauto
+    orcid: 0000-0001-9960-8558
+    corresponding: true
+    email: victor.gauto@ca.frre.utn.edu.ar
+    affiliations:
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://iidthh.conicet.gov.ar/' target="_blank">IIDTHH (UNNE, CONICET) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://ig.conae.unc.edu.ar/' target="_blank">Instituto Gulich (UNC, CONAE){{< fa arrow-up-right-from-square >}}</a>
+execute:
+  eval: true
+  echo: false
+code-annotations: hover
+editor_options:
+  chunk_output_type: console
+---
+
+La ejecución automática de los scripts para generan los resultados se gestiona con el paquete `{targets}`.
+
+Es requisito crear un archivo `_targets.R` en el directorio principal que contenga todas las instrucciones a fin de ejecutar en orden todos los comandos y las dependencias.
+
+Inicialmente se carga el mismo paquete `targets`, luego se activan las librerías seleccionadas y se leen todas las funciones personalizadas.
+
+```{r filename="_targets.R"}
+#| eval: false
+#| echo: true
+library(targets)
+tar_option_set(packages = c("glue", "terra", "sf", "tidyverse"))
+source("scripts_targets/funciones.R")
+```
+
+Luego se crea una lista que contiene todos los objetivos dados por las funciones.
+
+```{r filename="_targets.R"}
+#| eval: false
+#| echo: true
+list( # <1>
+  tar_target(
+    name = excel,
+    command = archivo_excel(),
+    format = "file"
+  ),
+ # <2>
+  tar_target(
+    name = fecha_descarga,
+    command = fecha(excel)
+  ),
+ # <3>
+  tar_target(
+    name = script_py,
+    command = script_descarga_py(fecha_descarga),
+    format = "file"
+  ),
+ # <4>
+  tar_target(
+    name = producto_zip,
+    command = descarga(script_py)
+  ),
+ # <5>
+  tar_target(
+    name = recorte_tif,
+    command = recorte(producto_zip, fecha_descarga),
+    format = "file"
+  ),
+ # <6>
+  tar_target(
+    name = datos_gis,
+    command = reflectancia(excel, fecha_descarga, recorte_tif),
+    format = "file"
+  ),
+ # <7>
+  tar_target(
+    name = datos_lab,
+    command = lab(excel),
+    format = "file"
+  )
+)
+```
+1. Archivo Excel, con la fecha y sitios de muestreo.
+2. Fecha para la descarga de producto.
+3. Script para la descarga de producto.
+4. Ejecuto la descarga del producto.
+5. Recorto el producto al área de interés.
+6. Extraigo los valores de píxel.
+7. Extraigo parámetros de laboratorio.
+
+Para visualizar el estado actual de la ejecución y las dependencias entre funciones, el siguiente comando devuelve un gráfico de flujo.
+
+```{r}
+#| eval: false
+#| echo: true
+targets::tar_mermaid()
+```
+
+::: {.column-screen-inset-right}
+
+```{mermaid}
+{{< include ../.mermaid > >}}
+```
+
+:::
