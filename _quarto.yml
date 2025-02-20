@@ -7,6 +7,7 @@ manuscript:
     - notebooks/lectura_datos.qmd
     - notebooks/extraccion_reflect.qmd
     - notebooks/figuras_resultados.qmd
+    - notebooks/targets.qmd
   code-links:
     - repo: https://github.com/vhgauto/gistaq_parana
       text: "Ver en GitHub"
@@ -15,6 +16,9 @@ manuscript:
     - text: "Informar un problema"
       icon: github
       href: https://github.com/vhgauto/gistaq_parana/issues/new/choose
+    - text: "Wiki del proyecto"
+      icon: github
+      href: https://github.com/vhgauto/gistaq_parana/wiki
 
 execute:
   freeze: auto
@@ -22,7 +26,6 @@ execute:
   echo: true
 
 format:
-  docx: default
   html:
     anchor-sections: true
     number-sections: true
