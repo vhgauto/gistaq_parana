@@ -35,9 +35,10 @@ format:
     language:
       es:
         title-block-author-plural: "Autores"
+        title-block-author-single: "Autor"
+        notebook-preview-download-src: "Descargar código fuente {{< fa download >}}"
     include-in-header:
       - extras/favicon.html
-      - extras/esquina.html
       - extras/abrev_toc.html
       - extras/boton_arriba.html
       - extras/fontawesome-mermaid.html
