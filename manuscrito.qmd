@@ -6,29 +6,29 @@ author:
     corresponding: true
     email: victor.gauto@ca.frre.utn.edu.ar
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
-      - <a href='https://iidthh.conicet.gov.ar/' target="_blank">IIDTHH (UNNE, CONICET) {{< fa arrow-up-right-from-square >}}</a>
-      - <a href='https://ig.conae.unc.edu.ar/' target="_blank">Instituto Gulich (UNC, CONAE){{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
+      - <a href='https://iidthh.conicet.gov.ar/' target="_blank">IIDTHH (UNNE, CONICET)</a>
+      - <a href='https://ig.conae.unc.edu.ar/' target="_blank">Instituto Gulich (UNC, CONAE)</a>
   - name: Enid Utgés
     orcid: 0009-0003-5263-5198
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
   - name: Daniela Tenev
     orcid: 0000-0003-0860-9139
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
   - name: Mauricio Acosta
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
   - name: Vera Geneyer
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
   - name: Víctor Gómez
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
   - name: Bruno Lossada Dusset
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
 abstract: |
   La calidad del agua del Río Paraná...
 keywords:
