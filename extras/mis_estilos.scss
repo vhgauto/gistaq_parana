@@ -4,13 +4,13 @@
 
 // colores
 
-$ca: #B86092;
-$cr: #007E2E;
-$cg: #FAFAFA;
-$cn: #000000;
-$cb: #FFFFFF;
-$cg2: #D3D3D3;
-$cg3: #F5F5F5;
+$ca:#B86092;
+$cr:#007E2E;
+$cg:#FAFAFA;
+$cn:#000000;
+$cb:#FFFFFF;
+$cg2:#D3D3D3;
+$cg3:#F5F5F5;
 
 // Lato
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
@@ -146,13 +146,13 @@ pre.sourceCode {
 // mapa
 .leaflet-popup-content-wrapper {
   background-color: $cr;
-  color: green;
+  color:green;
   box-shadow: 0 3px 14px rgba(0,0,0,0.4);
 }
 
 // color de fondo del título de los callout
 div.callout-note.callout-style-default > .callout-header {
-  background-color: #F9FFF9;
+  background-color:#F9FFF9;
 }
 
 // tabsets
@@ -182,7 +182,7 @@ div.callout-note.callout-style-default > .callout-header {
   border-color: $ca;
     border-radius: 0;
     --bs-nav-tabs-border-radius: 0;
-    --bs-nav-tabs-link-active-bg: #F5F5F5;
+    --bs-nav-tabs-link-active-bg:#F5F5F5;
     // border-bottom: 1px solid $cg2;
 }
 
@@ -197,9 +197,9 @@ div.callout-note.callout-style-default > .callout-header {
     --bs-nav-tabs-border-width: 1px;
     --bs-nav-tabs-border-color: white;
     --bs-nav-tabs-border-radius: 0rem;
-    --bs-nav-tabs-link-hover-border-color: #B86092 #B86092 #B86092 #B86092;
+    --bs-nav-tabs-link-hover-border-color:#B86092 #B86092 #B86092 #B86092;
     --bs-nav-tabs-link-active-color: #000;
-    --bs-nav-tabs-link-active-bg: #ffffff;
+    --bs-nav-tabs-link-active-bg:#ffffff;
     --bs-nav-tabs-link-active-border-color: white white #ffffff;
     border-bottom: 1px solid $cg2;
 }
@@ -228,11 +228,28 @@ div.callout-note.callout-style-default > .callout-header {
 }
 
 :root {
-    --mermaid-edge-color: #B86092;
-    --mermaid-label-fg-color: black;
+    --mermaid-edge-color: #{$ca};
+    --mermaid-label-fg-color: #{$cn};
 }
 
 // línea horizontal sobre Referencias
 #quarto-appendix.default {
     border-top: 1px solid $cg2;
+}
+
+// NOTEBOOK
+
+// cambio color del banner superior
+.bg-primary {
+    background-color: $ca !important;
+}
+
+// botones en banner superior
+#quarto-embed-header a.quarto-back-link, #quarto-embed-header a.quarto-download-embed {
+    background-color: $ca;
+    border-color: $ca;
+    &:hover {
+      background-color: lighten($ca, 10);
+      border-color: lighten($ca, 10);
+    }
 }
