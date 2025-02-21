@@ -8,8 +8,8 @@ author:
     corresponding: true
     email: victor.gauto@ca.frre.utn.edu.ar
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe) {{< fa arrow-up-right-from-square >}}</a>
-      - <a href='https://iidthh.conicet.gov.ar/' target="_blank">IIDTHH (UNNE, CONICET) {{< fa arrow-up-right-from-square >}}</a>
+      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
+      - <a href='https://iidthh.conicet.gov.ar/' target="_blank">IIDTHH (UNNE, CONICET)</a>
       - <a href='https://ig.conae.unc.edu.ar/' target="_blank">Instituto Gulich (UNC, CONAE){{< fa arrow-up-right-from-square >}}</a>
 execute:
   eval: true
