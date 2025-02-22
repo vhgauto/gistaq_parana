@@ -42,7 +42,8 @@ A continuación se ingresan y procesan los datos.
 
 ```{r}
 d <- read_csv(
-  "datos/base_de_datos_lab.csv", show_col_types = FALSE
+  "datos/base_de_datos_lab.csv",
+  show_col_types = FALSE
 ) |>
   mutate(
     param = param_unid_v[param] # <1>
@@ -92,17 +93,23 @@ f_figura_evolucion_lab <- function(parametro) {
     filter(param == parametro) |> # <1>
     ggplot(
       aes(
-        longitud, valor, group = fecha, color = estado, fill = estado
+        longitud, valor,
+        group = fecha, color = estado, fill = estado
       )
     ) +
     geom_line_interactive(
-      aes(data_id = interaction(fecha, param)), hover_nearest = TRUE,
-      linewidth = 2, alpha = .8) +
+      aes(data_id = interaction(fecha, param)),
+      hover_nearest = TRUE,
+      linewidth = 2, alpha = .8
+    ) +
     geom_point_interactive(
       aes(
         data_id = interaction(fecha, param), tooltip = label, # <2>
-        hover_nearest = TRUE), size = 2.5, shape = 21, color = c3,
-      stroke = .2, show.legend = FALSE) +
+        hover_nearest = TRUE
+      ),
+      size = 2.5, shape = 21, color = c3,
+      stroke = .2, show.legend = FALSE
+    ) +
     facet_wrap(vars(param), ncol = 3, scales = "free") +
     scale_y_continuous(
       breaks = scales::breaks_pretty(),
@@ -124,7 +131,8 @@ f_figura_evolucion_lab <- function(parametro) {
       plot.margin = margin(6, 6, 6, 6),
       panel.grid.minor = element_blank(),
       panel.grid.major.y = element_line(
-        color = c4, linewidth = .06, linetype = 3),
+        color = c4, linewidth = .06, linetype = 3
+      ),
       panel.spacing = unit(1.1, "line"),
       axis.title.y = element_markdown(
         family = "Ubuntu", angle = 90, margin = margin(r = 10),
@@ -164,10 +172,12 @@ f_figura_evolucion_lab <- function(parametro) {
         css = glue(
           "color:{c7};padding:5px;font-family:JetBrains Mono;",
           "border-style:solid;border-color:{c4};border-width:2px;",
-          "background:{c3}"),
+          "background:{c3}"
+        ),
         use_cursor_pos = TRUE,
         offx = 5,
-        offy = 5),
+        offy = 5
+      ),
       opts_sizing(width = 1, rescale = TRUE),
       opts_hover_inv(css = "opacity:.2"),
       opts_toolbar(saveaspng = FALSE)
@@ -198,14 +208,16 @@ Inicialmente se leen los datos y se definen variables de utilidad.
 ```{r}
 # leo los datos de laboratorio
 d <- read_csv(
-  "datos/base_de_datos_lab.csv", show_col_types = FALSE
+  "datos/base_de_datos_lab.csv",
+  show_col_types = FALSE
 )
 
 # nombres de los parámetros y sus etiquetas
 param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
 param_unid_v <- c(
   "pH", "<i>cond</i>", "<i>susp</i>",
-  "<i>turb</i>", "<i>secchi</i>")
+  "<i>turb</i>", "<i>secchi</i>"
+)
 names(param_unid_v) <- param_v
 ```
 
@@ -285,7 +297,8 @@ g <- e |>
     color = c10, linewidth = 1, aes(tooltip = r_label, data_id = id)
   ) +
   geom_richtext(
-    aes(label = label), label.color = NA, fill = NA, color = c7
+    aes(label = label),
+    label.color = NA, fill = NA, color = c7
   ) +
   scale_x_discrete(
     labels = param_unid_v
@@ -333,10 +346,12 @@ heatmap_lab <- girafe(
       css = glue(
         "color:{c7};padding:5px;font-family:JetBrains Mono;",
         "border-style:solid;border-color:{c4};border-width:2px;",
-        "background:{c3}"),
+        "background:{c3}"
+      ),
       use_cursor_pos = TRUE,
       offx = 5,
-      offy = 5),
+      offy = 5
+    ),
     opts_sizing(width = 1, rescale = TRUE),
     opts_hover_inv(css = "opacity:.9"),
     opts_toolbar(saveaspng = FALSE)
@@ -356,7 +371,8 @@ d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
 param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
 param_unid_v <- c(
   "pH", "<i>cond</i> (μS/cm)", "<i>susp</i> (ppm)", "<i>turb</i> (NTU)",
-  "<i>secchi</i> (cm)")
+  "<i>secchi</i> (cm)"
+)
 names(param_unid_v) <- param_v
 
 linea_tipo <- 2
@@ -375,11 +391,13 @@ g_log <- function(g, etq) {
   g +
     geom_smooth(
       method = lm, formula = y ~ x, se = FALSE, color = c1,
-      linetype = linea_tipo, linewidth = linea_ancho) +
+      linetype = linea_tipo, linewidth = linea_ancho
+    ) +
     annotate(
       geom = "richtext", x = I(0), y = I(1), hjust = 0, vjust = 1,
       size = texto_tamaño, label = etq, label.color = NA, fill = c11,
-      family = "jet") +
+      family = "jet"
+    ) +
     scale_y_continuous(breaks = scales::breaks_pretty()) +
     scale_x_continuous(breaks = scales::breaks_pretty())
 }
@@ -411,7 +429,8 @@ f_gg <- function(eje_x, eje_y) {
       plot.margin = margin(t = 5, r = 7, b = 0, l = 5),
       panel.background = element_rect(fill = c11, color = NA),
       panel.grid.major = element_line(
-        color = c4, linewidth = .1, linetype = "FF"),
+        color = c4, linewidth = .1, linetype = "FF"
+      ),
       axis.title = element_markdown(family = "Ubuntu", size = 12),
       axis.title.y = element_markdown(
         angle = 90, margin = margin(r = 3, l = 5)
@@ -424,7 +443,6 @@ f_gg <- function(eje_x, eje_y) {
 
   # figuras que contienen profundidad de disco de Secchi
   if (eje_x == "secchi" | eje_y == "secchi") {
-
     mod <- lm(log(y) ~ log(x), data = e)
 
     r2 <- broom::glance(mod)$r.squared |>
@@ -435,8 +453,6 @@ f_gg <- function(eje_x, eje_y) {
     etq_recta <- glue("R<sup>2</sup> = {r2}<br>n = {n}")
 
     g <- g_recta(g, etq_recta)
-
-
   } else { # figuras NO asociadas a profundidad de disco de Secchi
 
     mod <- lm(y ~ x, data = e)
@@ -449,7 +465,6 @@ f_gg <- function(eje_x, eje_y) {
     etq_log <- glue("R<sup>2</sup> = {r2}<br>n = {n}")
 
     g <- g_log(g, etq_log)
-
   }
 
   return(g)
@@ -493,7 +508,8 @@ Para ellos se leen los datos y se calcula la mediana de la longitud geográfica 
 param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
 param_unid_v <- c(
   "pH", "<i>cond</i> (μS/cm)", "<i>susp</i> (ppm)",
-  "<i>turb</i> (NTU)", "<i>secchi</i> (cm)")
+  "<i>turb</i> (NTU)", "<i>secchi</i> (cm)"
+)
 names(param_unid_v) <- param_v
 
 # leo base de datos
@@ -533,7 +549,8 @@ f_lado_signif <- function(x) {
 
 
   signif <- wilcox.test(
-    d_corrientes, d_chaco, paired = FALSE, exact = TRUE
+    d_corrientes, d_chaco,
+    paired = FALSE, exact = TRUE
   ) |>
     broom::tidy() |>
     select(p.value) |>
@@ -552,16 +569,15 @@ Las figuras se generaron y almacenaron para cada variable.
 
 ```{r}
 f_figura_lado <- function(x) {
-
   e <- d |>
-  mutate(
-    lado = if_else(
-      longitud >= m,
-      "Lado\nCorrientes",
-      "Lado\nChaco"
-    )
-  ) |>
-  filter(param == x)
+    mutate(
+      lado = if_else(
+        longitud >= m,
+        "Lado\nCorrientes",
+        "Lado\nChaco"
+      )
+    ) |>
+    filter(param == x)
 
   if (f_lado_signif(x)$es_significativo) {
     signif_label <- simbolo_sig
@@ -590,7 +606,8 @@ f_figura_lado <- function(x) {
       plot.margin = margin(r = 5, l = 5, t = 0, b = 0),
       panel.background = element_rect(fill = c11, color = NA),
       panel.grid.major.y = element_line(
-        color = c4, linewidth = .1, linetype = "FF"),
+        color = c4, linewidth = .1, linetype = "FF"
+      ),
       axis.text.x = element_text(
         margin = margin(t = 6), size = 10, family = "ubuntu"
       ),
@@ -598,19 +615,19 @@ f_figura_lado <- function(x) {
         margin = margin(r = 5), hjust = 1, size = 8, family = "jet"
       ),
       axis.title.y = element_markdown(
-          family = "Ubuntu", angle = 90, margin = margin(r = 10),
-          size = 12
+        family = "Ubuntu", angle = 90, margin = margin(r = 10),
+        size = 12
       ),
       strip.text = element_blank()
     )
 
   ggsave(
-      plot = g,
-      filename = glue("figuras/lado_{x}.png"),
-      width = 13,
-      height = 13,
-      units = "cm"
-    )
+    plot = g,
+    filename = glue("figuras/lado_{x}.png"),
+    width = 13,
+    height = 13,
+    units = "cm"
+  )
 }
 ```
 
@@ -633,10 +650,12 @@ Se realizó la lectura de datos y se incorporaron las bandas espectrales en el o
 ```{r}
 banda_orden <- c(
   "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08",
-  "B8A", "B11", "B12")
+  "B8A", "B11", "B12"
+)
 
 d <- read_csv(
-  "datos/base_de_datos_gis.csv", show_col_types = FALSE
+  "datos/base_de_datos_gis.csv",
+  show_col_types = FALSE
 ) |>
   drop_na() |>
   filter(pixel == "3x3") |>
@@ -676,18 +695,18 @@ Mediante una función personalizada se generaron las firmas espectrales para tod
 
 ```{r}
 f_firma_espectral <- function(x) {
-
   d <- e |>
     filter(fecha == x)
 
   fig_evo_gis_label <- c(
     "Chaco",
-    rep("", length(unique(d$p))-2),
+    rep("", length(unique(d$p)) - 2),
     "Corrientes"
   )
 
   colores_gis <- colorRampPalette(
-    colors = c(c1, c4, c2))(length(unique(d$p))
+    colors = c(c1, c4, c2)
+  )(length(unique(d$p))
   )
 
   midpoint_gis <- median(unique(d$p))
@@ -696,10 +715,14 @@ f_firma_espectral <- function(x) {
     d, aes(banda, reflect, group = p, color = p, fill = p)
   ) +
     geom_line_interactive(
-      aes(data_id = interaction(fecha, p)), hover_nearest = TRUE,
-      linewidth = 1, alpha = .8, show.legend = FALSE) +
+      aes(data_id = interaction(fecha, p)),
+      hover_nearest = TRUE,
+      linewidth = 1, alpha = .8, show.legend = FALSE
+    ) +
     geom_point_interactive(
-      aes(data_id = interaction(fecha, p)), size = .7, shape = 21) +
+      aes(data_id = interaction(fecha, p)),
+      size = .7, shape = 21
+    ) +
     scale_x_discrete(expand = c(0, 0)) +
     scale_y_continuous(
       breaks = scales::breaks_pretty(),
@@ -710,12 +733,13 @@ f_firma_espectral <- function(x) {
     scale_fill_gradient2(
       low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
       breaks = unique(d$p),
-      labels = fig_evo_gis_label) +
+      labels = fig_evo_gis_label
+    ) +
     scale_color_gradient2(
-    low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
-    breaks = unique(d$p),
-    labels = fig_evo_gis_label
-  ) +
+      low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
+      breaks = unique(d$p),
+      labels = fig_evo_gis_label
+    ) +
     coord_cartesian(clip = "off") +
     labs(
       y = "R<sub>rs</sub>", x = NULL, color = NULL, fill = NULL
@@ -726,7 +750,8 @@ f_firma_espectral <- function(x) {
         override.aes = list(
           size = 16, shape = 15, color = colores_gis
         ),
-        reverse = FALSE),
+        reverse = FALSE
+      ),
       color = guide_none()
     ) +
     theme_void(base_size = 11) +
@@ -735,7 +760,8 @@ f_firma_espectral <- function(x) {
       plot.margin = margin(6, 6, 6, 6),
       panel.grid.minor = element_blank(),
       panel.grid.major = element_line(
-        color = c4, linewidth = .06, linetype = 3),
+        color = c4, linewidth = .06, linetype = 3
+      ),
       panel.spacing = unit(1.1, "line"),
       axis.title.x = element_text(
         family = "ubuntu", margin = margin(t = 3)
@@ -750,7 +776,8 @@ f_firma_espectral <- function(x) {
       panel.background = element_rect(fill = c11, color = NA),
       strip.background = element_blank(),
       strip.text = element_markdown(
-        family = "jet", size = 7, margin = margin(b = 3)),
+        family = "jet", size = 7, margin = margin(b = 3)
+      ),
       legend.background = element_rect(fill = c10, color = NA),
       legend.key = element_rect(fill = NA, color = NA),
       legend.key.size = unit(1, "mm"),
@@ -758,7 +785,8 @@ f_firma_espectral <- function(x) {
       legend.box = "horizontal",
       legend.text = element_text(
         vjust = .5, hjust = .5, family = "ubuntu",
-        margin = margin(t = 3), size = 11),
+        margin = margin(t = 3), size = 11
+      ),
       legend.text.position = "bottom",
       legend.key.width = unit(10, "mm"),
       legend.key.height = unit(2, "mm")
@@ -775,19 +803,19 @@ f_firma_espectral <- function(x) {
         opacity = 1,
         css = glue(
           "color:{c1};padding:5px;font-family:JetBrains Mono;",
-          "border-style:solid;border-color:{c4};background:{c3}"),
+          "border-style:solid;border-color:{c4};background:{c3}"
+        ),
         use_cursor_pos = TRUE,
         offx = 5,
-        offy = 5),
+        offy = 5
+      ),
       opts_sizing(width = 1, rescale = TRUE),
       opts_hover_inv(css = "opacity:.2"),
       opts_toolbar(saveaspng = FALSE)
+    )
   )
 
-)
-
   return(figura_evolucion_gis)
-
 }
 ```
 
@@ -811,7 +839,8 @@ v <- vect("vector/transecta.gpkg")
 
 # ráster de recortes
 archivos_r <- list.files(
-  "recorte/", pattern = "tif$", full.names = TRUE
+  "recorte/",
+  pattern = "tif$", full.names = TRUE
 )
 archivos_r <- archivos_r[!str_detect(archivos_r, "rsi")]
 fechas_r <- str_remove(basename(archivos_r), ".tif")
@@ -822,7 +851,7 @@ lista_r <- map(
 )
 
 # agrupo en ventana de 3x3
-lista_r3 <- map(lista_r, ~focal(.x, w = 3, fun = "mean"))
+lista_r3 <- map(lista_r, ~ focal(.x, w = 3, fun = "mean"))
 lista_r3 <- set_names(lista_r3, fechas_r)
 ```
 
@@ -836,7 +865,7 @@ orden_bandas <- c(
 )
 
 # reflectancias a lo largo de la transecta, por banda y fecha
-e_tbl <- map(lista_r3, ~terra::extract(.x, v, xy = TRUE)) |>
+e_tbl <- map(lista_r3, ~ terra::extract(.x, v, xy = TRUE)) |>
   list_rbind(names_to = "fecha") |>
   as_tibble() |>
   mutate(fecha = ymd(fecha)) |>
@@ -846,7 +875,7 @@ e_tbl <- map(lista_r3, ~terra::extract(.x, v, xy = TRUE)) |>
     names_to = "banda"
   ) |>
   reframe(
-    reflect = mean(reflect)/10000,
+    reflect = mean(reflect) / 10000,
     y = y,
     .by = c(x, banda, fecha)
   ) |>
@@ -912,7 +941,8 @@ puntos <- vect("vector/3puntos_transecta.gpkg")
 
 # ráster de recortes
 archivos_r <- list.files(
-  "recorte/", pattern = "tif$", full.names = TRUE
+  "recorte/",
+  pattern = "tif$", full.names = TRUE
 )
 archivos_r <- archivos_r[!str_detect(archivos_r, "rsi")]
 fechas_r <- str_remove(basename(archivos_r), ".tif")
@@ -923,7 +953,7 @@ lista_r <- map(
 )
 
 # agrupo en ventana de 3x3
-lista_r3 <- map(lista_r, ~focal(.x, w = 3, fun = "mean"))
+lista_r3 <- map(lista_r, ~ focal(.x, w = 3, fun = "mean"))
 lista_r3 <- set_names(lista_r3, fechas_r)
 
 # factor de las bandas
@@ -936,7 +966,7 @@ orden_bandas <- c(
 Con la extracción de los valores de reflectancias se creó una base de datos.
 
 ```{r}
-e_tbl <- map(lista_r3, ~terra::extract(.x, puntos, xy = TRUE)) |>
+e_tbl <- map(lista_r3, ~ terra::extract(.x, puntos, xy = TRUE)) |>
   list_rbind(names_to = "fecha") |>
   as_tibble() |>
   mutate(fecha = ymd(fecha)) |>
@@ -947,7 +977,7 @@ e_tbl <- map(lista_r3, ~terra::extract(.x, puntos, xy = TRUE)) |>
     names_to = "banda"
   ) |>
   mutate(banda = factor(banda, levels = orden_bandas)) |>
-  mutate(reflect = reflect/10000) |>
+  mutate(reflect = reflect / 10000) |>
   select(-ID)
 ```
 
@@ -969,7 +999,8 @@ f_puntos <- function(df, p_i, p_f) {
     )
 
   wilcox.test(
-    p$p_inicial, p$p_final, paired = FALSE, exact = TRUE
+    p$p_inicial, p$p_final,
+    paired = FALSE, exact = TRUE
   ) |>
     broom::tidy() |>
     select(p.value) |>
@@ -985,7 +1016,7 @@ Se aplicó la función a cada par de puntos, por banda espectral.
 p_tbl <- e_tbl |>
   nest(.by = banda) |>
   mutate(
-    P1P3 = map(data, ~f_puntos(.x, "P1", "P3"))
+    P1P3 = map(data, ~ f_puntos(.x, "P1", "P3"))
   ) |>
   select(-data) |>
   pivot_longer(
@@ -1048,7 +1079,8 @@ g <- e_tbl |>
     panel.spacing.y = unit(1, "line"),
     panel.grid.major.x = element_blank(),
     panel.grid.major.y = element_line(
-      color = c4, linewidth = .06, linetype = "FF"),
+      color = c4, linewidth = .06, linetype = "FF"
+    ),
     panel.grid.minor = element_blank(),
     axis.text.x = element_blank(),
     axis.text.y = element_text(

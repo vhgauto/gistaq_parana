@@ -27,7 +27,8 @@ Se inicia con la lectura del Excel extrayendo las columnas de latitud, longitud 
 coord_sitios <- readxl::read_xlsx(
   path = "datos/datos_gistaq.xlsx",
   sheet = 1,
-  .name_repair = "unique_quiet") |>
+  .name_repair = "unique_quiet"
+) |>
   select(fechas = 1, longitud = 4, latitud = 5) |> # <1>
   fill(fechas) |>
   mutate(fechas = ymd(fechas)) |>
@@ -36,7 +37,7 @@ coord_sitios <- readxl::read_xlsx(
   select(-fechas) |>
   mutate(punto = row_number(), .before = 1)
 ```
- 1. Selecciono las columnas de interés y cambio de nombre.
+1. Selecciono las columnas de interés y cambio de nombre.
 
 Luego se transforma a vector, transformando las coordenadas a `EPSG:32721` ya que es el sistema de referencia del producto satelital.
 
@@ -45,8 +46,9 @@ coord_vect <- vect(
   coord_sitios,
   geom = c("longitud", "latitud"),
   crs = "EPSG:4326", # <1>
-  keepgeom = FALSE) |>
-  terra::project("EPSG:32721")  # <2>
+  keepgeom = FALSE
+) |>
+  terra::project("EPSG:32721") # <2>
 ```
 1. Sistema de referencia de los datos almacenados.
 2. Transformo para que sea coincidente con el producto satelital.
@@ -76,7 +78,8 @@ nubes <- terra::extract(raster_prob, coord_vect) |>
 coord_sf_sin_nubes <- inner_join(
   st_as_sf(coord_vect),
   nubes,
-  by = join_by(punto))
+  by = join_by(punto)
+)
 
 if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) { # <4>
 
@@ -84,7 +87,8 @@ if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) { # <4>
   puntos_nubes <- anti_join(
     st_as_sf(coord_vect),
     nubes,
-    by = join_by(punto)) |>
+    by = join_by(punto)
+  ) |>
     pull(punto) |>
     str_flatten_comma(string = _, last = " y ")
 
@@ -103,7 +107,9 @@ Luego de verificar un cielo despejado, se lleva a cabo la extracción de los val
 stack_bandas <- rast(z)
 
 stack_bandas_3x3 <- terra::focal( # <1>
-    stack_bandas, w = 3, fun = mean, na.rm = TRUE) # <1>
+  stack_bandas, # <1>
+  w = 3, fun = mean, na.rm = TRUE # <1>
+) # <1>
 
 reflect_3x3 <- terra::extract(stack_bandas_3x3, coord_sf_sin_nubes) |> # <2>
   as_tibble() |>
@@ -111,7 +117,7 @@ reflect_3x3 <- terra::extract(stack_bandas_3x3, coord_sf_sin_nubes) |> # <2>
   pivot_longer(
     cols = -punto, names_to = "banda", values_to = "reflect"
   ) |>
-  mutate(reflect = reflect/10000) |> # <3>
+  mutate(reflect = reflect / 10000) |> # <3>
   mutate(fecha = ymd(y), .before = 1) |>
   inner_join(coord_sitios, by = join_by(punto)) |>
   mutate(pixel = "3x3", .before = banda)

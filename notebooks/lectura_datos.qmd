@@ -33,11 +33,13 @@ Las variables de interés son: fecha, longitud y latitud, pH, conductividad, só
 datos <- readxl::read_xlsx(
   path = x,
   sheet = 1,
-  .name_repair = "unique_quiet") |>
+  .name_repair = "unique_quiet"
+) |>
   select( # <1>
     fecha = 1, longitud = 4, latitud = 5, # <1>
     ph = 6, cond = 8, secchi = 10, # <1>
-    sol_sus = 12, turb = 13, hazemeter = 14) |> # <1>
+    sol_sus = 12, turb = 13, hazemeter = 14 # <1>
+  ) |> # <1>
   fill(fecha) |>
   mutate(fecha = ymd(fecha)) |>
   pivot_longer( # <2>
@@ -70,21 +72,21 @@ readr::read_csv(
 Las imágenes satelitales se obtienen a partir del catálogo de Copernicus. La solicitud require un rango de fecha en torno a la adquisición de la escena, las coordenadas de la imagen y el nivel de procesamiento.
 
 ```{python}
-import requests # <1>
-import pandas as pd # <1>
-from datetime import datetime, timedelta # <1>
-import os # <1>
-import certifi # <1>
-import json # <1>
+import requests  # <1>
+import pandas as pd  # <1>
+from datetime import datetime, timedelta  # <1>
+import os  # <1>
+import certifi  # <1>
+import json  # <1>
 
 catalogue_odata_url = "https://catalogue.dataspace.copernicus.eu/odata/v1"
 
-collection_name = "SENTINEL-2" # <2>
-product_type = "S2MSI2A" # <2>
-max_cloud_cover = 1 # <2>
-aoi = "POINT(-58.81348666883592 -27.488354054598737)" # <2>
-search_period_start = "2024-01-01T00:00:00.000Z" # <2>
-search_period_end = "2024-01-02T00:00:00.000Z" # <2>
+collection_name = "SENTINEL-2"  # <2>
+product_type = "S2MSI2A"  # <2>
+max_cloud_cover = 1  # <2>
+aoi = "POINT(-58.81348666883592 -27.488354054598737)"  # <2>
+search_period_start = "2024-01-01T00:00:00.000Z"  # <2>
+search_period_end = "2024-01-02T00:00:00.000Z"  # <2>
 ```
 1. Cargo todas las librerías.
 2. Indico producto, posición y fechas de interés.
@@ -95,10 +97,10 @@ Con los datos mostrados se genera un <i>query</i> y con las credenciales de usua
 search_query = f"{catalogue_odata_url}/Products?$filter=Collection/Name eq '{collection_name}' and Attributes/OData.CSC.StringAttribute/any(att:att/Name eq 'productType' and att/OData.CSC.StringAttribute/Value eq '{product_type}') and OData.CSC.Intersects(area=geography'SRID=4326;{aoi}') and ContentDate/Start gt {search_period_start} and ContentDate/Start lt {search_period_end}"
 
 response = requests.get(search_query).json()
-result = pd.DataFrame.from_dict(response["value"]) # <1>
+result = pd.DataFrame.from_dict(response["value"])  # <1>
 
-username = os.environ['COPERNICUS_USERNAME'] # <2>
-password = os.environ['COPERNICUS_PASSWORD'] # <2>
+username = os.environ["COPERNICUS_USERNAME"]  # <2>
+password = os.environ["COPERNICUS_PASSWORD"]  # <2>
 
 auth_server_url = "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token"
 data = {
@@ -109,7 +111,7 @@ data = {
 }
 
 response_cred = requests.post(
-  auth_server_url, data = data, verify = True, allow_redirects = False
+    auth_server_url, data=data, verify=True, allow_redirects=False
 )
 access_token = json.loads(response_cred.text)["access_token"]
 ```
@@ -119,10 +121,10 @@ access_token = json.loads(response_cred.text)["access_token"]
 La descarga se realiza a partir de un loop en caso de existir múltiples productos disponibles.
 
 ```{python}
-if len(result) == 0: # <1>
+if len(result) == 0:  # <1>
     print("\n\n--- NO HAY PRODUCTO DISPONIBLE PARA EL DÍA DE LA FECHA ---\n\n")
 elif os.path.isfile("producto/producto.zip") == True:
-    print("\n\n--- PRODUCTO YA DESCARGADO ---\n\n") # <2>
+    print("\n\n--- PRODUCTO YA DESCARGADO ---\n\n")  # <2>
 else:
     producto_id = result["Id"][0]
     producto_nombre = result["Name"][0]
