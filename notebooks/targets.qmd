@@ -26,7 +26,7 @@ La ejecución automática de los scripts para generan los resultados se gestiona
 
 Es requisito crear un archivo `_targets.R` en el directorio principal que contenga todas las instrucciones a fin de ejecutar en orden todos los comandos y las dependencias.
 
-Inicialmente se carga el mismo paquete `targets`, luego se activan las librerías seleccionadas y se leen todas las funciones personalizadas.
+Inicialmente se carga el mismo paquete `{targets}`, luego se activan las librerías seleccionadas y se leen todas las funciones personalizadas.
 
 ```{r filename="_targets.R"}
 #| eval: false
