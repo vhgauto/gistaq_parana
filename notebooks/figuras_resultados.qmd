@@ -88,7 +88,7 @@ estado_color <- c(
 3. Aplico formato a los números.
 4. Diferencio entre la última fecha de muestreo y todos los anteriores.
 
-La generación de las figuras se lleva a cabo mediante una función personalizada, que itera entre todas las variables disponibles. Al ser una figura interactiva, se utiliza el paquete `{ggiraph}` para incorporar esa funcionalidad.
+La generación de las figuras se lleva a cabo mediante una función personalizada, que itera entre todas las variables disponibles. Al ser una figura interactiva, se utiliza el paquete `{ggiraph}` @ggiraph para incorporar esa funcionalidad.
 
 ```{r}
 f_figura_evolucion_lab <- function(parametro) {
@@ -204,7 +204,7 @@ lista_figura_evolucion_lab <- map(
 
 ## Correlatividad lineal entre parámetros
 
-Se calculó el coeficiente de correlación lineal de Pearson para cada par de parámetros del agua, y su grado de significancia estadística. El paquete `{corrr}` posee funciones que sirvieron para esta exploración.
+Se calculó el coeficiente de correlación lineal de Pearson para cada par de parámetros del agua, y su grado de significancia estadística. El paquete `{corrr}` @corrr posee funciones que sirvieron para esta exploración.
 
 Inicialmente se leen los datos y se definen variables de utilidad.
 
