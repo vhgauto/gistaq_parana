@@ -6,29 +6,38 @@ author:
     corresponding: true
     email: victor.gauto@ca.frre.utn.edu.ar
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
-      - <a href='https://iidthh.conicet.gov.ar/' target="_blank">IIDTHH (UNNE, CONICET)</a>
-      - <a href='https://ig.conae.unc.edu.ar/' target="_blank">Instituto Gulich (UNC, CONAE)</a>
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
+      - name: IIDTHH (UNNE, CONICET)
+        url: https://iidthh.conicet.gov.ar/
+      - name: Instituto Gulich (UNC, CONAE)
+        url: https://ig.conae.unc.edu.ar/
   - name: Enid Utgés
     orcid: 0009-0003-5263-5198
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
   - name: Daniela Tenev
     orcid: 0000-0003-0860-9139
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
   - name: Mauricio Acosta
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
   - name: Vera Geneyer
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
   - name: Víctor Gómez
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
   - name: Bruno Lossada Dusset
     affiliations:
-      - <a href='https://www.instagram.com/gistaq.utn/' target="_blank">GISTAQ (UTN-FRRe)</a>
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
 abstract: |
   La calidad del agua del Río Paraná...
 keywords:
