@@ -24,9 +24,12 @@ execute:
   freeze: auto
   warning: false
   echo: true
+  cache: true
 
 format:
   html:
+    embed-resources: false
+    highlight-style: kate
     anchor-sections: true
     number-sections: true
     smooth-scroll: true
