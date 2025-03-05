@@ -1,5 +1,8 @@
 # contenido asociado al manuscrito
 _manuscript/
+manuscrito_files/
+notebooks/figuras_resultados_cache/
+notebooks/targets_cache/
 
 # saco freeze y targets
 _freeze/
