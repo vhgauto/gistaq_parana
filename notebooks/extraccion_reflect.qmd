@@ -20,9 +20,9 @@ execute:
 code-annotations: hover
 ---
 
-La reflectancia de superficie (R<sub>rs</sub>) se extrae usando las coordenadas de los muestreos y el producto satelital.
+La reflectancia de superficie (R<sub>rs</sub>) se extrae usando las coordenadas geográficas de los sitios de muestreos y el producto satelital.
 
-Las coordenadas geográficas provienen del archivo Excel donde se registran las mediciones in situ. El producto satelital es Sentinel-2 MSI, descargado de Data Space de la plataforma Copernicus.
+Las coordenadas geográficas provienen del archivo Excel donde se registran las mediciones in situ. El producto satelital es Sentinel-2 MSI, descargado de [Copernicus Data Space](https://dataspace.copernicus.eu/) .
 
 Se inicia con la lectura del Excel extrayendo las columnas de latitud, longitud y la fecha de muestreo.
 
@@ -42,7 +42,7 @@ coord_sitios <- readxl::read_xlsx(
 ```
 1. Selecciono las columnas de interés y cambio de nombre.
 
-Luego se transforma a vector, transformando las coordenadas a `EPSG:32721` ya que es el sistema de referencia del producto satelital.
+Luego se convierte la tabla a vector, transformando las coordenadas a `EPSG:32721` ya que es el sistema de referencia en el que se encuentra el producto satelital.
 
 ```{r}
 coord_vect <- vect(
@@ -56,7 +56,7 @@ coord_vect <- vect(
 1. Sistema de referencia de los datos almacenados.
 2. Transformo para que sea coincidente con el producto satelital.
 
-Se procede con la verificación de ausencia de nubes a partir de la máscara de probabilidades de nubosidad a 20 m de resolución. En caso de que un sitio muestral presenta nubes, es descartado.
+Se procede con la verificación de nubes a partir del mapa de probabilidades de nubosidad a 20 m de resolución @CSteam2024. En caso de que un sitio muestral presente nubes, es descartado.
 
 ```{r}
 # nombre del producto
@@ -103,7 +103,9 @@ if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) { # <4>
 3. Conservo únicamente aquellos puntos en los que no hay nubes.
 4. Verifico la cantidad de sitios que fueron afectados por las nubes.
 
-Luego de verificar un cielo despejado, se lleva a cabo la extracción de los valores de píxel. Se realiza un promedio a partir de una ventana de 3x3 alrededor del sitio central y se promedia el valor final.
+Luego de verificar un cielo despejado, se lleva a cabo la extracción de los valores de píxel.
+
+Alrededor del píxel central se crea una ventana de 3x3 y se promedia el valor final.
 
 ```{r}
 # leo recorte
@@ -129,8 +131,20 @@ reflect_3x3 <- terra::extract(stack_bandas_3x3, coord_sf_sin_nubes) |> # <2>
 2. Extracción de los valores de píxel para cada sitio muestral.
 3. Aplico factor de escala.
 
-Finalmente se almacenan los valores de R<sub>rs</sub> en un archivo de texto (`.csv`).
+Finalmente, se almacenan los valores de R<sub>rs</sub> en un archivo de texto (`.csv`).
 
 ```{r}
 write_csv(reflect_3x3, "datos/base_de_datos_gis.csv")
 ```
+
+La base de datos final tiene la siguiente estructura:
+
+```{r}
+#| eval: true
+readr::read_csv(
+  file = "../datos/base_de_datos_gis.csv",
+  show_col_types = FALSE
+) |>
+  head()
+```
+
