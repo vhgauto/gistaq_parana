@@ -776,7 +776,7 @@ Becarios:
 
 Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://vhgauto.quarto.pub/gistaq-parana/).
 
-Sitio web desarrollado y mantenido por: <b>Víctor Gauto</b>. [{{< fa envelope >}}](mailto:victor.gauto@outlook.com), [{{< fa brands github >}}](https://github.com/vhgauto).
+Sitio web desarrollado y mantenido por: <b>Víctor Gauto</b>. [{{< fa envelope >}}](mailto:victor.gauto@ca.frre.utn.edu.ar), [{{< fa brands github >}}](https://github.com/vhgauto).
 
 Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [{{< fa envelope >}}](mailto:gistaq@ca.frre.utn.edu.ar), [{{< fa brands instagram >}}](https://www.instagram.com/gistaq.utn/), [{{< fa brands facebook >}}](https://www.facebook.com/GISTAQ/).
 
@@ -788,21 +788,21 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [{{
 
 ::: {.eqi-container}
 
-![](extras/logo-gistaq.png){height=50}
+![](extras/logo-gistaq.png){height="50px"}
 
-![](extras/logo-utn-frre.png){height=50}
+![](extras/logo-utn-frre.png){height="50px"}
 
-![](extras/logo-gulich.png){height=50}
+![](extras/logo-gulich.png){height="50px"}
 
-![](extras/logo-conae.png){height=50}
+![](extras/logo-conae.png){height="50px"}
 
-![](extras/logo-unc.png){height=50}
+![](extras/logo-unc.png){height="50px"}
 
-![](extras/logo-iidthh.png){height=50}
+![](extras/logo-iidthh.png){height="50px"}
 
-![](extras/logo-conicet.png){height=50}
+![](extras/logo-conicet.png){height="50px"}
 
-![](extras/logo-unne.png){height=50}
+![](extras/logo-unne.png){height="50px"}
 
 :::
 
