@@ -1,5 +1,5 @@
 ---
-title: "<span style='font-size:5rem'>Proyecto Paraná 2023</span>"
+title: "<titulo-portada>Proyecto Paraná 2023</titulo-portada>"
 author:
   - name: Víctor Gauto
     orcid: 0000-0001-9960-8558
@@ -782,28 +782,30 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [{{
 
 <br>
 
-::: {.column-screen-inset}
+:::: {.column-screen-inset}
 
 <center>
 
+::: {.eqi-container}
 
 ![](extras/logo-gistaq.png){height=50}
-`r espacios()`
+
 ![](extras/logo-utn-frre.png){height=50}
-`r espacios()`
+
 ![](extras/logo-gulich.png){height=50}
-`r espacios()`
+
 ![](extras/logo-conae.png){height=50}
-`r espacios()`
+
 ![](extras/logo-unc.png){height=50}
-`r espacios()`
+
 ![](extras/logo-iidthh.png){height=50}
-`r espacios()`
+
 ![](extras/logo-conicet.png){height=50}
-`r espacios()`
+
 ![](extras/logo-unne.png){height=50}
 
+:::
 
 </center>
 
-:::
+::::
