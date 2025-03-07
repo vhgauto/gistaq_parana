@@ -1,6 +1,6 @@
 ---
 title: "Ejecución automática"
-type: html
+format: html
 date: last-modified
 author:
   - name: Víctor Gauto
