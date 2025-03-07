@@ -36,6 +36,23 @@ $body-color: $cn;
 
 /*-- scss:rules --*/
 
+.eqi-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#title-block-header.quarto-title-block.default .keywords .block-title, #title-block-header.quarto-title-block.default .description .block-title, #title-block-header.quarto-title-block.default .abstract .block-title {
+  font-weight: bold;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title-meta-heading {
+  font-weight: bold;
+}
+
+.quarto-title-banner {
+  color: $cn;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Libre Bodoni";
 }
@@ -47,9 +64,16 @@ h1, h2, h3, h4, h5, h6 {
 // estilo de título
 #title-block-header.quarto-title-block.default .quarto-title .title {
     margin-bottom: 0;
-    font-family: Bebas Neue;
+    font-family: "Libre Bodoni";
     color: $cr;
     font-size: 4rem;
+}
+
+titulo-portada {
+    margin-bottom: 0;
+    font-family: "Bebas Neue";
+    color: $cr;
+    font-size: 5.5rem;
 }
 
 // línea en encabezado
