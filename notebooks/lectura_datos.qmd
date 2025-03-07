@@ -1,6 +1,6 @@
 ---
 title: "Lectura de datos"
-type: html
+format: html
 date: last-modified
 author:
   - name: Víctor Gauto
@@ -22,15 +22,15 @@ editor_options:
   chunk_output_type: console
 ---
 
-Los datos se dividen en dos grupos de acuerdo al formato en el que se presentan, lo cual determina los paquetes requeridos y las operaciones necesarias para trabajar con estos.
+Los datos se dividen en dos grupos, datos numéricos y ráster, de acuerdo al formato en el que se presentan. Esto determina los paquetes requeridos y las operaciones necesarias para trabajar con estos.
 
 # Datos numéricos
 
-Los datos de laboratorio se extraen del archivo Excel que es completado luego de finalizar cada ensayo.
+Estos datos son aquellos que se registran en un archivo Excel, que incluyen los datos recolectados in situ al momento de tomar la muestra de agua sobre el río Paraná; y los resultados de los ensayos de laboratorio.
 
-Del mismo se obtienen las mediciones in situ junto con las coordenadas geográficas de los puntos de muestreo.
+- In situ: latitud y longitud geográfica, profundidad de disco de Secchi, conductividad y pH.
 
-Las variables de interés son: fecha, longitud y latitud, pH, conductividad, sólidos suspendidos y turbidez.
+- Ensayos de laboratorio: sólidos suspendidos y turbidez.
 
 ```{r}
 datos <- readxl::read_xlsx(
@@ -58,6 +58,8 @@ write_csv(datos, "datos/base_de_datos_lab.csv") # <3>
 2. Transformo a tabla larga para una mejor organización de los datos.
 3. Almaceno los resultados en una base de datos.
 
+Los datos presentan la siguiente estructura.
+
 ```{r}
 #| echo: false
 #| eval: true
@@ -72,7 +74,9 @@ readr::read_csv(
 
 # Ráster
 
-Las imágenes satelitales se obtienen a partir del catálogo de Copernicus. La solicitud require un rango de fecha en torno a la adquisición de la escena, las coordenadas de la imagen y el nivel de procesamiento.
+Las imágenes satelitales se obtienen a partir del catálogo [Copernicus Data Space](https://dataspace.copernicus.eu/). La solicitud require un rango de fecha alrededor de la adquisición de la escena, las coordenadas de la imagen, la colección de interés y el nivel de procesamiento.
+
+Es requisito poseer una [cuenta de usuario](https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/auth?client_id=cdse-public&response_type=code&scope=openid&redirect_uri=https%3A//dataspace.copernicus.eu/account/confirmed/1) para acceder a la descarga del producto.
 
 ```{python}
 import requests  # <1>
@@ -92,9 +96,9 @@ search_period_start = "2024-01-01T00:00:00.000Z"  # <2>
 search_period_end = "2024-01-02T00:00:00.000Z"  # <2>
 ```
 1. Cargo todas las librerías.
-2. Indico producto, posición y fechas de interés.
+2. Indico colección, nivel de procesamiento, ubicación del <i>tile</i> y rango de fechas.
 
-Con los datos mostrados se genera un <i>query</i> y con las credenciales de usuario de la plataforma se accede mediante el token.
+Con los datos mostrados se crea un <i>query</i> y con las credenciales de usuario se accede mediante el token generado.
 
 ```{python}
 search_query = f"{catalogue_odata_url}/Products?$filter=Collection/Name eq '{collection_name}' and Attributes/OData.CSC.StringAttribute/any(att:att/Name eq 'productType' and att/OData.CSC.StringAttribute/Value eq '{product_type}') and OData.CSC.Intersects(area=geography'SRID=4326;{aoi}') and ContentDate/Start gt {search_period_start} and ContentDate/Start lt {search_period_end}"
@@ -153,8 +157,8 @@ else:
 
     print("\n\n--- PRODUCTO DESCARGADO ---\n\n")
 ```
-1. En caso que no haya resultados de búsqueda, que no continúe con el loop.
-2. Si el producto fue previamente descargado, que se detenga.
+1. En caso que no haya resultados de búsqueda, se detiene el loop con un mensaje.
+2. Si el producto fue previamente descargado, que se detiene el loop.
 3. Almaceno el producto como archivo comprimido (`.zip`).
 
-La [documentación](https://documentation.dataspace.copernicus.eu/APIs/OData.html) de Data Space Copernicus resultó de gran ayuda para este desarrollo.
+La [documentación](https://documentation.dataspace.copernicus.eu/APIs/OData.html) de la API resultó de gran ayuda para este desarrollo.
