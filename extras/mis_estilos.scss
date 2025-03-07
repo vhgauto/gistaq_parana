@@ -36,6 +36,11 @@ $body-color: $cn;
 
 /*-- scss:rules --*/
 
+#title-block-header a {
+    text-decoration: none;
+    color: $cn;
+}
+
 .eqi-container {
   display: flex;
   justify-content: space-between;
