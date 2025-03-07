@@ -93,7 +93,7 @@ link_github_gistaq <- "https://github.com/vhgauto/gistaq_parana"
 simbolo_sig <- glue("<span style='color: {c1}'>&#9733;</span>") # estrella
 
 # separación entre logos de insticiones
-espacios <- \(x = 15) str_flatten(rep("&nbsp;", x))
+espacios <- \(x = 15) stringr::str_flatten(rep("&nbsp;", x))
 
 # fecha de actualización
 actualizado <- format(now(), "%d/%m/%Y %H:%M")

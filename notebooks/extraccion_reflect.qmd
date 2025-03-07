@@ -93,7 +93,7 @@ if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) { # <4>
     by = join_by(punto)
   ) |>
     pull(punto) |>
-    str_flatten_comma(string = _, last = " y ")
+    stringr::str_flatten_comma(string = _, last = " y ")
 
   mensaje(glue("Los sitios {puntos_nubes} presentan nubes y se descartan"))
 }

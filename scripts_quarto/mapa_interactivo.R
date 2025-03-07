@@ -35,7 +35,7 @@ fechas_v <- unique(v_tbl$fecha) |> str_remove_all("-")
 # ráster
 r_files <- list.files(
   path = "recorte/",
-  pattern = str_flatten(fechas_v, "|"),
+  pattern = stringr::str_flatten(fechas_v, "|"),
   full.names = TRUE)
 
 # creo el stack de bandas y agrego las fechas como nombres
@@ -80,7 +80,7 @@ f_label <- function(fecha_date) {
     mutate(v = format(valor, nsmall = 1, digits = 1, decimal.mark = ",")) |>
     mutate(label = glue("{nombre}: {v} {unidad}")) |>
     reframe(
-      l = str_flatten(label, collapse = "<br>"),
+      l = stringr::str_flatten(label, collapse = "<br>"),
       .by = c(longitud, latitud)
     ) |>
     pull(l)
