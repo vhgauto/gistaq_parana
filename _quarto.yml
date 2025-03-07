@@ -6,8 +6,8 @@ manuscript:
   notebooks:
     - notebooks/lectura_datos.qmd
     - notebooks/extraccion_reflect.qmd
-    - notebooks/figuras_resultados.qmd
-    - notebooks/targets.qmd
+    - notebooks/caracterizacion.qmd
+    - notebooks/ejecucion_auto.qmd
   code-links:
     - repo: https://github.com/vhgauto/gistaq_parana
       text: "Ver en GitHub"
