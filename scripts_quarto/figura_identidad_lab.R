@@ -16,7 +16,7 @@ texto_tamaño <- 4
 punto_transparencia <- .6
 punto_tamaño <- 3
 
-# configuración de las figuras asociadas a una REACTA
+# configuración de las figuras asociadas a una RECTA
 g_recta <- function(g, etq) {
   g +
     geom_smooth(
