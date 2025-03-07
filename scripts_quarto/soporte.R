@@ -16,8 +16,8 @@ library(tidyverse)
 
 # colores -----------------------------------------------------------------
 
-c1 <- "#B86092"
-c2 <- "#007E2E"
+c1 <- "#B86092" # violeta
+c2 <- "#007E2E" # verde
 c3 <- "#F2F2F2" # "grey95"
 c4 <- "#4D4D4D" # "grey30"
 c5 <- "#FFFFFF" # "white"
