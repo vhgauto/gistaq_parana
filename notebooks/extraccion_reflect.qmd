@@ -37,9 +37,12 @@ v <- terra::vect("../vector/recorte_puente.gpkg") |> # <1>
 leaflet::leaflet() |> # <2>
   leaflet::addTiles() |> # <2>
   leaflet::addPolygons( # <3>
-    data = v, color = "#007E2E", stroke = 2, fillColor = "transparent" # <3>
+    data = v, color = "#B86092", stroke = TRUE, # <3>
+    fillColor = "transparent", opacity = 1, weight = 5 # <3>
   ) |> # <3>
-  leaflet.extras::addFullscreenControl(position = "bottomright") |>
+  leaflet.extras::addFullscreenControl(
+    position = "bottomright"
+  ) |>
   leaflet.extras::addResetMapButton()
 ```
 1. Lectura y transformación de las coordenadas del vector.
@@ -49,7 +52,9 @@ leaflet::leaflet() |> # <2>
 El procesamiento para el recorte y almacenamiento del producto satelital se muestra a continuación.
 
 ```{r}
-unzip(zipfile = "producto/producto.zip", exdir = "producto/") # <1>
+unzip( # <1>
+  zipfile = "producto/producto.zip", exdir = "producto/" # <1>
+) # <1>
 
 lis <- list.files( # <2>
   path = "producto/", pattern = "SAFE", full.names = TRUE # <2>
@@ -58,12 +63,16 @@ carpeta1 <- glue("{lis}/GRANULE") # <2>
 carpeta2 <- list.files(carpeta1) # <2>
 carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA") # <2>
 
-r10m <- list.files(glue("{carpeta3}/R10m"), full.names = TRUE) # <3>
-r20m <- list.files(glue("{carpeta3}/R20m"), full.names = TRUE) # <3>
+r10m <- list.files( # <3>
+  glue("{carpeta3}/R10m"), full.names = TRUE # <3>
+) # <3>
+r20m <- list.files( # <3>
+  glue("{carpeta3}/R20m"), full.names = TRUE # <3>
+) # <3>
 
 bandas_nombres <- c( # <4>
-  "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", # <4>
-  "B11", "B12" # <4>
+  "B01", "B02", "B03", "B04", "B05", "B06", "B07", # <4>
+  "B08", "B8A", "B11", "B12" # <4>
 ) # <4>
 
 b01 <- r20m[2] # <5>
@@ -91,13 +100,27 @@ lista_recortes <- map( # <9>
   .x = lista_bandas, # <9>
   ~terra::crop(x = .x, y = recorte_puente)) # <9>
 
-lista_recortes$B01 <- project(lista_recortes$B01, lista_recortes$B02) # <10>
-lista_recortes$B05 <- project(lista_recortes$B05, lista_recortes$B02) # <10>
-lista_recortes$B06 <- project(lista_recortes$B06, lista_recortes$B02) # <10>
-lista_recortes$B07 <- project(lista_recortes$B07, lista_recortes$B02) # <10>
-lista_recortes$B8A <- project(lista_recortes$B8A, lista_recortes$B02) # <10>
-lista_recortes$B11 <- project(lista_recortes$B11, lista_recortes$B02) # <10>
-lista_recortes$B12 <- project(lista_recortes$B12, lista_recortes$B02) # <10>
+lista_recortes$B01 <- project( # <10>
+  lista_recortes$B01, lista_recortes$B02 # <10>
+) # <10>
+lista_recortes$B05 <- project( # <10>
+  lista_recortes$B05, lista_recortes$B02 # <10>
+) # <10>
+lista_recortes$B06 <- project( # <10>
+  lista_recortes$B06, lista_recortes$B02 # <10>
+) # <10>
+lista_recortes$B07 <- project( # <10>
+  lista_recortes$B07, lista_recortes$B02 # <10>
+) # <10>
+lista_recortes$B8A <- project( # <10>
+  lista_recortes$B8A, lista_recortes$B02 # <10>
+) # <10>
+lista_recortes$B11 <- project( # <10>
+  lista_recortes$B11, lista_recortes$B02 # <10>
+) # <10>
+lista_recortes$B12 <- project( # <10>
+  lista_recortes$B12, lista_recortes$B02 # <10>
+) # <10>
 
 stack_bandas <- rast(lista_recortes) # <11>
 
@@ -176,7 +199,9 @@ carpeta2 <- list.files(carpeta1) # <2>
 carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA") # <2>
 carpeta4 <- glue("{carpeta1}/{carpeta2}/QI_DATA") # <2>
 
-raster_prob <- terra::rast(glue("{carpeta4}/MSK_CLDPRB_20m.jp2")) # <3>
+raster_prob <- terra::rast( # <3>
+  glue("{carpeta4}/MSK_CLDPRB_20m.jp2") # <3>
+) # <3>
 
 nubes <- terra::extract(raster_prob, coord_vect) |> # <4>
   as_tibble() |>
@@ -201,7 +226,10 @@ if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) {
     stringr::str_flatten_comma(string = _, last = " y ")
 
   print( # <7>
-    glue("Los sitios {puntos_nubes} presentan nubes y se descartan") # <7>
+    glue( # <7>
+      "Los sitios {puntos_nubes} presentan nubes y ", # <7>
+      "se descartan" # <7>
+    ) # <7>
   ) # <7>
 }
 ```
