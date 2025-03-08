@@ -129,7 +129,9 @@ La descarga se realiza a partir de un loop en caso de existir múltiples product
 
 ```{python}
 if len(result) == 0:  # <1>
-    print("\n\n--- NO HAY PRODUCTO DISPONIBLE PARA EL DÍA DE LA FECHA ---\n\n")
+    print(
+      "\n\n--- NO HAY PRODUCTO DISPONIBLE PARA EL DÍA DE LA FECHA ---\n\n"
+    )
 elif os.path.isfile("producto/producto.zip") == True:
     print("\n\n--- PRODUCTO YA DESCARGADO ---\n\n")  # <2>
 else:
