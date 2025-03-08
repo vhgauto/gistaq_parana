@@ -57,7 +57,7 @@ format:
     code-link: true
     code-copy: true
     code-annotations: false
-    code-line-numbers: false
+    code-line-numbers: true
     code-overflow: scroll
     tbl-cap-location: margin
     fig-cap-location: bottom
