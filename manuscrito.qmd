@@ -105,7 +105,7 @@ https://mermaid.js.org/syntax/flowchart.html -->
 <!-- agregar transparencia a colores HEX https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4 -->
 <br>
 
-Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ]((https://www.instagram.com/gistaq.utn/))) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
+Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ](https://www.instagram.com/gistaq.utn/)) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
 El mencionado proyecto forma parte de las tareas de investigación del MS. Víctor Gauto, en el marco del <b>Doctorado en Geomática y Sistemas Espaciales</b>, dictado por el [Instituto Gulich](https://ig.conae.unc.edu.ar), en conjunto con la <b>Universidad Nacional de Córdoba</b> ([UNC](https://www.unc.edu.ar/)) y la <b>Comisión Nacional de Actividades Espaciales</b> ([CONAE](https://www.argentina.gob.ar/ciencia/conae)).
 
@@ -217,11 +217,11 @@ Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y 
 
 In situ, se miden: pH, conductividad y profundidad de disco de Secchi (SDD). Luego, en el laboratorio se analizan turbidez y sólidos suspendidos totales (TSM). A continuación se describe cada parámetro fisicoquímico:
 
-* pH y conductividad (μS/cm), a partir de un equipo multiparamétrico.
+* pH y conductividad (&micro;S/cm), a partir de un equipo multiparamétrico.
 
 * Profundidad de disco de Secchi (cm).
 
-* Sólidos suspendidos totales (ppm) por gravimetría, utilizando el método 2540 D. sólidos totales en suspensión secados a 103-105°C del Standard Methods (APHA, AWWA, WPCF, 2017, p.2-70), que emplea filtros de fibra de vidrio de 47 mm de diámetro y 0,5 μm de poro.
+* Sólidos suspendidos totales (ppm) por gravimetría, utilizando el método 2540 D. sólidos totales en suspensión secados a 103-105°C del Standard Methods (APHA, AWWA, WPCF, 2017, p.2-70), que emplea filtros de fibra de vidrio de 47 mm de diámetro y 0,5 &micro;m de poro.
 
 * Turbidez, a través de dos métodos:
   - Colorimétrico (NTU), utilizando el equipo HACH, programa 95.
@@ -251,7 +251,7 @@ Para simplificar, se van a usar las siguientes siglas para denominar a las propi
 Turbidez (NTU)<br>
 Profundidad de disco de Secchi (cm)<br>
 Sólidos suspendidos totales (ppm)<br>
-Conductividad (μS/cm)<br>
+Conductividad (&micro;S/cm)<br>
 
 :::
 
