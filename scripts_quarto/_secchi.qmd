@@ -1,16 +1,11 @@
----
-format: html
-editor_options: 
-  chunk_output_type: console
----
 
 ## Profundidad de disco de Secchi<span style="font-weight:normal; font-size: 1rem">, por Mauricio Acosta [{{< fa brands github >}}](https://github.com/mauri491)</span> {toc-text="Profundidad de disco de Secchi"}
 
-La transparencia del agua es uno de los componentes clave para describir la calidad y productividad de aguas naturales. Antes de la disponibilidad de radiometros, el campo de luz bajo el agua era estimado sólo mediante la observación visual del disco de Secchi.
+La transparencia del agua es uno de los componentes clave para describir la calidad y productividad de aguas naturales. Antes de la disponibilidad de radiómetros, el campo de luz bajo el agua era estimado sólo mediante la observación visual del disco de Secchi.
 
-El disco de Secchi <b>es un instrumento de medición de la penetración luminosa.</b> Se utiliza midiendo la profundidad desde la superficie de masa de agua que el disco alcanza hasta perderse de vista.
+El disco de Secchi **es un instrumento de medición de la penetración luminosa**. Se utiliza midiendo la profundidad desde la superficie de masa de agua que el disco alcanza hasta perderse de vista.
 
-El disco de Secchi sigue siendo utilizado debido a la simplicidad y rango de aplicación universal del método, además de tratarse de un parámetro facilmente entendible por el público.
+El disco de Secchi sigue siendo utilizado debido a la simplicidad y rango de aplicación universal del método, además de tratarse de un parámetro fácilmente entendible por el público.
 
 La profundidad de disco de Secchi es influenciada por tres componentes ópticos principales: clorofila-a, materia orgánica disuelta coloreada, y sólidos suspendidos totales.
 
@@ -18,28 +13,52 @@ Como se señaló en el apartado de turbidez, se observa una relación inversa en
 
 ### Métodos tradicionales
 
-Las ecuaciones principales propuestas son de tipo <b>logarítmica</b> o <b>potencial</b>, lo cual tiene sentido considerando que la relación entre la reflectancia y la turbidez no es lineal. No obstante, algunas ecuaciones lineales presentan un buen desempeño. En ambos tipos de ecuación se repite la presencia de un <b>cociente</b> entre bandas.
+Las ecuaciones principales propuestas son de tipo **logarítmica** o **potencial**, lo cual tiene sentido considerando que la relación entre la reflectancia y la turbidez no es lineal. No obstante, algunas ecuaciones lineales presentan un buen desempeño. En ambos tipos de ecuación se repite la presencia de un **cociente** entre bandas.
+
+:::: {.content-visible when-format="html"}
 
 ::: {.column-screen-right}
 
 | Ecuación | Bandas (nm) | Métricas | Aguas | Plataforma | Referencia |
 |:-:|:--|:--|:--|:--|:-:|
-| $A \left[  \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})}  \right]^{B}$ | 409 (B02)<br>709 (B05) | R<sup>2</sup>, RMSE | Ópticamente complejas^[Señalan una mala correlación para el cociente 409/560 (B02/B03).] | MERIS | @Alikas2017 |
-| $e^{a \left[ \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})} \right]+b}$ | 409 (B02)<br>709 (B05) | R<sup>2</sup>, RMSE, Bias | Interiores variadas^[Modificación de Alikas-Kratzer. Señala que el previamente descartado cociente 409/560 se usa para aguas donde el contribuyente principal a la turbidez es el fitoplancton.] | Sentinel-2 | @Pereira-Sandoval2019 |
-| $A \left[ \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})}  \right]^{B}$ | 409 (B02)<br>560 (B03) | R<sup>2</sup>, RMSE | Embalses^[Señala Polymer y C2X como los mejores algoritmos de corrección atmosférica. Indica que su ecuación es equivalente a la de Pereira-Sandoval.] | Sentinel-2 | @Delegido2019 |
-| $1.79-134.15 \cdot B_{RE1}+157.72 \cdot B_{NIR}+0.52 \frac{B_{RE3}}{NIR_{n}}$ |  | R<sup>2</sup>, RMSE | Reserva^[Corrección atmosférica con el módulo Sen2Cor. Al ser lineal, produce una sobrestimación para valores bajos y una subestimación para valores altos.] | Sentinel-2 | @Bonansea2019 |
-| $\log(SDD)=-3.0257-1.4379 \cdot  \log(R_{B8A})-0.127 \left[ \log(R_{B8A}) \right]^{2}$ |  | R<sup>2</sup> | Oceános^[Corrección con Sen2Cor.] | Sentinel-2 | @Delegido2016 |
+| $A \left[  \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})}  \right]^{B}$ | 409 (B02)<br>709 (B05) | $R^{2}$, RMSE | Ópticamente complejas^[Señalan una mala correlación para el cociente 409/560 (B02/B03).] | MERIS | @Alikas2017 |
+| $e^{a \left[ \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})} \right]+b}$ | 409 (B02)<br>709 (B05) | $R^{2}$, RMSE, Bias | Interiores variadas^[Modificación de Alikas-Kratzer. Señala que el previamente descartado cociente 409/560 se usa para aguas donde el contribuyente principal a la turbidez es el fitoplancton.] | Sentinel-2 | @Pereira-Sandoval2019 |
+| $A \left[ \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})}  \right]^{B}$ | 409 (B02)<br>560 (B03) | $R^{2}$, RMSE | Embalses^[Señala Polymer y C2X como los mejores algoritmos de corrección atmosférica. Indica que su ecuación es equivalente a la de Pereira-Sandoval.] | Sentinel-2 | @Delegido2019 |
+| $1.79-134.15 \cdot B_{RE1}+157.72 \cdot B_{NIR}+0.52 \frac{B_{RE3}}{NIR_{n}}$ |  | $R^{2}$, RMSE | Reserva^[Corrección atmosférica con el módulo Sen2Cor. Al ser lineal, produce una sobrestimación para valores bajos y una subestimación para valores altos.] | Sentinel-2 | @Bonansea2019 |
+| $\log(SDD)=-3.0257-1.4379 \cdot  \log(R_{B8A})-0.127 \left[ \log(R_{B8A}) \right]^{2}$ |  | $R^{2}$ | Oceános^[Corrección con Sen2Cor.] | Sentinel-2 | @Delegido2016 |
 
 : Características principales de algoritmos de aprendizaje automático para la estimación de profundidad de disco de Secchi. {#tbl-secchi-machine .striped .hover tbl-colwidths="[50,10,10,10,10]"}
 
 :::
 
+::::
+
+:::: {.content-visible when-format="typst"}
+
+| Ecuación | Referencia |
+|:--|:-:|
+| $A \left[  \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})}  \right]^{B}$ | [@Alikas2017] |
+| $e^{a \left[ \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})} \right]+b}$ | [@Pereira-Sandoval2019] |
+| $A \left[ \frac{R_{rs}( \lambda_{1})}{R_{rs}( \lambda_{2})}  \right]^{B}$ | [@Delegido2019] |
+| $1.79-134.15 \cdot B_{RE1}+157.72 \cdot B_{NIR}+0.52 \frac{B_{RE3}}{NIR_{n}}$ | [@Bonansea2019] |
+| $\log(SDD)=-3.0257-1.4379 \cdot  \log(R_{B8A})-0.127 \left[ \log(R_{B8A}) \right]^{2}$ | [@Delegido2016] |
+
+: Características principales de algoritmos de aprendizaje automático para la estimación de profundidad de disco de Secchi. {#tbl-secchi-machine .striped .hover tbl-colwidths="[80,20]"}
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+[Ver tabla completa en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#tbl-secchi-machine)
+
+:::
+
+::::
+
 ### Métodos de aprendizaje automático
 
-A modo de identificar y aprender los patrones subyacentes en las series de datos para asegurar la transferibilidad a través de espacio y tiempo de los distintos modelos obtenidos se destaca el uso de algoritmos como <b>Random Forest</b> y la aplicación de <b>Redes neuronales</b>.
+A modo de identificar y aprender los patrones subyacentes en las series de datos para asegurar la transferibilidad a través de espacio y tiempo de los distintos modelos obtenidos se destaca el uso de algoritmos como **Random Forest** y la aplicación de **Redes neuronales**.
 
-Los <b>modelos de regresión mediante random forest</b>, construidos utilizando las bandas previamente halladas por modelos algebraicos, demostraron explicar de manera consistente una mayor variabilidad que otros algoritmos, indicado por un mayor $pseudo-R^2$. Se señala además que los algoritmos con el mejor rendimiento tienden a ser aquellos que incluyed bandas del infrarrojo cercano.
+Los **modelos de regresión mediante random forest**, construidos utilizando las bandas previamente halladas por modelos algebraicos, demostraron explicar de manera consistente una mayor variabilidad que otros algoritmos, indicado por un mayor $pseudo-R^2$. Se señala además que los algoritmos con el mejor rendimiento tienden a ser aquellos que incluye bandas del infrarrojo cercano.
 
-Una alternativa con un rendimiento superior a los modelos regresión resulta de aplicación de <b>redes neuronales convolucionales de una dimensión</b>. Estas aplican operaciones de convolución y extracción de características en la dimensión espectral de una imagen multiespectral, permitiendo encontrar patrones complejos y relaciones entre las características y el valor medido.
+Una alternativa con un rendimiento superior a los modelos regresión resulta de aplicación de **redes neuronales convolucionales de una dimensión**. Estas aplican operaciones de convolución y extracción de características en la dimensión espectral de una imagen multiespectral, permitiendo encontrar patrones complejos y relaciones entre las características y el valor medido.
 
 La información se procesa interpretando a los datos como unidimensionales, representando a los valores de reflectancia tomados en todas las longitudes de onda disponibles para una única profundidad medida. La hipótesis es que la relación entre la reflectividad de distintas bandas, capturadas utilizando convolución, codifica la claridad del cuerpo de agua medido como profundidad de disco de Secchi.

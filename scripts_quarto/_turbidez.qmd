@@ -1,8 +1,3 @@
----
-format: html
-editor_options: 
-  chunk_output_type: console
----
 
 ## Turbidez<span style="font-weight:normal; font-size: 1rem">, por Víctor Gómez [{{< fa brands github >}}](https://github.com/gomezvictoriq)</span> {toc-text="Turbidez"}
 
@@ -10,33 +5,57 @@ La turbidez se refiere a la opacidad o falta de claridad en un líquido provocad
 
 La turbidez es un indicador de la calidad del agua, reflejando la presencia de partículas en suspensión. Su medición es crucial para garantizar la potabilidad del agua y la salud de los ecosistemas acuáticos. Este fenómeno puede ser resultado de diversas causas, como la erosión del suelo, la actividad biológica y la contaminación. La comprensión de la turbidez y su impacto es esencial para la gestión de recursos hídricos y la protección del medio ambiente.
 
-La turbidez viene determinada por la dispersión de la luz causada por la materia suspendida en el agua, se obtiene normalmente mediante un turbidímetro, que proporciona medidas en Nephelometric Turbidity Unit (NTU) y mide la dispersión de un rayo de luz en el agua a 90º de la luz incidente.@Delegido2019
+La turbidez viene determinada por la dispersión de la luz causada por la materia suspendida en el agua, se obtiene normalmente mediante un turbidímetro, que proporciona medidas en Nephelometric Turbidity Unit (NTU) y mide la dispersión de un rayo de luz en el agua a 90º de la luz incidente [@Delegido2019].
 
-Muchas propiedades, como la cloroﬁla-a (Chl-a), sólidos suspendidos totales (SST) y la materia orgánica disuelta coloreada (CDOM), se utilizan a menudo como indicadores del estado del agua. Estos constituyentes del agua a su vez son responsables de la turbidez.
+Muchas propiedades, como la clorofila-a (Chl-a), sólidos suspendidos totales (SST) y la materia orgánica disuelta coloreada (CDOM), se utilizan a menudo como indicadores del estado del agua. Estos constituyentes del agua a su vez son responsables de la turbidez.
 
-Existe una fuerte correlación entre turbidez y solidos suspendidos totales, por lo que se puede estimar SST a partir de la turbidez. Por lo general, es una relación directa, a mayor concentración de SST mayor turbidez.
+Existe una fuerte correlación entre turbidez y sólidos suspendidos totales, por lo que se puede estimar SST a partir de la turbidez. Por lo general, es una relación directa, a mayor concentración de SST mayor turbidez.
 
-Existe una relación inversa entre la Turbidez y la profundidad del disco de Secchi (a valores bajos de secchi mayor turbidez), por lo que tambien se puede estimar turbidez a partir de medicones de disco de secchi.
+Existe una relación inversa entre la Turbidez y la profundidad del disco de Secchi (a valores bajos de secchi mayor turbidez), por lo que también se puede estimar turbidez a partir de mediciones de disco de secchi.
 
 ### Métodos tradicionales
+
+:::: {.content-visible when-format="html"}
 
 ::: {.column-screen-right}
 
 | Ecuación | Bandas (nm) | Métricas | Aguas | Plataforma | Referencia |
 |:-:|:--|:--|:--|:--|:-:|
-| $1.559e^{35.533 \cdot B03} \\ 1.879e^{37.745(B03 \cdot B5)/(B04+B12)}$ | B03, B04, B05, B12 | R<sup>2</sup>, RMSE, MAE | Lago^[0,83 - 112,26 NTU.] | Sentinel-2 | @Ma2021 |
-| $2677.2 \cdot B04^{1.856}$ | B04 | R<sup>2</sup>, RMSE, Bias | Interiores variadas^[2,3 - 107,02 NTU.] | Landsat-8 | @Hossain2021 |
+| $1.559e^{35.533 \cdot B03} \\ 1.879e^{37.745(B03 \cdot B5)/(B04+B12)}$ | B03, B04, B05, B12 | $R^{2}$, RMSE, MAE | Lago^[0,83 - 112,26 NTU.] | Sentinel-2 | @Ma2021 |
+| $2677.2 \cdot B04^{1.856}$ | B04 | $R^{2}$, RMSE, Bias | Interiores variadas^[2,3 - 107,02 NTU.] | Landsat-8 | @Hossain2021 |
 | $969-1.5468 \cdot R_{1200nm}+2.07 \frac{B8A}{B02}$ | B02, B8A, 1200nm | IOA, SI, RMSE, MAE | Río^[IOA = index of agreement<br>SI = scatter index.] | Landsat-8 | @Najafzadeh2023 |
-| $y=-1.1+5.8 \frac{B02}{B04} \\ y=3.896-4.186 \frac{B02}{B03}$ | B02, B03, B04 | R<sup>2</sup>, RMSE | Río^[20,6 - 112 NTU<br>2,3 - 15,4 NTU.] | Landsat-8 | @Allam2020 |
-| $y=37661 \cdot B8A^{2}+1845 \cdot B8A \\\\ y=531.5- \frac{B04}{0.88}$ | B04, B8A | R<sup>2</sup>, RMSE, MAPE | Estuario^[MAPE = Mean Absolute Percentage Error<br>0 - 1300 NTU<br>0 - 80 NTU.] | Pléiades | @Luo2020 |
+| $y=-1.1+5.8 \frac{B02}{B04} \\ y=3.896-4.186 \frac{B02}{B03}$ | B02, B03, B04 | $R^{2}$, RMSE | Río^[20,6 - 112 NTU<br>2,3 - 15,4 NTU.] | Landsat-8 | @Allam2020 |
+| $y=37661 \cdot B8A^{2}+1845 \cdot B8A <br> y=531.5- \frac{B04}{0.88}$ | B04, B8A | $R^{2}$, RMSE, MAPE | Estuario^[MAPE = Mean Absolute Percentage Error<br>0 - 1300 NTU<br>0 - 80 NTU.] | Pléiades | @Luo2020 |
 
 : Características principales de algoritmos tradicionales para la estimación de turbidez. {#tbl-turb-trad .striped .hover tbl-colwidths="[50,10,10,10,10]"}
 
 :::
 
-Múltiples modelos (lineal, logaritmos, inversa, cuadrática, exponencial, potencial) y plataformas (Sentinel-2, Landsat-5 y Landsat-8) emplean el cociente de bandas B04/B03 @Shen2021.
+::::
 
-Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones lineales, cuadráticas y logarítmicas empleando B02, B03, B04, B01 (con menos apariciones) y cocientes entre éstas @Ouma2020.
+:::: {.content-visible when-format="typst"}
+
+| Ecuación | Referencia |
+|:--|:-:|
+| $1.559e^{35.533 \cdot B03}$, $1.879e^{37.745(B03 \cdot B5)/(B04+B12)}$ | [@Ma2021] |
+| $2677.2 \cdot B04^{1.856}$ | [@Hossain2021] |
+| $969-1.5468 \cdot R_{1200nm}+2.07 \frac{B8A}{B02}$ | [@Najafzadeh2023] |
+| $y=-1.1+5.8 \frac{B02}{B04}$, $y=3.896-4.186 \frac{B02}{B03}$ | [@Allam2020] |
+| $y=37661 \cdot B8A^{2}+1845 \cdot B8A$, $y=531.5- \frac{B04}{0.88}$ | [@Luo2020] |
+
+: Características principales de algoritmos tradicionales para la estimación de turbidez. {#tbl-turb-trad .striped .hover tbl-colwidths="[80,20]"}
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+[Ver tabla completa en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#tbl-turb-trad)
+
+:::
+
+::::
+
+Múltiples modelos (lineal, logaritmos, inversa, cuadrática, exponencial, potencial) y plataformas (Sentinel-2, Landsat-5 y Landsat-8) emplean el cociente de bandas B04/B03 [@Shen2021].
+
+Modelos de estimación a partir de Sentinel-2 y Landsat-8 utilizan regresiones lineales, cuadráticas y logarítmicas empleando B02, B03, B04, B01 (con menos apariciones) y cocientes entre éstas [@Ouma2020].
 
 ### Métodos de aprendizaje automático
 
@@ -58,25 +77,47 @@ En los procesos de machine learning supervisado se utilizan diversos algoritmos 
 Dependiendo del tipo de datos que se usen para el entrenamiento, será de modelo de aprendizaje automático que se use.
 A grandes rasgos, existen tres tipos de modelos que se usan en el aprendizaje automático: aprendizaje supervisado , no supervisado y por refuerzo.
 
-Consultanto el trabajo de otros investigadores, se observa que utilizan principalmente el aprendizaje automático supervisado.
+Consultando el trabajo de otros investigadores, se observa que utilizan principalmente el aprendizaje automático supervisado.
 Este tipo aprendizaje supervisado utiliza un conjunto de entrenamiento para enseñar a los modelos a producir el resultado deseado. Este conjunto de datos de entrenamiento incluye entradas y salidas correctas, que permiten al modelo aprender con el tiempo. El algoritmo mide su precisión a través de la función de pérdida, ajustando hasta que el error se haya minimizado lo suficiente.
 
 Yang Zhe y otros, utilizaron como datos de entrada la reflectancia de superficie y datos de salida la turbidez, utilizaron los modelos SVR (support vector regression), random forest (RF) y eXtreme Gradiente Boostring (XGBoost).
-Los hiperparámetros de cada modelo se determinaron mediante una búsqueda en cuadrícula de validación cruzada en Scikit-Learn de Python @Yang2023.
+Los hiperparámetros de cada modelo se determinaron mediante una búsqueda en cuadrícula de validación cruzada en Scikit-Learn de Python [@Yang2023].
 
-Ma Yue y otros, utilizaron varios modelos de aprendizaje automático, usaron Python 3.7 tanto para la prediccion de la turbidez del agua y la optimición de la los hiperparámetros @Ma2021.
+Ma Yue y otros, utilizaron varios modelos de aprendizaje automático, usaron Python 3.7 tanto para la predicción de la turbidez del agua y la optimización de la los hiperparámetros [@Ma2021].
 
-Zhao y otros probaron 14 modelos de machine learning en un estanque de peces con un dispositvo de construcion propia, de los cuales ETR, Bagging, RFR, and ABR son los que presentaron un mejor desempeño en la estimación de la turbidez. Los algoritmos se implementaron utilizando Python 3.6 y bibliotecas de aprendizaje
-scikit @Zhao2022.
+Zhao y otros probaron 14 modelos de machine learning en un estanque de peces con un dispositivo de construction propia, de los cuales ETR, Bagging, RFR, and ABR son los que presentaron un mejor desempeño en la estimación de la turbidez. Los algoritmos se implementaron utilizando Python 3.6 y bibliotecas de aprendizaje
+scikit [@Zhao2022].
+
+:::: {.content-visible when-format="html"}
 
 ::: {.column-screen-right}
 
 |Modelo de machine learning|Cuerpo de agua|Métricas|Plataforma| Referencia |
 |:--|:--|:--|:--|:-:|
-|SVR, ELM ,BP ,CART ,GBT ,RF ,KNN|Lagos|RMSE, R<sup>2</sup>, MAE|Sentinel-MSI|@Ma2021|
-|eXtreme Gradient Boosting (XGBoost),  support vector regression (SVR), random forest (RF)|Lago|RMSE, R<sup>2</sup>, MAPE| Sentinel-2A/B y Landsat-8/9 |  @Yang2023 |
-| linear regression (LR), ridge regression (RR),  least absolute shrinkage and selection operator regression(LASSO), elastic net regression (ENR),  k-nearest neighbor regression (KNN), Gaussian process regression (GPR), decision tree regression (DTR), support vector regression (SVR), multilayer perceptron regression (MLP), adaptive boosting regression (ABR), gradient boosting regression (GBR), bootstrap aggregating regression (Bagging), random forest regression (RFR), and extreme tree regression (ETR) | Estanque de peces | MAE, MRSE, MAPE, R<sup>2</sup>, RE, Acc |Propia|  @Zhao2022 |
+|SVR, ELM ,BP ,CART ,GBT ,RF ,KNN|Lagos|RMSE, $R^{2}$, MAE|Sentinel-MSI|@Ma2021|
+|eXtreme Gradient Boosting (XGBoost),  support vector regression (SVR), random forest (RF)|Lago|RMSE, $R^{2}$, MAPE| Sentinel-2A/B y Landsat-8/9 |  @Yang2023 |
+| linear regression (LR), ridge regression (RR),  least absolute shrinkage and selection operator regression(LASSO), elastic net regression (ENR),  k-nearest neighbor regression (KNN), Gaussian process regression (GPR), decision tree regression (DTR), support vector regression (SVR), multilayer perceptron regression (MLP), adaptive boosting regression (ABR), gradient boosting regression (GBR), bootstrap aggregating regression (Bagging), random forest regression (RFR), and extreme tree regression (ETR) | Estanque de peces | MAE, MRSE, MAPE, $R^{2}$, RE, Acc |Propia| @Zhao2022 |
 
 : Características principales de algoritmos de aprendizaje automático para la estimación de turbidez. {#tbl-turb-machine .striped .hover tbl-colwidths="[50,13,13,14,10]"}
 
 :::
+
+::::
+
+:::: {.content-visible when-format="typst"}
+
+|Modelo de machine learning| Referencia |
+|:--|:-:|
+|SVR, ELM ,BP ,CART ,GBT ,RF ,KNN| [@Ma2021] |
+|eXtreme Gradient Boosting (XGBoost),  support vector regression (SVR), random forest (RF)| [@Yang2023] |
+| linear regression (LR), ridge regression (RR),  least absolute shrinkage and selection operator regression(LASSO), elastic net regression (ENR),  k-nearest neighbor regression (KNN), Gaussian process regression (GPR), decision tree regression (DTR), support vector regression (SVR), multilayer perceptron regression (MLP), adaptive boosting regression (ABR), gradient boosting regression (GBR), bootstrap aggregating regression (Bagging), random forest regression (RFR), and extreme tree regression (ETR) | [@Zhao2022] |
+
+: Características principales de algoritmos de aprendizaje automático para la estimación de turbidez. {#tbl-turb-machine .striped .hover tbl-colwidths="[80,20]"}
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+[Ver tabla completa en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#tbl-turb-machine)
+
+:::
+
+::::
