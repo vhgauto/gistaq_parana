@@ -105,32 +105,41 @@ https://mermaid.js.org/syntax/flowchart.html -->
 <!-- agregar transparencia a colores HEX https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4 -->
 <br>
 
-Este documento funciona como soporte del proyecto <b>Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital</b> (MSECRE0008604), desarrollado por el <b>Grupo de Investigación Sobre Temas Ambientales y Químicos</b> ([GISTAQ](https://www.instagram.com/gistaq.utn/)) de la <b>Universidad Tecnológica Nacional Facultad Regional Resistencia</b> ([UTN-FRRe](https://www.frre.utn.edu.ar)).
+Este documento funciona como soporte del proyecto **Estimar indicadores de calidad de agua en la cuenca media del río Paraná para el desarrollo de un algoritmo mediante técnicas de teledetección satelital** (MSECRE0008604), desarrollado por el **Grupo de Investigación Sobre Temas Ambientales y Químicos** ([GISTAQ](https://www.instagram.com/gistaq.utn/)) de la **Universidad Tecnológica Nacional Facultad Regional Resistencia** ([UTN-FRRe](https://www.frre.utn.edu.ar)).
 
-El mencionado proyecto forma parte de las tareas de investigación del MS. Víctor Gauto, en el marco del <b>Doctorado en Geomática y Sistemas Espaciales</b>, dictado por el [Instituto Gulich](https://ig.conae.unc.edu.ar), en conjunto con la <b>Universidad Nacional de Córdoba</b> ([UNC](https://www.unc.edu.ar/)) y la <b>Comisión Nacional de Actividades Espaciales</b> ([CONAE](https://www.argentina.gob.ar/ciencia/conae)).
+El mencionado proyecto forma parte de las tareas de investigación del MS. Víctor Gauto, en el marco del **Doctorado en Geomática y Sistemas Espaciales**, dictado por el [Instituto Gulich](https://ig.conae.unc.edu.ar), en conjunto con la **Universidad Nacional de Córdoba** ([UNC](https://www.unc.edu.ar/)) y la **Comisión Nacional de Actividades Espaciales** ([CONAE](https://www.argentina.gob.ar/ciencia/conae)).
 
-Asimismo, el doctorando cuenta con una beca CONICET radicada en el <b>Instituto de Investigaciones para el Desarrollo Territorial y del Hábitat Humano</b> ([IIDTHH](https://iidthh.conicet.gov.ar/)) de la <b>Universidad Nacional del Nordeste</b> ([UNNE](https://www.unne.edu.ar)).
+Asimismo, el doctorando cuenta con una beca CONICET radicada en el **Instituto de Investigaciones para el Desarrollo Territorial y del Hábitat Humano** ([IIDTHH](https://iidthh.conicet.gov.ar/)) de la **Universidad Nacional del Nordeste** ([UNNE](https://www.unne.edu.ar)).
 
-El presente sitio web contiene una introducción ([-@sec-introduccion]) al proyecto, seguido de la descripción del área de estudio ([-@sec-roi]). Hay un calendario de muestreos ([-@sec-muestreos]) y los resultados ([-@sec-resultados]) se muestran por sitio y característica fisicoquímica, seguido de las firmas espectrales ([-@sec-firmas-espectrales]). En la discusión ([-@sec-discusion]) se analizan trabajos referentes a turbidez, sólidos suspendidos y profundidad de disco de Secchi. Se indican el objetivo ([-@sec-objetivos]) general y específicos junto con las tareas informáticas de procesamiento ([-@sec-ejecucion]) de datos. Se proponen y analizan múltiples algoritmos ([-@sec-algoritmos]). Finalmente, la informacón de contacto ([-@sec-contacto]).
+El presente sitio web contiene una introducción ([-@sec-introduccion]) al proyecto, seguido de la descripción del área de estudio ([-@sec-roi]). Hay un calendario de muestreos ([-@sec-muestreos]) y los resultados ([-@sec-resultados]) se muestran por sitio y característica fisicoquímica, seguido de las firmas espectrales ([-@sec-firmas-espectrales]). En la discusión ([-@sec-discusion]) se analizan trabajos referentes a turbidez, sólidos suspendidos y profundidad de disco de Secchi. Se indican el objetivo ([-@sec-objetivos]) general y específicos. Luego, se encuentran los algoritmos propuestos y, finalmente, la informacón de contacto ([-@sec-contacto]).
 
 La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto de investigación para entender cómo registrar datos, visualizar resultados, evaluar algoritmos y que, además, sea utilizado como material de consulta general de la metodología.
 
 # Introducción {#sec-introduccion}
 
-La preservación del agua es fundamental para el desarrollo humano y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible @agenda2030, es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital, aplicadas a la calidad de los cuerpos de agua, han ido incrementándose en los últimos años verificando la viabilidad de los sensores satelitales @Bonansea2019. Dichas técnicas, que se pueden utilizar para desarrollar algoritmos que permiten estimar distintos parámetros fisicoquímicos del agua [@Gholizadeh2016; @Ferral2018a], requieren datos espectrales obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra, de la Agencia Espacial Europea (ESA), que consta de dos plataformas (S2A, S2B). El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica @Gorroño2017, los productos generados por S2--MSI son confiables @Phiri2020 y se han utilizado para estimar el color del agua @wangWaterColorSentinel22023, la concentración de clorofila-a @bramichImprovedRededgeChlorophylldetection2021 y la materia orgánica disuelta coloreada (CDOM) @liuRemoteSensingCDOM2021.
+La preservación del agua es fundamental para el desarrollo humano y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible [@agenda2030], es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital, aplicadas a la calidad de los cuerpos de agua, han ido incrementándose en los últimos años verificando la viabilidad de los sensores satelitales [@Bonansea2019]. Dichas técnicas, que se pueden utilizar para desarrollar algoritmos que permiten estimar distintos parámetros fisicoquímicos del agua [@Gholizadeh2016; @Ferral2018a], requieren datos espectrales obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra, de la Agencia Espacial Europea (ESA), que consta de dos plataformas (S2A, S2B). El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica [@Gorroño2017], los productos generados por S2--MSI son confiables [@Phiri2020] y se han utilizado para estimar el color del agua [@wangWaterColorSentinel22023], la concentración de clorofila-a [@bramichImprovedRededgeChlorophylldetection2021] y la materia orgánica disuelta coloreada (CDOM) [@liuRemoteSensingCDOM2021].
 
-Los ecosistemas de agua dulce son vulnerables a los cambios en la gestión de usos de la tierra, los impactos antrópicos @Lovino2018 y la variabilidad climática @Hestir2015. Estos ecosistemas están presentes en lagos, arroyos, ríos y humedales. La aplicación de técnicas de teledetección a las aguas superficiales continentales presenta un desafío debido a la extensión relativamente menor y la alta complejidad espacial. Tradicionalmente, las aguas continentales se estudian mediante el desarrollo de algoritmos que correlacionan las propiedades espectrales con los parámetros fisicoquímicos. Este proceso debe validarse a través de mediciones in situ @Liang2004.
+Los ecosistemas de agua dulce son vulnerables a los cambios en la gestión de usos de la tierra, los impactos antrópicos [@Lovino2018] y la variabilidad climática [@Hestir2015]. Estos ecosistemas están presentes en lagos, arroyos, ríos y humedales. La aplicación de técnicas de teledetección a las aguas superficiales continentales presenta un desafío debido a la extensión relativamente menor y la alta complejidad espacial. Tradicionalmente, las aguas continentales se estudian mediante el desarrollo de algoritmos que correlacionan las propiedades espectrales con los parámetros fisicoquímicos. Este proceso debe validarse a través de mediciones in situ [@Liang2004].
 
-Los algoritmos de teledetección, para recuperar las propiedades de las aguas superficiales, incluyen clorofila-a, sólidos suspendidos totales, turbidez y otras @Sagan2020a. Los modelos de regresión empírica se basan en ecuaciones lineales o exponenciales de reflectancia o radiancia detectadas remotamente @Chen2017. El desarrollo de un algoritmo empírico requiere un análisis estadístico entre la medición de los componentes o propiedades del agua y los datos radiométricos @ogashawaraRemoteSensingInland2017d. Para analizar dichas propiedades, esos algoritmos requieren campañas de campo y, debido a la presencia de componentes múltiples y complejos en las aguas, el desarrollo de modelos globales no es factible; por ende, un enfoque adecuado consistiría en desarrollar modelos regionales validados @yangReviewRemoteSensing2022.
+Los algoritmos de teledetección, para recuperar las propiedades de las aguas superficiales, incluyen clorofila-a, sólidos suspendidos totales, turbidez y otras [@Sagan2020a]. Los modelos de regresión empírica se basan en ecuaciones lineales o exponenciales de reflectancia o radiancia detectadas remotamente [@Chen2017]. El desarrollo de un algoritmo empírico requiere un análisis estadístico entre la medición de los componentes o propiedades del agua y los datos radiométricos [@ogashawaraRemoteSensingInland2017d]. Para analizar dichas propiedades, esos algoritmos requieren campañas de campo y, debido a la presencia de componentes múltiples y complejos en las aguas, el desarrollo de modelos globales no es factible; por ende, un enfoque adecuado consistiría en desarrollar modelos regionales validados [@yangReviewRemoteSensing2022].
 
-El Área Metropolitana del Gran Resistencia (AMGR), en el noreste de Argentina, es la principal área urbana de la provincia del Chaco e incluye cuatro ciudades y 423.000 habitantes, según el último censo de 2022 @indec2022. Está emplazada en el valle de inundación del río Paraná y se desarrolla principalmente en el interfluvio del río Negro y el riacho Arazá. Las lluvias o sequías continuas modifican el patrón de los ríos y arroyos, generando lagunas de meandros @PoideNeiff2003. Aunque el terreno del AMGR es plano, el ecosistema corresponde a un humedal y, como consecuencia, en el área urbana están insertos múltiples cursos y cuerpos de agua. En concordancia con esto, la estimación de la calidad del agua es sumamente relevante para evaluar el impacto humano en el ambiente, planificar medidas de corrección y evaluar sus efectos.
-
+El Área Metropolitana del Gran Resistencia (AMGR), en el noreste de Argentina, es la principal área urbana de la provincia del Chaco e incluye cuatro ciudades y 423.000 habitantes, según el último censo de 2022 [@indec2022]. Está emplazada en el valle de inundación del río Paraná y se desarrolla principalmente en el interfluvio del río Negro y el riacho Arazá. Las lluvias o sequías continuas modifican el patrón de los ríos y arroyos, generando lagunas de meandros [@PoideNeiff2003]. Aunque el terreno del AMGR es plano, el ecosistema corresponde a un humedal y, como consecuencia, en el área urbana están insertos múltiples cursos y cuerpos de agua. En concordancia con esto, la estimación de la calidad del agua es sumamente relevante para evaluar el impacto humano en el ambiente, planificar medidas de corrección y evaluar sus efectos.
 
 {{< include scripts_quarto/_area_de_estudio.qmd >}}
+
+:::: {.content-visible when-format="html"}
 
 ::: {.column-screen-right}
 ![Imagen satelital de la región de interés. Mapa superior: ubicación relativa a Argentina.](figuras/roi.png){#fig-roi}
 :::
+
+::::
+
+:::: {.content-visible when-format="typst"}
+
+![Imagen satelital de la región de interés. Mapa superior: ubicación relativa a Argentina.](figuras/roi.png){#fig-roi}
+
+::::
 
 La región de interés, donde se hacen las campañas de campo se muestra en la figura [-@fig-roi]. Los tres puntos señalados sobre el río Paraná se utilizaron para generar la figura [-@fig-boxplot-puntos].
 
@@ -138,9 +147,9 @@ La región de interés, donde se hacen las campañas de campo se muestra en la f
 
 El diagrama mostrado en la figura [-@fig-workflow] corresponde al flujo de trabajo para la obtención y generación de resultados.
 
-:::{.column-screen-right}
+:::: {.content-visible when-format="html"}
 
-<center>
+:::{.column-screen-right}
 
 ```{mermaid}
 %%| fig-cap: Flujo de trabajo.
@@ -173,15 +182,23 @@ flowchart LR
     linkStyle default stroke:#B86092,stroke-width:1px;
 ```
 
-</center>
-
 :::
+
+::::
+
+:::: {.content-visible when-format="typst"}
+
+![Workflow de trabajo](extras/workflow.png){#fig-workflow}
+
+::::
 
 # Muestreos {#sec-muestreos}
 
 Los muestreos, según lo permita la logística, se llevan a cabo en la fecha de adquisición de Sentinel-2 (S2-MSI) cada 5 días sobre la región de interés, con cielo despejado. El plan de adquisición actualizado puede [descargarse](https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-2/acquisition-plans) en formato `.kml`.
 
 En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del río Paraná. Los sitios son aproximadamente equidistantes entre sí y con las orillas.
+
+::::: {.content-visible when-format="html"}
 
 :::: {.grid}
 
@@ -207,7 +224,31 @@ En cada fecha se toman 8 muestras de agua sobre una transecta a lo largo del rí
 
 ::::
 
+:::::
+
+:::: {.content-visible when-format="typst"}
+
+|Fecha|Día|
+|:-:|:-:|
+| **`{r} tabla_adquisicion_tbl$Fecha[1]`** | **`{r} tabla_adquisicion_tbl$Día[1]`** |
+|`{r} tabla_adquisicion_tbl$Fecha[2]`|`{r} tabla_adquisicion_tbl$Día[2]`|
+|`{r} tabla_adquisicion_tbl$Fecha[3]`|`{r} tabla_adquisicion_tbl$Día[3]`|
+|`{r} tabla_adquisicion_tbl$Fecha[4]`|`{r} tabla_adquisicion_tbl$Día[4]`|
+|`{r} tabla_adquisicion_tbl$Fecha[5]`|`{r} tabla_adquisicion_tbl$Día[5]`|
+|`{r} tabla_adquisicion_tbl$Fecha[6]`|`{r} tabla_adquisicion_tbl$Día[6]`|
+|`{r} tabla_adquisicion_tbl$Fecha[7]`|`{r} tabla_adquisicion_tbl$Día[7]`|
+|`{r} tabla_adquisicion_tbl$Fecha[8]`|`{r} tabla_adquisicion_tbl$Día[8]`|
+|`{r} tabla_adquisicion_tbl$Fecha[9]`|`{r} tabla_adquisicion_tbl$Día[9]`|
+|`{r} tabla_adquisicion_tbl$Fecha[10]`|`{r} tabla_adquisicion_tbl$Día[10]`|
+|`{r} tabla_adquisicion_tbl$Fecha[11]`|`{r} tabla_adquisicion_tbl$Día[11]`|
+
+: **Fecha actual** y de los próximos 10 muestreos. {#tbl-adq .striped .hover tbl-colwidths="[20,20,15,15,15,15]" tbl-cap-location="bottom"}
+
+::::
+
 ## Metodología de muestreo
+
+:::: {.content-visible when-format="html"}
 
 ::: {.callout-note title="Mostrar" collapse=true}
 
@@ -231,7 +272,31 @@ La relación entre las unidades de turbidez es: $1~NTU = 0,25~EBC$.
 
 :::
 
+::::
+
+:::: {.content-visible when-format="typst"}
+El calendario completo de muestreos para el resto del año se encuentra en el siguiente [link](https://github.com/vhgauto/gistaq_parana/blob/main/calendario_2024.pdf).
+
+Las muestras de agua se toman en botellas de vidrio color caramelo de 1 litro y se registra la posición geográfica del sitio.
+
+In situ, se miden: pH, conductividad y profundidad de disco de Secchi (SDD). Luego, en el laboratorio se analizan turbidez y sólidos suspendidos totales (TSM). A continuación se describe cada parámetro fisicoquímico:
+
+* pH y conductividad (&micro;S/cm), a partir de un equipo multiparamétrico.
+
+* Profundidad de disco de Secchi (cm).
+
+* Sólidos suspendidos totales (ppm) por gravimetría, utilizando el método 2540 D. sólidos totales en suspensión secados a 103-105°C del Standard Methods (APHA, AWWA, WPCF, 2017, p.2-70), que emplea filtros de fibra de vidrio de 47 mm de diámetro y 0,5 &micro;m de poro.
+
+* Turbidez, a través de dos métodos:
+  - Colorimétrico (NTU), utilizando el equipo HACH, programa 95.
+  - Turbidímetro (EBC), que emplea el Hazemeter.
+
+La relación entre las unidades de turbidez es: $1~NTU = 0,25~EBC$.
+::::
+
 Para simplificar, se van a usar las siguientes siglas para denominar a las propiedades fisicoquímicas en el resto del presente documento.
+
+:::::: {.content-visible when-format="html"}
 
 ::::: {.callout-note appearance="simple" title=""}
 
@@ -259,36 +324,64 @@ Conductividad (&micro;S/cm)<br>
 
 :::::
 
+::::::
+
+:::: {.content-visible when-format="typst"}
+* *turb*, Turbidez (NTU)
+* *secchi*, Profundidad de disco de Secchi (cm)
+* *susp*, Sólidos suspendidos totales (ppm)
+* *cond*, Conductividad (&micro;S/cm)
+::::
+
 # Resultados {#sec-resultados}
 
 Se muestran las correlaciones lineales entre los parámetros espectrales y fisicoquímicos. De estos últimos, se incluye la serie temporal según el sitio de muestreo.
 
-Las firmas espectrales se encuentran en la siguiente sección ([$\S$@sec-firmas-espectrales]).
+Las firmas espectrales se encuentran en la siguiente sección ([-@sec-firmas-espectrales]).
 
 ## Sitios muestrales
 
-Se indican los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
+Se indican en el mapa interactivo ([-@fig-mapa-int]) los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
+
+::: {#fig-mapa-int}
 
 ```{r mapa_interactivo}
 #| column: screen-right
 #| warning: false
 #| fig-align: left
 #| fig-asp: 1
-#| fig-cap: Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
 
 mapa_interactivo
 ```
 
+Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
+
+:::
+
+:::: {.content-visible when-format="typst"}
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+[Ver mapa interactivo en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#fig-roi)
+
+:::
+
+::::
+
 <br>
-Actualmente, se realizaron <b>`r cantidad_fechas` muestreos</b>, en los que se recolectaron <b>`r cantidad_muetras` muestras de agua</b>.
+Actualmente, se realizaron **`r cantidad_fechas` muestreos**, en los que se recolectaron **`r cantidad_muetras` muestras de agua**.
 
 En todos los casos, no se apreció la presencia de nubes sobre los puntos de toma de muestras.
 
-Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la <b style='color:`r c1`'>orilla chaqueña</b> y finalizando en la <b style='color:`r c2`'>costa de Corrientes</b>.
+Los ocho sitios muestrales se nombran correlativamente de `P1` a `P8`, iniciando en la [**orilla chaqueña**]{style="color:`{r} c1`"} y finalizando en la [**costa de Corrientes**]{style="color:`{r} c2`"}.
 
 ## Datos fisicoquímicos
 
-Las siguientes figuras muestran la evolución de las propiedades fisicoquímicos a lo largo de la longitud geográfica entre orillas y la fecha de muestreo.
+Las siguientes figuras ([-@fig-prop-fisico]) muestran la evolución de las propiedades fisicoquímicos a lo largo de la longitud geográfica entre orillas y la fecha de muestreo.
+
+::::: {.content-visible when-format="html"}
+
+:::: {#fig-prop-fisico}
 
 ::: {.panel-tabset}
 
@@ -324,9 +417,31 @@ lista_figura_evolucion_lab[[5]]
 
 :::
 
-Tabla de coeficientes de correlación lineal <b>R</b> (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
+Evolución espacial y temporal de las propiededes del agua.
+
+::::
+
+:::::
+
+:::: {.content-visible when-format="typst"}
+
+::: {#fig-prop-fisico}
+![](figuras/datos_fisicoquimicos.png){width="50%" fig-align="center"}
+:::
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+[Ver figuras interactivas en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#datos-fisicoquímicos)
+
+:::
+
+::::
+
+Tabla de coeficientes de correlación lineal **R** (Pearson) entre pares de parámetros fisicoquímicos. Los valores se acomodan como una matriz triangular para evitar repeticiones.
 
 La figura [-@fig-heatmap-lab] muestra el coeficiente de correlación lineal de Pearson ($r$) entre pares de parámetros fisicoquímicos.
+
+:::: {.content-visible when-format="html"}
 
 ```{r corr_laboratorio}
 #| fig-cap: Mapa de calor de las correlaciones lineales entre parámetros fisicoquímicos. Con &#9733; se indica significancia estadística ($pvalor<0,05$)
@@ -336,9 +451,31 @@ La figura [-@fig-heatmap-lab] muestra el coeficiente de correlación lineal de P
 heatmap_lab
 ```
 
+::::
+
+:::: {.content-visible when-format="typst"}
+
+![Mapa de calor de las correlaciones lineales entre parámetros fisicoquímicos. Con &#9733; se indica significancia estadística ($pvalor<0,05$)](figuras/r.png){width="50%" fig-align="center" #fig-heatmap-lab}
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+[Ver figura interactiva en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#fig-heatmap-lab1)
+
+:::
+
+::::
+
 Es notable que el pH no se correlaciona con ninguna otra variable. Existe una correlación positiva ($r>0,5$) entre la *turb* con *cond* y *susp*. En contraste, *secchi* se correlaciona de forma negativa ($r<0,5$) con *turb*, *susp* y *cond*.
 
-Las correlaciones mostradas en la figura [-@fig-heatmap-lab] pueden visualizarse en las siguientes figuras. La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
+Las correlaciones mostradas en la figura [-@fig-heatmap-lab] pueden visualizarse en las siguientes figuras ([-@fig-identidad]). La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
+
+```{r}
+cap1 <- "UUU"
+```
+
+:::::: {.content-visible when-format="html"}
+
+::::: {#fig-identidad}
 
 :::: {.panel-tabset}
 
@@ -384,53 +521,84 @@ Las correlaciones mostradas en la figura [-@fig-heatmap-lab] pueden visualizarse
 
 ::::
 
-Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se  divide el conjunto de datos en <b>lado Chaco</b> o <b>lado Corrientes</b>, según si la longitud geográfica de las observaciones son menores o mayores a la longitud media, respectivamente.
+Figuras que muestran la relación entre parámetros. La [línea de trazos]{style='color: `{r} c1`'} indica el ajuste lineal como referencia.
 
-```{r}
-cap1 <- glue(
-  "<br><br><br>{simbolo_sig} $=pvalor<0.05$<br><br>",
-  "Existe diferencia significativa entre los grupos."
-)
-```
+:::::
 
+::::::
 
-:::: {.panel-tabset}
+:::: {.content-visible when-format="typst"}
+
+::: {#fig-identidad}
+![](figuras/identidad_cond_vs_turb.png){width="50%" fig-align="center"}
+
+Figuras que muestran la relación entre parámetros. La [línea de trazos]{style='color: `{r} c1`'} indica el ajuste lineal como referencia.
+
+:::
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+[Ver figuras en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#datos-fisicoquímicos)
+
+:::
+
+::::
+
+Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se  divide el conjunto de datos en **lado Chaco** o **lado Corrientes**, según si la longitud geográfica de las observaciones son menores o mayores a la longitud media, respectivamente.
+
+::::: {.content-visible when-format="html"}
+
+:::: {#fig-boxplot-lado}
+
+::: {.panel-tabset}
 
 ## <i>turb</i>
 
 ![](figuras/lado_turb.png)
 
-[`r cap1`]{.aside}
-
 ## <i>secchi</i>
 
 ![](figuras/lado_secchi.png)
-
-[`r cap1`]{.aside}
 
 ## <i>susp</i>
 
 ![](figuras/lado_sol_sus.png)
 
-[`r cap1`]{.aside}
-
 ## <i>cond</i>
 
 ![](figuras/lado_cond.png)
-
-[`r cap1`]{.aside}
 
 ## pH
 
 ![](figuras/lado_ph.png)
 
-[`r cap1`]{.aside}
+:::
+
+[&#9733;]{style='color: `{r} c1`'} $=pvalor<0.05$, por lo tanto, existe diferencia significativa entre los grupos
 
 ::::
 
+:::::
+
+:::: {.content-visible when-format="typst"}
+
+::: {#fig-boxplot-lado}
+![ &#9733; $=pvalor<0.05$, existe diferencia significativa entre los grupos](figuras/lado_turb.png){width="50%" fig-align="center"}
+:::
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+[Ver el resto de las figuras en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#datos-fisicoquímicos)
+
+:::
+
+::::
+
+La figura [-@fig-boxplot-lado] muestra que existe diferencias significativas entre ambas orillas para *turb*, *secchi*, *susp* y *cond*. pH se mantiene homogéneo a lo largo de la transecta al río Paraná.
+
 # Firmas espectrales {#sec-firmas-espectrales}
 
-La reflectancia de superficie ($\rho_{r}$) @chuvieco1996 se define como el cociente entre la radiación reflejada por la superficie de interés ($\Phi_{r}$) y la radiación solar incidente ($\Phi_{i}$), a una longitud de onda específica ($\lambda$), de acuerdo a la ecuación [-@eq-reflect].
+La reflectancia de superficie ($\rho_{r}$) [@chuvieco1996] se define como el cociente entre la radiación reflejada por la superficie de interés ($\Phi_{r}$) y la radiación solar incidente ($\Phi_{i}$), a una longitud de onda específica ($\lambda$), de acuerdo a la ecuación [-@eq-reflect].
 
 $$
 \rho_{r}(\lambda)=\frac{\Phi_{r}(\lambda)}{\Phi_{i}(\lambda)}
@@ -438,7 +606,7 @@ $$ {#eq-reflect}
 
 Por definición, $\rho_{r}$ adopta el rango entre $0-1$.
 
-Una definición más rigurosa @Chen2017 indica que la reflectancia de sensado remoto ($R_{rs}(\lambda)$) se expresa como el cociente entre la radiancia saliente del agua verticalmente ascendente ($L_{w}(\lambda)$) y la irradiancia verticalmente descendente sobre la superficie del agua ($E_d(0^{+})$), a una longitud de onda $\lambda$, según la ecuación [-@eq-r-rs].
+Una definición más rigurosa [@Chen2017] indica que la reflectancia de sensado remoto ($R_{rs}(\lambda)$) se expresa como el cociente entre la radiancia saliente del agua verticalmente ascendente ($L_{w}(\lambda)$) y la irradiancia verticalmente descendente sobre la superficie del agua ($E_d(0^{+})$), a una longitud de onda $\lambda$, según la ecuación [-@eq-r-rs].
 
 $$
 R_{rs}(\lambda)=\frac{L_{w}(\lambda)}{E_{d}(0^{+})}
@@ -446,9 +614,13 @@ $$ {#eq-r-rs}
 
 Con los pares ordenados de $R_{rs}$ y $\lambda$ para las bandas de S2-MSI, se construyen figuras que muestran el comportamiento espectral del agua, llamadas **firmas espectrales**, las cuales son específicas para cada cobertura y dan cuenta de algunas de sus propiedades.
 
-A partir de los valores de píxel de las reflectancias de superficie ([$\S$@sec-base-de-datos]) se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná, sirven para ver el cambio entre costas.
+A partir de los valores de píxel de las reflectancias de superficie se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná, sirven para ver el cambio entre costas.
 
-Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta.
+Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta (figura [-@fig-firma-espectral]).
+
+::::: {.content-visible when-format="html"}
+
+:::: {#fig-firma-espectral}
 
 ::: {.panel-tabset}
 
@@ -484,42 +656,61 @@ lista_firma_espectral[[5]]
 
 :::
 
-<br>
-Las curvas de <b style='color:`r c1`'>color violeta</b> corresponden a los sitios cercanos a la orilla chaqueña. Los puntos próximos a la costa correntina son de <b style='color:`r c2`'>color verde</b>.
+Firmas espectrales por sitio muestral y fecha.
+
+::::
+
+:::::
+
+:::: {.content-visible when-format="typst"}
+
+::: {#fig-firma-espectral}
+![](figuras/firma_espectral.png){width="50%" fig-align="center"}
+
+Firmas espectrales por sitio muestral y fecha.
+:::
+
+::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+
+[Ver figuras interactivas en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#sec-firmas-espectrales)
+
+:::
+
+::::
+
+Las curvas de [**color violeta**]{style='color: `{r} c1`'} corresponden a los sitios cercanos a la orilla chaqueña. Los puntos próximos a la costa correntina son de [**color verde**]{style='color: `{r} c2`'}.
 
 Generalmente, las firmas espectrales del lado chaqueño presentan los mayores valores. A medida que los sitios de muestreo se acercan al lado correntino, las firmas espectrales comienzan a aplanarse.
 
 El efecto de las características cambiantes del agua no es el mismo para las bandas espectrales de S2-MSI, tal como se muestra en la figura [-@fig-boxplot-firma-espectral].
 
-La distribución (en formato de gráfico de cajas) de R<sub>rs</sub> por banda, indica que en ciertas bandas se observa un efecto de la composición del agua más que en otras.
+La distribución (en formato de gráfico de cajas) de $R_{rs}$ por banda, indica que en ciertas bandas se observa un efecto de la composición del agua más que en otras.
 
 Las bandas B11 y B12 muetran una distribución estrecha, con bajos valores de reflectancia, a pesar de los cambios observados en el agua. En contraste, las bandas B04 y B05 abarcan un mayor rango de respuesta espectral y valores altos.
 
 ![Distribución de reflectancia de superficie por banda espectral.](figuras/boxplot_reflect.png){#fig-boxplot-firma-espectral width=60%}
 
-Se seleccionaron tres sitios fijos, mostrados en la figura @fig-roi, para extraer los valores de R<sub>rs</sub> y evaluar el cambio en la respuesta espectral a lo largo del río Paraná.
+Se seleccionaron tres sitios fijos, mostrados en la figura [-@fig-roi], para extraer los valores de $R_{rs}$ y evaluar el cambio en la respuesta espectral a lo largo del río Paraná.
 
 La figura [-@fig-boxplot-puntos] muestra que las características de la composición del agua tiene poca repercusión para las bandas B11 y B12, dado que se mantienen constantes en los puntos extremos y en el medio del curso de agua.
 
-En cambio, las bandas B04 y B05 muestran una notable disminución de la R<sub>rs</sub> en dirección Chaco-Corrientes.
+En cambio, las bandas B04 y B05 muestran una notable disminución de la $R_{rs}$ en dirección Chaco-Corrientes.
 
-
-```{r}
-cap2 <- glue(
-  "Distribución de R<sub>rs</sub> a partir de gráficos de cajas por sitio ",
-  "fijo y banda espectral. {simbolo_sig} en la esquina de cada panel marca ",
-  "diferencia significativa ($pvalor<0.05$) entre los conjuntos de la costa ",
-  "<b style='color: {c1}'>chaqueña</b> y ",
-  "<b style='color: {c2}'>correntina</b>."
-)
-```
-
+:::: {.content-visible when-format="html"}
 
 ::: {.column-screen-right}
-![`r cap2`](figuras/puntos_boxplot.png){#fig-boxplot-puntos}
+![Distribución de $R_{rs}$ a partir de gráficos de cajas por sitio fijo y banda espectral. [&#9733;]{style='color: `{r} c1`'} en la esquina de cada panel marca diferencia significativa ($pvalor<0.05$) entre los conjuntos de la costa [**chaqueña**]{style='color: `{r} c1`'} y [**correntina**]{style='color: `{r} c2`'}.](figuras/puntos_boxplot.png){#fig-boxplot-puntos}
 :::
 
+::::
+
+:::: {.content-visible when-format="typst"}
+![Distribución de $R_{rs}$ a partir de gráficos de cajas por sitio fijo y banda espectral. [&#9733;]{style='color: `{r} c1`'} en la esquina de cada panel marca diferencia significativa ($pvalor<0.05$) entre los conjuntos de la costa [**chaqueña**]{style='color: `{r} c1`'} y [**correntina**]{style='color: `{r} c2`'}.](figuras/puntos_boxplot.png){#fig-boxplot-puntos width="50%" fig-align="center"}
+::::
+
 Las características espectrales de S2-MSI se muestran en la siguiente tabla:
+
+:::: {.content-visible when-format="html"}
 
 ::: {.column-body-outset-right}
 
@@ -544,6 +735,31 @@ Las características espectrales de S2-MSI se muestran en la siguiente tabla:
 
 :::
 
+::::
+
+:::: {.content-visible when-format="typst"}
+
+|  |  | Sentinel-2A | | Sentinel-2B | |
+|:--|--:|--:|--:|--:|--:|
+| **Banda** | **Resolución espacial (m)** | **Longitud de onda (nm)** | **Ancho de banda (nm)** | **Longitud de onda (nm)** | **Ancho de banda (nm)** |
+| B01 (aerosol) | 60 | 442,7 | 20 | 442,3 | 20 |
+| B02 (blue) | 10 | 492,7 | 65 | 492,3 | 65 |
+| B03 (green) | 10 | 559,8 | 35 | 558,9 | 35 |
+| B04 (red) | 10 | 664,6 | 38 | 664,9 | 31 |
+| B05 (red edge) | 20 | 794,1 | 14 | 703,8 | 15 |
+| B06 | 20 | 748,5 | 14 | 739,1 | 13 |
+| B07 | 20 | 782,8 | 19 | 779,7 | 19 |
+| B08 (NIR) | 10 | 832,8 | 105 | 832,9 | 104 |
+| B8A | 20 | 864,7 | 21 | 864,0 | 21 |
+| B09 | 60 | 945,1 | 19 | 943,2 | 20 |
+| B10 | 60 | 1373,5 | 29 | 1376,9 | 29 |
+| B11 (SWIR 1) | 20 | 1613,7 | 90 | 1616,4 | 94 |
+| B11 (SWIR 2) | 20 | 2292,4 | 174 | 2185,7 | 184 |
+
+: Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B. {#tbl-s2msi .striped .hover tbl-colwidths="[20,20,15,15,15,15]" tbl-cap-location="bottom"}
+
+::::
+
 # Discusión {#sec-discusion}
 
 Esta sección recolecta información bibliográfica referente a parámetros de laboratorio estimados mediante teledetección satelital.
@@ -566,7 +782,7 @@ $$
 
 Estas expresiones permiten evaluar la contribución de las bandas espectrales, y sus combinaciones, al valor de la propiedad fisicoquímica estimada.
 
-Son usuales las expresiones que incorporan índices espectrales, sensibles a alguna característica del agua, como ser NDCI (índice normalizado de diferencia de clorofila) [@Mishra2012; @Buma2020], NDTI (índice normalizado de diferencia de turbidez) @Lacaux2007, entre otros.
+Son usuales las expresiones que incorporan índices espectrales, sensibles a alguna característica del agua, como ser NDCI (índice normalizado de diferencia de clorofila) [@Mishra2012; @Buma2020], NDTI (índice normalizado de diferencia de turbidez) [@Lacaux2007], entre otros.
 
 * Aprendizaje automático
 
@@ -582,15 +798,27 @@ Las técnicas de aprendizaje automático permiten encontrar relaciones entre las
 
 El objetivo principal del proyecto de investigación es:
 
+:::: {.content-visible when-format="html"}
+
 ::: {.callout-note appearance="simple" icon=false}
-<p style='font-size:1.1rem'>
+<p style='font-size:1.1em'>
 Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos de campo.
 </p>
 :::
 
-## Objetivos específicos
+::::
 
-::: {.callout-note title="Mostrar" collapse=true}
+:::: {.content-visible when-format="typst"}
+
+::: {.block stroke='rgb("#2780E3")' inset="8pt" radius="4pt"}
+
+Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos de campo.
+
+:::
+
+::::
+
+## Objetivos específicos
 
 * Seleccionar un sector de la cuenca media del río Paraná, en la confluencia de los ríos Paraguay-Paraná, y en la toma de agua de la empresa potabilizadora de la ciudad de Resistencia.
 
@@ -612,150 +840,15 @@ Modelar la calidad del agua en una porción de la cuenca media del río Paraná 
 
 * Formar RRHH en el área específica.
 
-:::
-
 El desarrollo de algoritmos empíricos requiere de datos espectrales y fisicoquímicos del agua, la propuesta de modelos candidatos, la selección final de los modelos y la validación de los mismos. Luego, la generación de mapas para evaluar la distribución espacial de las propiedades.
 
 Se pretende automatizar la descarga, extracción y almacenamiento de los datos espectrales y fisicoquímicos del agua en los sitios de muestreo, junto con las coordenadas geográficas.
 
 A medida que el proyecto avance, los resultados parciales serán registrados en el presente sitio web, para su seguimiento y revisión por parte de los integrantes.
 
-# Ejecución {#sec-ejecucion}
-
-::: {.callout-note title="Mostrar" collapse=true}
-
-El proyecto está gestionado mediante el paquete [`targets`](https://books.ropensci.org/targets/). Para ejecutar todas las funciones, correr en la consola:
-
-```{r tar_make}
-#| eval: false
-#| echo: true
-
-targets::tar_make()
-```
-
-Esto genera una ejecución en cadena de múltiples funciones que permiten la obtención de datos espectrales y fisicoquímicos para la generación y almacenamiento de resultados.
-
-Utilizar `targets` permite asegurar el orden correcto de ejecución y facilita la resolución de potenciales problemas.
-
-## Funciones
-
-El archivo `_targets.R` contiene los paquetes necesarios y las funciones a ejecutar, en el orden adecuado y las relaciones entre sí.
-
-Para visualizar las dependencias y el estado actual entre funciones correr:
-
-```{r tar_viz}
-#| eval: false
-#| echo: true
-
-targets::tar_visnetwork()
-```
-
-```{r grafo_funciones}
-#| fig-cap: Grafo de dependencias.
-#| label: fig-visnetwork
-
-targets::tar_visnetwork()
-```
-
-La figura es interactiva y pueden seleccionarse los nodos para identificar las dependencias.
-
-## Creación de objetivos
-
-Para generar nuevos objetivos, hay que editar el archivo `_targets.R` agregando un nuevo elemento a `list()`:
-
-```{r tar_target}
-#| eval: false
-#| echo: true
-
-targets::tar_target(
-  names = nombre_de_objetivo,
-  command = funcion()
-)
-
-```
-
-La `funcion()` se desarrolla en el archivo `scripts/funciones.R`. En caso de hacer el seguimiento de archivos agregar el argumento `format = "file"`.
-
-Los objetivos se muestran como círculos (`r icono_circulo`) en el [grafo -@fig-visnetwork] de dependencias.
-
-## Datos
-
-Los datos generados son del tipo archivo de texto (`.csv`) y ráster (`.tif`).
-
-### Bases de datos {#sec-base-de-datos}
-
-La ejecución de `targets` tiene como propósito ([$\S$@sec-objetivos]) la obtención de los datos espectrales y fisicoquímicos de los sitios de muestreo sobre el río Paraná.
-
-* Datos espectrales, `datos/base_de_datos_gis.csv`
-
-El archivo de texto posee los valores de reflectancia de superficie (entre $0 - 1$) para cada banda de S2-MSI. Se generan dos valores para cada sitio: <b>1x1</b>, que consiste en el valor exacto del píxel; y <b>3x3</b>, que toma la media de una ventana de píxeles alrededor del píxel central.
-
-Se incluye la fecha, el número de sitio y las coordenadas geográficas en el sistema EPSG:4326, en latitud y longitud.
-
-* Datos fisicoquímicos, `datos/base_de_datos_lab.csv`
-
-Sobre el curso de agua se obtienen pH, conductividad, profundidad de disco de Secchi y las coordenadas geográficas. En laboratorio se miden turbidez por dos métodos: colorimétrico (HACH) y turbidímetro (Hazemeter), y sólidos suspendidos por gravimetría.
-
-### Recortes ráster
-
-Los productos S2-MSI son recortados a la región de interés, alrededor del [Puente Chaco-Corrientes](https://www.openstreetmap.org/#map=15/-27.4687/-58.8608).
-
-Se genera un stack con las bandas de interés y se almacena con el nombre de la fecha correspondiente en la carpeta `recorte/` con formato `.tif`.
-
-## Entorno de ejecución
-
-Definir las versiones de los paquetes utilizados en el presente proyecto es relevante ya que permite asegurar la reproducibilidad de los resultados. Para tal fin se emplea el paquete [`renv`](https://rstudio.github.io/renv/).
-
-La instalación de paquetes se realiza de manera tradicional:
-
-```{r install-pack}
-#| eval: false
-#| echo: true
-
-install.packages("nombre_del_paquete")
-
-```
-
-Cada vez que se instale, actualice o remueva un nuevo paquete ejecutar en la consola:
-
-```{r renv-snap}
-#| eval: false
-#| echo: true
-
-renv::snapshot()
-
-```
-
-Esto actualiza el archivo `renv.lock` con la información de cada paquete. Para verificar el estado actual de `renv`, correr:
-
-```{r renv-status}
-#| eval: false
-#| echo: true
-
-renv::status()
-```
-
-## Quarto
-
-El presente sitio web fue desarrollado con la herramienta [Quarto](https://quarto.org/). Para generar el sitio web se debe renderizar el archivo `index.qmd` que produce `index.html`.
-
-La publicación se lleva a cabo en [Quarto Pub](https://quartopub.com/). Los datos de publicación se registran en el archivo `_publish.yml`.
-
-Para regenerar el `.html` e inmediatamente publicar el sitio web, correr en la terminal:
-
-```{.bash}
-quarto publish index.qmd
-```
-
-En la terminal se debe elegir la cuenta asociada a Quarto Pub.
-
-:::
-
 # Algoritmos {#sec-algoritmos}
 
-El desarrollo de los algoritmos para la estimación de indicadores de calidad del agua requiere la combinación de datos espectrales y fisicoquímicos.
-
-Se proponen múltiples modelos para la estimación de parámetros. Se siguen los lineamientos de [`tidymodels`](https://www.tmwr.org/) para el entrenamiento y validación de los modelos.
+El desarrollo de los algoritmos...
 
 # Contacto {#sec-contacto}
 
@@ -774,38 +867,14 @@ Becarios:
 * Víctor Gómez
 * Bruno Lossada Dusset
 
-Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://vhgauto.quarto.pub/gistaq-parana/).
+<!-- Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://vhgauto.quarto.pub/gistaq-parana/).
 
-Sitio web desarrollado y mantenido por: <b>Víctor Gauto</b>. [{{< fa envelope >}}](mailto:victor.gauto@ca.frre.utn.edu.ar), [{{< fa brands github >}}](https://github.com/vhgauto).
+Sitio web desarrollado y mantenido por: **Víctor Gauto**. [{{< fa envelope >}}](mailto:victor.gauto@ca.frre.utn.edu.ar), [{{< fa brands github >}}](https://github.com/vhgauto).
 
-Grupo de Investigación Sobre Temas Ambientales y Químicos (<b>GISTAQ</b>). [{{< fa envelope >}}](mailto:gistaq@ca.frre.utn.edu.ar), [{{< fa brands instagram >}}](https://www.instagram.com/gistaq.utn/), [{{< fa brands facebook >}}](https://www.facebook.com/GISTAQ/).
+Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**). [{{< fa envelope >}}](mailto:gistaq@ca.frre.utn.edu.ar), [{{< fa brands instagram >}}](https://www.instagram.com/gistaq.utn/), [{{< fa brands facebook >}}](https://www.facebook.com/GISTAQ/). -->
 
-<br>
+Los archivos que generan este sitio web están disponibles en [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://vhgauto.quarto.pub/gistaq-parana/)
 
-:::: {.column-screen-inset}
+Sitio web desarrollado y mantenido por: **Víctor Gauto**. [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:victor.gauto@ca.frre.utn.edu.ar)  [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/vhgauto)
 
-<center>
-
-::: {.eqi-container}
-
-![](extras/logo-gistaq.png){height="50px"}
-
-![](extras/logo-utn-frre.png){height="50px"}
-
-![](extras/logo-gulich.png){height="50px"}
-
-![](extras/logo-conae.png){height="50px"}
-
-![](extras/logo-unc.png){height="50px"}
-
-![](extras/logo-iidthh.png){height="50px"}
-
-![](extras/logo-conicet.png){height="50px"}
-
-![](extras/logo-unne.png){height="50px"}
-
-:::
-
-</center>
-
-::::
+Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**). [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:gistaq@ca.frre.utn.edu.ar)  [[&#xf16d;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.instagram.com/gistaq.utn/)  [[&#xf09a;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.facebook.com/GISTAQ/).
