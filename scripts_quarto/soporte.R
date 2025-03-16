@@ -34,24 +34,24 @@ c11 <- "#EDEDED" # "grey93"
 # JetBrains Mono
 systemfonts::register_font(
   name = "jet",
-  plain = "extras/JetBrainsMonoNLNerdFontMono-Regular.ttf"
+  plain = "fuentes/JetBrainsMonoNLNerdFontMono-Regular.ttf"
 )
 
 # Ubuntu
 systemfonts::register_font(
   name = "ubuntu",
-  plain = "extras/Ubuntu-Regular.ttf"
+  plain = "fuentes/Ubuntu-Regular.ttf"
 )
 
 # para el texto estático de las figuras con {ggplot2}
 font_add(
   family = "ubuntu",
-  regular = "extras/Ubuntu-Regular.ttf"
+  regular = "fuentes/Ubuntu-Regular.ttf"
 )
 
 font_add(
   family = "jet",
-  regular = "extras/JetBrainsMonoNLNerdFontMono-Regular.ttf"
+  regular = "fuentes/JetBrainsMonoNLNerdFontMono-Regular.ttf"
 )
 
 showtext_auto()
