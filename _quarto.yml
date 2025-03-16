@@ -24,9 +24,16 @@ execute:
   freeze: auto
   warning: false
   echo: true
-  cache: true
+  cache: false
 
 format:
+  typst:
+    bibliography: biblio/bibliografia.bib
+    csl: biblio/ieee.csl
+    lang: es
+    number-sections: true
+    font-paths: fuentes
+    papersize: a4
   html:
     embed-resources: false
     highlight-style: kate
