@@ -38,7 +38,10 @@ $body-color: $cn;
 
 #title-block-header a {
     text-decoration: none;
-    color: $cn;
+    color: lighten($color: $cn, $amount: 30);
+    &:hover {
+      color: $cn;
+    }
 }
 
 .eqi-container {
@@ -48,10 +51,12 @@ $body-color: $cn;
 
 #title-block-header.quarto-title-block.default .keywords .block-title, #title-block-header.quarto-title-block.default .description .block-title, #title-block-header.quarto-title-block.default .abstract .block-title {
   font-weight: bold;
+  font-size: 1.01em;
 }
 
 #title-block-header.quarto-title-block.default .quarto-title-meta-heading {
   font-weight: bold;
+  font-size: 1.01em;
 }
 
 .quarto-title-banner {
