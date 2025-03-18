@@ -94,7 +94,7 @@ f_firma_espectral <- function(x) {
       strip.background = element_blank(),
       strip.text = element_markdown(
         family = "jet", size = 7, margin = margin(b = 3)),
-      legend.background = element_rect(fill = c10, color = NA),
+      legend.background = element_rect(fill = NA, color = NA),
       legend.key = element_rect(fill = NA, color = NA),
       legend.key.size = unit(1, "mm"),
       legend.position = "top",
@@ -109,7 +109,7 @@ f_firma_espectral <- function(x) {
 
   figura_evolucion_gis <- girafe(
     ggobj = g,
-    bg = c10,
+    bg = "transparent",
     options = list(
       opts_hover(
         css = girafe_css(css = "")

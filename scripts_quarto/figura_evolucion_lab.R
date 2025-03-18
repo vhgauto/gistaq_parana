@@ -92,14 +92,14 @@ f_figura_evolucion_lab <- function(parametro) {
       legend.text = element_text(
         family = "ubuntu", size = 12, margin = margin(r = 10, l = 3)
       ),
-      legend.background = element_rect(fill = c10, color = NA),
+      legend.background = element_rect(fill = NA, color = NA),
       legend.key = element_rect(fill = NA, color = NA),
       legend.key.spacing.x = unit(.3, "cm")
     )
 
   gg_int <- girafe(
     ggobj = g,
-    bg = c10,
+    bg = "transparent",
     options = list(
       opts_hover(
         css = girafe_css(
@@ -130,6 +130,6 @@ lista_figura_evolucion_lab <- map(param_unid_v, f_figura_evolucion_lab)
 # datos -------------------------------------------------------------------
 
 cantidad_fechas <- length(unique(d$fecha))
-cantidad_muetras <- d |>
+cantidad_muestras <- d |>
   filter(str_detect(param, "turb")) |>
   nrow()

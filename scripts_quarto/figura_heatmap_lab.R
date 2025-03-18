@@ -57,12 +57,12 @@ e <- inner_join(
   mutate(term = factor(term, levels = param_v)) |>
   mutate(term = fct_rev(term)) |>
   mutate(param = factor(param, levels = param_v)) |>
-  mutate(es_significativo = pvalor < .05) |> 
-  mutate(label = if_else(es_significativo, "&#9733;", NA)) |> 
-  mutate(id = row_number()) |> 
+  mutate(es_significativo = pvalor < .05) |>
+  mutate(label = if_else(es_significativo, "&#9733;", NA)) |>
+  mutate(id = row_number()) |>
   mutate(r_label = paste0("r: ", f_formato(r)))
 
-g <- e |> 
+g <- e |>
   ggplot(
     aes(term, param, fill = r)
   ) +
@@ -98,7 +98,7 @@ g <- e |>
 
 heatmap_lab <- girafe(
   ggobj = g,
-  bg = c10,
+  bg = "transparent",
   options = list(
     opts_hover(
       css = girafe_css(
