@@ -30,9 +30,9 @@ Este parámetro, medido mediante sensores remotos, nos da información sobre el 
 
 : Características principales de algoritmos tradicionales para la estimación de sólidos suspendidos. {#tbl-solsus-trad .striped .hover tbl-colwidths="[80,20]"}
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
-[Ver tabla completa en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#tbl-solsus-trad)
+[Ver tabla completa en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#tbl-solsus-trad)
 
 :::
 
@@ -78,9 +78,9 @@ El aprendizaje automático es esencial para mejorar la precisión y rapidez en e
 
 : Características principales de algoritmos de aprendizaje automático para la estimación de sólidos suspendidos. {#tbl-solsus-machine .striped .hover tbl-colwidths="[80,20]"}
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
-[Ver tabla completa en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#tbl-solsus-machine)
+[Ver tabla completa en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#tbl-solsus-machine)
 
 :::
 

@@ -45,9 +45,9 @@ Existe una relación inversa entre la Turbidez y la profundidad del disco de Sec
 
 : Características principales de algoritmos tradicionales para la estimación de turbidez. {#tbl-turb-trad .striped .hover tbl-colwidths="[80,20]"}
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
-[Ver tabla completa en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#tbl-turb-trad)
+[Ver tabla completa en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#tbl-turb-trad)
 
 :::
 
@@ -114,9 +114,9 @@ scikit [@Zhao2022].
 
 : Características principales de algoritmos de aprendizaje automático para la estimación de turbidez. {#tbl-turb-machine .striped .hover tbl-colwidths="[80,20]"}
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
-[Ver tabla completa en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#tbl-turb-machine)
+[Ver tabla completa en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#tbl-turb-machine)
 
 :::
 
