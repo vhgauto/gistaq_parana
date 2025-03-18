@@ -111,7 +111,7 @@ El mencionado proyecto forma parte de las tareas de investigación del MS. Víct
 
 Asimismo, el doctorando cuenta con una beca CONICET radicada en el **Instituto de Investigaciones para el Desarrollo Territorial y del Hábitat Humano** ([IIDTHH](https://iidthh.conicet.gov.ar/)) de la **Universidad Nacional del Nordeste** ([UNNE](https://www.unne.edu.ar)).
 
-El presente sitio web contiene una introducción ([-@sec-introduccion]) al proyecto, seguido de la descripción del área de estudio ([-@sec-roi]). Hay un calendario de muestreos ([-@sec-muestreos]) y los resultados ([-@sec-resultados]) se muestran por sitio y característica fisicoquímica, seguido de las firmas espectrales ([-@sec-firmas-espectrales]). En la discusión ([-@sec-discusion]) se analizan trabajos referentes a turbidez, sólidos suspendidos y profundidad de disco de Secchi. Se indican el objetivo ([-@sec-objetivos]) general y específicos. Luego, se encuentran los algoritmos propuestos y, finalmente, la informacón de contacto ([-@sec-contacto]).
+El presente sitio web contiene una introducción ([-@sec-introduccion]) al proyecto, seguido de la descripción del área de estudio ([-@sec-roi]). Hay un calendario de muestreos ([-@sec-muestreos]) y los resultados ([-@sec-resultados]) se muestran por sitio y característica fisicoquímica, seguido de las firmas espectrales ([-@sec-firmas-espectrales]). En la discusión ([-@sec-discusion]) se analizan trabajos referentes a turbidez, sólidos suspendidos y profundidad de disco de Secchi. Se indican el objetivo ([-@sec-objetivos]) general y específicos. Luego, se encuentran los algoritmos propuestos y, finalmente, la información de contacto ([-@sec-contacto]).
 
 La finalidad de este desarrollo es reunir en un único sitio web las características principales del proyecto de investigación para entender cómo registrar datos, visualizar resultados, evaluar algoritmos y que, además, sea utilizado como material de consulta general de la metodología.
 
@@ -137,7 +137,7 @@ El Área Metropolitana del Gran Resistencia (AMGR), en el noreste de Argentina, 
 
 :::: {.content-visible when-format="typst"}
 
-![Imagen satelital de la región de interés. Mapa superior: ubicación relativa a Argentina.](figuras/roi.png){#fig-roi}
+![Imagen satelital de la región de interés. Mapa superior: ubicación relativa a Argentina.](figuras_typst/roi.png){#fig-roi}
 
 ::::
 
@@ -188,7 +188,7 @@ flowchart LR
 
 :::: {.content-visible when-format="typst"}
 
-![Workflow de trabajo](extras/workflow.png){#fig-workflow}
+![Flujo de trabajo.](figuras_typst/workflow.png){#fig-workflow width="70%"}
 
 ::::
 
@@ -327,10 +327,10 @@ Conductividad (&micro;S/cm)<br>
 ::::::
 
 :::: {.content-visible when-format="typst"}
-* *turb*, Turbidez (NTU)
-* *secchi*, Profundidad de disco de Secchi (cm)
-* *susp*, Sólidos suspendidos totales (ppm)
-* *cond*, Conductividad (&micro;S/cm)
+* *turb* &rarr; Turbidez (NTU)
+* *secchi* &rarr; Profundidad de disco de Secchi (cm)
+* *susp* &rarr; Sólidos suspendidos totales (ppm)
+* *cond* &rarr; Conductividad (&micro;S/cm)
 ::::
 
 # Resultados {#sec-resultados}
@@ -342,6 +342,8 @@ Las firmas espectrales se encuentran en la siguiente sección ([-@sec-firmas-esp
 ## Sitios muestrales
 
 Se indican en el mapa interactivo ([-@fig-mapa-int]) los sitios de muestreo para todas las fechas disponibles junto con la imagen en composición de color real correspondiente.
+
+:::: {.content-visible when-format="html"}
 
 ::: {#fig-mapa-int}
 
@@ -358,18 +360,26 @@ Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
 
 :::
 
-:::: {.content-visible when-format="typst"}
+::::
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::::: {.content-visible when-format="typst"}
 
-[Ver mapa interactivo en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#fig-roi)
+:::: {#fig-mapa-int}
 
-:::
+![Mapa de los sitios de toma de muestra y propiedades fisicoquímicas.](figuras_typst/mapa_interactivo.png){width="70%"}
 
 ::::
 
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
+
+[Ver mapa interactivo en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#fig-roi)
+
+:::
+
+:::::
+
 <br>
-Actualmente, se realizaron **`r cantidad_fechas` muestreos**, en los que se recolectaron **`r cantidad_muetras` muestras de agua**.
+Actualmente, se realizaron **`{r} cantidad_fechas` muestreos**, en los que se recolectaron **`{r} cantidad_muestras` muestras de agua**.
 
 En todos los casos, no se apreció la presencia de nubes sobre los puntos de toma de muestras.
 
@@ -417,7 +427,7 @@ lista_figura_evolucion_lab[[5]]
 
 :::
 
-Evolución espacial y temporal de las propiededes del agua.
+Evolución espacial y temporal de las propiedades del agua.
 
 ::::
 
@@ -426,12 +436,12 @@ Evolución espacial y temporal de las propiededes del agua.
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-prop-fisico}
-![](figuras/datos_fisicoquimicos.png){width="50%" fig-align="center"}
+![Evolución espacial y temporal de las propiedades del agua.](figuras_typst/datos_fisicoquimicos.png){width="50%" fig-align="center"}
 :::
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
-[Ver figuras interactivas en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#datos-fisicoquímicos)
+[Ver figuras interactivas en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#datos-fisicoquímicos)
 
 :::
 
@@ -455,11 +465,11 @@ heatmap_lab
 
 :::: {.content-visible when-format="typst"}
 
-![Mapa de calor de las correlaciones lineales entre parámetros fisicoquímicos. Con &#9733; se indica significancia estadística ($pvalor<0,05$)](figuras/r.png){width="50%" fig-align="center" #fig-heatmap-lab}
+![Mapa de calor de las correlaciones lineales entre parámetros fisicoquímicos. Con &#9733; se indica significancia estadística ($pvalor<0,05$)](figuras_typst/heatmap.png){width="50%" fig-align="center" #fig-heatmap-lab}
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
-[Ver figura interactiva en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#fig-heatmap-lab1)
+[Ver figura interactiva en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#fig-heatmap-lab1)
 
 :::
 
@@ -530,15 +540,15 @@ Figuras que muestran la relación entre parámetros. La [línea de trazos]{style
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-identidad}
-![](figuras/identidad_cond_vs_turb.png){width="50%" fig-align="center"}
+![](figuras_typst/identidad_cond_vs_turb.png){width="50%" fig-align="center"}
 
 Figuras que muestran la relación entre parámetros. La [línea de trazos]{style='color: `{r} c1`'} indica el ajuste lineal como referencia.
 
 :::
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
-[Ver figuras en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#datos-fisicoquímicos)
+[Ver figuras en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#datos-fisicoquímicos)
 
 :::
 
@@ -583,12 +593,12 @@ Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se 
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-boxplot-lado}
-![ &#9733; $=pvalor<0.05$, existe diferencia significativa entre los grupos](figuras/lado_turb.png){width="50%" fig-align="center"}
+![ &#9733; $=pvalor<0.05$, existe diferencia significativa entre los grupos](figuras_typst/lado_cond.png){width="50%" fig-align="center"}
 :::
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
-[Ver el resto de las figuras en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#datos-fisicoquímicos)
+[Ver el resto de las figuras en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#datos-fisicoquímicos)
 
 :::
 
@@ -665,14 +675,14 @@ Firmas espectrales por sitio muestral y fecha.
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-firma-espectral}
-![](figuras/firma_espectral.png){width="50%" fig-align="center"}
+![](figuras_typst/firma_espectral.png){width="50%" fig-align="center"}
 
 Firmas espectrales por sitio muestral y fecha.
 :::
 
-::: {.block fill="luma(230)" inset="8pt" radius="4pt"}
+::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
-[Ver figuras interactivas en la versión online](https://vhgauto.quarto.pub/gistaq-parana/#sec-firmas-espectrales)
+[Ver figuras interactivas en la versión online &#x2197;](https://vhgauto.quarto.pub/gistaq-parana/#sec-firmas-espectrales)
 
 :::
 
@@ -705,7 +715,7 @@ En cambio, las bandas B04 y B05 muestran una notable disminución de la $R_{rs}$
 ::::
 
 :::: {.content-visible when-format="typst"}
-![Distribución de $R_{rs}$ a partir de gráficos de cajas por sitio fijo y banda espectral. [&#9733;]{style='color: `{r} c1`'} en la esquina de cada panel marca diferencia significativa ($pvalor<0.05$) entre los conjuntos de la costa [**chaqueña**]{style='color: `{r} c1`'} y [**correntina**]{style='color: `{r} c2`'}.](figuras/puntos_boxplot.png){#fig-boxplot-puntos width="50%" fig-align="center"}
+![Distribución de $R_{rs}$ a partir de gráficos de cajas por sitio fijo y banda espectral. [&#9733;]{style='color: `{r} c1`'} en la esquina de cada panel marca diferencia significativa ($pvalor<0.05$) entre los conjuntos de la costa [**chaqueña**]{style='color: `{r} c1`'} y [**correntina**]{style='color: `{r} c2`'}.](figuras_typst/puntos_boxplot.png){#fig-boxplot-puntos width="50%" fig-align="center"}
 ::::
 
 Las características espectrales de S2-MSI se muestran en la siguiente tabla:
@@ -739,7 +749,7 @@ Las características espectrales de S2-MSI se muestran en la siguiente tabla:
 
 :::: {.content-visible when-format="typst"}
 
-|  |  | Sentinel-2A | | Sentinel-2B | |
+|  |  | S2A | | S2B | |
 |:--|--:|--:|--:|--:|--:|
 | **Banda** | **Resolución espacial (m)** | **Longitud de onda (nm)** | **Ancho de banda (nm)** | **Longitud de onda (nm)** | **Ancho de banda (nm)** |
 | B01 (aerosol) | 60 | 442,7 | 20 | 442,3 | 20 |
@@ -866,15 +876,9 @@ Becarios:
 * Vera Geneyer
 * Víctor Gómez
 * Bruno Lossada Dusset
+<!-- TODO corregir link -->
+Los archivos que generan este sitio web están disponibles en [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://vhgauto.quarto.pub/gistaq-parana/).
 
-<!-- Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://vhgauto.quarto.pub/gistaq-parana/).
+Sitio web desarrollado y mantenido por: **Víctor Gauto** [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:victor.gauto@ca.frre.utn.edu.ar) &nbsp; [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/vhgauto).
 
-Sitio web desarrollado y mantenido por: **Víctor Gauto**. [{{< fa envelope >}}](mailto:victor.gauto@ca.frre.utn.edu.ar), [{{< fa brands github >}}](https://github.com/vhgauto).
-
-Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**). [{{< fa envelope >}}](mailto:gistaq@ca.frre.utn.edu.ar), [{{< fa brands instagram >}}](https://www.instagram.com/gistaq.utn/), [{{< fa brands facebook >}}](https://www.facebook.com/GISTAQ/). -->
-
-Los archivos que generan este sitio web están disponibles en [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://vhgauto.quarto.pub/gistaq-parana/)
-
-Sitio web desarrollado y mantenido por: **Víctor Gauto**. [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:victor.gauto@ca.frre.utn.edu.ar)  [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/vhgauto)
-
-Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**). [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:gistaq@ca.frre.utn.edu.ar)  [[&#xf16d;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.instagram.com/gistaq.utn/)  [[&#xf09a;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.facebook.com/GISTAQ/).
+Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**) [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:gistaq@ca.frre.utn.edu.ar) &nbsp; [[&#xf16d;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.instagram.com/gistaq.utn/) &nbsp; [[&#xf09a;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.facebook.com/GISTAQ/) &nbsp;.
