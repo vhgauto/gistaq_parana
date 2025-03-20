@@ -18,7 +18,7 @@ Existe una relación inversa entre la Turbidez y la profundidad del disco de Sec
 :::: {.content-visible when-format="html"}
 
 ::: {.column-screen-right}
-
+<!-- TODO corregir <br> de la ecuación -->
 | Ecuación | Bandas (nm) | Métricas | Aguas | Plataforma | Referencia |
 |:-:|:--|:--|:--|:--|:-:|
 | $1.559e^{35.533 \cdot B03} \\ 1.879e^{37.745(B03 \cdot B5)/(B04+B12)}$ | B03, B04, B05, B12 | $R^{2}$, RMSE, MAE | Lago^[0,83 - 112,26 NTU.] | Sentinel-2 | @Ma2021 |
