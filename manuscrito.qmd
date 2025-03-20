@@ -152,34 +152,7 @@ El diagrama mostrado en la figura [-@fig-workflow] corresponde al flujo de traba
 :::{.column-screen-right}
 
 ```{mermaid}
-%%| fig-cap: Flujo de trabajo.
-%%| label: fig-workflow
-
-%%{
-  init: {
-    'themeVariables': {
-      'lineColor': '#B86092',
-      'edgeLabelBackground': '#F5F5F5B3'
-    }
-  }
-}%%
-
-flowchart LR
-    a1([fa:fa-droplet Muestreo de agua])-->a2[Mediciones in-situ y<br>en laboratorio]
-    a2-->a3([Propiedades fisicoquímicas])
-
-    b1([fa:fa-satellite Producto S2-MSI L2A])-->b2[Extracción de R<sub>rs</sub>]
-    b2-->b3([Firma espectral])
-
-    a3--> |<i>turb, cond<br>susp, secchi<br></i>pH| E[(Base<br>de datos)]
-    b3--> |B01~B8A,<br>B11, B12| E
-
-    E-->F([Figuras fa:fa-chart-line])
-    E-->G([Tablas fa:fa-table])
-    E-->H([Mapas fa:fa-map])
-
-    classDef default fill:#F5F5F5,stroke:#007E2E,stroke-width:1px,font-family:Ubuntu,color:black;
-    linkStyle default stroke:#B86092,stroke-width:1px;
+%%| file: extras/m.mmd
 ```
 
 :::
@@ -188,7 +161,7 @@ flowchart LR
 
 :::: {.content-visible when-format="typst"}
 
-![Flujo de trabajo.](figuras_typst/workflow.png){#fig-workflow width="70%"}
+![Flujo de trabajo.](figuras_typst/workflow.png){#fig-workflow width="90%"}
 
 ::::
 
@@ -366,7 +339,7 @@ Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
 
 :::: {#fig-mapa-int}
 
-![Mapa de los sitios de toma de muestra y propiedades fisicoquímicas.](figuras_typst/mapa_interactivo.png){width="70%"}
+![XXX](figuras_typst/mapa_interactivo.png){width="90%"}
 
 ::::
 
@@ -397,31 +370,31 @@ Las siguientes figuras ([-@fig-prop-fisico]) muestran la evolución de las propi
 
 ## *turb*
 
-```{r}
+```{r evo_lab1}
 lista_figura_evolucion_lab[[1]]
 ```
 
 ## *secchi*
 
-```{r}
+```{r evo_lab2}
 lista_figura_evolucion_lab[[2]]
 ```
 
 ## *susp*
 
-```{r}
+```{r evo_lab3}
 lista_figura_evolucion_lab[[3]]
 ```
 
 ## *cond*
 
-```{r}
+```{r evo_lab4}
 lista_figura_evolucion_lab[[4]]
 ```
 
 ## pH
 
-```{r}
+```{r evo_lab5}
 lista_figura_evolucion_lab[[5]]
 ```
 
@@ -634,33 +607,33 @@ Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta
 
 ::: {.panel-tabset}
 
-## `r fechas_gis_v[1]`
+## `{r} fechas_gis_v[1]`
 
-```{r}
+```{r firma_espectral1}
 lista_firma_espectral[[1]]
 ```
 
-## `r fechas_gis_v[2]`
+## `{r} fechas_gis_v[2]`
 
-```{r}
+```{r firma_espectral2}
 lista_firma_espectral[[2]]
 ```
 
-## `r fechas_gis_v[3]`
+## `{r} fechas_gis_v[3]`
 
-```{r}
+```{r firma_espectral3}
 lista_firma_espectral[[3]]
 ```
 
-## `r fechas_gis_v[4]`
+## `{r} fechas_gis_v[4]`
 
-```{r}
+```{r firma_espectral4}
 lista_firma_espectral[[4]]
 ```
 
-## `r fechas_gis_v[5]`
+## `{r} fechas_gis_v[5]`
 
-```{r}
+```{r firma_espectral5}
 lista_firma_espectral[[5]]
 ```
 
@@ -866,17 +839,17 @@ Integrantes del Proyecto de Investigación.
 
 Profesionales:
 
-* Enid Utgés
-* Daniela Tenev
-* Víctor Gauto
+* **Enid Utgés**
+* **Daniela Tenev**
+* **Víctor Gauto**
 
 Becarios:
 
-* Mauricio Acosta
-* Vera Geneyer
-* Víctor Gómez
-* Bruno Lossada Dusset
-<!-- TODO corregir link -->
+* **Mauricio Acosta**
+* **Vera Geneyer**
+* **Víctor Gómez**
+* **Bruno Lossada Dusset**
+
 Los archivos que generan este sitio web están disponibles en [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://vhgauto.quarto.pub/gistaq-parana/).
 
 Sitio web desarrollado y mantenido por: **Víctor Gauto** [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:victor.gauto@ca.frre.utn.edu.ar) &nbsp; [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/vhgauto).
