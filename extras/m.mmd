@@ -1,0 +1,28 @@
+%%| fig-cap: Flujo de trabajo.
+%%| label: fig-workflow
+
+%%{
+  init: {
+    'themeVariables': {
+      'lineColor': '#B86092',
+      'edgeLabelBackground': '#F5F5F5B3'
+    }
+  }
+}%%
+
+flowchart LR
+    a1([fa:fa-droplet Muestreo de agua])==>a2[Mediciones in-situ y<br>en laboratorio]
+    a2==>a3([Propiedades fisicoquímicas])
+
+    b1([fa:fa-satellite Producto S2-MSI L2A])==>b2[Extracción de R<sub>rs</sub>]
+    b2==>b3([Firma espectral])
+
+    a3==> |<i>turb, cond<br>susp, secchi<br></i>pH| E[(Base<br>de datos)]
+    b3==> |B01~B8A,<br>B11, B12| E
+
+    E==>F([Figuras fa:fa-chart-line])
+    E==>G([Tablas fa:fa-table])
+    E==>H([Mapas fa:fa-map])
+
+    classDef default fill:#F5F5F5,stroke:#007E2E,stroke-width:1px,font-family:Ubuntu,color:black;
+    linkStyle default stroke:#B86092,stroke-width:1px;
