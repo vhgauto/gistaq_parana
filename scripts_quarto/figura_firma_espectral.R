@@ -1,8 +1,8 @@
-
 # datos -------------------------------------------------------------------
 
 banda_orden <- c(
-  "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12")
+  "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12"
+)
 
 d <- read_csv("datos/base_de_datos_gis.csv", show_col_types = FALSE) |>
   drop_na() |>
@@ -35,11 +35,10 @@ e <- inner_join(
 # figura ------------------------------------------------------------------
 
 f_firma_espectral <- function(x) {
-
   d <- e |>
     filter(fecha == x)
 
-  fig_evo_gis_label <- c("Chaco", rep("", length(unique(d$p))-2), "Corrientes")
+  fig_evo_gis_label <- c("Chaco", rep("", length(unique(d$p)) - 2), "Corrientes")
 
   colores_gis <- colorRampPalette(colors = c(c1, c4, c2))(length(unique(d$p)))
 
@@ -47,31 +46,39 @@ f_firma_espectral <- function(x) {
 
   g <- ggplot(d, aes(banda, reflect, group = p, color = p, fill = p)) +
     geom_line_interactive(
-      aes(data_id = interaction(fecha, p)), hover_nearest = TRUE,
-      linewidth = 1, alpha = .8, show.legend = FALSE) +
+      aes(data_id = interaction(fecha, p)),
+      hover_nearest = TRUE,
+      linewidth = 1, alpha = .8, show.legend = FALSE
+    ) +
     geom_point_interactive(
-      aes(data_id = interaction(fecha, p)), size = .7, shape = 21) +
+      aes(data_id = interaction(fecha, p)),
+      size = .7, shape = 21
+    ) +
     scale_x_discrete(expand = c(0, 0)) +
     scale_y_continuous(
       breaks = scales::breaks_pretty(),
-      labels = scales::label_number(decimal.mark = ",", big.mark = ".")
+      labels = scales::label_number(
+        decimal.mark = ",", big.mark = ".", accuracy = .01
+      )
     ) +
     scale_fill_gradient2(
       low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
       breaks = unique(d$p),
-      labels = fig_evo_gis_label) +
+      labels = fig_evo_gis_label
+    ) +
     scale_color_gradient2(
-    low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
-    breaks = unique(d$p),
-    labels = fig_evo_gis_label
-  ) +
-    coord_cartesian(clip = "off") +
+      low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
+      breaks = unique(d$p),
+      labels = fig_evo_gis_label
+    ) +
+    coord_cartesian(clip = "off", xlim = c(.8, 11.2)) +
     labs(y = "R<sub>rs</sub>", x = NULL, color = NULL, fill = NULL) +
     guides(
       fill = guide_colorbar(
         nrow = 1,
         override.aes = list(size = 16, shape = 15, color = colores_gis),
-        reverse = FALSE),
+        reverse = FALSE
+      ),
       color = guide_none()
     ) +
     theme_void(base_size = 11) +
@@ -80,7 +87,8 @@ f_firma_espectral <- function(x) {
       plot.margin = margin(6, 6, 6, 6),
       panel.grid.minor = element_blank(),
       panel.grid.major = element_line(
-        color = c4, linewidth = .06, linetype = 3),
+        color = c4, linewidth = .06, linetype = 3
+      ),
       panel.spacing = unit(1.1, "line"),
       axis.title.x = element_text(family = "ubuntu", margin = margin(t = 3)),
       axis.title.y = element_markdown(
@@ -93,7 +101,8 @@ f_firma_espectral <- function(x) {
       panel.background = element_rect(fill = c11, color = NA),
       strip.background = element_blank(),
       strip.text = element_markdown(
-        family = "jet", size = 7, margin = margin(b = 3)),
+        family = "jet", size = 7, margin = margin(b = 3)
+      ),
       legend.background = element_rect(fill = NA, color = NA),
       legend.key = element_rect(fill = NA, color = NA),
       legend.key.size = unit(1, "mm"),
@@ -101,10 +110,12 @@ f_firma_espectral <- function(x) {
       legend.box = "horizontal",
       legend.text = element_text(
         vjust = .5, hjust = .5, family = "ubuntu", margin = margin(t = 3),
-        size = 11),
+        size = 11
+      ),
       legend.text.position = "bottom",
       legend.key.width = unit(10, "mm"),
-      legend.key.height = unit(2, "mm")
+      legend.key.height = unit(2, "mm"),
+      legend.ticks = element_blank()
     )
 
   figura_evolucion_gis <- girafe(
@@ -118,19 +129,19 @@ f_firma_espectral <- function(x) {
         opacity = 1,
         css = glue(
           "color:{c1};padding:5px;font-family:JetBrains Mono;",
-          "border-style:solid;border-color:{c4};background:{c3}"),
+          "border-style:solid;border-color:{c4};background:{c3}"
+        ),
         use_cursor_pos = TRUE,
         offx = 5,
-        offy = 5),
+        offy = 5
+      ),
       opts_sizing(width = 1, rescale = TRUE),
       opts_hover_inv(css = "opacity:.2"),
       opts_toolbar(saveaspng = FALSE)
+    )
   )
 
-)
-
   return(figura_evolucion_gis)
-
 }
 
 fechas_gis_v <- rev(sort(unique(e$fecha)))
