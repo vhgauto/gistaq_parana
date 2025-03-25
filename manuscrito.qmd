@@ -39,7 +39,7 @@ author:
       - name: GISTAQ (UTN-FRRe)
         url: https://www.instagram.com/gistaq.utn/
 abstract: |
-  La calidad del agua del Río Paraná...
+  La calidad del agua en la cuenca media del río Paraná está afectada principalmente por los sedimentos presentes. Estos son aportados mayoritariamente por el río Paraguay. Los sólidos en el agua no se distribuyen uniformemente entre orillas, generando gradientes de concentración. La costa de la provincia del Chaco muestra valores elevados de turbidez y la costa de Corrientes posee aguas más claras. Mediante muestreos, a lo largo de una transecta al río Paraná, y ensayos de laboratorio se obtienen las propiedades  fisicoquímicas del agua. Utilizando los datos provistos por la plataforma espacial Sentinel-2 se accede a las características espectrales del agua. Aplicando técnicas de teledetección satelital se combinan estos datos para la generación de algoritmos que permitan estimar la distribución espacial de la calidad del agua en el río Paraná.
 keywords:
   - Río Paraná
   - Calidad de agua
@@ -337,11 +337,13 @@ Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
 
 ::::: {.content-visible when-format="typst"}
 
-:::: {#fig-mapa-int}
+::: {#fig-mapa-int}
 
-![XXX](figuras_typst/mapa_interactivo.png){width="90%"}
+![](figuras_typst/mapa_interactivo.png){width="90%"}
 
-::::
+Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
+
+:::
 
 ::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
@@ -351,7 +353,6 @@ Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
 
 :::::
 
-<br>
 Actualmente, se realizaron **`{r} cantidad_fechas` muestreos**, en los que se recolectaron **`{r} cantidad_muestras` muestras de agua**.
 
 En todos los casos, no se apreció la presencia de nubes sobre los puntos de toma de muestras.
@@ -409,7 +410,9 @@ Evolución espacial y temporal de las propiedades del agua.
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-prop-fisico}
-![Evolución espacial y temporal de las propiedades del agua.](figuras_typst/datos_fisicoquimicos.png){width="50%" fig-align="center"}
+![](figuras_typst/datos_fisicoquimicos.png){width="50%" fig-align="center"}
+
+Evolución espacial y temporal de las propiedades del agua.
 :::
 
 ::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
@@ -452,9 +455,9 @@ Es notable que el pH no se correlaciona con ninguna otra variable. Existe una co
 
 Las correlaciones mostradas en la figura [-@fig-heatmap-lab] pueden visualizarse en las siguientes figuras ([-@fig-identidad]). La línea punteada corresponde al mejor ajuste lineal para cada par de parámetros.
 
-```{r}
+<!-- ```{r}
 cap1 <- "UUU"
-```
+``` -->
 
 :::::: {.content-visible when-format="html"}
 
@@ -566,7 +569,9 @@ Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se 
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-boxplot-lado}
-![ &#9733; $=pvalor<0.05$, existe diferencia significativa entre los grupos](figuras_typst/lado_cond.png){width="50%" fig-align="center"}
+![](figuras_typst/lado_cond.png){width="50%" fig-align="center"}
+
+&#9733; $=pvalor<0.05$, existe diferencia significativa entre los grupos
 :::
 
 ::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
@@ -793,7 +798,7 @@ Modelar la calidad del agua en una porción de la cuenca media del río Paraná 
 
 :::: {.content-visible when-format="typst"}
 
-::: {.block stroke='rgb("#2780E3")' inset="8pt" radius="4pt"}
+::: {.block stroke='5pt + rgb("#2780E3")' inset="8pt" radius="4pt"}
 
 Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos de campo.
 
@@ -850,8 +855,18 @@ Becarios:
 * **Víctor Gómez**
 * **Bruno Lossada Dusset**
 
+:::: {.content-visible when-format="html"}
+Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://github.com/vhgauto/gistaq_parana).
+
+Sitio web desarrollado y mantenido por: **Víctor Gauto** [{{< fa envelope >}}](mailto:victor.gauto@ca.frre.utn.edu.ar) &nbsp; [{{< fa brands github >}}](https://github.com/vhgauto).
+
+Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**) [{{< fa envelope >}}](mailto:gistaq@ca.frre.utn.edu.ar) &nbsp; [{{< fa brands instagram >}}](https://www.instagram.com/gistaq.utn/) &nbsp; [{{< fa brands facebook >}}](https://www.facebook.com/GISTAQ/) &nbsp;.
+::::
+
+:::: {.content-visible when-format="typst"}
 Los archivos que generan este sitio web están disponibles en [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://vhgauto.quarto.pub/gistaq-parana/).
 
 Sitio web desarrollado y mantenido por: **Víctor Gauto** [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:victor.gauto@ca.frre.utn.edu.ar) &nbsp; [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/vhgauto).
 
 Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**) [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:gistaq@ca.frre.utn.edu.ar) &nbsp; [[&#xf16d;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.instagram.com/gistaq.utn/) &nbsp; [[&#xf09a;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.facebook.com/GISTAQ/) &nbsp;.
+:::
