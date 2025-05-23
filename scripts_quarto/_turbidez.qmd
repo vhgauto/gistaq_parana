@@ -11,7 +11,7 @@ Muchas propiedades, como la clorofila-a (Chl-a), sólidos suspendidos totales (S
 
 Existe una fuerte correlación entre turbidez y sólidos suspendidos totales, por lo que se puede estimar SST a partir de la turbidez. Por lo general, es una relación directa, a mayor concentración de SST mayor turbidez.
 
-Existe una relación inversa entre la Turbidez y la profundidad del disco de Secchi (a valores bajos de secchi mayor turbidez), por lo que también se puede estimar turbidez a partir de mediciones de disco de secchi.
+Existe una relación inversa entre la Turbidez y la profundidad del disco de Secchi (a valores bajos de Secchi mayor turbidez), por lo que también se puede estimar turbidez a partir de mediciones de disco de Secchi.
 
 ### Métodos tradicionales
 
@@ -25,7 +25,7 @@ Existe una relación inversa entre la Turbidez y la profundidad del disco de Sec
 | $2677.2 \cdot B04^{1.856}$ | B04 | $R^{2}$, RMSE, Bias | Interiores variadas^[2,3 - 107,02 NTU.] | Landsat-8 | @Hossain2021 |
 | $969-1.5468 \cdot R_{1200nm}+2.07 \frac{B8A}{B02}$ | B02, B8A, 1200nm | IOA, SI, RMSE, MAE | Río^[IOA = index of agreement<br>SI = scatter index.] | Landsat-8 | @Najafzadeh2023 |
 | $y=-1.1+5.8 \frac{B02}{B04} \\ y=3.896-4.186 \frac{B02}{B03}$ | B02, B03, B04 | $R^{2}$, RMSE | Río^[20,6 - 112 NTU<br>2,3 - 15,4 NTU.] | Landsat-8 | @Allam2020 |
-| $y=37661 \cdot B8A^{2}+1845 \cdot B8A <br> y=531.5- \frac{B04}{0.88}$ | B04, B8A | $R^{2}$, RMSE, MAPE | Estuario^[MAPE = Mean Absolute Percentage Error<br>0 - 1300 NTU<br>0 - 80 NTU.] | Pléiades | @Luo2020 |
+| $y=37661 \cdot B8A^{2}+1845 \cdot B8A \\ y=531.5- \frac{B04}{0.88}$ | B04, B8A | $R^{2}$, RMSE, MAPE | Estuario^[MAPE = Mean Absolute Percentage Error<br>0 - 1300 NTU<br>0 - 80 NTU.] | Pléiades | @Luo2020 |
 
 : Características principales de algoritmos tradicionales para la estimación de turbidez. {#tbl-turb-trad .striped .hover tbl-colwidths="[50,10,10,10,10]"}
 
