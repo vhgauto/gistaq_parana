@@ -709,15 +709,15 @@ Las características espectrales de S2-MSI se muestran en la siguiente tabla:
 | B02 (blue) | 10 | 492,7 | 65 | 492,3 | 65 |
 | B03 (green) | 10 | 559,8 | 35 | 558,9 | 35 |
 | B04 (red) | 10 | 664,6 | 38 | 664,9 | 31 |
-| B05 (red edge) | 20 | 794,1 | 14 | 703,8 | 15 |
-| B06 | 20 | 748,5 | 14 | 739,1 | 13 |
+| B05 (red edge) | 20 | 704,1 | 14 | 703,8 | 15 |
+| B06 | 20 | 740,5 | 14 | 739,1 | 13 |
 | B07 | 20 | 782,8 | 19 | 779,7 | 19 |
 | B08 (NIR) | 10 | 832,8 | 105 | 832,9 | 104 |
 | B8A | 20 | 864,7 | 21 | 864,0 | 21 |
 | B09 | 60 | 945,1 | 19 | 943,2 | 20 |
 | B10 | 60 | 1373,5 | 29 | 1376,9 | 29 |
-| B11 (SWIR 1) | 20 | 1613,7 | 90 | 1616,4 | 94 |
-| B11 (SWIR 2) | 20 | 2292,4 | 174 | 2185,7 | 184 |
+| B11 (SWIR 1) | 20 | 1613,7 | 90 | 1610,4 | 94 |
+| B11 (SWIR 2) | 20 | 2202,4 | 174 | 2185,7 | 184 |
 
 : Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B. {#tbl-s2msi .striped .hover tbl-colwidths="[20,20,15,15,15,15]" tbl-cap-location="bottom"}
 
@@ -734,15 +734,15 @@ Las características espectrales de S2-MSI se muestran en la siguiente tabla:
 | B02 (blue) | 10 | 492,7 | 65 | 492,3 | 65 |
 | B03 (green) | 10 | 559,8 | 35 | 558,9 | 35 |
 | B04 (red) | 10 | 664,6 | 38 | 664,9 | 31 |
-| B05 (red edge) | 20 | 794,1 | 14 | 703,8 | 15 |
-| B06 | 20 | 748,5 | 14 | 739,1 | 13 |
+| B05 (red edge) | 20 | 704,1 | 14 | 703,8 | 15 |
+| B06 | 20 | 740,5 | 14 | 739,1 | 13 |
 | B07 | 20 | 782,8 | 19 | 779,7 | 19 |
 | B08 (NIR) | 10 | 832,8 | 105 | 832,9 | 104 |
 | B8A | 20 | 864,7 | 21 | 864,0 | 21 |
 | B09 | 60 | 945,1 | 19 | 943,2 | 20 |
 | B10 | 60 | 1373,5 | 29 | 1376,9 | 29 |
-| B11 (SWIR 1) | 20 | 1613,7 | 90 | 1616,4 | 94 |
-| B11 (SWIR 2) | 20 | 2292,4 | 174 | 2185,7 | 184 |
+| B11 (SWIR 1) | 20 | 1613,7 | 90 | 1610,4 | 94 |
+| B11 (SWIR 2) | 20 | 2202,4 | 174 | 2185,7 | 184 |
 
 : Propiedades de las bandas S2-MSI, para las plataformas S2A y S2B. {#tbl-s2msi .striped .hover tbl-colwidths="[20,20,15,15,15,15]" tbl-cap-location="bottom"}
 
