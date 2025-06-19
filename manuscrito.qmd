@@ -23,18 +23,29 @@ author:
       - name: GISTAQ (UTN-FRRe)
         url: https://www.instagram.com/gistaq.utn/
   - name: Mauricio Acosta
+    orcid: 0009-0002-3917-3454
     affiliations:
       - name: GISTAQ (UTN-FRRe)
         url: https://www.instagram.com/gistaq.utn/
   - name: Vera Geneyer
+    orcid: 0009-0008-0588-4550
     affiliations:
       - name: GISTAQ (UTN-FRRe)
         url: https://www.instagram.com/gistaq.utn/
   - name: Víctor Gómez
+    orcid: 0009-0001-4642-7670
     affiliations:
       - name: GISTAQ (UTN-FRRe)
         url: https://www.instagram.com/gistaq.utn/
   - name: Bruno Lossada Dusset
+    affiliations:
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
+  - name: Ariadna Seba
+    affiliations:
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
+  - name: Noelia Molo
     affiliations:
       - name: GISTAQ (UTN-FRRe)
         url: https://www.instagram.com/gistaq.utn/
@@ -854,6 +865,8 @@ Becarios:
 * **Vera Geneyer**
 * **Víctor Gómez**
 * **Bruno Lossada Dusset**
+* **Ariadna Seba**
+* **Noelia Molo**
 
 :::: {.content-visible when-format="html"}
 Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://github.com/vhgauto/gistaq_parana).
@@ -869,4 +882,9 @@ Los archivos que generan este sitio web están disponibles en [[&#xe709;]{style=
 Sitio web desarrollado y mantenido por: **Víctor Gauto** [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:victor.gauto@ca.frre.utn.edu.ar) &nbsp; [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/vhgauto).
 
 Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**) [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:gistaq@ca.frre.utn.edu.ar) &nbsp; [[&#xf16d;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.instagram.com/gistaq.utn/) &nbsp; [[&#xf09a;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.facebook.com/GISTAQ/) &nbsp;.
+:::
+
+# Bibliografía {.unnumbered}
+
+::: {#refs}
 :::
