@@ -1,4 +1,9 @@
 .vscode/
+.env
+c/
+acolite/
+recorte_acolite/
+producto/
 
 # contenido asociado al manuscrito
 _manuscript/
