@@ -19,6 +19,11 @@ import certifi
 # lectura de JSON, se usa al obtener el token
 import json
 
+# leo variables
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # https://documentation.dataspace.copernicus.eu/APIs/OData.html#query-collection-of-products
 
 # URL base del catálogo
@@ -39,17 +44,13 @@ search_query = f"{catalogue_odata_url}/Products?$filter=Collection/Name eq '{col
 response = requests.get(search_query).json()
 result = pd.DataFrame.from_dict(response["value"])
 
-# credenciales, nombre de usuario y contraseña
-username = "victor.gauto@outlook.com"
-password = "******************"
-
 # obtengo el token
 auth_server_url = "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token"
 data = {
     "client_id": "cdse-public",
     "grant_type": "password",
-    "username": username,
-    "password": password,
+    "username": os.getenv("USERNAME"),
+    "password": os.getenv("PASSWORD"),
 }
 
 response_cred = requests.post(
@@ -88,7 +89,7 @@ else:
     print("\n\n--- DESCARGANDO PRODUCTO ---\n\n")
     # descarga de .zip con SAFE
 
-    with open("producto/producto.zip", "wb") as file:
+    with open("producto/fecha_i.zip", "wb") as file:
         for chunk in response_prod.iter_content(chunk_size=8192):
             if chunk:
                 file.write(chunk)

@@ -49,8 +49,10 @@ f_gg <- function(eje_x, eje_y) {
   e <- d |>
     pivot_wider(
       names_from = param,
-      values_from = valor
+      values_from = valor,
+      values_fn = list
     ) |>
+    unnest(everything()) |> 
     select(any_of(c(eje_x, eje_y))) |>
     rename(x = 1, y = 2) |>
     drop_na()

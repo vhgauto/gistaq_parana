@@ -32,7 +32,7 @@ f_puntos <- function(df, p_i, p_f) {
 puntos <- vect("vector/3puntos_transecta.gpkg")
 
 # ráster de recortes
-archivos_r <- list.files("recorte/", pattern = "tif$", full.names = TRUE)
+archivos_r <- list.files("recorte_acolite/", pattern = "tif$", full.names = TRUE)
 archivos_r <- archivos_r[!str_detect(archivos_r, "rsi")]
 fechas_r <- str_remove(basename(archivos_r), ".tif")
 
@@ -62,7 +62,7 @@ e_tbl <- map(lista_r3, ~terra::extract(.x, puntos, xy = TRUE)) |>
     names_to = "banda"
   ) |>
   mutate(banda = factor(banda, levels = orden_bandas)) |>
-  mutate(reflect = reflect/10000) |>
+  # mutate(reflect = reflect/10000) |>
   select(-ID)
 
 # obtengo la significancia en los diferentes puntos, por banda
@@ -98,8 +98,8 @@ g <- e_tbl |>
   ) +
   facet_wrap(vars(banda), scales = "free", nrow = 4) +
   scale_y_continuous(
-    breaks = seq(.1, .3, .05),
-    limits = c(.1, .3),
+    breaks = seq(0, .3, .05),
+    # limits = c(.1, .3),
     labels = scales::label_number(big.mark = ".", decimal.mark = ",")
   ) +
   scale_fill_manual(
@@ -108,7 +108,9 @@ g <- e_tbl |>
     labels = c("Costa\nchaqueña", "Punto\nintermedio", "Costa\ncorrentina"),
     name = NULL
   ) +
-  coord_cartesian(clip = "off") +
+  coord_cartesian(
+    clip = "off", xlim = c(.5, 3.5), ylim = c(0, .27), expand = FALSE
+  ) +
   labs(x = NULL, y = "R<sub>rs</sub>", color = "Sitio") +
   guides(
     fill = guide_legend(
@@ -118,7 +120,7 @@ g <- e_tbl |>
   theme_minimal(base_size = 9) +
   theme(
     aspect.ratio = 1,
-    plot.margin = margin(r = 1, l = 1, t = 0, b = 0),
+    plot.margin = margin(r = 1, l = 1, t = 0, b = 2),
     panel.background = element_rect(fill = c11, color = NA),
     panel.spacing.x = unit(1.6, "line"),
     panel.spacing.y = unit(1, "line"),

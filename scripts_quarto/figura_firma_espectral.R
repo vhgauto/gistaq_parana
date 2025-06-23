@@ -4,9 +4,9 @@ banda_orden <- c(
   "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12"
 )
 
-d <- read_csv("datos/base_de_datos_gis.csv", show_col_types = FALSE) |>
+d <- read_csv("datos/base_de_datos_gis_acolite.csv", show_col_types = FALSE) |>
   drop_na() |>
-  filter(pixel == "3x3") |>
+  # filter(pixel == "3x3") |>
   group_by(fecha, banda) |>
   arrange(longitud) |>
   mutate(p = row_number()) |>

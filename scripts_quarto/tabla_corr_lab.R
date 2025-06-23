@@ -20,9 +20,11 @@ e_r <- d |>
   drop_na() |>  
   pivot_wider(
     names_from = param,
-    values_from = valor
+    values_from = valor,
+    values_fn = list
   ) |> 
   select(-c(contains("hazemeter"), fecha, longitud, latitud)) |> 
+  unnest(everything()) |> 
   correlate(
     method = "pearson", use = "pairwise.complete.obs", quiet = TRUE) |> 
   shave() |> 
@@ -38,9 +40,11 @@ e_pvalor <- d |>
   drop_na() |>  
   pivot_wider(
     names_from = param,
-    values_from = valor
+    values_from = valor,
+    values_fn = list
   ) |> 
   select(-c(contains("hazemeter"), fecha, longitud, latitud)) |> 
+  unnest(everything()) |> 
   colpair_map(f_pvalor) |> 
   shave() |> 
   pivot_longer(

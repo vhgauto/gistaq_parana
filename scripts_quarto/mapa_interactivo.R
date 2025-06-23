@@ -34,8 +34,8 @@ fechas_v <- unique(v_tbl$fecha) |> str_remove_all("-")
 
 # ráster
 r_files <- list.files(
-  path = "recorte/",
-  pattern = stringr::str_flatten(fechas_v, "|"),
+  path = "recorte_acolite/",
+  # pattern = stringr::str_flatten(fechas_v, "|"),
   full.names = TRUE)
 
 # creo el stack de bandas y agrego las fechas como nombres

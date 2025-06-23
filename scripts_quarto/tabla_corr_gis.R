@@ -4,9 +4,9 @@
 # datos -------------------------------------------------------------------
 
 # leo los datos espectrales S2-MSI
-d <- read_csv("datos/base_de_datos_gis.csv", show_col_types = FALSE) |> 
-  filter(pixel == "3x3") |> 
-  select(-pixel)
+d <- read_csv("datos/base_de_datos_gis_acolite.csv", show_col_types = FALSE) #|> 
+  # filter(pixel == "3x3") |> 
+  # select(-pixel)
 
 # correlación -------------------------------------------------------------
 

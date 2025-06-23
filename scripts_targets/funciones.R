@@ -1,4 +1,3 @@
-
 # genera mensajes en la consola
 mensaje <- function(x) {
   print(glue("\n\n--- {x} ---\n\n"))
@@ -13,12 +12,12 @@ archivo_excel <- function() {
 
 # fecha para la descarga de producto
 fecha <- function(x) {
-
   fechas_excel <- readxl::read_xlsx(
     path = x,
     sheet = 1,
-    .name_repair = "unique_quiet") |>
-    select(fecha = 1, latitud = 4,longitud = 5) |>
+    .name_repair = "unique_quiet"
+  ) |>
+    select(fecha = 1, latitud = 4, longitud = 5) |>
     mutate(fecha = ymd(fecha)) |>
     drop_na() |>
     select(fecha) |>
@@ -26,7 +25,8 @@ fecha <- function(x) {
 
   fechas_base_de_datos <- read_csv(
     file = "datos/base_de_datos_lab.csv",
-    show_col_types = FALSE) |>
+    show_col_types = FALSE
+  ) |>
     distinct(fecha)
 
   # idealmente, un único elemento
@@ -38,68 +38,67 @@ fecha <- function(x) {
     pull()
 
   return(fecha_faltante)
-
 }
 
 # script para la descarga de producto
-script_descarga_py <- function(x) {
+# script_descarga_py <- function(x) {
+#
+#   # rango de fechas para la búsqueda de la imagen
+#   fecha_inicio <- ymd(x)
+#   fecha_final <- ymd(x) + 1
+#
+#   # leo las líneas del template
+#   r_txt <- readLines("scripts_targets/plantilla.py")
+#
+#   # remplazo las variables con las fechas
+#   r_txt <- gsub(
+#     pattern = "fecha_i",
+#     replacement = fecha_inicio,
+#     x = r_txt
+#   )
+#
+#   r_txt <- gsub(
+#     pattern = "fecha_f",
+#     replacement = fecha_final,
+#     x = r_txt
+#   )
+#
+#   # archivo Python
+#   script_py <- "scripts_targets/d.py"
+#
+#   # guardo el script
+#   writeLines(r_txt, con = script_py)
+#
+#   mensaje("Script Python creado")
+#
+#   return(script_py)
+#
+# }
 
-  # rango de fechas para la búsqueda de la imagen
-  fecha_inicio <- ymd(x)
-  fecha_final <- ymd(x) + 1
-
-  # leo las líneas del template
-  r_txt <- readLines("scripts_targets/plantilla.py")
-
-  # remplazo las variables con las fechas
-  r_txt <- gsub(
-    pattern = "fecha_i",
-    replacement = fecha_inicio,
-    x = r_txt
-  )
-
-  r_txt <- gsub(
-    pattern = "fecha_f",
-    replacement = fecha_final,
-    x = r_txt
-  )
-
-  # archivo Python
-  script_py <- "scripts_targets/d.py"
-
-  # guardo el script
-  writeLines(r_txt, con = script_py)
-
-  mensaje("Script Python creado")
-
-  return(script_py)
-
-}
-
-estado_descarga <- function(x) {
-
-  if (length(x) == 0) {
-    mensaje("Sin fecha")
-  } else {
-    script_descarga_py(x)
-  }
-
-}
+# estado_descarga <- function(x) {
+#   if (length(x) == 0) {
+#     mensaje("Sin fecha")
+#   } else {
+#     script_descarga_py(x)
+#   }
+# }
 
 # ejecuto la descarga del producto
-descarga <- function(x) {
+# descarga <- function(x) {
+#   # corro el script Python que descarga la imagen
+#   system(glue("python {x}"))
+#
+#   p <- "producto/producto.zip"
+#
+#   return(p)
+# }
 
-  # corro el script Python que descarga la imagen
-  system(glue("python {x}"))
-
-  p <- "producto/producto.zip"
-
-  return(p)
+recorte <- function(x, y) {
 }
+
 
 # recorto el producto al área de interés
 recorte <- function(x, y) {
-
   mensaje("Leo producto S2-MSI")
 
   # extraigo .zip
@@ -120,7 +119,18 @@ recorte <- function(x, y) {
 
   #nombres de las bandas en el orden correcto
   bandas_nombres <- c(
-    "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12")
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B8A",
+    "B11",
+    "B12"
+  )
 
   #caminos para cada archivo de la banda requerida
   b01 <- r20m[2]
@@ -139,7 +149,7 @@ recorte <- function(x, y) {
   vector_bandas <- c(b01, b02, b03, b04, b05, b06, b07, b08, b8a, b11, b12)
 
   #leo los archivos
-  lista_bandas <-  map(vector_bandas, rast)
+  lista_bandas <- map(vector_bandas, rast)
   names(lista_bandas) <- bandas_nombres
 
   mensaje("Recorto y reproyecto el producto")
@@ -150,7 +160,8 @@ recorte <- function(x, y) {
   #recorte de cada elemento de la lista con el vector puente
   lista_recortes <- map(
     .x = lista_bandas,
-    ~terra::crop(x = .x, y = recorte_puente))
+    ~ terra::crop(x = .x, y = recorte_puente)
+  )
 
   #los raster de 20m los reproyecto a 10m
   lista_recortes$B01 <- project(lista_recortes$B01, lista_recortes$B02)
@@ -171,7 +182,8 @@ recorte <- function(x, y) {
   writeRaster(
     stack_bandas,
     glue("recorte/{nombre_raster}.tif"),
-    overwrite = TRUE)
+    overwrite = TRUE
+  )
 
   # para el siguiente target tengo que guardarlo como RDS
   # SI NO, NO FUNCIONA
@@ -182,18 +194,17 @@ recorte <- function(x, y) {
   mensaje("Recorte almacenado")
 
   return(r)
-
 }
 
 # extraigo los valores de píxel
 reflectancia <- function(x, y, z) {
-
   # leemos el Excel que contiene las coordenadas geográficas de los puntos
   # de muestreo
   coord_sitios <- readxl::read_xlsx(
     path = x,
     sheet = 1,
-    .name_repair = "unique_quiet") |>
+    .name_repair = "unique_quiet"
+  ) |>
     select(fechas = 1, longitud = 4, latitud = 5) |>
     fill(fechas) |>
     mutate(fechas = ymd(fechas)) |>
@@ -206,8 +217,9 @@ reflectancia <- function(x, y, z) {
   coord_vect <- vect(
     coord_sitios,
     geom = c("longitud", "latitud"),
-    crs="EPSG:4326",
-    keepgeom = FALSE) |>
+    crs = "EPSG:4326",
+    keepgeom = FALSE
+  ) |>
     terra::project("EPSG:32721")
 
   mensaje("Vector de sitios de muestreo")
@@ -238,15 +250,16 @@ reflectancia <- function(x, y, z) {
   coord_sf_sin_nubes <- inner_join(
     st_as_sf(coord_vect),
     nubes,
-    by = join_by(punto))
+    by = join_by(punto)
+  )
 
   if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) {
-
     # sitios con nubes
     puntos_nubes <- anti_join(
       st_as_sf(coord_vect),
       nubes,
-      by = join_by(punto)) |>
+      by = join_by(punto)
+    ) |>
       pull(punto) |>
       stringr::str_flatten_comma(string = _, last = " y ")
 
@@ -264,20 +277,24 @@ reflectancia <- function(x, y, z) {
     as_tibble() |>
     rename(punto = ID) |>
     pivot_longer(cols = -punto, names_to = "banda", values_to = "reflect") |>
-    mutate(reflect = reflect/10000) |>
+    mutate(reflect = reflect / 10000) |>
     mutate(fecha = ymd(y), .before = 1) |>
     inner_join(coord_sitios, by = join_by(punto)) |>
     mutate(pixel = "1x1", .before = banda)
 
   # 3X3
   stack_bandas_3x3 <- terra::focal(
-    stack_bandas, w = 3, fun = mean, na.rm = TRUE)
+    stack_bandas,
+    w = 3,
+    fun = mean,
+    na.rm = TRUE
+  )
 
   reflect_3x3 <- terra::extract(stack_bandas_3x3, coord_sf_sin_nubes) |>
     as_tibble() |>
     rename(punto = ID) |>
     pivot_longer(cols = -punto, names_to = "banda", values_to = "reflect") |>
-    mutate(reflect = reflect/10000) |>
+    mutate(reflect = reflect / 10000) |>
     mutate(fecha = ymd(y), .before = 1) |>
     inner_join(coord_sitios, by = join_by(punto)) |>
     mutate(pixel = "3x3", .before = banda)
@@ -296,7 +313,6 @@ reflectancia <- function(x, y, z) {
       write_csv(datos)
 
     mensaje("Base de datos actualizada")
-
   } else {
     write_csv(reflect, datos)
 
@@ -315,10 +331,19 @@ lab <- function(x) {
   d <- readxl::read_xlsx(
     path = x,
     sheet = 1,
-    .name_repair = "unique_quiet") |>
+    .name_repair = "unique_quiet"
+  ) |>
     select(
-      fecha = 1, longitud = 4, latitud = 5, ph = 6, cond = 8, secchi = 10,
-      sol_sus = 12, turb = 13, hazemeter = 14) |>
+      fecha = 1,
+      longitud = 4,
+      latitud = 5,
+      ph = 6,
+      cond = 8,
+      secchi = 10,
+      sol_sus = 12,
+      turb = 13,
+      hazemeter = 14
+    ) |>
     fill(fecha) |>
     mutate(fecha = ymd(fecha)) |>
     pivot_longer(
@@ -333,16 +358,12 @@ lab <- function(x) {
   write_csv(d, file = u)
 
   return(u)
-
-
 }
 
 # elimino todos los archivos descargados
 elimino <- function() {
-
   unlink("producto/*", recursive = TRUE)
   mensaje("Archivos eliminados")
-
 }
 
 # publico sitio web en Github
