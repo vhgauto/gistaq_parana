@@ -653,6 +653,12 @@ lista_firma_espectral[[4]]
 lista_firma_espectral[[5]]
 ```
 
+## `{r} fechas_gis_v[6]`
+
+```{r firma_espectral6}
+lista_firma_espectral[[6]]
+```
+
 :::
 
 Firmas espectrales por sitio muestral y fecha.
