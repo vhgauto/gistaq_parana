@@ -1,0 +1,54 @@
+---
+title: "Corrección con ACOLITE"
+format: html
+date: last-modified
+author:
+  - name: Víctor Gauto
+    orcid: 0000-0001-9960-8558
+    corresponding: true
+    email: victor.gauto@ca.frre.utn.edu.ar
+    affiliations:
+      - name: GISTAQ (UTN-FRRe)
+        url: https://www.instagram.com/gistaq.utn/
+      - name: IIDTHH (UNNE, CONICET)
+        url: https://iidthh.conicet.gov.ar/
+      - name: Instituto Gulich (UNC, CONAE)
+        url: https://ig.conae.unc.edu.ar/
+execute:
+  eval: false
+  echo: true
+code-annotations: hover
+---
+
+El producto satelital proviene de la plataforma Sentinel-2, nivel de procesamiento L1C, sin corrección atmosférica, en reflectancia a tope de atmósfera.
+
+La corrección atmosférica se realiza con el procesador [ACOLITE](https://github.com/acolite/acolite), desarrollado para aplicaciones acuáticas, mediante el algoritmo dark spectrum fitting [@Vanhellemont2018; @Vanhellemont2019; @Vanhellemont2019b].
+
+ACOLITE se [descarga](https://github.com/acolite/acolite/releases) de manera libre y gratuita y está creado con lenguaje de programación Python.
+
+Es posible ejecutar ACOLITE desde una terminal de línea de comandos, requiriendo un archivo de texto con la configuración deseada de ejecución. Se muestra a continuación las opciones utilizadas.
+
+```{r filename="settings.txt"}
+l2w_export_geotiff=True
+l2w_parameters=rhow_*# <1>
+l2w_mask=True
+l2w_mask_wave=1600
+l2w_mask_threshold=0.0215
+l2w_mask_water_parameters=False
+l2w_mask_negative_rhow=True
+l2w_mask_cirrus=True
+l2w_mask_cirrus_threshold=0.005
+dsf_residual_glint_correction=True
+map_l2w=False
+rgb_rhot=False
+rgb_rhos=False
+polygon=/home/user/acolite/roi_proyecto_parana.geojson# <2>
+output=/home/user/acolite/salida_proyecto_parana
+```
+1. Indico el procesamiento de todas las bandas disponibles.
+2. Selecciono vector para recortar a la región de interés.
+
+# Bibliografía
+
+::: {#refs}
+:::
