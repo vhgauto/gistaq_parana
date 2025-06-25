@@ -32,7 +32,11 @@ f_puntos <- function(df, p_i, p_f) {
 puntos <- vect("vector/3puntos_transecta.gpkg")
 
 # ráster de recortes
-archivos_r <- list.files("recorte_acolite/", pattern = "tif$", full.names = TRUE)
+archivos_r <- list.files(
+  "recorte_acolite/",
+  pattern = "tif$",
+  full.names = TRUE
+)
 archivos_r <- archivos_r[!str_detect(archivos_r, "rsi")]
 fechas_r <- str_remove(basename(archivos_r), ".tif")
 
@@ -42,16 +46,26 @@ lista_r <- map(
 )
 
 # agrupo en ventana de 3x3
-lista_r3 <- map(lista_r, ~focal(.x, w = 3, fun = "mean"))
+lista_r3 <- map(lista_r, ~ focal(.x, w = 3, fun = "mean"))
 lista_r3 <- set_names(lista_r3, fechas_r)
 
 # factor de las bandas
 orden_bandas <- c(
-  "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B11", "B12"
+  "B01",
+  "B02",
+  "B03",
+  "B04",
+  "B05",
+  "B06",
+  "B07",
+  "B08",
+  "B8A",
+  "B11",
+  "B12"
 )
 
 # reflectancias a lo largo de la transecta, por banda y fecha
-e_tbl <- map(lista_r3, ~terra::extract(.x, puntos, xy = TRUE)) |>
+e_tbl <- map(lista_r3, ~ terra::extract(.x, puntos, xy = TRUE)) |>
   list_rbind(names_to = "fecha") |>
   as_tibble() |>
   mutate(fecha = ymd(fecha)) |>
@@ -69,7 +83,7 @@ e_tbl <- map(lista_r3, ~terra::extract(.x, puntos, xy = TRUE)) |>
 p_tbl <- e_tbl |>
   nest(.by = banda) |>
   mutate(
-    P1P3 = map(data, ~f_puntos(.x, "P1", "P3"))
+    P1P3 = map(data, ~ f_puntos(.x, "P1", "P3"))
   ) |>
   select(-data) |>
   pivot_longer(
@@ -89,12 +103,21 @@ p_tbl <- e_tbl |>
 g <- e_tbl |>
   ggplot(aes(punto, reflect, group = x, fill = punto)) +
   geom_boxplot(
-    linewidth = .2, outlier.size = .3, key_glyph = draw_key_point,
-    outlier.color = c9, width = .8
+    linewidth = .2,
+    outlier.size = .3,
+    key_glyph = draw_key_point,
+    outlier.color = c9,
+    width = .8
   ) +
   geom_richtext(
-    data = p_tbl, aes(Inf, Inf, label = label), inherit.aes = FALSE, fill = c11,
-    size = 4, label.color = NA, hjust = 1, vjust = 1
+    data = p_tbl,
+    aes(Inf, Inf, label = label),
+    inherit.aes = FALSE,
+    fill = c11,
+    size = 4,
+    label.color = NA,
+    hjust = 1,
+    vjust = 1
   ) +
   facet_wrap(vars(banda), scales = "free", nrow = 4) +
   scale_y_continuous(
@@ -109,7 +132,10 @@ g <- e_tbl |>
     name = NULL
   ) +
   coord_cartesian(
-    clip = "off", xlim = c(.5, 3.5), ylim = c(0, .27), expand = FALSE
+    clip = "off",
+    xlim = c(.5, 3.5),
+    ylim = c(0, .27),
+    expand = FALSE
   ) +
   labs(x = NULL, y = "R<sub>rs</sub>", color = "Sitio") +
   guides(
@@ -126,21 +152,34 @@ g <- e_tbl |>
     panel.spacing.y = unit(1, "line"),
     panel.grid.major.x = element_blank(),
     panel.grid.major.y = element_line(
-      color = c4, linewidth = .06, linetype = "FF"),
+      color = c4,
+      linewidth = .06,
+      linetype = "FF"
+    ),
     panel.grid.minor = element_blank(),
     axis.text.x = element_blank(),
     axis.text.y = element_text(
-      margin = margin(r = 0), hjust = 1, family = "jet", color = c7
+      margin = margin(r = 0),
+      hjust = 1,
+      family = "jet",
+      color = c7
     ),
     axis.title.y = element_markdown(
-      family = "Ubuntu", angle = 0, margin = margin(r = 0), vjust = .5
+      family = "Ubuntu",
+      angle = 0,
+      margin = margin(r = 0),
+      vjust = .5
     ),
     strip.text = element_text(family = "Ubuntu", face = "bold", color = c7),
     legend.position = "top",
     legend.key.spacing.x = unit(24, "pt"),
     legend.background = element_blank(),
     legend.justification.inside = c(1, 0),
-    legend.text = element_text(margin = margin(l = 0, t = 0), hjust = 0, vjust = .5),
+    legend.text = element_text(
+      margin = margin(l = 0, t = 0),
+      hjust = 0,
+      vjust = .5
+    ),
     legend.text.position = "right",
     legend.box.spacing = unit(0, "pt")
   )
