@@ -1,3 +1,51 @@
+@article{Vanhellemont2019b,
+   abstract = {The potential for mapping of turbidity in inland and coastal waters using imagery from the PlanetScope (PS) and RapidEye (RE) constellations is evaluated. With >120 PS and 5 RE satellites in orbit these constellations are able to provide metre scale imagery on a daily basis and could significantly enhance high spatial resolution monitoring of turbidity worldwide. The Dark Spectrum Fitting (DSF) atmospheric correction is adapted to the PS and RE imaging systems to retrieve surface reflectances. Due to the large amount of imagery and the limited band sets on these sensors, automated pixel classification is required. This is here performed using a neural network approach, which is able to classify water pixels for clear to moderately turbid waters. Due to the limited band set and sensor performance, some issues remain with classifying extremely turbid waters and cloud shadows based on a spectral approach. Surface reflectance data compares well with in situ measurements from the AERONET-OC network. Turbidity is estimated from the Red, RedEdge (RE only) and NIR bands and is compared with measurements from autonomous stations in the San Francisco Bay area and the coastal waters around the United Kingdom. Good performance is found for Red band derived turbidity from PS data, while the NIR band performance is mediocre, likely due to calibration issues. For RE, all three turbidity products give reasonable results. A high revisit density allows for the mapping of temporal variability in water turbidity using these satellite constellations. Thanks to the RedEdge band on RE, chlorophyll a absorption can be avoided, and perhaps even estimated.},
+   author = {Quinten Vanhellemont},
+   doi = {10.1364/oe.27.0a1372},
+   issn = {10944087},
+   issue = {20},
+   journal = {Optics Express},
+   month = {9},
+   pages = {A1372},
+   pmid = {31684493},
+   publisher = {Optica Publishing Group},
+   title = {Daily metre-scale mapping of water turbidity using CubeSat imagery},
+   volume = {27},
+   year = {2019}
+}
+
+@article{Vanhellemont2019,
+   abstract = {The dark spectrum fitting (DSF) atmospheric correction method for aquatic application of metre-scale resolution optical satellite imagery is adapted to Landsat and Sentinel-2 (L/S2), including an automated tiled processing of full scene imagery and an optional image based glint correction. The DSF uses multiple dark targets in the subscene to construct a “dark spectrum” which is used to estimate the atmospheric path reflectance (ρ path ) according to the best fitting aerosol model. This method is fully automated and can be used for full mission archive processing, as demonstrated here for a study region in the North Sea. The new approach overcomes common issues with the SWIR based exponential extrapolation approach (EXP). An evaluation of both methods is presented using L w measurements from 19 sites in the AERONET-OC network over a 15 year period and 5 satellite sensors. Overall, the DSF performs better than the EXP, with a notable improvement in the blue spectral region. The tiled processing allows for a smooth ρ path estimation for full and merged L/S2 scenes, over clear and turbid coastal waters, inland waters, and land. The DSF selects the most appropriate band automatically, i.e. the one giving the lowest atmospheric path reflectance, and hence largely avoids amplification of glint and adjacency effects in the atmospheric correction. After application of the DSF, sun glint reflectance can be estimated from the SWIR bands, and the application of a sun glint correction significantly improves data availability for these nadir viewing sensors. A consistent processing across sensors allows for the exploitation of the >30 year L/S2 archive, including Landsat 5 imagery dating back to 1984. A practical application of the DSF and the L/S2 archive is presented, where the remotely sensed water turbidity from 5 satellites is compared with in situ measurements from a long-term (2000–present) monitoring station in the southern North Sea.},
+   author = {Quinten Vanhellemont},
+   doi = {10.1016/j.rse.2019.03.010},
+   issn = {00344257},
+   issue = {November 2018},
+   journal = {Remote Sensing of Environment},
+   keywords = {Aerosol correction,Automation,Long time-series,Multi-sensor,Water colour,Water quality},
+   pages = {175-192},
+   publisher = {Elsevier},
+   title = {Adaptation of the dark spectrum fitting atmospheric correction for aquatic applications of the Landsat and Sentinel-2 archives},
+   volume = {225},
+   url = {https://doi.org/10.1016/j.rse.2019.03.010},
+   year = {2019}
+}
+
+@article{Vanhellemont2018,
+   abstract = {A new atmospheric correction (AC) method for aquatic application of metre-scale resolution (MR) optical satellite imagery is presented in this article, and demonstrated using images from the Pléiades constellation. MR satellites are typically operated privately and imagery can be costly. However in recent years, the price of individual acquisitions has dropped and their revisit times have improved, making them promising tools for remote sensing of inland and coastal waters. Due to the spatial resolution requirements of these satellites, the bands on the sensors are relatively wide (60–140 nm on Pléiades) in order to achieve an acceptable signal to noise ratio. This bandwidth and the limited number of bands can pose problems for the AC as the water signal may not be negligible in any band, especially over turbid waters. Since the MR sensors have a relatively narrow swath (20 km for Pléiades) the atmosphere can generally be assumed to be homogeneous over a scene or subscene. This assumption allows the atmospheric path reflectance (ρpath) to be estimated from multiple targets in the scene, which are selected according to the lowest observed top-of-atmosphere reflectances (ρTOA) in all bands. Rather than using pre-defined “dark” bands (e.g. in the NIR and SWIR) such as is common in other water-focused AC methods, the best band is selected automatically, i.e. the one yielding the lowest ρpath. This criterion avoids unrealistic negative (“overcorrected”) reflectances after the AC. Furthermore, for inland waters the NIR bands are usually affected by scattering from adjacent land and vegetation pixels, resulting in unrealistic ρpath when used in the AC. The spatial resolution of the sensors is used as an advantage here, since ground-level object shadows (e.g. from trees and buildings) can be spatially resolved and are usually the pixels selected by the automated procedure for the determination of ρpath. In fact, it is proposed that using these shadow pixels gives better performance than using any kind of water pixel for these broad-band MR sensors. The method is demonstrated using several Pléiades images, showing good performance in retrieval of the aerosol optical thickness (τa) for an urban (Brussels) and a coastal (Zeebrugge) site. Match-ups with water reflectances measured at the Zeebrugge AERONET-OC station show promising performance, although there is a significant spectral mismatch between the bands on the satellites and the CIMEL radiometer. Pléiades imagery of Zeebrugge reveals a turbid wake associated with the MOW1 measurement station, which opens perspectives of using MR satellites for the characterisation of monitoring and validation sites. Future work includes the application to other MR satellites (e.g. WorldView) and the evaluation for mass processing of open access high resolution (10–60 m) satellite data from Landsat and Sentinel-2.},
+   author = {Quinten Vanhellemont and Kevin Ruddick},
+   doi = {10.1016/j.rse.2018.07.015},
+   issn = {00344257},
+   issue = {March},
+   journal = {Remote Sensing of Environment},
+   keywords = {Aerosol correction,Automation,Metre-scale resolution,Remote sensing,Water colour,Water quality},
+   pages = {586-597},
+   publisher = {Elsevier},
+   title = {Atmospheric correction of metre-scale optical satellite data for inland and coastal water applications},
+   volume = {216},
+   url = {https://doi.org/10.1016/j.rse.2018.07.015},
+   year = {2018}
+}
+
 @Manual{corrr,
     title = {corrr: Correlations in R},
     author = {Max Kuhn and Simon Jackson and Jorge Cimentada},
