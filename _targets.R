@@ -6,10 +6,6 @@ tar_option_set(packages = c("glue", "terra", "sf", "tidyverse"))
 # funciones
 source("scripts_targets/funciones.R")
 
-# cue = tar_cue(mode = "always")
-
-# browseURL("https://raps-with-r.dev/targets.html")
-
 # targets
 list(
   # archivo Excel, con la fecha y sitios de muestreo
@@ -26,7 +22,7 @@ list(
     format = "file"
   ),
 
-  # fecha para la descarga de producto
+  # fecha del último muestreo
   tar_target(
     name = fecha_actual,
     command = fecha(archivo_i = excel)
@@ -53,7 +49,7 @@ list(
     format = "file"
   ),
 
-  # render manuscrito
+  # creo manuscrito
   tarchetypes::tar_quarto(
     name = render_manuscrito,
     path = "."
