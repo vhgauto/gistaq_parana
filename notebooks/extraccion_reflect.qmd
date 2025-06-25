@@ -36,14 +36,20 @@ v <- terra::vect("../vector/recorte_puente.gpkg") |> # <1>
 
 leaflet::leaflet() |> # <2>
   leaflet::addTiles() |> # <2>
-  leaflet::addPolygons( # <3>
-    data = v, color = "#B86092", stroke = TRUE, # <3>
-    fillColor = "transparent", opacity = 1, weight = 5 # <3>
+  leaflet::addPolygons(
+    # <3>
+    data = v,
+    color = "#B86092",
+    stroke = TRUE, # <3>
+    fillColor = "transparent",
+    opacity = 1,
+    weight = 5 # <3>
   ) |> # <3>
   leaflet.extras::addFullscreenControl(
     position = "bottomright"
   ) |>
   leaflet.extras::addResetMapButton()
+
 ```
 1. Lectura y transformación de las coordenadas del vector.
 2. Inicio mapa interactivo y agrego mapa base de Open Street Map.
@@ -52,27 +58,46 @@ leaflet::leaflet() |> # <2>
 El procesamiento para el recorte y almacenamiento del producto satelital se muestra a continuación.
 
 ```{r}
-unzip( # <1>
-  zipfile = "producto/producto.zip", exdir = "producto/" # <1>
+unzip(
+  # <1>
+  zipfile = "producto/producto.zip",
+  exdir = "producto/" # <1>
 ) # <1>
 
-lis <- list.files( # <2>
-  path = "producto/", pattern = "SAFE", full.names = TRUE # <2>
+lis <- list.files(
+  # <2>
+  path = "producto/",
+  pattern = "SAFE",
+  full.names = TRUE # <2>
 ) # <2>
 carpeta1 <- glue("{lis}/GRANULE") # <2>
 carpeta2 <- list.files(carpeta1) # <2>
 carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA") # <2>
 
-r10m <- list.files( # <3>
-  glue("{carpeta3}/R10m"), full.names = TRUE # <3>
+r10m <- list.files(
+  # <3>
+  glue("{carpeta3}/R10m"),
+  full.names = TRUE # <3>
 ) # <3>
-r20m <- list.files( # <3>
-  glue("{carpeta3}/R20m"), full.names = TRUE # <3>
+r20m <- list.files(
+  # <3>
+  glue("{carpeta3}/R20m"),
+  full.names = TRUE # <3>
 ) # <3>
 
-bandas_nombres <- c( # <4>
-  "B01", "B02", "B03", "B04", "B05", "B06", "B07", # <4>
-  "B08", "B8A", "B11", "B12" # <4>
+bandas_nombres <- c(
+  # <4>
+  "B01",
+  "B02",
+  "B03",
+  "B04",
+  "B05",
+  "B06",
+  "B07", # <4>
+  "B08",
+  "B8A",
+  "B11",
+  "B12" # <4>
 ) # <4>
 
 b01 <- r20m[2] # <5>
@@ -87,47 +112,75 @@ b8a <- r20m[11] # <5>
 b11 <- r20m[9] # <5>
 b12 <- r20m[10] # <5>
 
-vector_bandas <- c( # <6>
-  b01, b02, b03, b04, b05, b06, b07, b08, b8a, b11, b12 # <6>
+vector_bandas <- c(
+  # <6>
+  b01,
+  b02,
+  b03,
+  b04,
+  b05,
+  b06,
+  b07,
+  b08,
+  b8a,
+  b11,
+  b12 # <6>
 ) # <6>
 
-lista_bandas <-  map(vector_bandas, rast) # <7>
+lista_bandas <- map(vector_bandas, rast) # <7>
 names(lista_bandas) <- bandas_nombres # <7>
 
 recorte_puente <- vect("vector/recorte_puente.gpkg") # <8>
 
-lista_recortes <- map( # <9>
+lista_recortes <- map(
+  # <9>
   .x = lista_bandas, # <9>
-  ~terra::crop(x = .x, y = recorte_puente)) # <9>
+  ~ terra::crop(x = .x, y = recorte_puente)
+) # <9>
 
-lista_recortes$B01 <- project( # <10>
-  lista_recortes$B01, lista_recortes$B02 # <10>
+lista_recortes$B01 <- project(
+  # <10>
+  lista_recortes$B01,
+  lista_recortes$B02 # <10>
 ) # <10>
-lista_recortes$B05 <- project( # <10>
-  lista_recortes$B05, lista_recortes$B02 # <10>
+lista_recortes$B05 <- project(
+  # <10>
+  lista_recortes$B05,
+  lista_recortes$B02 # <10>
 ) # <10>
-lista_recortes$B06 <- project( # <10>
-  lista_recortes$B06, lista_recortes$B02 # <10>
+lista_recortes$B06 <- project(
+  # <10>
+  lista_recortes$B06,
+  lista_recortes$B02 # <10>
 ) # <10>
-lista_recortes$B07 <- project( # <10>
-  lista_recortes$B07, lista_recortes$B02 # <10>
+lista_recortes$B07 <- project(
+  # <10>
+  lista_recortes$B07,
+  lista_recortes$B02 # <10>
 ) # <10>
-lista_recortes$B8A <- project( # <10>
-  lista_recortes$B8A, lista_recortes$B02 # <10>
+lista_recortes$B8A <- project(
+  # <10>
+  lista_recortes$B8A,
+  lista_recortes$B02 # <10>
 ) # <10>
-lista_recortes$B11 <- project( # <10>
-  lista_recortes$B11, lista_recortes$B02 # <10>
+lista_recortes$B11 <- project(
+  # <10>
+  lista_recortes$B11,
+  lista_recortes$B02 # <10>
 ) # <10>
-lista_recortes$B12 <- project( # <10>
-  lista_recortes$B12, lista_recortes$B02 # <10>
+lista_recortes$B12 <- project(
+  # <10>
+  lista_recortes$B12,
+  lista_recortes$B02 # <10>
 ) # <10>
 
 stack_bandas <- rast(lista_recortes) # <11>
 
-nombre_raster <- as.character(fecha_descarga) |>  # <12>
+nombre_raster <- as.character(fecha_descarga) |> # <12>
   str_remove_all("-") # <12>
 
-writeRaster( # <13>
+writeRaster(
+  # <13>
   stack_bandas, # <13>
   glue("recorte/{nombre_raster}.tif"), # <13>
   overwrite = TRUE # <13>
@@ -190,8 +243,11 @@ coord_vect <- vect(
 Se procede con la verificación de nubes a partir del mapa de probabilidades de nubosidad a 20 m de resolución @CSteam2024. En caso de que un sitio muestral presente nubes, es descartado.
 
 ```{r}
-lis <- list.files( # <1>
-  path = "producto/", pattern = "SAFE", full.names = TRUE # <1>
+lis <- list.files(
+  # <1>
+  path = "producto/",
+  pattern = "SAFE",
+  full.names = TRUE # <1>
 ) # <1>
 
 carpeta1 <- glue("{lis}/GRANULE") # <2>
@@ -199,7 +255,8 @@ carpeta2 <- list.files(carpeta1) # <2>
 carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA") # <2>
 carpeta4 <- glue("{carpeta1}/{carpeta2}/QI_DATA") # <2>
 
-raster_prob <- terra::rast( # <3>
+raster_prob <- terra::rast(
+  # <3>
   glue("{carpeta4}/MSK_CLDPRB_20m.jp2") # <3>
 ) # <3>
 
@@ -208,14 +265,14 @@ nubes <- terra::extract(raster_prob, coord_vect) |> # <4>
   rename(punto = ID, probabilidad = MSK_CLDPRB_20m) |>
   dplyr::filter(probabilidad == 0) # <5>
 
-coord_sf_sin_nubes <- inner_join( # <6>
+coord_sf_sin_nubes <- inner_join(
+  # <6>
   st_as_sf(coord_vect), # <6>
   nubes, # <6>
   by = join_by(punto) # <6>
 ) # <6>
 
 if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) {
-
   # sitios con nubes
   puntos_nubes <- anti_join(
     st_as_sf(coord_vect),
@@ -225,8 +282,10 @@ if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) {
     pull(punto) |>
     stringr::str_flatten_comma(string = _, last = " y ")
 
-  print( # <7>
-    glue( # <7>
+  print(
+    # <7>
+    glue(
+      # <7>
       "Los sitios {puntos_nubes} presentan nubes y ", # <7>
       "se descartan" # <7>
     ) # <7>
@@ -251,18 +310,25 @@ Alrededor del píxel central se crea una ventana de 3x3 y se promedia el valor f
 # leo recorte
 stack_bandas <- rast(glue("recorte/{nombre_raster}.tif")) # <1>
 
-stack_bandas_3x3 <- terra::focal( # <2>
+stack_bandas_3x3 <- terra::focal(
+  # <2>
   stack_bandas, # <2>
-  w = 3, fun = mean, na.rm = TRUE # <2>
+  w = 3,
+  fun = mean,
+  na.rm = TRUE # <2>
 ) # <2>
 
-reflect_3x3 <- terra::extract( # <3>
-  stack_bandas_3x3, coord_sf_sin_nubes # <3>
+reflect_3x3 <- terra::extract(
+  # <3>
+  stack_bandas_3x3,
+  coord_sf_sin_nubes # <3>
 ) |> # <3>
   as_tibble() |>
   rename(punto = ID) |>
   pivot_longer(
-    cols = -punto, names_to = "banda", values_to = "reflect"
+    cols = -punto,
+    names_to = "banda",
+    values_to = "reflect"
   ) |>
   mutate(reflect = reflect / 10000) |> # <4>
   mutate(fecha = ymd(y), .before = 1) |>
@@ -282,8 +348,13 @@ La base de datos final tiene la siguiente estructura:
 ```{r}
 #| eval: true
 readr::read_csv(
-  file = "../datos/base_de_datos_gis.csv",
+  file = "../datos/base_de_datos_gis_acolite.csv",
   show_col_types = FALSE
 ) |>
   head()
 ```
+
+# Bibliografía
+
+::: {#refs}
+:::

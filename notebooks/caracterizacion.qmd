@@ -40,12 +40,17 @@ Las propiedades fisicoquímicas se grafican en función de la longitud geográfi
 
 ```{r}
 param_v <- c("turb", "secchi", "sol_sus", "cond", "ph") # <1>
-param_unid_v <- c( # <2>
-  "<i>turb</i> (NTU)", "<i>secchi</i> (cm)", "<i>susp</i> (ppm)", # <2>
-  "<i>cond</i> (μS/cm)", "pH" # <2>
+param_unid_v <- c(
+  # <2>
+  "<i>turb</i> (NTU)",
+  "<i>secchi</i> (cm)",
+  "<i>susp</i> (ppm)", # <2>
+  "<i>cond</i> (μS/cm)",
+  "pH" # <2>
 ) # <2>
 names(param_unid_v) <- param_v
-```
+``
+`
 1. Nombres de las variables de interés.
 2. Unidades de los parámetros.
 
@@ -90,7 +95,8 @@ estado_color <- c( # <7>
   Actual = "#007E2E", # <7>
   Previos = "#B86092" # <7>
 ) # <7>
-```
+`
+``
 1. Lectura de la base de datos.
 2. Agrego las unidades a las variables.
 3. Conservo únicamente las unidades, removiendo `()`.
@@ -102,36 +108,50 @@ estado_color <- c( # <7>
 La generación de las figuras se lleva a cabo mediante una función personalizada, que itera entre todas las variables disponibles. Al ser una figura interactiva, se utiliza el paquete `{ggiraph}` @ggiraph para incorporar esa funcionalidad.
 
 ```{r}
-f_figura_evolucion_lab <- function(parametro) { # <1>
+f_figura_evolucion_lab <- function(parametro) {
+  # <1>
   g <- d |>
     filter(param == parametro) |>
     ggplot(
       aes(
-        longitud, valor,
-        group = fecha, color = estado, fill = estado
+        longitud,
+        valor,
+        group = fecha,
+        color = estado,
+        fill = estado
       )
     ) +
-    geom_line_interactive( # <2>
+    geom_line_interactive(
+      # <2>
       aes(data_id = interaction(fecha, param)),
       hover_nearest = TRUE,
-      linewidth = 2, alpha = .8
+      linewidth = 2,
+      alpha = .8
     ) +
-    geom_point_interactive( # <3>
+    geom_point_interactive(
+      # <3>
       aes(
-        data_id = interaction(fecha, param), tooltip = label, # <4>
+        data_id = interaction(fecha, param),
+        tooltip = label, # <4>
         hover_nearest = TRUE
       ),
-      size = 2.5, shape = 21, color = c3,
-      stroke = .2, show.legend = FALSE
+      size = 2.5,
+      shape = 21,
+      color = c3,
+      stroke = .2,
+      show.legend = FALSE
     ) +
     facet_wrap(vars(param), scales = "free") +
-    scale_y_continuous( # <5>
+    scale_y_continuous(
+      # <5>
       breaks = scales::breaks_pretty(),
       labels = scales::label_number(
-        decimal.mark = ",", big.mark = "."
+        decimal.mark = ",",
+        big.mark = "."
       )
     ) +
-    scale_x_continuous( # <6>
+    scale_x_continuous(
+      # <6>
       breaks = range(d$longitud),
       labels = c("Orilla\nchaqueña", "Orilla\ncorrentina")
     ) +
@@ -140,24 +160,31 @@ f_figura_evolucion_lab <- function(parametro) { # <1>
     coord_cartesian(clip = "off") +
     labs(y = parametro, x = NULL, fill = NULL, color = NULL) +
     theme_void(base_size = 10) +
-    theme( # <8>
+    theme(
+      # <8>
       aspect.ratio = 1,
       plot.margin = margin(6, 6, 6, 6),
       panel.grid.minor = element_blank(),
       panel.grid.major.y = element_line(
-        color = c4, linewidth = .06, linetype = 3
+        color = c4,
+        linewidth = .06,
+        linetype = 3
       ),
       panel.spacing = unit(1.1, "line"),
       axis.title.y = element_markdown(
-        family = "Ubuntu", angle = 90, margin = margin(r = 10),
+        family = "Ubuntu",
+        angle = 90,
+        margin = margin(r = 10),
         size = 12
       ),
       axis.text = element_text(family = "jet", color = c7),
       axis.text.y = element_markdown(
-        hjust = 1, margin = margin(r = 2)
+        hjust = 1,
+        margin = margin(r = 2)
       ),
       axis.text.x = element_text(
-        margin = margin(t = 2), family = "Ubuntu"
+        margin = margin(t = 2),
+        family = "Ubuntu"
       ),
       axis.ticks = element_blank(),
       panel.background = element_rect(fill = c11, color = NA),
@@ -165,14 +192,17 @@ f_figura_evolucion_lab <- function(parametro) { # <1>
       strip.text = element_blank(),
       legend.position = "top",
       legend.text = element_text(
-        family = "ubuntu", size = 12, margin = margin(r = 10, l = 3)
+        family = "ubuntu",
+        size = 12,
+        margin = margin(r = 10, l = 3)
       ),
       legend.background = element_rect(fill = c10, color = NA),
       legend.key = element_rect(fill = NA, color = NA),
       legend.key.spacing.x = unit(.3, "cm")
     )
 
-  gg_int <- girafe( # <9>
+  gg_int <- girafe(
+    # <9>
     ggobj = g,
     bg = c10,
     options = list(
@@ -183,7 +213,8 @@ f_figura_evolucion_lab <- function(parametro) { # <1>
       ),
       opts_tooltip(
         opacity = 1,
-        css = glue( # <10>
+        css = glue(
+          # <10>
           "color:{c7};padding:5px;font-family:JetBrains Mono;", # <10>
           "border-style:solid;border-color:{c4};border-width:2px;", # <10>
           "background:{c3}" # <10>
@@ -193,7 +224,7 @@ f_figura_evolucion_lab <- function(parametro) { # <1>
         offy = 5
       ),
       opts_sizing(width = 1, rescale = TRUE),
-      opts_hover_inv(css = "opacity:.2"),  # <11>
+      opts_hover_inv(css = "opacity:.2"), # <11>
       opts_toolbar(saveaspng = FALSE)
     )
   )
@@ -201,10 +232,13 @@ f_figura_evolucion_lab <- function(parametro) { # <1>
   return(gg_int)
 }
 
-lista_figura_evolucion_lab <- map(  # <12>
-  param_unid_v, f_figura_evolucion_lab  # <12>
-)  # <12>
-```
+lista_figura_evolucion_lab <- map(
+  # <12>
+  param_unid_v,
+  f_figura_evolucion_lab # <12>
+) # <12>
+``
+`
 1. La función `f_figura_evolucion_lab` tiene como argumento los parámetros de interés.
 2. La figura incorpora líneas que unen las observaciones de la base de datos.
 3. Se adicionan puntos por sobre las líneas.
@@ -238,7 +272,8 @@ param_unid_v <- c( # <3>
   "<i>turb</i>", "<i>secchi</i>" # <3>
 ) # <3>
 names(param_unid_v) <- param_v
-```
+`
+``
 1. Lectura de la base de datos del laboratorio.
 2. Parámetros de interés.
 3. Unidades de las propiedades fisicoquímicas.
@@ -253,8 +288,11 @@ e_r <- d |>
     values_from = valor
   ) |>
   select(-c(contains("hazemeter"), fecha, longitud, latitud)) |>
-  correlate( # <1>
-    method = "pearson", use = "pairwise.complete.obs", quiet = TRUE # <1>
+  correlate(
+    # <1>
+    method = "pearson",
+    use = "pairwise.complete.obs",
+    quiet = TRUE # <1>
   ) |> # <1>
   shave() |> # <2>
   pivot_longer(
@@ -263,7 +301,8 @@ e_r <- d |>
     values_to = "r"
   ) |>
   drop_na()
-```
+``
+`
 1. Calculo el coeficiente de correlación de Pearson.
 2. Remuevo valores repetidos del coeficiente, conservando únicamente los coeficientes inferiores de la matriz triangular.
 
@@ -289,14 +328,16 @@ e_pvalor <- d |>
     values_to = "pvalor"
   ) |>
   drop_na()
-```
+`
+``
 1. Función que calcula el p-valor para cada par de parámetros dados.
 2. Calculo p-valor a todas las variables.
 
 Se combinaron los datos y se operó convenientemente.
 
 ```{r}
-e <- inner_join( # <1>
+e <- inner_join(
+  # <1>
   e_r, # <1>
   e_pvalor, # <1>
   by = join_by(term, param) # <1>
@@ -308,7 +349,8 @@ e <- inner_join( # <1>
   mutate(label = if_else(es_significativo, "&#9733;", NA)) |> # <4>
   mutate(id = row_number()) |>
   mutate(r_label = paste0("r: ", f_formato(r))) # <5>
-```
+``
+`
 1. Combino valores de coeficientes de correlación R<sup>2</sup> con p-valor.
 1. Ordeno convenientemente los parámetros.
 3. Defino el intervalo de confianza del 95%.
@@ -357,7 +399,8 @@ g <- e |>
     legend.key.height = unit(25, "pt"),
     legend.justification.right = c(0, 1)
   )
-```
+`
+``
 1. Al pasar el mouse sobre el <i>heatmap</i> se muestra el valor de R<sup>2</sup> del par de parámetros.
 2. Se indica el gradiente de colores.
 3. Características estéticas de la figura.
@@ -365,7 +408,8 @@ g <- e |>
 Finalmente se agregaron características interactivas que muestran el $p$-valor a pasar el mouse sobre cada bloque.
 
 ```{r}
-heatmap_lab <- girafe( # <1>
+heatmap_lab <- girafe(
+  # <1>
   ggobj = g,
   bg = c10,
   options = list(
@@ -376,7 +420,8 @@ heatmap_lab <- girafe( # <1>
     ),
     opts_tooltip(
       opacity = 1,
-      css = glue( # <2>
+      css = glue(
+        # <2>
         "color:{c7};padding:5px;font-family:JetBrains Mono;", # <2>
         "border-style:solid;border-color:{c4};border-width:2px;", # <2>
         "background:{c3}" # <2>
@@ -390,7 +435,8 @@ heatmap_lab <- girafe( # <1>
     opts_toolbar(saveaspng = FALSE)
   )
 )
-```
+``
+`
 1. Convierto la figura estática a interactiva.
 2. Estilo de texto mostrado al pasar el mouse sobre la figura.
 3. Para resaltar los parámetros mostrados, se aumenta la transparencia del resto de la figura.
@@ -418,7 +464,8 @@ linea_ancho <- 1 # <3>
 texto_tamaño <- 4 # <3>
 punto_transparencia <- .6 # <3>
 punto_tamaño <- 3 # <3>
-```
+`
+``
 1. Leo base de datos.
 2. Elijo variables e indico las unidades.
 3. Defino características visuales de la figura.
@@ -428,21 +475,35 @@ La profundidad de disco de secchi tiene una relación logarítmica con el resto 
 Se crearon funciones personalizadas para modificar los ejes en caso de incluir en los pares de datos la profundidad de disco de Secchi.
 
 ```{r}
-g_log <- function(g, etq) { # <1>
+g_log <- function(g, etq) {
+  # <1>
   g +
-    geom_smooth( # <2>
-      method = lm, formula = y ~ x, se = FALSE, color = c1, # <2>
-      linetype = linea_tipo, linewidth = linea_ancho # <2>
+    geom_smooth(
+      # <2>
+      method = lm,
+      formula = y ~ x,
+      se = FALSE,
+      color = c1, # <2>
+      linetype = linea_tipo,
+      linewidth = linea_ancho # <2>
     ) + # <2>
     annotate(
-      geom = "richtext", x = I(0), y = I(1), hjust = 0,
-      vjust = 1, size = texto_tamaño, label = etq,
-      label.color = NA, fill = c11, family = "jet"
+      geom = "richtext",
+      x = I(0),
+      y = I(1),
+      hjust = 0,
+      vjust = 1,
+      size = texto_tamaño,
+      label = etq,
+      label.color = NA,
+      fill = c11,
+      family = "jet"
     ) +
     scale_y_continuous(breaks = scales::breaks_pretty()) +
     scale_x_continuous(breaks = scales::breaks_pretty())
 }
-```
+``
+`
 1. La función `g_log` toma como argumentos una figura y la etiqueta con cantidad de datos y R<sup>2</sup>.
 2. Línea de tendencia.
 
@@ -462,14 +523,16 @@ g_recta <- function(g, etq) { # <1>
     scale_x_log10(breaks = scales::breaks_pretty()) +
     scale_y_log10(expand = c(0, 0))
 }
-```
+`
+``
 1. La función `g_recta` toma como argumentos una figura y la etiqueta con cantidad de datos y R<sup>2</sup>.
 2. Línea de tendencia.
 
 Luego se generan las figuras mediante una función que toma pares de parámetros.
 
 ```{r}
-f_gg <- function(eje_x, eje_y) { # <1>
+f_gg <- function(eje_x, eje_y) {
+  # <1>
   e <- d |>
     pivot_wider(
       names_from = param,
@@ -481,23 +544,29 @@ f_gg <- function(eje_x, eje_y) { # <1>
 
   # figura básica
   g <- ggplot(e, aes(x, y)) +
-    geom_point( # <3>
-      size = punto_tamaño, alpha = punto_transparencia, # <3>
+    geom_point(
+      # <3>
+      size = punto_tamaño,
+      alpha = punto_transparencia, # <3>
       color = c2 # <3>
     ) + # <3>
     coord_cartesian(clip = "off") +
     labs(x = param_unid_v[eje_x], y = param_unid_v[eje_y]) +
     theme_void() +
-    theme( # <4>
+    theme(
+      # <4>
       aspect.ratio = 1,
       plot.margin = margin(t = 5, r = 7, b = 0, l = 5),
       panel.background = element_rect(fill = c11, color = NA),
       panel.grid.major = element_line(
-        color = c4, linewidth = .1, linetype = "FF"
+        color = c4,
+        linewidth = .1,
+        linetype = "FF"
       ),
       axis.title = element_markdown(family = "Ubuntu", size = 12),
       axis.title.y = element_markdown(
-        angle = 90, margin = margin(r = 3, l = 5)
+        angle = 90,
+        margin = margin(r = 3, l = 5)
       ),
       axis.title.x = element_markdown(
         margin = margin(t = 6, b = 10)
@@ -505,11 +574,13 @@ f_gg <- function(eje_x, eje_y) { # <1>
       axis.text = element_text(family = "jet", size = 8),
       axis.text.x = element_text(margin = margin(t = 6)),
       axis.text.y = element_text(
-        margin = margin(r = 5), hjust = 1
+        margin = margin(r = 5),
+        hjust = 1
       )
     )
 
-  if (eje_x == "secchi" | eje_y == "secchi") { # <5>
+  if (eje_x == "secchi" | eje_y == "secchi") {
+    # <5>
     mod <- lm(log(y) ~ log(x), data = e) # <6>
 
     r2 <- broom::glance(mod)$r.squared |>
@@ -521,7 +592,6 @@ f_gg <- function(eje_x, eje_y) { # <1>
 
     g <- g_recta(g, etq_recta)
   } else {
-
     mod <- lm(y ~ x, data = e) # <7>
 
     r2 <- broom::glance(mod)$r.squared |>
@@ -536,7 +606,8 @@ f_gg <- function(eje_x, eje_y) { # <1>
 
   return(g)
 }
-```
+``
+`
 1. La función `f_gg` toma como argumentos variables para ambos ejes.
 2. Se seleccionan los pares de parámetros y se renombra para facilitar el procesamiento siguiente.
 3. Se crea la figura de dispersión básica.
@@ -567,7 +638,8 @@ f_guardar("cond", "secchi") # <3>
 f_guardar("turb", "sol_sus") # <3>
 f_guardar("turb", "secchi") # <3>
 f_guardar("sol_sus", "secchi") # <3>
-```
+`
+``
 1. La función `f_guardar` depende de ambos parámetros a comparar.
 2. El nombre del archivo `.png` se compone a partir de ambos parámetros.
 3. Se almacena cada figura según la combinación de pares de variables.
@@ -582,8 +654,11 @@ Para ellos se leen los datos y se calcula la mediana de la longitud geográfica 
 # parámetros y unidades
 param_v <- c("ph", "cond", "sol_sus", "turb", "secchi")
 param_unid_v <- c(
-  "pH", "<i>cond</i> (μS/cm)", "<i>susp</i> (ppm)",
-  "<i>turb</i> (NTU)", "<i>secchi</i> (cm)"
+  "pH",
+  "<i>cond</i> (μS/cm)",
+  "<i>susp</i> (ppm)",
+  "<i>turb</i> (NTU)",
+  "<i>secchi</i> (cm)"
 )
 names(param_unid_v) <- param_v
 
@@ -622,10 +697,11 @@ f_lado_signif <- function(x) {
     filter(param == x & lado == "Corrientes") |>
     pull(valor)
 
-
   signif <- wilcox.test(
-    d_corrientes, d_chaco,
-    paired = FALSE, exact = TRUE
+    d_corrientes,
+    d_chaco,
+    paired = FALSE,
+    exact = TRUE
   ) |>
     broom::tidy() |>
     select(p.value) |>
@@ -662,17 +738,28 @@ f_figura_lado <- function(x) {
 
   g <- ggplot(e, aes(lado, valor)) +
     geom_boxplot(
-      color = c1, outlier.color = c2, fill = c3, outlier.alpha = .8
+      color = c1,
+      outlier.color = c2,
+      fill = c3,
+      outlier.alpha = .8
     ) +
     annotate(
-      geom = "richtext", x = Inf, y = Inf, hjust = 1, vjust = 1,
-      fill = c11, label = signif_label, label.color = NA, size = 5
+      geom = "richtext",
+      x = Inf,
+      y = Inf,
+      hjust = 1,
+      vjust = 1,
+      fill = c11,
+      label = signif_label,
+      label.color = NA,
+      size = 5
     ) +
     facet_wrap(vars(param), nrow = 1, scales = "free") +
     labs(x = NULL, y = param_unid_v[x]) +
     scale_y_continuous(
       labels = scales::label_number(
-        big.mark = ".", decimal.mark = ","
+        big.mark = ".",
+        decimal.mark = ","
       )
     ) +
     theme_void() +
@@ -681,16 +768,25 @@ f_figura_lado <- function(x) {
       plot.margin = margin(r = 5, l = 5, t = 0, b = 0),
       panel.background = element_rect(fill = c11, color = NA),
       panel.grid.major.y = element_line(
-        color = c4, linewidth = .1, linetype = "FF"
+        color = c4,
+        linewidth = .1,
+        linetype = "FF"
       ),
       axis.text.x = element_text(
-        margin = margin(t = 6), size = 10, family = "ubuntu"
+        margin = margin(t = 6),
+        size = 10,
+        family = "ubuntu"
       ),
       axis.text.y = element_text(
-        margin = margin(r = 5), hjust = 1, size = 8, family = "jet"
+        margin = margin(r = 5),
+        hjust = 1,
+        size = 8,
+        family = "jet"
       ),
       axis.title.y = element_markdown(
-        family = "Ubuntu", angle = 90, margin = margin(r = 10),
+        family = "Ubuntu",
+        angle = 90,
+        margin = margin(r = 10),
         size = 12
       ),
       strip.text = element_blank()
@@ -724,8 +820,17 @@ Se realizó la lectura de datos y se incorporaron las bandas espectrales en el o
 
 ```{r}
 banda_orden <- c(
-  "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08",
-  "B8A", "B11", "B12"
+  "B01",
+  "B02",
+  "B03",
+  "B04",
+  "B05",
+  "B06",
+  "B07",
+  "B08",
+  "B8A",
+  "B11",
+  "B12"
 )
 
 d <- read_csv(
@@ -754,7 +859,8 @@ col_tbl <- d |>
   nest(.by = fecha) |>
   mutate(
     col = map(
-      .x = data, ~ colorRampPalette(colors = c(c1, c9, c2))(nrow(.x))
+      .x = data,
+      ~ colorRampPalette(colors = c(c1, c9, c2))(nrow(.x))
     )
   ) |>
   unnest(cols = c(data, col))
@@ -781,49 +887,64 @@ f_firma_espectral <- function(x) {
 
   colores_gis <- colorRampPalette(
     colors = c(c1, c4, c2)
-  )(length(unique(d$p))
-  )
+  )(length(unique(d$p)))
 
   midpoint_gis <- median(unique(d$p))
 
   g <- ggplot(
-    d, aes(banda, reflect, group = p, color = p, fill = p)
+    d,
+    aes(banda, reflect, group = p, color = p, fill = p)
   ) +
     geom_line_interactive(
       aes(data_id = interaction(fecha, p)),
       hover_nearest = TRUE,
-      linewidth = 1, alpha = .8, show.legend = FALSE
+      linewidth = 1,
+      alpha = .8,
+      show.legend = FALSE
     ) +
     geom_point_interactive(
       aes(data_id = interaction(fecha, p)),
-      size = .7, shape = 21
+      size = .7,
+      shape = 21
     ) +
     scale_x_discrete(expand = c(0, 0)) +
     scale_y_continuous(
       breaks = scales::breaks_pretty(),
       labels = scales::label_number(
-        decimal.mark = ",", big.mark = "."
+        decimal.mark = ",",
+        big.mark = "."
       )
     ) +
     scale_fill_gradient2(
-      low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
+      low = c1,
+      mid = c4,
+      high = c2,
+      midpoint = midpoint_gis,
       breaks = unique(d$p),
       labels = fig_evo_gis_label
     ) +
     scale_color_gradient2(
-      low = c1, mid = c4, high = c2, midpoint = midpoint_gis,
+      low = c1,
+      mid = c4,
+      high = c2,
+      midpoint = midpoint_gis,
       breaks = unique(d$p),
       labels = fig_evo_gis_label
     ) +
     coord_cartesian(clip = "off") +
     labs(
-      y = "R<sub>rs</sub>", x = NULL, color = NULL, fill = NULL
+      y = "R<sub>rs</sub>",
+      x = NULL,
+      color = NULL,
+      fill = NULL
     ) +
     guides(
       fill = guide_colorbar(
         nrow = 1,
         override.aes = list(
-          size = 16, shape = 15, color = colores_gis
+          size = 16,
+          shape = 15,
+          color = colores_gis
         ),
         reverse = FALSE
       ),
@@ -835,14 +956,19 @@ f_firma_espectral <- function(x) {
       plot.margin = margin(6, 6, 6, 6),
       panel.grid.minor = element_blank(),
       panel.grid.major = element_line(
-        color = c4, linewidth = .06, linetype = 3
+        color = c4,
+        linewidth = .06,
+        linetype = 3
       ),
       panel.spacing = unit(1.1, "line"),
       axis.title.x = element_text(
-        family = "ubuntu", margin = margin(t = 3)
+        family = "ubuntu",
+        margin = margin(t = 3)
       ),
       axis.title.y = element_markdown(
-        family = "ubuntu", margin = margin(r = 10), size = 12
+        family = "ubuntu",
+        margin = margin(r = 10),
+        size = 12
       ),
       axis.text = element_text(family = "jet", color = c7),
       axis.text.y = element_text(hjust = 1, margin = margin(r = 2)),
@@ -851,7 +977,9 @@ f_firma_espectral <- function(x) {
       panel.background = element_rect(fill = c11, color = NA),
       strip.background = element_blank(),
       strip.text = element_markdown(
-        family = "jet", size = 7, margin = margin(b = 3)
+        family = "jet",
+        size = 7,
+        margin = margin(b = 3)
       ),
       legend.background = element_rect(fill = c10, color = NA),
       legend.key = element_rect(fill = NA, color = NA),
@@ -859,8 +987,11 @@ f_firma_espectral <- function(x) {
       legend.position = "top",
       legend.box = "horizontal",
       legend.text = element_text(
-        vjust = .5, hjust = .5, family = "ubuntu",
-        margin = margin(t = 3), size = 11
+        vjust = .5,
+        hjust = .5,
+        family = "ubuntu",
+        margin = margin(t = 3),
+        size = 11
       ),
       legend.text.position = "bottom",
       legend.key.width = unit(10, "mm"),
@@ -915,7 +1046,8 @@ v <- vect("vector/transecta.gpkg")
 # ráster de recortes
 archivos_r <- list.files(
   "recorte/",
-  pattern = "tif$", full.names = TRUE
+  pattern = "tif$",
+  full.names = TRUE
 )
 archivos_r <- archivos_r[!str_detect(archivos_r, "rsi")]
 fechas_r <- str_remove(basename(archivos_r), ".tif")
@@ -935,8 +1067,17 @@ Se agregaron las bandas espectrales y se realizó la extracción de los valores 
 ```{r}
 # factor de las bandas
 orden_bandas <- c(
-  "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08",
-  "B8A", "B11", "B12"
+  "B01",
+  "B02",
+  "B03",
+  "B04",
+  "B05",
+  "B06",
+  "B07",
+  "B08",
+  "B8A",
+  "B11",
+  "B12"
 )
 
 # reflectancias a lo largo de la transecta, por banda y fecha
@@ -964,8 +1105,11 @@ g <- e_tbl |>
   mutate(banda = fct_rev(banda)) |>
   ggplot(aes(reflect, banda)) +
   geom_boxplot(
-    color = c1, linewidth = .3, outlier.alpha = .4,
-    outlier.color = c2, fill = c11
+    color = c1,
+    linewidth = .3,
+    outlier.alpha = .4,
+    outlier.color = c2,
+    fill = c11
   ) +
   scale_x_continuous(
     breaks = scales::breaks_width(.1),
@@ -977,17 +1121,24 @@ g <- e_tbl |>
   theme(
     plot.margin = margin(t = 3, b = 3),
     axis.title.x = element_markdown(
-      family = "ubuntu", margin = margin(t = 3)
+      family = "ubuntu",
+      margin = margin(t = 3)
     ),
     axis.text.x = element_text(
-      family = "jet", margin = margin(t = 10), size = 9
+      family = "jet",
+      margin = margin(t = 10),
+      size = 9
     ),
     axis.text.y = element_text(
-      family = "Ubuntu", face = "bold", margin = margin(r = 3),
+      family = "Ubuntu",
+      face = "bold",
+      margin = margin(r = 3),
       size = 9
     ),
     panel.grid.major.x = element_line(
-      color = c9, linewidth = .1, linetype = "FF"
+      color = c9,
+      linewidth = .1,
+      linetype = "FF"
     )
   )
 ```
@@ -1017,7 +1168,8 @@ puntos <- vect("vector/3puntos_transecta.gpkg")
 # ráster de recortes
 archivos_r <- list.files(
   "recorte/",
-  pattern = "tif$", full.names = TRUE
+  pattern = "tif$",
+  full.names = TRUE
 )
 archivos_r <- archivos_r[!str_detect(archivos_r, "rsi")]
 fechas_r <- str_remove(basename(archivos_r), ".tif")
@@ -1033,8 +1185,17 @@ lista_r3 <- set_names(lista_r3, fechas_r)
 
 # factor de las bandas
 orden_bandas <- c(
-  "B01", "B02", "B03", "B04", "B05", "B06", "B07",
-  "B08", "B8A", "B11", "B12"
+  "B01",
+  "B02",
+  "B03",
+  "B04",
+  "B05",
+  "B06",
+  "B07",
+  "B08",
+  "B8A",
+  "B11",
+  "B12"
 )
 ```
 
@@ -1074,8 +1235,10 @@ f_puntos <- function(df, p_i, p_f) {
     )
 
   wilcox.test(
-    p$p_inicial, p$p_final,
-    paired = FALSE, exact = TRUE
+    p$p_inicial,
+    p$p_final,
+    paired = FALSE,
+    exact = TRUE
   ) |>
     broom::tidy() |>
     select(p.value) |>
@@ -1115,12 +1278,21 @@ Una vez calculados todos los datos, se generó la figura final como paneles por 
 g <- e_tbl |>
   ggplot(aes(punto, reflect, group = x, fill = punto)) +
   geom_boxplot(
-    linewidth = .2, outlier.size = .3, key_glyph = draw_key_point,
-    outlier.color = c9, width = .8
+    linewidth = .2,
+    outlier.size = .3,
+    key_glyph = draw_key_point,
+    outlier.color = c9,
+    width = .8
   ) +
   geom_richtext(
-    data = p_tbl, aes(Inf, Inf, label = label), inherit.aes = FALSE,
-    fill = c11, size = 4, label.color = NA, hjust = 1, vjust = 1
+    data = p_tbl,
+    aes(Inf, Inf, label = label),
+    inherit.aes = FALSE,
+    fill = c11,
+    size = 4,
+    label.color = NA,
+    hjust = 1,
+    vjust = 1
   ) +
   facet_wrap(vars(banda), scales = "free", nrow = 4) +
   scale_y_continuous(
@@ -1132,7 +1304,9 @@ g <- e_tbl |>
     values = c(c1, c5, c2),
     breaks = c("P1", "P2", "P3"),
     labels = c(
-      "Costa\nchaqueña", "Punto\nintermedio", "Costa\ncorrentina"
+      "Costa\nchaqueña",
+      "Punto\nintermedio",
+      "Costa\ncorrentina"
     ),
     name = NULL
   ) +
@@ -1141,7 +1315,10 @@ g <- e_tbl |>
   guides(
     fill = guide_legend(
       override.aes = list(
-        color = c7, shape = 22, size = 5, stroke = .3
+        color = c7,
+        shape = 22,
+        size = 5,
+        stroke = .3
       )
     )
   ) +
@@ -1154,26 +1331,37 @@ g <- e_tbl |>
     panel.spacing.y = unit(1, "line"),
     panel.grid.major.x = element_blank(),
     panel.grid.major.y = element_line(
-      color = c4, linewidth = .06, linetype = "FF"
+      color = c4,
+      linewidth = .06,
+      linetype = "FF"
     ),
     panel.grid.minor = element_blank(),
     axis.text.x = element_blank(),
     axis.text.y = element_text(
-      margin = margin(r = 0), hjust = 1, family = "jet", color = c7
+      margin = margin(r = 0),
+      hjust = 1,
+      family = "jet",
+      color = c7
     ),
     axis.title.y = element_markdown(
-      family = "Ubuntu", angle = 0, margin = margin(r = 0),
+      family = "Ubuntu",
+      angle = 0,
+      margin = margin(r = 0),
       vjust = .5
     ),
     strip.text = element_text(
-      family = "Ubuntu", face = "bold", color = c7
+      family = "Ubuntu",
+      face = "bold",
+      color = c7
     ),
     legend.position = "top",
     legend.key.spacing.x = unit(24, "pt"),
     legend.background = element_blank(),
     legend.justification.inside = c(1, 0),
     legend.text = element_text(
-      margin = margin(l = 0, t = 0), hjust = 0, vjust = .5
+      margin = margin(l = 0, t = 0),
+      hjust = 0,
+      vjust = .5
     ),
     legend.text.position = "right",
     legend.box.spacing = unit(0, "pt")
@@ -1191,3 +1379,8 @@ ggsave(
   units = "cm"
 )
 ```
+
+# Bibliografía
+
+::: {#refs}
+:::
