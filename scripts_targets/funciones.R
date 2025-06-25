@@ -2,6 +2,7 @@
 # library(terra)
 # library(tidyverse)
 
+# orden correcto de las bandas de S2-MSI
 bandas_s2 <- c(
   "B01",
   "B02",
@@ -16,6 +17,7 @@ bandas_s2 <- c(
   "B12"
 )
 
+# vector para el recorte
 v <- terra::vect("vector/recorte_puente.gpkg")
 
 # genera mensajes en la consola
@@ -29,6 +31,7 @@ archivo_excel <- function() {
   return(r)
 }
 
+# archivo manuscrito en Quarto
 archivo_quarto <- function() {
   r <- "manuscrito.qmd"
   return(r)
@@ -47,11 +50,6 @@ fecha <- function(archivo_i) {
     select(fecha) |>
     distinct(fecha)
 
-  # fechas_base_de_datos <- read_csv(
-  #   file = "datos/base_de_datos_lab.csv",
-  #   show_col_types = FALSE
-  # ) |>
-  #   distinct(fecha)
   fechas_gis <- read_csv(
     file = "datos/base_de_datos_gis_acolite.csv",
     show_col_types = FALSE
@@ -69,6 +67,7 @@ fecha <- function(archivo_i) {
   return(fecha_faltante)
 }
 
+# función para recortar los ráster
 recorte <- function(fecha_i) {
   rasters <- list.files(
     path = "acolite/",
@@ -129,6 +128,7 @@ reflectancia <- function(fecha_i, archivo_i) {
     select(-fechas) |>
     mutate(punto = row_number(), .before = 1)
 
+  # convierto las coordenadas a vector
   coord_sitios_v <- vect(
     coord_sitios,
     geom = c("longitud", "latitud"),
@@ -164,7 +164,7 @@ reflectancia <- function(fecha_i, archivo_i) {
 
   datos <- "datos/base_de_datos_gis_acolite.csv"
 
-  # guardo la tabla como .csv
+  # guardo los datos como .csv
   if (file.exists(datos)) {
     base_de_datos <- read_csv(datos, show_col_types = FALSE)
 
@@ -172,16 +172,12 @@ reflectancia <- function(fecha_i, archivo_i) {
       arrange(fecha, punto) |>
       write_csv(datos)
 
-    mensaje("Base de datos actualizada")
+    mensaje("Base de datos espectral actualizada")
   } else {
     write_csv(reflect, datos)
 
-    mensaje("Datos almacenados")
+    mensaje("Datos espectrales almacenados")
   }
-
-  # elimino los archivos descargados
-  # unlink("producto/*", recursive = TRUE)
-  # mensaje("Archivos eliminados")
 
   return(datos)
 }
@@ -217,17 +213,7 @@ lab <- function(archivo_i, fecha_i) {
 
   write_csv(d, file = u)
 
+  mensaje("Datos de laboratorio almacenados")
+
   return(u)
 }
-
-# elimino todos los archivos descargados
-# elimino <- function() {
-#   unlink("producto/*", recursive = TRUE)
-#   mensaje("Archivos eliminados")
-# }
-
-# publico sitio web en Github
-# publico_quarto <- function(x) {
-#   # corro el script Python que descarga la imagen
-#   system(glue("quarto publish {x}"))
-# }
