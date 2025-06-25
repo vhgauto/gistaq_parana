@@ -1,3 +1,23 @@
+# library(glue)
+# library(terra)
+# library(tidyverse)
+
+bandas_s2 <- c(
+  "B01",
+  "B02",
+  "B03",
+  "B04",
+  "B05",
+  "B06",
+  "B07",
+  "B08",
+  "B8A",
+  "B11",
+  "B12"
+)
+
+v <- terra::vect("vector/recorte_puente.gpkg")
+
 # genera mensajes en la consola
 mensaje <- function(x) {
   print(glue("\n\n--- {x} ---\n\n"))
@@ -6,14 +26,18 @@ mensaje <- function(x) {
 # archivo Excel, con la fecha y sitios de muestreo
 archivo_excel <- function() {
   r <- "datos/datos_gistaq.xlsx"
+  return(r)
+}
 
+archivo_quarto <- function() {
+  r <- "manuscrito.qmd"
   return(r)
 }
 
 # fecha para la descarga de producto
-fecha <- function(x) {
+fecha <- function(archivo_i) {
   fechas_excel <- readxl::read_xlsx(
-    path = x,
+    path = archivo_i,
     sheet = 1,
     .name_repair = "unique_quiet"
   ) |>
@@ -23,8 +47,13 @@ fecha <- function(x) {
     select(fecha) |>
     distinct(fecha)
 
-  fechas_base_de_datos <- read_csv(
-    file = "datos/base_de_datos_lab.csv",
+  # fechas_base_de_datos <- read_csv(
+  #   file = "datos/base_de_datos_lab.csv",
+  #   show_col_types = FALSE
+  # ) |>
+  #   distinct(fecha)
+  fechas_gis <- read_csv(
+    file = "datos/base_de_datos_gis_acolite.csv",
     show_col_types = FALSE
   ) |>
     distinct(fecha)
@@ -32,7 +61,7 @@ fecha <- function(x) {
   # idealmente, un único elemento
   fecha_faltante <- anti_join(
     fechas_excel,
-    fechas_base_de_datos,
+    fechas_gis,
     by = join_by(fecha)
   ) |>
     pull()
@@ -40,181 +69,67 @@ fecha <- function(x) {
   return(fecha_faltante)
 }
 
-# script para la descarga de producto
-# script_descarga_py <- function(x) {
-#
-#   # rango de fechas para la búsqueda de la imagen
-#   fecha_inicio <- ymd(x)
-#   fecha_final <- ymd(x) + 1
-#
-#   # leo las líneas del template
-#   r_txt <- readLines("scripts_targets/plantilla.py")
-#
-#   # remplazo las variables con las fechas
-#   r_txt <- gsub(
-#     pattern = "fecha_i",
-#     replacement = fecha_inicio,
-#     x = r_txt
-#   )
-#
-#   r_txt <- gsub(
-#     pattern = "fecha_f",
-#     replacement = fecha_final,
-#     x = r_txt
-#   )
-#
-#   # archivo Python
-#   script_py <- "scripts_targets/d.py"
-#
-#   # guardo el script
-#   writeLines(r_txt, con = script_py)
-#
-#   mensaje("Script Python creado")
-#
-#   return(script_py)
-#
-# }
-
-# estado_descarga <- function(x) {
-#   if (length(x) == 0) {
-#     mensaje("Sin fecha")
-#   } else {
-#     script_descarga_py(x)
-#   }
-# }
-
-# ejecuto la descarga del producto
-# descarga <- function(x) {
-#   # corro el script Python que descarga la imagen
-#   system(glue("python {x}"))
-#
-#   p <- "producto/producto.zip"
-#
-#   return(p)
-# }
-
-recorte <- function(x, y) {
-}
-
-
-# recorto el producto al área de interés
-recorte <- function(x, y) {
-  mensaje("Leo producto S2-MSI")
-
-  # extraigo .zip
-  unzip(zipfile = x, exdir = "producto/")
-
-  mensaje("Producto extraído")
-
-  # nombre del producto
-  lis <- list.files(path = "producto/", pattern = "SAFE", full.names = TRUE)
-
-  # carpeta con las carpetas de distintas resoluciones
-  carpeta1 <- glue("{lis}/GRANULE")
-  carpeta2 <- list.files(carpeta1)
-  carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA")
-
-  r10m <- list.files(glue("{carpeta3}/R10m"), full.names = TRUE)
-  r20m <- list.files(glue("{carpeta3}/R20m"), full.names = TRUE)
-
-  #nombres de las bandas en el orden correcto
-  bandas_nombres <- c(
-    "B01",
-    "B02",
-    "B03",
-    "B04",
-    "B05",
-    "B06",
-    "B07",
-    "B08",
-    "B8A",
-    "B11",
-    "B12"
+recorte <- function(fecha_i) {
+  rasters <- list.files(
+    path = "acolite/",
+    pattern = format(fecha_i, "%Y_%m_%d"),
+    full.names = TRUE
   )
 
-  #caminos para cada archivo de la banda requerida
-  b01 <- r20m[2]
-  b02 <- r10m[2]
-  b03 <- r10m[3]
-  b04 <- r10m[4]
-  b05 <- r20m[6]
-  b06 <- r20m[7]
-  b07 <- r20m[8]
-  b08 <- r10m[5]
-  b8a <- r20m[11]
-  b11 <- r20m[9]
-  b12 <- r20m[10]
+  r <- tibble(
+    a = rasters
+  ) |>
+    mutate(orden = row_number()) |>
+    mutate(
+      wl = str_sub(a, 53, 100)
+    ) |>
+    mutate(
+      wl = str_remove(wl, ".tif") |> as.integer()
+    ) |>
+    arrange(wl) |>
+    mutate(banda = bandas_s2) |>
+    mutate(
+      r = map(a, rast)
+    ) |>
+    mutate(
+      croped = map(r, ~ crop(.x, v, mask = TRUE))
+    ) |>
+    pull(croped) |>
+    rast()
 
-  #vector de los caminos de los archivos en el orden correcto
-  vector_bandas <- c(b01, b02, b03, b04, b05, b06, b07, b08, b8a, b11, b12)
-
-  #leo los archivos
-  lista_bandas <- map(vector_bandas, rast)
-  names(lista_bandas) <- bandas_nombres
-
-  mensaje("Recorto y reproyecto el producto")
-
-  #vector para recortar los raster alrededor del puente
-  recorte_puente <- vect("vector/recorte_puente.gpkg")
-
-  #recorte de cada elemento de la lista con el vector puente
-  lista_recortes <- map(
-    .x = lista_bandas,
-    ~ terra::crop(x = .x, y = recorte_puente)
-  )
-
-  #los raster de 20m los reproyecto a 10m
-  lista_recortes$B01 <- project(lista_recortes$B01, lista_recortes$B02)
-  lista_recortes$B05 <- project(lista_recortes$B05, lista_recortes$B02)
-  lista_recortes$B06 <- project(lista_recortes$B06, lista_recortes$B02)
-  lista_recortes$B07 <- project(lista_recortes$B07, lista_recortes$B02)
-  lista_recortes$B8A <- project(lista_recortes$B8A, lista_recortes$B02)
-  lista_recortes$B11 <- project(lista_recortes$B11, lista_recortes$B02)
-  lista_recortes$B12 <- project(lista_recortes$B12, lista_recortes$B02)
-
-  #creamos un stack con todas las bandas recortadas y la misma resolución
-  # espacial (10m)
-  stack_bandas <- rast(lista_recortes)
-
-  # guardo stack de bandas recortado
-  nombre_raster <- as.character(y[1]) |> str_remove_all("-")
+  names(r) <- bandas_s2
 
   writeRaster(
-    stack_bandas,
-    glue("recorte/{nombre_raster}.tif"),
+    r,
+    filename = paste0("recorte_acolite/", fecha_i, ".tif"),
     overwrite = TRUE
   )
 
-  # para el siguiente target tengo que guardarlo como RDS
-  # SI NO, NO FUNCIONA
-  r <- "recorte/wrap_recorte.rds"
+  rds <- "recorte_acolite/recorte.rds"
 
-  terra::saveRDS(object = stack_bandas, file = r)
+  terra::saveRDS(object = r, file = rds)
 
-  mensaje("Recorte almacenado")
-
-  return(r)
+  return(rds)
 }
 
 # extraigo los valores de píxel
-reflectancia <- function(x, y, z) {
+reflectancia <- function(fecha_i, archivo_i) {
   # leemos el Excel que contiene las coordenadas geográficas de los puntos
   # de muestreo
   coord_sitios <- readxl::read_xlsx(
-    path = x,
+    path = archivo_i,
     sheet = 1,
     .name_repair = "unique_quiet"
   ) |>
     select(fechas = 1, longitud = 4, latitud = 5) |>
     fill(fechas) |>
     mutate(fechas = ymd(fechas)) |>
-    dplyr::filter(fechas == ymd(y)) |>
+    dplyr::filter(fechas == ymd(fecha_i)) |>
     drop_na() |>
     select(-fechas) |>
     mutate(punto = row_number(), .before = 1)
 
-  # convertimos la tabla de coordenadas a sf
-  coord_vect <- vect(
+  coord_sitios_v <- vect(
     coord_sitios,
     geom = c("longitud", "latitud"),
     crs = "EPSG:4326",
@@ -224,85 +139,30 @@ reflectancia <- function(x, y, z) {
 
   mensaje("Vector de sitios de muestreo")
 
-  # verificar probabilidad de NUBES
-
-  mensaje("Verifico presencia de nubes")
-
   # nombre del producto
-  lis <- list.files(path = "producto/", pattern = "SAFE", full.names = TRUE)
-
-  # carpeta con las carpetas de distintas resoluciones
-  carpeta1 <- glue("{lis}/GRANULE")
-  carpeta2 <- list.files(carpeta1)
-  carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA")
-  carpeta4 <- glue("{carpeta1}/{carpeta2}/QI_DATA")
-
-  # leo el ráster
-  raster_prob <- terra::rast(glue("{carpeta4}/MSK_CLDPRB_20m.jp2"))
-
-  # extraemos los valores de pixel para cada punto
-  nubes <- terra::extract(raster_prob, coord_vect) |>
-    as_tibble() |>
-    rename(punto = ID, probabilidad = MSK_CLDPRB_20m) |>
-    dplyr::filter(probabilidad == 0)
-
-  # se conservan los sitios de muestreo con probabilidad de nubes CERO
-  coord_sf_sin_nubes <- inner_join(
-    st_as_sf(coord_vect),
-    nubes,
-    by = join_by(punto)
-  )
-
-  if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) {
-    # sitios con nubes
-    puntos_nubes <- anti_join(
-      st_as_sf(coord_vect),
-      nubes,
-      by = join_by(punto)
-    ) |>
-      pull(punto) |>
-      stringr::str_flatten_comma(string = _, last = " y ")
-
-    mensaje(glue("Los sitios {puntos_nubes} presentan nubes y se descartan"))
-  }
-
-  # leo recorte
-  stack_bandas <- rast(z)
-
-  # extraemos los valores de píxel para cada punto
-  # acomodo de los datos de reflectancia y se agregan las coord geof
-
-  # 1X1
-  reflect_1x1 <- terra::extract(stack_bandas, coord_sf_sin_nubes) |>
-    as_tibble() |>
-    rename(punto = ID) |>
-    pivot_longer(cols = -punto, names_to = "banda", values_to = "reflect") |>
-    mutate(reflect = reflect / 10000) |>
-    mutate(fecha = ymd(y), .before = 1) |>
-    inner_join(coord_sitios, by = join_by(punto)) |>
-    mutate(pixel = "1x1", .before = banda)
+  r <- list.files(
+    path = "recorte_acolite/",
+    pattern = as.character(fecha_i),
+    full.names = TRUE
+  ) |>
+    rast()
 
   # 3X3
-  stack_bandas_3x3 <- terra::focal(
-    stack_bandas,
+  r_3x3 <- terra::focal(
+    r,
     w = 3,
     fun = mean,
     na.rm = TRUE
   )
 
-  reflect_3x3 <- terra::extract(stack_bandas_3x3, coord_sf_sin_nubes) |>
+  reflect <- terra::extract(r_3x3, coord_sitios_v) |>
     as_tibble() |>
     rename(punto = ID) |>
     pivot_longer(cols = -punto, names_to = "banda", values_to = "reflect") |>
-    mutate(reflect = reflect / 10000) |>
-    mutate(fecha = ymd(y), .before = 1) |>
-    inner_join(coord_sitios, by = join_by(punto)) |>
-    mutate(pixel = "3x3", .before = banda)
+    mutate(fecha = ymd(fecha_i), .before = 1) |>
+    inner_join(coord_sitios, by = join_by(punto))
 
-  # combino las reflectancias 1x1 y 3x3
-  reflect <- bind_rows(reflect_1x1, reflect_3x3)
-
-  datos <- "datos/base_de_datos_gis.csv"
+  datos <- "datos/base_de_datos_gis_acolite.csv"
 
   # guardo la tabla como .csv
   if (file.exists(datos)) {
@@ -320,16 +180,16 @@ reflectancia <- function(x, y, z) {
   }
 
   # elimino los archivos descargados
-  unlink("producto/*", recursive = TRUE)
-  mensaje("Archivos eliminados")
+  # unlink("producto/*", recursive = TRUE)
+  # mensaje("Archivos eliminados")
 
   return(datos)
 }
 
 # extraigo parámetros de laboratorio
-lab <- function(x) {
+lab <- function(archivo_i, fecha_i) {
   d <- readxl::read_xlsx(
-    path = x,
+    path = archivo_i,
     sheet = 1,
     .name_repair = "unique_quiet"
   ) |>
@@ -361,13 +221,13 @@ lab <- function(x) {
 }
 
 # elimino todos los archivos descargados
-elimino <- function() {
-  unlink("producto/*", recursive = TRUE)
-  mensaje("Archivos eliminados")
-}
+# elimino <- function() {
+#   unlink("producto/*", recursive = TRUE)
+#   mensaje("Archivos eliminados")
+# }
 
 # publico sitio web en Github
-publico_quarto <- function(x) {
-  # corro el script Python que descarga la imagen
-  system(glue("quarto publish {x}"))
-}
+# publico_quarto <- function(x) {
+#   # corro el script Python que descarga la imagen
+#   system(glue("quarto publish {x}"))
+# }
