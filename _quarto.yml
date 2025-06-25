@@ -5,6 +5,7 @@ manuscript:
   article: manuscrito.qmd
   notebooks:
     - notebooks/lectura_datos.qmd
+    - notebooks/correccion_acolite.qmd
     - notebooks/extraccion_reflect.qmd
     - notebooks/caracterizacion.qmd
     - notebooks/ejecucion_auto.qmd
