@@ -14,41 +14,48 @@ source("scripts_targets/funciones.R")
 list(
   # archivo Excel, con la fecha y sitios de muestreo
   tar_target(
-    name = excel, 
-    command = archivo_excel(), 
-    format = "file"),
-  
+    name = excel,
+    command = archivo_excel(),
+    format = "file"
+  ),
+
+  # manuscrito
+  tar_target(
+    name = manuscrito,
+    command = archivo_quarto(),
+    format = "file"
+  ),
+
   # fecha para la descarga de producto
   tar_target(
-    name = fecha_descarga, 
-    command = fecha(excel)),
-  
-  # script para la descarga de producto
-  tar_target(
-    name = script_py, 
-    command = script_descarga_py(fecha_descarga), 
-    format = "file"),
-  
-  # ejecuto la descarga del producto
-  tar_target(
-    name = producto_zip, 
-    command = descarga(script_py)),
-  
+    name = fecha_actual,
+    command = fecha(archivo_i = excel)
+  ),
+
   # recorto el producto al área de interés
   tar_target(
-    name = recorte_tif, 
-    command = recorte(producto_zip, fecha_descarga), 
-    format = "file"),
-  
+    name = recorte_tif,
+    command = recorte(fecha_i = fecha_actual),
+    format = "file"
+  ),
+
   # extraigo los valores de píxel
   tar_target(
-    name = datos_gis, 
-    command = reflectancia(excel, fecha_descarga, recorte_tif), 
-    format = "file"),
-  
+    name = datos_gis,
+    command = reflectancia(fecha_i = fecha_actual, archivo_i = excel),
+    format = "file"
+  ),
+
   # extraigo parámetros de laboratorio
   tar_target(
-    name = datos_lab, 
-    command = lab(excel), 
-    format = "file")
+    name = datos_lab,
+    command = lab(excel),
+    format = "file"
+  ),
+
+  # render manuscrito
+  tarchetypes::tar_quarto(
+    name = render_manuscrito,
+    path = "."
+  )
 )
