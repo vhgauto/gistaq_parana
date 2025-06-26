@@ -49,8 +49,7 @@ param_unid_v <- c(
   "pH" # <2>
 ) # <2>
 names(param_unid_v) <- param_v
-``
-`
+```
 1. Nombres de las variables de interés.
 2. Unidades de los parámetros.
 
@@ -95,8 +94,7 @@ estado_color <- c( # <7>
   Actual = "#007E2E", # <7>
   Previos = "#B86092" # <7>
 ) # <7>
-`
-``
+```
 1. Lectura de la base de datos.
 2. Agrego las unidades a las variables.
 3. Conservo únicamente las unidades, removiendo `()`.
@@ -237,8 +235,7 @@ lista_figura_evolucion_lab <- map(
   param_unid_v,
   f_figura_evolucion_lab # <12>
 ) # <12>
-``
-`
+```
 1. La función `f_figura_evolucion_lab` tiene como argumento los parámetros de interés.
 2. La figura incorpora líneas que unen las observaciones de la base de datos.
 3. Se adicionan puntos por sobre las líneas.
@@ -272,8 +269,7 @@ param_unid_v <- c( # <3>
   "<i>turb</i>", "<i>secchi</i>" # <3>
 ) # <3>
 names(param_unid_v) <- param_v
-`
-``
+```
 1. Lectura de la base de datos del laboratorio.
 2. Parámetros de interés.
 3. Unidades de las propiedades fisicoquímicas.
@@ -301,8 +297,7 @@ e_r <- d |>
     values_to = "r"
   ) |>
   drop_na()
-``
-`
+```
 1. Calculo el coeficiente de correlación de Pearson.
 2. Remuevo valores repetidos del coeficiente, conservando únicamente los coeficientes inferiores de la matriz triangular.
 
@@ -328,8 +323,7 @@ e_pvalor <- d |>
     values_to = "pvalor"
   ) |>
   drop_na()
-`
-``
+```
 1. Función que calcula el p-valor para cada par de parámetros dados.
 2. Calculo p-valor a todas las variables.
 
@@ -349,8 +343,7 @@ e <- inner_join(
   mutate(label = if_else(es_significativo, "&#9733;", NA)) |> # <4>
   mutate(id = row_number()) |>
   mutate(r_label = paste0("r: ", f_formato(r))) # <5>
-``
-`
+```
 1. Combino valores de coeficientes de correlación R<sup>2</sup> con p-valor.
 1. Ordeno convenientemente los parámetros.
 3. Defino el intervalo de confianza del 95%.
@@ -399,8 +392,7 @@ g <- e |>
     legend.key.height = unit(25, "pt"),
     legend.justification.right = c(0, 1)
   )
-`
-``
+```
 1. Al pasar el mouse sobre el <i>heatmap</i> se muestra el valor de R<sup>2</sup> del par de parámetros.
 2. Se indica el gradiente de colores.
 3. Características estéticas de la figura.
@@ -435,8 +427,7 @@ heatmap_lab <- girafe(
     opts_toolbar(saveaspng = FALSE)
   )
 )
-``
-`
+```
 1. Convierto la figura estática a interactiva.
 2. Estilo de texto mostrado al pasar el mouse sobre la figura.
 3. Para resaltar los parámetros mostrados, se aumenta la transparencia del resto de la figura.
@@ -464,8 +455,7 @@ linea_ancho <- 1 # <3>
 texto_tamaño <- 4 # <3>
 punto_transparencia <- .6 # <3>
 punto_tamaño <- 3 # <3>
-`
-``
+```
 1. Leo base de datos.
 2. Elijo variables e indico las unidades.
 3. Defino características visuales de la figura.
@@ -502,8 +492,7 @@ g_log <- function(g, etq) {
     scale_y_continuous(breaks = scales::breaks_pretty()) +
     scale_x_continuous(breaks = scales::breaks_pretty())
 }
-``
-`
+```
 1. La función `g_log` toma como argumentos una figura y la etiqueta con cantidad de datos y R<sup>2</sup>.
 2. Línea de tendencia.
 
@@ -523,8 +512,7 @@ g_recta <- function(g, etq) { # <1>
     scale_x_log10(breaks = scales::breaks_pretty()) +
     scale_y_log10(expand = c(0, 0))
 }
-`
-``
+```
 1. La función `g_recta` toma como argumentos una figura y la etiqueta con cantidad de datos y R<sup>2</sup>.
 2. Línea de tendencia.
 
@@ -606,8 +594,7 @@ f_gg <- function(eje_x, eje_y) {
 
   return(g)
 }
-``
-`
+```
 1. La función `f_gg` toma como argumentos variables para ambos ejes.
 2. Se seleccionan los pares de parámetros y se renombra para facilitar el procesamiento siguiente.
 3. Se crea la figura de dispersión básica.
@@ -638,8 +625,7 @@ f_guardar("cond", "secchi") # <3>
 f_guardar("turb", "sol_sus") # <3>
 f_guardar("turb", "secchi") # <3>
 f_guardar("sol_sus", "secchi") # <3>
-`
-``
+```
 1. La función `f_guardar` depende de ambos parámetros a comparar.
 2. El nombre del archivo `.png` se compone a partir de ambos parámetros.
 3. Se almacena cada figura según la combinación de pares de variables.
