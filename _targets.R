@@ -1,7 +1,7 @@
 library(targets)
 
 # paquetes
-tar_option_set(packages = c("glue", "terra", "sf", "tidyverse"))
+tar_option_set(packages = c("glue", "terra", "tidyverse"))
 
 # funciones
 source("scripts_targets/funciones.R")
