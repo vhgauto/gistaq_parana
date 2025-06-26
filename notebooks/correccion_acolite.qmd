@@ -26,11 +26,11 @@ La corrección atmosférica se realiza con el procesador [ACOLITE](https://githu
 
 ACOLITE se [descarga](https://github.com/acolite/acolite/releases) de manera libre y gratuita y está creado con lenguaje de programación Python.
 
-Es posible ejecutar ACOLITE desde una terminal de línea de comandos, requiriendo un archivo de texto con la configuración deseada de ejecución. Se muestra a continuación las opciones utilizadas.
+La configuración de ACOLITE se almacena en formato de texto plano. La misma sirve para indicar los valores de las variables que se desean modificar. Se muestra a continuación las opciones utilizadas.
 
-```{r filename="settings.txt"}
+```{bash filename="configuración.txt"}
 l2w_export_geotiff=True
-l2w_parameters=rhow_*# <1>
+l2w_parameters=rhow_*
 l2w_mask=True
 l2w_mask_wave=1600
 l2w_mask_threshold=0.0215
@@ -42,11 +42,25 @@ dsf_residual_glint_correction=True
 map_l2w=False
 rgb_rhot=False
 rgb_rhos=False
-polygon=/home/user/acolite/roi_proyecto_parana.geojson# <2>
-output=/home/user/acolite/salida_proyecto_parana
+polygon=/ubicación/del/polígono.geojson
+output=/ubicación/salida
 ```
-1. Indico el procesamiento de todas las bandas disponibles.
-2. Selecciono vector para recortar a la región de interés.
+
+La [instalación](https://github.com/acolite/acolite?tab=readme-ov-file#dependencies) de ACOLITE requiere la presencia de librerías específicas y la creación de un ambiente de ejecución.
+
+Los productos de entrada al procesador pueden almacenarse como archivo de texto para su ejecución en serie. Para ello puede ejecutarse lo siguiente en la terminal de línea de comandos:
+
+```{bash}
+for file in entrada/*L1C*; do readlink -f "$file"; done | paste -sd "," > entrada_productos.txt
+```
+
+En donde los productos se almacenan en el directorio `entrada` y el archivo de salida es `entrada_productos.txt`.
+
+Finalmente, se ejecuta ACOLITE con la configuración dada para todos los productos S2-L1C presentes:
+
+```{bash}
+python acolite/launch_acolite.py --cli --settings=configuración.txt  --inputfile=entrada_productos.txt
+```
 
 # Bibliografía
 
