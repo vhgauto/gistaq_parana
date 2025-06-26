@@ -1,0 +1,20 @@
+graph LR
+  x2eb57580dd338e28(["excel"]) ==> x75ae8feee719d1e2(["datos_gis"])
+  x27cf98eb0536b3cc(["fecha_actual"]) ==> x75ae8feee719d1e2(["datos_gis"])
+  x0dc39fa9e42347ba>"reflectancia"] ==> x75ae8feee719d1e2(["datos_gis"])
+  x2eb57580dd338e28(["excel"]) ==> x1a91c1978c7a143b(["datos_lab"])
+  x38637a02f9b83fc8>"lab"] ==> x1a91c1978c7a143b(["datos_lab"])
+  x29bd13377b9e6171>"archivo_excel"] ==> x2eb57580dd338e28(["excel"])
+  x2eb57580dd338e28(["excel"]) ==> x27cf98eb0536b3cc(["fecha_actual"])
+  xfabd587be49f2fed>"fecha"] ==> x27cf98eb0536b3cc(["fecha_actual"])
+  xfabd587be49f2fed>"fecha"] ==> x38637a02f9b83fc8>"lab"]
+  xc36834a08989fd92>"archivo_quarto"] ==> x0cceab94dc3cb992(["manuscrito"])
+  xc856c5bfddbb40a5{{"bandas_s2"}} ==> xc5ec810879cc40ee>"recorte"]
+  x9505d3eeeff3a790{{"puntos_muestreo"}} ==> xc5ec810879cc40ee>"recorte"]
+  x27cf98eb0536b3cc(["fecha_actual"]) ==> x4b150ba8dbe4203d(["recorte_tif"])
+  xc5ec810879cc40ee>"recorte"] ==> x4b150ba8dbe4203d(["recorte_tif"])
+  x3d474db92cf09724>"mensaje"] ==> x0dc39fa9e42347ba>"reflectancia"]
+  xfabd587be49f2fed>"fecha"] ==> x0dc39fa9e42347ba>"reflectancia"]
+  xcac90a77a625823f(["render_manuscrito"])
+  
+  classDef default stroke:#FFFFFF,color:#FFFFFF,fill:#B86092;
