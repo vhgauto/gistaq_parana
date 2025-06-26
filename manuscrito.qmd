@@ -615,6 +615,10 @@ Con los pares ordenados de $R_{rs}$ y $\lambda$ para las bandas de S2-MSI, se co
 
 A partir de los valores de píxel de las reflectancias de superficie se construyen firmas espectrales, que permiten inferir las características del agua. Las firmas espectrales a lo largo de la transecta en el río Paraná, sirven para ver el cambio entre costas.
 
+El producto satelital empleado corresponde al de S2-MSI, nivel de procesamiento L1C, en reflectancia a tope de atmósfera, sin corrección atmosférica. El procesador [ACOLITE](https://github.com/acolite/acolite) fue utilizado para obtener los valores de reflectancia de superficie.
+
+ACOLITE utiliza el *algoritmo dark spectrum fitting* [@Vanhellemont2018; @Vanhellemont2019; @Vanhellemont2019b] para la corrección atmosférica de multiples plataformas satelitales con aplicaciones acuáticas. Los productos satelitales son procesados con ACOLITE para obtener un recorte de la escena alrededor de la región de interés.
+
 Firmas espectrales por fecha y sitio muestral a lo largo de una línea transecta (figura [-@fig-firma-espectral]).
 
 ::::: {.content-visible when-format="html"}
