@@ -74,7 +74,7 @@ readr::read_csv(
 
 # Ráster
 
-Las imágenes satelitales se obtienen a partir del catálogo [Copernicus Data Space](https://dataspace.copernicus.eu/). La solicitud require un rango de fecha alrededor de la adquisición de la escena, las coordenadas de la imagen, la colección de interés y el nivel de procesamiento.
+Las imágenes satelitales se obtienen a partir del catálogo [Copernicus Data Space](https://dataspace.copernicus.eu/). La solicitud require un rango de fecha alrededor de la adquisición de la escena, las coordenadas de la imagen, la colección de interés y el nivel de procesamiento (L1C, en reflectancia a tope de atmósfera).
 
 Es requisito poseer una [cuenta de usuario](https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/auth?client_id=cdse-public&response_type=code&scope=openid&redirect_uri=https%3A//dataspace.copernicus.eu/account/confirmed/1) para acceder a la descarga del producto.
 
@@ -89,7 +89,7 @@ import json  # <1>
 catalogue_odata_url = "https://catalogue.dataspace.copernicus.eu/odata/v1"
 
 collection_name = "SENTINEL-2"  # <2>
-product_type = "S2MSI2A"  # <2>
+product_type = "S2MSI1C"  # <2>
 max_cloud_cover = 1  # <2>
 aoi = "POINT(-58.81348666883592 -27.488354054598737)"  # <2>
 search_period_start = "2024-01-01T00:00:00.000Z"  # <2>

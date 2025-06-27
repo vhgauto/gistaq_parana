@@ -28,7 +28,7 @@ ACOLITE se [descarga](https://github.com/acolite/acolite/releases) de manera lib
 
 La configuración de ACOLITE se almacena en formato de texto plano. La misma sirve para indicar los valores de las variables que se desean modificar. Se muestra a continuación las opciones utilizadas.
 
-```{bash filename="configuración.txt"}
+```{r filename="configuración.txt"}
 l2w_export_geotiff=True
 l2w_parameters=rhow_*
 l2w_mask=True

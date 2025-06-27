@@ -20,309 +20,89 @@ execute:
 code-annotations: hover
 ---
 
-La reflectancia de superficie (R<sub>rs</sub>) se extrae usando las coordenadas geográficas de los sitios de muestreos y el recorte del producto satelital.
+La reflectancia de superficie (R<sub>rs</sub>) se extrae usando las coordenadas geográficas de los sitios de muestreos y el recorte del producto satelital, luego de ser procesado por ACOLITE.
 
-# Recorte del producto satelital
+## Recorte del área de estudio
 
-Luego de la descarga del producto satelital, en formato comprimido `.zip`, se extrae el mismo y se recorta a la región de interés, a fin de conservar únicamente una fracción de la escena.
+ACOLITE genera un archivo ráster por cada banda espectral de S2-MSI, ya recortados al área de interés del Proyecto, mostrada a continuación.
 
-Este recorte permite un rápido procesamiento de las etapas posteriores y ahorrar espacio de almacenamiento.
+```{r, eval=TRUE, echo=FALSE, fig.cap='Vector utilizado para el recorte del producto.'}
+v <- terra::vect("../vector/roi_acolite.geojson") |>
+  terra::project("EPSG:4326")
 
-El vector que demarca la región de interés se ubica alrededor del puente interprovincial.
+ce <- terra::centroids(v) |> 
+  terra::geom() |> 
+  tibble::as_tibble()
 
-```{r, eval=TRUE, fig.cap='Vector utilizado para el recorte del producto.'}
-v <- terra::vect("../vector/recorte_puente.gpkg") |> # <1>
-  terra::project("EPSG:4326") # <1>
-
-leaflet::leaflet() |> # <2>
-  leaflet::addTiles() |> # <2>
+leaflet::leaflet() |>
+  leaflet::addProviderTiles(
+    provider = "Esri.WorldImagery"
+  ) |> 
   leaflet::addPolygons(
-    # <3>
     data = v,
     color = "#B86092",
-    stroke = TRUE, # <3>
+    stroke = TRUE,
     fillColor = "transparent",
     opacity = 1,
-    weight = 5 # <3>
-  ) |> # <3>
+    weight = 5
+  ) |>
   leaflet.extras::addFullscreenControl(
     position = "bottomright"
   ) |>
-  leaflet.extras::addResetMapButton()
-
+  leaflet.extras::addResetMapButton() |> 
+  leaflet::setView(zoom = 10, lat = ce$y, lng = ce$x)
 ```
-1. Lectura y transformación de las coordenadas del vector.
-2. Inicio mapa interactivo y agrego mapa base de Open Street Map.
-3. Agrego propiedades visuales del vector.
 
-El procesamiento para el recorte y almacenamiento del producto satelital se muestra a continuación.
+## Sitios de muestreo
 
-```{r}
-unzip(
-  # <1>
-  zipfile = "producto/producto.zip",
-  exdir = "producto/" # <1>
-) # <1>
-
-lis <- list.files(
-  # <2>
-  path = "producto/",
-  pattern = "SAFE",
-  full.names = TRUE # <2>
-) # <2>
-carpeta1 <- glue("{lis}/GRANULE") # <2>
-carpeta2 <- list.files(carpeta1) # <2>
-carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA") # <2>
-
-r10m <- list.files(
-  # <3>
-  glue("{carpeta3}/R10m"),
-  full.names = TRUE # <3>
-) # <3>
-r20m <- list.files(
-  # <3>
-  glue("{carpeta3}/R20m"),
-  full.names = TRUE # <3>
-) # <3>
-
-bandas_nombres <- c(
-  # <4>
-  "B01",
-  "B02",
-  "B03",
-  "B04",
-  "B05",
-  "B06",
-  "B07", # <4>
-  "B08",
-  "B8A",
-  "B11",
-  "B12" # <4>
-) # <4>
-
-b01 <- r20m[2] # <5>
-b02 <- r10m[2] # <5>
-b03 <- r10m[3] # <5>
-b04 <- r10m[4] # <5>
-b05 <- r20m[6] # <5>
-b06 <- r20m[7] # <5>
-b07 <- r20m[8] # <5>
-b08 <- r10m[5] # <5>
-b8a <- r20m[11] # <5>
-b11 <- r20m[9] # <5>
-b12 <- r20m[10] # <5>
-
-vector_bandas <- c(
-  # <6>
-  b01,
-  b02,
-  b03,
-  b04,
-  b05,
-  b06,
-  b07,
-  b08,
-  b8a,
-  b11,
-  b12 # <6>
-) # <6>
-
-lista_bandas <- map(vector_bandas, rast) # <7>
-names(lista_bandas) <- bandas_nombres # <7>
-
-recorte_puente <- vect("vector/recorte_puente.gpkg") # <8>
-
-lista_recortes <- map(
-  # <9>
-  .x = lista_bandas, # <9>
-  ~ terra::crop(x = .x, y = recorte_puente)
-) # <9>
-
-lista_recortes$B01 <- project(
-  # <10>
-  lista_recortes$B01,
-  lista_recortes$B02 # <10>
-) # <10>
-lista_recortes$B05 <- project(
-  # <10>
-  lista_recortes$B05,
-  lista_recortes$B02 # <10>
-) # <10>
-lista_recortes$B06 <- project(
-  # <10>
-  lista_recortes$B06,
-  lista_recortes$B02 # <10>
-) # <10>
-lista_recortes$B07 <- project(
-  # <10>
-  lista_recortes$B07,
-  lista_recortes$B02 # <10>
-) # <10>
-lista_recortes$B8A <- project(
-  # <10>
-  lista_recortes$B8A,
-  lista_recortes$B02 # <10>
-) # <10>
-lista_recortes$B11 <- project(
-  # <10>
-  lista_recortes$B11,
-  lista_recortes$B02 # <10>
-) # <10>
-lista_recortes$B12 <- project(
-  # <10>
-  lista_recortes$B12,
-  lista_recortes$B02 # <10>
-) # <10>
-
-stack_bandas <- rast(lista_recortes) # <11>
-
-nombre_raster <- as.character(fecha_descarga) |> # <12>
-  str_remove_all("-") # <12>
-
-writeRaster(
-  # <13>
-  stack_bandas, # <13>
-  glue("recorte/{nombre_raster}.tif"), # <13>
-  overwrite = TRUE # <13>
-) # <13>
-```
-1. Extracción del contenido del `.zip` descargado.
-2. Estructura de directorios dentro del producto satelital.
-3. Carpeta que contiene los ráster de interés, con resoluciones de 10 m y 20 m.
-4. Nombre y orden correcto de las bandas espectrales.
-5. Ubicación de las bandas espectrales dentro de las carpetas.
-6. Ordeno los archivos según las bandas espectrales.
-7. Lectura de los ráster.
-8. Lectura del vector para el recorte de los ráster.
-9. Recorto cada ráster al vector.
-10. Reproyecto cada recorte a 10 m de resolución espacial.
-11. Combino todos los recortes en un único ráster multibanda (<i>stack</i>).
-12. Utilizo la fecha del producto como nombre del archivo ráster.
-13. Almaceno el ráster multibanda en formato `.tif`.
-
-Con el recorte almacenado, se procede a la extracción de los valores de píxel.
-
-# Coordenadas de los sitios de muestreo
-
-Las coordenadas geográficas provienen del archivo Excel donde se registran las mediciones in situ. El producto satelital es Sentinel-2 MSI, descargado de [Copernicus Data Space](https://dataspace.copernicus.eu/).
-
-Se inicia con la lectura del Excel extrayendo las columnas de latitud, longitud y la fecha de muestreo.
+Las coordenadas de los sitios de muestro se extraen de los datos registrados durante las campañas de campo.
 
 ```{r}
 coord_sitios <- readxl::read_xlsx(
-  path = "datos/datos_gistaq.xlsx",
-  sheet = 1,
-  .name_repair = "unique_quiet"
-) |>
-  select(fechas = 1, longitud = 4, latitud = 5) |> # <1>
+    path = "datos/datos_gistaq.xlsx", # <1>
+    sheet = 1,
+    .name_repair = "unique_quiet"
+  ) |>
+  select(fechas = 1, longitud = 4, latitud = 5) |>
   fill(fechas) |>
   mutate(fechas = ymd(fechas)) |>
-  dplyr::filter(fechas == ymd(y)) |>
+  dplyr::filter(fechas == ymd(fecha_i)) |> # <2>
   drop_na() |>
   select(-fechas) |>
   mutate(punto = row_number(), .before = 1)
-```
-1. Selecciono las columnas de interés y cambio de nombre.
 
-Luego se convierte la tabla a vector, transformando las coordenadas a `EPSG:32721` ya que es el sistema de referencia en el que se encuentra el producto satelital.
-
-```{r}
-coord_vect <- vect(
+coord_sitios_v <- vect(
   coord_sitios,
   geom = c("longitud", "latitud"),
-  crs = "EPSG:4326", # <1>
+  crs = "EPSG:4326",
   keepgeom = FALSE
 ) |>
-  terra::project("EPSG:32721") # <2>
+  terra::project("EPSG:32721") # <3>
 ```
-1. Sistema de referencia de los datos almacenados.
-2. Transformo para que sea coincidente con el producto satelital.
+1. Indico la ubicación del archivo Excel.
+2. Selecciono la fecha de interés.
+3. Cambio las coordenadas para ser coincidente con el producto satelital.
 
-## Presencia de nubes
+## Extracción de los valores de píxel
 
-Se procede con la verificación de nubes a partir del mapa de probabilidades de nubosidad a 20 m de resolución @CSteam2024. En caso de que un sitio muestral presente nubes, es descartado.
+Leo los rásters almacenados, únicamente de la fecha de interés. Luego, modifico los valores de píxel a promedios de una ventana de 3x3. Con las coordenadas de muestreo, se extraen las reflectancias corregidas por ACOLITE.
 
 ```{r}
-lis <- list.files(
-  # <1>
-  path = "producto/",
-  pattern = "SAFE",
-  full.names = TRUE # <1>
-) # <1>
-
-carpeta1 <- glue("{lis}/GRANULE") # <2>
-carpeta2 <- list.files(carpeta1) # <2>
-carpeta3 <- glue("{carpeta1}/{carpeta2}/IMG_DATA") # <2>
-carpeta4 <- glue("{carpeta1}/{carpeta2}/QI_DATA") # <2>
-
-raster_prob <- terra::rast(
-  # <3>
-  glue("{carpeta4}/MSK_CLDPRB_20m.jp2") # <3>
-) # <3>
-
-nubes <- terra::extract(raster_prob, coord_vect) |> # <4>
-  as_tibble() |>
-  rename(punto = ID, probabilidad = MSK_CLDPRB_20m) |>
-  dplyr::filter(probabilidad == 0) # <5>
-
-coord_sf_sin_nubes <- inner_join(
-  # <6>
-  st_as_sf(coord_vect), # <6>
-  nubes, # <6>
-  by = join_by(punto) # <6>
-) # <6>
-
-if (nrow(coord_sitios) != nrow(coord_sf_sin_nubes)) {
-  # sitios con nubes
-  puntos_nubes <- anti_join(
-    st_as_sf(coord_vect),
-    nubes,
-    by = join_by(punto)
+r <- list.files(
+    path = "recorte_acolite/", # <1>
+    pattern = as.character(fecha_i), # <2>
+    full.names = TRUE
   ) |>
-    pull(punto) |>
-    stringr::str_flatten_comma(string = _, last = " y ")
+    rast()
 
-  print(
-    # <7>
-    glue(
-      # <7>
-      "Los sitios {puntos_nubes} presentan nubes y ", # <7>
-      "se descartan" # <7>
-    ) # <7>
-  ) # <7>
-}
-```
-1. Carpeta origen del producto satelital.
-2. Directorios hasta la ubicación de los ráster de interés.
-3. Ráster que contiene la máscara de probabilidades de nubes.
-4. Extracción de los valores de píxel.
-5. Conservo únicamente aquellos puntos en los que <b>NO</b> hay nubes.
-6. Comparo sitios muestrales con aquellos que presenten nubes.
-7. En caso de presencia de sitios cubiertos por nubes, se muestra un mensaje indicando en cuales.
+r_3x3 <- terra::focal(
+  r,
+  w = 3, # <3>
+  fun = mean, # <3>
+  na.rm = TRUE
+)
 
-Luego de verificar un cielo despejado, se lleva a cabo la extracción de los valores de píxel de R<sub>rs</sub>.
-
-## Reflectancia de superficie
-
-Alrededor del píxel central se crea una ventana de 3x3 y se promedia el valor final.
-
-```{r}
-# leo recorte
-stack_bandas <- rast(glue("recorte/{nombre_raster}.tif")) # <1>
-
-stack_bandas_3x3 <- terra::focal(
-  # <2>
-  stack_bandas, # <2>
-  w = 3,
-  fun = mean,
-  na.rm = TRUE # <2>
-) # <2>
-
-reflect_3x3 <- terra::extract(
-  # <3>
-  stack_bandas_3x3,
-  coord_sf_sin_nubes # <3>
-) |> # <3>
+reflect <- terra::extract(r_3x3, coord_sitios_v) |> # <4>
   as_tibble() |>
   rename(punto = ID) |>
   pivot_longer(
@@ -330,31 +110,23 @@ reflect_3x3 <- terra::extract(
     names_to = "banda",
     values_to = "reflect"
   ) |>
-  mutate(reflect = reflect / 10000) |> # <4>
-  mutate(fecha = ymd(y), .before = 1) |>
-  inner_join(coord_sitios, by = join_by(punto)) |>
-  mutate(pixel = "3x3", .before = banda)
-
-write_csv(reflect_3x3, "datos/base_de_datos_gis.csv") # <5>
+  mutate(fecha = ymd(fecha_i), .before = 1) |>
+  inner_join(coord_sitios, by = join_by(punto)) # <5>
 ```
-1. Lectura del recorte `.tif` para una fecha dada.
-2. Transformo los píxeles del recorte a valores medios de una grilla 3x3.
-3. Extracción de los valores de píxel para cada sitio muestral.
-4. Aplico factor de escala.
-5. Se almacenan los valores de R<sub>rs</sub> en un archivo de texto (`.csv`).
+1. Carpeta donde se almacenan los rásters generados por ACOLITE.
+2. Filtro los ráster para procesar solamente los de la fecha de interés.
+3. Genero una ventana móvil de 3x3, calculando el promedio de los píxeles.
+4. Realizo la extracción de los valores.
+5. Combino las reflectancias con las coordenadas de los sitios de muestreo.
 
-La base de datos final tiene la siguiente estructura:
+Almaceno las reflectancias de superficie.
 
 ```{r}
-#| eval: true
-readr::read_csv(
-  file = "../datos/base_de_datos_gis_acolite.csv",
-  show_col_types = FALSE
-) |>
-  head()
+base_de_datos <- read_csv(datos, show_col_types = FALSE) # <1>
+
+bind_rows(base_de_datos, reflect) |> # <2>
+  arrange(fecha, punto) |>
+  write_csv(datos)
 ```
-
-# Bibliografía
-
-::: {#refs}
-:::
+1. Leo la base de datos existente.
+2. Combino los nuevos datos extraídos con los anteriores.
