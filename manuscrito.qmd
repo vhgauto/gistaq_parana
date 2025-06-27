@@ -128,7 +128,7 @@ La finalidad de este desarrollo es reunir en un único sitio web las caracterís
 
 # Introducción {#sec-introduccion}
 
-La preservación del agua es fundamental para el desarrollo humano y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible [@agenda2030], es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital, aplicadas a la calidad de los cuerpos de agua, han ido incrementándose en los últimos años verificando la viabilidad de los sensores satelitales [@Bonansea2019]. Dichas técnicas, que se pueden utilizar para desarrollar algoritmos que permiten estimar distintos parámetros fisicoquímicos del agua [@Gholizadeh2016; @Ferral2018a], requieren datos espectrales obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra, de la Agencia Espacial Europea (ESA), que consta de dos plataformas (S2A, S2B). El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica [@Gorroño2017], los productos generados por S2--MSI son confiables [@Phiri2020] y se han utilizado para estimar el color del agua [@wangWaterColorSentinel22023], la concentración de clorofila-a [@bramichImprovedRededgeChlorophylldetection2021] y la materia orgánica disuelta coloreada (CDOM) [@liuRemoteSensingCDOM2021].
+La preservación del agua es fundamental para el desarrollo humano y el monitoreo de la calidad del agua es una actividad importante para la preservación de los recursos. Para garantizar la disponibilidad de agua, de acuerdo con la Agenda 2030 para el Desarrollo Sostenible [@agenda2030], es necesario realizar un estudio de la calidad de la misma. Las técnicas de teledetección satelital, aplicadas a la calidad de los cuerpos de agua, han ido incrementándose en los últimos años verificando la viabilidad de los sensores satelitales [@Bonansea2019]. Dichas técnicas, que se pueden utilizar para desarrollar algoritmos que permiten estimar distintos parámetros fisicoquímicos del agua [@Gholizadeh2016; @Ferral2018a], requieren datos espectrales obtenidos por sensores montados en plataformas satelitales. Sentinel-2 (S2) es una misión de observación de la Tierra, de la Agencia Espacial Europea (ESA), que consta de tres plataformas: S2A, S2B y S2C, lanzados al espacio en 2015, 2017 y 2024, respectivamente. El rango espectral del instrumento multiespectral (MSI), el sensor principal, es de 440 a 2200 nm, con una resolución espacial de 10 m en bandas seleccionadas y 5 días de tiempo de revisita, según la región de interés. Las imágenes S2-MSI son de acceso libre y gratuito desde el Ecosistema Espacial de Datos de Copernicus. Debido a una baja incertidumbre radiométrica [@Gorroño2017], los productos generados por S2--MSI son confiables [@Phiri2020] y se han utilizado para estimar el color del agua [@wangWaterColorSentinel22023], la concentración de clorofila-a [@bramichImprovedRededgeChlorophylldetection2021] y la materia orgánica disuelta coloreada (CDOM) [@liuRemoteSensingCDOM2021].
 
 Los ecosistemas de agua dulce son vulnerables a los cambios en la gestión de usos de la tierra, los impactos antrópicos [@Lovino2018] y la variabilidad climática [@Hestir2015]. Estos ecosistemas están presentes en lagos, arroyos, ríos y humedales. La aplicación de técnicas de teledetección a las aguas superficiales continentales presenta un desafío debido a la extensión relativamente menor y la alta complejidad espacial. Tradicionalmente, las aguas continentales se estudian mediante el desarrollo de algoritmos que correlacionan las propiedades espectrales con los parámetros fisicoquímicos. Este proceso debe validarse a través de mediciones in situ [@Liang2004].
 
@@ -350,7 +350,7 @@ Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
 
 ::: {#fig-mapa-int}
 
-![](figuras_typst/mapa_interactivo.png){width="90%"}
+![](figuras_typst/mapa_interactivo.png){width="100%"}
 
 Mapa interactivo de los sitios de toma de muestra y propiedades fisicoquímicas.
 
@@ -421,7 +421,7 @@ Evolución espacial y temporal de las propiedades del agua.
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-prop-fisico}
-![](figuras_typst/datos_fisicoquimicos.png){width="50%" fig-align="center"}
+![](figuras_typst/datos_fisicoquimicos.png){width="80%" fig-align="center"}
 
 Evolución espacial y temporal de las propiedades del agua.
 :::
@@ -452,7 +452,7 @@ heatmap_lab
 
 :::: {.content-visible when-format="typst"}
 
-![Mapa de calor de las correlaciones lineales entre parámetros fisicoquímicos. Con &#9733; se indica significancia estadística ($pvalor<0,05$)](figuras_typst/heatmap.png){width="50%" fig-align="center" #fig-heatmap-lab}
+![Mapa de calor de las correlaciones lineales entre parámetros fisicoquímicos. Con &#9733; se indica significancia estadística ($pvalor<0,05$)](figuras_typst/heatmap.png){width="80%" fig-align="center" #fig-heatmap-lab}
 
 ::: {.block stroke='rgb("#B86092")' inset="8pt" radius="4pt"}
 
@@ -527,7 +527,7 @@ Figuras que muestran la relación entre parámetros. La [línea de trazos]{style
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-identidad}
-![](figuras_typst/identidad_cond_vs_turb.png){width="50%" fig-align="center"}
+![](figuras_typst/identidad_cons_vs_sol_sus.png){width="80%" fig-align="center"}
 
 Figuras que muestran la relación entre parámetros. La [línea de trazos]{style='color: `{r} c1`'} indica el ajuste lineal como referencia.
 
@@ -580,7 +580,7 @@ Las propiedades fisicoquímicas del agua cambian a lo largo de la transecta. Se 
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-boxplot-lado}
-![](figuras_typst/lado_cond.png){width="50%" fig-align="center"}
+![](figuras_typst/lado_turb.png){width="80%" fig-align="center"}
 
 &#9733; $=pvalor<0.05$, existe diferencia significativa entre los grupos
 :::
@@ -674,7 +674,7 @@ Firmas espectrales por sitio muestral y fecha.
 :::: {.content-visible when-format="typst"}
 
 ::: {#fig-firma-espectral}
-![](figuras_typst/firma_espectral.png){width="50%" fig-align="center"}
+![](figuras_typst/firma_espectral.png){width="80%" fig-align="center"}
 
 Firmas espectrales por sitio muestral y fecha.
 :::
@@ -714,7 +714,7 @@ En cambio, las bandas B04 y B05 muestran una notable disminución de la $R_{rs}$
 ::::
 
 :::: {.content-visible when-format="typst"}
-![Distribución de $R_{rs}$ a partir de gráficos de cajas por sitio fijo y banda espectral. [&#9733;]{style='color: `{r} c1`'} en la esquina de cada panel marca diferencia significativa ($pvalor<0.05$) entre los conjuntos de la costa [**chaqueña**]{style='color: `{r} c1`'} y [**correntina**]{style='color: `{r} c2`'}.](figuras_typst/puntos_boxplot.png){#fig-boxplot-puntos width="50%" fig-align="center"}
+![Distribución de $R_{rs}$ a partir de gráficos de cajas por sitio fijo y banda espectral. [&#9733;]{style='color: `{r} c1`'} en la esquina de cada panel marca diferencia significativa ($pvalor<0.05$) entre los conjuntos de la costa [**chaqueña**]{style='color: `{r} c1`'} y [**correntina**]{style='color: `{r} c2`'}.](figuras_typst/puntos_boxplot.png){#fig-boxplot-puntos width="100%" fig-align="center"}
 ::::
 
 Las características espectrales de S2-MSI se muestran en la siguiente tabla:
@@ -819,7 +819,7 @@ Modelar la calidad del agua en una porción de la cuenca media del río Paraná 
 
 :::: {.content-visible when-format="typst"}
 
-::: {.block stroke='3pt + rgb("#2780E3")' inset="8pt" radius="4pt"}
+::: {.block stroke='3pt + rgb("#007E2E")' inset="8pt" radius="4pt"}
 
 Modelar la calidad del agua en una porción de la cuenca media del río Paraná mediante el desarrollo de un algoritmo construido a partir de técnicas estadísticas, información espacial y datos de campo.
 
@@ -894,7 +894,11 @@ Sitio web desarrollado y mantenido por: **Víctor Gauto** [[&#xf0e0;]{style="fon
 Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**) [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:gistaq@ca.frre.utn.edu.ar) &nbsp; [[&#xf16d;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.instagram.com/gistaq.utn/) &nbsp; [[&#xf09a;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://www.facebook.com/GISTAQ/) &nbsp;.
 :::
 
+:::: {.content-visible when-format="html"}
+
 # Bibliografía {.unnumbered}
 
 ::: {#refs}
 :::
+
+::::
