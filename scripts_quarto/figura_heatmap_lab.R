@@ -123,3 +123,45 @@ heatmap_lab <- girafe(
     opts_toolbar(saveaspng = FALSE)
   )
 )
+
+# typst ------------------------------------------------------------------
+
+g_typst <- e |>
+  ggplot(aes(term, param, fill = r)) +
+  geom_tile(color = c10, linewidth = 1) +
+  geom_richtext(aes(label = label), label.color = NA, fill = NA, color = c7) +
+  scale_x_discrete(
+    labels = param_unid_v
+  ) +
+  scale_y_discrete(
+    labels = param_unid_v
+  ) +
+  scale_fill_gradient2(
+    low = c1,
+    mid = c11,
+    high = c2,
+    limits = c(-1, 1),
+    labels = f_formato(seq(-1, 1, .5), digits = 1, nsmall = 1)
+  ) +
+  labs(x = NULL, y = NULL, fill = "r") +
+  coord_equal() +
+  theme_void(base_size = 15) +
+  theme(
+    plot.margin = margin(b = 15),
+    axis.text = element_markdown(lineheight = 1.2),
+    legend.text = element_text(family = "jet", hjust = 1),
+    legend.title = element_text(
+      family = "jet", margin = margin(b = 10), hjust = .5
+    ),
+    legend.position = "right",
+    legend.key.height = unit(25, "pt"),
+    legend.justification.right = c(0, 1)
+  )
+
+ggsave(
+  plot = g_typst,
+  filename = paste0(getwd(), "/figuras_typst/heatmap.png"),
+  width = 15,
+  height = 13,
+  units = "cm"
+)

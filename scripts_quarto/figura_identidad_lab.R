@@ -130,3 +130,59 @@ f_guardar("turb", "sol_sus")
 f_guardar("turb", "secchi")
 f_guardar("sol_sus", "secchi")
 
+# typst ------------------------------------------------------------------
+
+d_typst <- d |> 
+  filter(param %in% c("sol_sus", "cond")) |> 
+  pivot_wider(
+    names_from = param,
+    values_from = valor,
+    values_fn = list
+  ) |> 
+  unnest(c(cond, sol_sus))
+
+mod_typst <- lm(sol_sus ~ cond, data = d_typst)
+
+r2_typst <- broom::glance(mod_typst)$r.squared |>
+  f_formato()
+
+n_typst <- nrow(d_typst)
+
+etq_typst <- glue("R<sup>2</sup> = {r2_typst}<br>n = {n_typst}")
+
+g_typst <- d_typst |> 
+  ggplot(aes(cond, sol_sus)) +
+  geom_point(size = punto_tamaño, alpha = punto_transparencia, color = c2) +
+  coord_cartesian(clip = "off") +
+  geom_smooth(
+    method = lm, formula = y ~ x, se = FALSE, color = c1,
+    linetype = linea_tipo, linewidth = linea_ancho) +
+  annotate(
+    geom = "richtext", x = I(0), y = I(1), hjust = 0, vjust = 1,
+    size = 5, label = etq_typst, label.color = NA, fill = c11,
+    family = "jet"
+  ) +
+  labs(x = param_unid_v[2], y = param_unid_v[3]) +
+  theme_void(base_size = 15) +
+  theme(
+    aspect.ratio = 1,
+    plot.margin = margin(t = 5, r = 7, b = 0, l = 5),
+    panel.background = element_rect(fill = c11, color = NA),
+    panel.grid.major = element_line(
+      color = c4, linewidth = .1, linetype = "FF"
+    ),
+    axis.title = element_markdown(family = "Ubuntu"),
+    axis.title.y = element_markdown(angle = 90, margin = margin(r = 3, l = 5)),
+    axis.title.x = element_markdown(margin = margin(t = 6, b = 10)),
+    axis.text = element_text(family = "jet"),
+    axis.text.x = element_text(margin = margin(t = 6)),
+    axis.text.y = element_text(margin = margin(r = 5), hjust = 1)
+  )
+
+ggsave(
+  plot = g_typst,
+  filename = paste0(getwd(), "/figuras_typst/identidad_cons_vs_sol_sus.png"),
+  width = 15,
+  height = 15,
+  units = "cm"
+)
