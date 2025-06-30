@@ -2,7 +2,7 @@
 .env
 c/
 acolite/
-recorte_acolite/
+# recorte_acolite/
 producto/
 
 # contenido asociado al manuscrito
@@ -48,7 +48,7 @@ test.html
 test*
 
 # recortes .tif
-recorte/*
+# recorte/*
 
 # provincias de Argentina
 vector/pcias_continental.gpkg
