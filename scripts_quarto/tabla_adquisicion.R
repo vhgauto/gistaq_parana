@@ -1,4 +1,3 @@
-
 # datos -------------------------------------------------------------------
 
 # próximos 10 muestreos
@@ -24,16 +23,3 @@ tabla_adquisicion_tbl <- tibble(
     adq
   ) |>
   mutate(Día = str_to_sentence(Día))
-
-tabla_adquisicion_tbl2 <- tabla_adquisicion_tbl |>
-  mutate(Fecha = as.character(Fecha)) |>
-  mutate(Fecha = if_else(
-    row_number() == 1,
-    glue("**{Fecha}**"),
-    Fecha
-  )) |>
-  mutate(Día = if_else(
-    row_number() == 1,
-    glue("**{Día}**"),
-    Día
-  ))
