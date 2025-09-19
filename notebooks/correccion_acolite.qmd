@@ -42,8 +42,8 @@ dsf_residual_glint_correction=True
 map_l2w=False
 rgb_rhot=False
 rgb_rhos=False
-polygon=/ubicación/del/polígono.geojson
-output=/ubicación/salida
+polygon="/ubicación/del/polígono.geojson"
+output="/ubicación/salida"
 ```
 
 La [instalación](https://github.com/acolite/acolite?tab=readme-ov-file#dependencies) de ACOLITE requiere la presencia de librerías específicas y la creación de un ambiente de ejecución.
