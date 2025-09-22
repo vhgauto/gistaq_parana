@@ -1,4 +1,3 @@
-
 # paquetes ----------------------------------------------------------------
 
 library(corrr)
@@ -100,7 +99,8 @@ actualizado <- format(now(), "%d/%m/%Y %H:%M")
 
 actualizado_label <- glue(
   "<p style='font-family:JetBrains Mono; color:{c9};text-align:right'>",
-  "{actualizado}</p>")
+  "{actualizado}</p>"
+)
 
 # descripción de las tablas, con p-valor < .05 & |R| > .5
 caption_tabla <- glue(
@@ -125,8 +125,13 @@ caption_boxplot <- glue(
 # función que aplica formato a los números de R
 f_formato <- function(x, digits = 3, nsmall = 3) {
   format(
-    x, digits = digits, nsmall = nsmall, trim = TRUE, decimal.mark = ",",
-    big.mark = ".")
+    x,
+    digits = digits,
+    nsmall = nsmall,
+    trim = TRUE,
+    decimal.mark = ",",
+    big.mark = "."
+  )
 }
 
 # función que obtiene el pvalor de las correlaciones
