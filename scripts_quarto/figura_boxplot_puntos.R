@@ -147,6 +147,7 @@ g <- e_tbl |>
   theme(
     aspect.ratio = 1,
     plot.margin = margin(r = 1, l = 1, t = 0, b = 2),
+    plot.background = element_blank(),
     panel.background = element_rect(fill = c11, color = NA),
     panel.spacing.x = unit(1.6, "line"),
     panel.spacing.y = unit(1, "line"),
