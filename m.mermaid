@@ -1,0 +1,34 @@
+graph LR
+  style Legend fill:#FFFFFF00,stroke:#000000;
+  style Graph fill:#FFFFFF00,stroke:#000000;
+  subgraph Legend
+    xf1522833a4d242c5(["Up to date"]):::uptodate
+    x2db1ec7a48f65a9b(["Outdated"]):::outdated
+    xbecb13963f49e50b{{"Object"}}:::none
+    xeb2d7cac8a1ce544>"Function"]:::none
+    xd03d7c7dd2ddda2b(["Regular target"]):::none
+  end
+  subgraph Graph
+    direction LR
+    x2eb57580dd338e28(["excel"]):::uptodate --> x75ae8feee719d1e2(["datos_gis"]):::uptodate
+    x27cf98eb0536b3cc(["fecha_actual"]):::uptodate --> x75ae8feee719d1e2(["datos_gis"]):::uptodate
+    x0dc39fa9e42347ba>"reflectancia"]:::uptodate --> x75ae8feee719d1e2(["datos_gis"]):::uptodate
+    x2eb57580dd338e28(["excel"]):::uptodate --> x1a91c1978c7a143b(["datos_lab"]):::uptodate
+    x38637a02f9b83fc8>"lab"]:::uptodate --> x1a91c1978c7a143b(["datos_lab"]):::uptodate
+    x29bd13377b9e6171>"archivo_excel"]:::uptodate --> x2eb57580dd338e28(["excel"]):::uptodate
+    x2eb57580dd338e28(["excel"]):::uptodate --> x27cf98eb0536b3cc(["fecha_actual"]):::uptodate
+    xfabd587be49f2fed>"fecha"]:::uptodate --> x27cf98eb0536b3cc(["fecha_actual"]):::uptodate
+    x3d474db92cf09724>"mensaje"]:::uptodate --> x38637a02f9b83fc8>"lab"]:::uptodate
+    xfabd587be49f2fed>"fecha"]:::uptodate --> x38637a02f9b83fc8>"lab"]:::uptodate
+    xc36834a08989fd92>"archivo_quarto"]:::uptodate --> x0cceab94dc3cb992(["manuscrito"]):::uptodate
+    xc856c5bfddbb40a5{{"bandas_s2"}}:::uptodate --> xc5ec810879cc40ee>"recorte"]:::outdated
+    x9505d3eeeff3a790{{"v"}}:::outdated --> xc5ec810879cc40ee>"recorte"]:::outdated
+    x27cf98eb0536b3cc(["fecha_actual"]):::uptodate --> x4b150ba8dbe4203d(["recorte_tif"]):::outdated
+    xc5ec810879cc40ee>"recorte"]:::outdated --> x4b150ba8dbe4203d(["recorte_tif"]):::outdated
+    xfabd587be49f2fed>"fecha"]:::uptodate --> x0dc39fa9e42347ba>"reflectancia"]:::uptodate
+    x3d474db92cf09724>"mensaje"]:::uptodate --> x0dc39fa9e42347ba>"reflectancia"]:::uptodate
+    xcac90a77a625823f(["render_manuscrito"]):::uptodate
+  end
+  classDef uptodate stroke:#000000,color:#ffffff,fill:#354823;
+  classDef outdated stroke:#000000,color:#000000,fill:#78B7C5;
+  classDef none stroke:#000000,color:#000000,fill:#94a4ac;
