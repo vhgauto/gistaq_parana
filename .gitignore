@@ -5,6 +5,8 @@ acolite/
 # recorte_acolite/
 producto/
 rasters/
+cat/
+datos/CAUDAL*
 
 # contenido asociado al manuscrito
 _manuscript/
