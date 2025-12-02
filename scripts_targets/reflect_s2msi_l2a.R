@@ -144,7 +144,8 @@ reflectancia <- function(fecha) {
     rename(punto = ID) |>
     pivot_longer(cols = -punto, names_to = "banda", values_to = "reflect") |>
     mutate(fecha = ymd(fecha), .before = 1) |>
-    inner_join(coord_sitios, by = join_by(punto))
+    inner_join(coord_sitios, by = join_by(punto)) |>
+    mutate(reflect = reflect / 10000)
 
   reflect_prev <- read_csv(
     "datos/base_de_datos_gis_sen2cor.csv",
@@ -156,3 +157,6 @@ reflectancia <- function(fecha) {
 
   mensaje("Datos sen2cor almacenados")
 }
+
+# recorte(20251126)
+# reflectancia(20251126)
