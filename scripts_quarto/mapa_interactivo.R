@@ -1,4 +1,3 @@
-
 # options(viewer = NULL)
 
 # datos -------------------------------------------------------------------
@@ -20,7 +19,8 @@ label_unidad <- c(
   sol_sus = "ppm",
   turb = "NTU",
   secchi = "cm",
-  hazemeter = "EBC")
+  hazemeter = "EBC"
+)
 
 # datos de laboratorio
 d <- read_csv("datos/base_de_datos_lab.csv", show_col_types = FALSE)
@@ -36,7 +36,8 @@ fechas_v <- unique(v_tbl$fecha) |> str_remove_all("-")
 r_files <- list.files(
   path = "recorte_acolite/",
   # pattern = stringr::str_flatten(fechas_v, "|"),
-  full.names = TRUE)
+  full.names = TRUE
+)
 
 # creo el stack de bandas y agrego las fechas como nombres
 r_list <- map(r_files, raster::stack)
@@ -86,14 +87,15 @@ f_label <- function(fecha_date) {
     pull(l)
 
   filas <- glue(
-    "<span style='font-size:13px; font-family: Ubuntu'>{labels}</span>")
+    "<span style='font-size:13px; font-family: Ubuntu'>{labels}</span>"
+  )
 
   p_label <- glue(
     "<span style='font-family: JetBrains Mono; font-size: 16px'>",
-    "P{1:length(labels)}</span>")
+    "P{1:length(labels)}</span>"
+  )
 
   glue("{p_label}<br>{filas}")
-
 }
 
 # escala de colores de los marcadores
@@ -104,7 +106,6 @@ f_relleno <- function(fecha_date) {
     nrow()
 
   colorRampPalette(c(c1, c2))(n)
-
 }
 
 f_etq <- function(fecha_date) {
@@ -120,22 +121,38 @@ f_etq <- function(fecha_date) {
       )
     ) |>
     pull(l2)
-
 }
 
 # genera los archivos de las formas predeterminadas como marcadores
 f_icono <- function(
-  fecha, pch = 21, color = c5, lwd = 1, alto = 20, ancho = 20) {
+  fecha,
+  pch = 21,
+  color = c5,
+  lwd = 1,
+  alto = 20,
+  ancho = 20
+) {
   map(
     .x = f_relleno(fecha),
     .f = ~ pchIcons(
-      pch, bg = .x, lwd = lwd, col = color, alto = alto, ancho = ancho)) |>
+      pch,
+      bg = .x,
+      lwd = lwd,
+      col = color,
+      alto = alto,
+      ancho = ancho
+    )
+  ) |>
     list_c()
 }
 
 # función que agrega puntos con su estilo
 f_circulo <- function(
-    map, fecha_date, color = c5, opacity = 1) {
+  map,
+  fecha_date,
+  color = c5,
+  opacity = 1
+) {
   addMarkers(
     map,
     lng = pull(unique(v_tbl[v_tbl$fecha == ymd(fecha_date), "longitud"])),
@@ -151,14 +168,18 @@ f_circulo <- function(
     ),
 
     group = ymd(fecha_date)
-    )
+  )
 }
 
 # función que agrega ráster en composición RGB
 f_rgb <- function(map, fecha, qmin = .03, qmax = .97) {
   addRasterRGB(
     map,
-    r_list[[fecha]], r = 4, g = 3, b = 2, quantiles = c(qmin, qmax),
+    r_list[[fecha]],
+    r = 4,
+    g = 3,
+    b = 2,
+    quantiles = c(qmin, qmax),
     na.color = NA,
     group = ymd(fecha)
   )
@@ -167,14 +188,14 @@ f_rgb <- function(map, fecha, qmin = .03, qmax = .97) {
 # mapa --------------------------------------------------------------------
 
 # coordenadas para centrar el mapa
-zoom_lon <- (e[1] + e[2])/2
-zoom_lat <- (e[3] + e[4])/2
+zoom_lon <- (e[1] + e[2]) / 2
+zoom_lat <- (e[3] + e[4]) / 2
 
 # logo GISTAQ
 # conviene usar una url en lugar de un archivo local, agrego link a Instagram
-logo_asp <- 1535/538
+logo_asp <- 1535 / 538
 logo_ancho <- 100
-logo_alto <- round(logo_ancho/logo_asp) # tienen que ser números enteros
+logo_alto <- round(logo_ancho / logo_asp) # tienen que ser números enteros
 logo_link <- "https://raw.githubusercontent.com/vhgauto/sameep/main/extras/gistaq_logo.png"
 logo_url <- "https://www.instagram.com/gistaq.utn/"
 
@@ -201,12 +222,14 @@ mapa_interactivo <- base |>
   ) |>
   # logo
   addLogo(
-    img = logo_link, position = "bottomleft", src = "remote",
-    width = logo_ancho, height = logo_alto, url = logo_url
+    img = "extras/logo-gistaq.png",
+    position = "bottomleft",
+    width = logo_ancho,
+    height = logo_alto,
+    url = logo_url
   ) |>
   # botones
   addResetMapButton() |>
   addFullscreenControl(position = "bottomright") |>
   # muestro la última fecha al iniciar
   showGroup(max(ymd(fechas_v)))
-
