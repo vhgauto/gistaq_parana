@@ -869,7 +869,52 @@ A medida que el proyecto avance, los resultados parciales serán registrados en 
 
 # Algoritmos {#sec-algoritmos}
 
-El desarrollo de los algoritmos...
+La estimación de los parámetros fisicoquímicos se llevó a cabo mediante el desarrollo de algoritmos de regresión por mecanismos de aprendizaje automático.
+
+Se indican a continuación los resultados de los algoritmos obtenidos para turbidez, profundidad de disco de Secchi y sólidos disueltos.
+
+## Turbidez<span style="font-weight:normal; font-size: 1rem">, por Víctor Gómez [{{< fa brands github >}}](https://github.com/gomezvictoriq)</span> {toc-text="Turbidez"}
+
+El modelo desarrollado para la estimación de turbidez en el agua del río Paraná fue XGBoost. Los hiperparámetros fueron optimizados con búsqueda bayesiana inteligente.
+
+La figura [-@fig-algoritmo-turb] muestra la turbidez estimada y medida. Las métricas de desempeño dieron: $R^{2}=0,92$ y $RMSE=11,282 NTU$.
+
+::: {#fig-algoritmo-turb}
+
+![](extras/est_vs_pred_turb.png){fig-align="center"}
+
+Estimaciones y mediciones de turbidez del modelo seleccionado.
+:::
+
+La distribución espacial de turbidez en el río Paraná se muestra en la figura [-@fig-mapa-turb].
+
+:::: {.column-body-outset-right}
+
+::: {#fig-mapa-turb}
+
+![](extras/mapa_turb.png){fig-align="center"}
+
+Máscara de agua y mapa de turbidez correspondiente al 2025-06-09.
+:::
+
+::::
+
+El desarrollo del algoritmo, su optimización y más detalles se encuentran en el [siguiente enlace](https://gomezvictoriq.github.io/Turbidez/).
+
+## Profundidad de disco de Secchi<span style="font-weight:normal; font-size: 1rem">, por Mauricio Acosta [{{< fa brands github >}}](https://github.com/mauri491)</span> {toc-text="Profundidad de disco de Secchi"}
+
+Las estimaciones de transparencia del agua se lograron con un algoritmo de aprendizaje automático XGBoost. El mismo presentó $R^{2}=0,8636$ y $RMSE=231,55 cm$.
+
+La comparación entre profundidad de disco de Secchi estimado y medido puede observarse en la figura [-@fig-algoritmo-secchi].
+
+::: {#fig-algoritmo-secchi}
+
+![](extras/est_vs_pred_secchi.png){fig-align="center"}
+
+Estimaciones y mediciones de profundidad de disco de Secchi del modelo seleccionado.
+:::
+
+Para más información respecto del algoritmo desarrollado, dirigirse al siguiente [link](https://mauri491.quarto.pub/estimacion-secchi/).
 
 # Contacto {#sec-contacto}
 
