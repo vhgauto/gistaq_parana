@@ -916,26 +916,45 @@ Estimaciones y mediciones de profundidad de disco de Secchi del modelo seleccion
 
 Para más información respecto del algoritmo desarrollado, dirigirse al siguiente [link](https://mauri491.quarto.pub/estimacion-secchi/).
 
+## Sólidos suspendidos totales<span style="font-weight:normal; font-size: 1rem">, por Ariadna Seba [{{< fa brands github >}}](https://github.com/AriadnaSeba)</span> {toc-text="Sólidos suspendidos totales"}
+
+El modelo que presentó los mejores resultados fue *random forest*.
+
+La concentración de sólidos mostró la siguiente distribución espacial de la figura [-@fig-mapa-sol].
+
+:::: {.column-body-outset-right}
+
+::: {#fig-mapa-sol}
+
+![](extras/mapa_sol.png){fig-align="center"}
+
+Mapa de sólidos disueltos correspondiente al 2025-06-09.
+:::
+
+::::
+
+El desarrollo completo del algoritmo se encutran en el [siguiente sitio](https://ariadnaseba.github.io/solidos_suspendidos/).
+
 # Contacto {#sec-contacto}
 
+:::: {.content-visible when-format="html"}
 Integrantes del Proyecto de Investigación.
 
 Profesionales:
 
-* **Enid Utgés**
+* **Enid Utgés** [{{< fa brands github >}}](https://github.com/Enid2802)
 * **Daniela Tenev**
-* **Víctor Gauto**
+* **Víctor Gauto** [{{< fa brands github >}}](https://github.com/vhgauto)
 
 Becarios:
 
-* **Mauricio Acosta**
-* **Vera Geneyer**
-* **Víctor Gómez**
-* **Bruno Lossada Dusset**
-* **Ariadna Seba**
+* **Mauricio Acosta** [{{< fa brands github >}}](https://github.com/mauri491)
+* **Vera Geneyer** [{{< fa brands github >}}](https://github.com/VeraGeneyer)
+* **Víctor Gómez** [{{< fa brands github >}}](https://github.com/gomezvictoriq)
+* **Bruno Lossada Dusset** [{{< fa brands github >}}](https://github.com/BrunoLossada)
+* **Ariadna Seba** [{{< fa brands github >}}](https://github.com/AriadnaSeba)
 * **Noelia Molo**
 
-:::: {.content-visible when-format="html"}
 Los archivos que generan este sitio web están disponibles en [{{< fa brands github >}}](https://github.com/vhgauto/gistaq_parana).
 
 Sitio web desarrollado y mantenido por: **Víctor Gauto** [{{< fa envelope >}}](mailto:victor.gauto@ca.frre.utn.edu.ar) &nbsp; [{{< fa brands github >}}](https://github.com/vhgauto).
@@ -944,6 +963,23 @@ Grupo de Investigación Sobre Temas Ambientales y Químicos (**GISTAQ**) [{{< fa
 ::::
 
 :::: {.content-visible when-format="typst"}
+Integrantes del Proyecto de Investigación.
+
+Profesionales:
+
+* **Enid Utgés** [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/Enid2802)
+* **Daniela Tenev**
+* **Víctor Gauto** [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/vhgauto)
+
+Becarios:
+
+* **Mauricio Acosta** [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/mauri491)
+* **Vera Geneyer** [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/VeraGeneyer)
+* **Víctor Gómez** [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/gomezvictoriq)
+* **Bruno Lossada Dusset** [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/BrunoLossada)
+* **Ariadna Seba** [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/AriadnaSeba)
+* **Noelia Molo**
+
 Los archivos que generan este sitio web están disponibles en [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://vhgauto.quarto.pub/gistaq-parana/).
 
 Sitio web desarrollado y mantenido por: **Víctor Gauto** [[&#xf0e0;]{style="font-family: JetBrains Mono; color: `r c1`"}](mailto:victor.gauto@ca.frre.utn.edu.ar) &nbsp; [[&#xe709;]{style="font-family: JetBrains Mono; color: `r c1`"}](https://github.com/vhgauto).
